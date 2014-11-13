@@ -63,7 +63,7 @@ a.anchor{
 	background-image: linear-gradient(to bottom,#0099cc 0,#008ab8 100%);
 	background-repeat: repeat-x;
 	*/
-	background-image: url(../img/cool.jpg);
+	background-image: url(../img/cool.jpg); /* https://www.flickr.com/photos/fr4dd/ */
 	background-size: cover;
 	background-position: center;
 	text-shadow: 1px 1px 2px rgba(0,0,0,.8);
@@ -337,7 +337,7 @@ a.anchor{
 }
 
 #about-jumbo{
-	background-image: url(../img/sprials-compiled-banner.png);
+	background-image: url(../img/spirals-compiled-banner.png); /* https://www.flickr.com/photos/justinwdavis/ */
 	text-shadow: 3px 3px 6px rgba(0,0,0,.95);
 	padding-top: .75em;
 	min-height: 278px;
@@ -395,7 +395,7 @@ a.anchor{
 }
 
 #gallery-jumbo{
-	background-image: url(../img/gallery-jumbo-image.png);
+	background-image: url(../img/gallery-jumbo-image.png); /* https://www.flickr.com/photos/sergiu_bacioiu/ */
 	text-shadow: 1px 1px 2px rgba(0,0,0,.8);
 	padding-top: .75em;
 } 
@@ -538,7 +538,7 @@ a.anchor{
 }
 
 #faq-jumbo{
-	background-image: url(../img/faq-banner.png);
+	background-image: url(../img/faq-banner.png); /* https://www.flickr.com/photos/microdesign/ */
 	text-shadow: 1px 1px 3px rgba(0,0,0,.7);
 	padding-top: .75em;
 	min-height: 278px;
