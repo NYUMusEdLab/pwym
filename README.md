@@ -1,2 +1,3 @@
-learning-creative-learning
+play-with-your-music
+http://playwithyourmusic.org
 ==========================
