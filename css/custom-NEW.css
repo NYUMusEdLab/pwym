@@ -669,6 +669,18 @@ footer #logo-p2pu{
   margin: 0px 15px 0px 20px;
 }
 
+footer #logo-musedlab{
+/* 686x212px */
+  display: block;
+  float: left;
+  background: url(../img/musedlab-logo.png) no-repeat;
+  background-size: contain;
+  background-position: center;
+  width:68px;
+  height:100%;
+  margin: 0px 15px 0px 20px;
+}
+
 footer #logo-nyusteinhardt{
 /* 883x106px */
   display: block;
