@@ -44,12 +44,12 @@ a.anchor{
 .navbar-default .navbar-nav > li > a {
 	color: #191919;
 }
-.navbar-default .navbar-nav > li > a:hover, 
+.navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
 	color: #0099cc;
 }
-.navbar-default .navbar-nav > .active > a, 
-.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
 	color: #191919;
 	background-color: #e6f5fa;
@@ -63,7 +63,7 @@ a.anchor{
 	background-image: linear-gradient(to bottom,#0099cc 0,#008ab8 100%);
 	background-repeat: repeat-x;
 	*/
-	background-image: url(../img/nyupurple.png); 
+	background-image: url(../img/nyupurple.png);
 	background-size: cover;
 	background-position: center;
 	text-shadow: 1px 1px 3px rgba(0,0,0,.8);
@@ -212,7 +212,7 @@ a.anchor{
 
 @media (max-width: 767px){
 	.jumbotron{
-		padding-right: 15px; 
+		padding-right: 15px;
 		padding-left:15px;
 	}
 	.jumbotron .col-lg-6{
@@ -241,7 +241,7 @@ a.anchor{
 	.jumbotron .col-lg-3{
 		min-width: 100%;
 		padding: 0px;
-		padding-top: 8px; 
+		padding-top: 8px;
 	}
 	.jumbotron .col-lg-3 .container{
 		min-height: 160px;
@@ -305,7 +305,7 @@ a.anchor{
 	}
 	.content h1{
 		font-size: 2em;
-	} 
+	}
 }
 
 .content .col-lg-4 a{
@@ -337,12 +337,12 @@ a.anchor{
 }
 
 #about-jumbo{
-	background-image: url(../img/nyupurple.png); 
+	background-image: url(../img/nyupurple.png);
 	text-shadow: 1px 1px 3px rgba(0,0,0,.8);
 	padding-top: .75em;
 	min-height: 278px;
 	margin-bottom: 20px;
-} 
+}
 
 #about-jumbo h1{
 	font-weight: bold;
@@ -395,9 +395,9 @@ a.anchor{
 }
 
 #gallery-jumbo{
-	background-image: url(../img/nyupurple.png); 
+	background-image: url(../img/nyupurple.png);
 	padding-top: .75em;
-} 
+}
 
 #gallery-jumbo h1{
 	font-weight: bold;
@@ -507,7 +507,7 @@ a.anchor{
 }
 
 
-/* MAP 
+/* MAP
 -------------------------------------------------- */
 
 .map {
@@ -537,12 +537,12 @@ a.anchor{
 }
 
 #faq-jumbo{
-	background-image: url(../img/nyupurple.png); 
+	background-image: url(../img/nyupurple.png);
 	text-shadow: 1px 1px 3px rgba(0,0,0,.8);
 	padding-top: .75em;
 	min-height: 278px;
 	margin-bottom: 20px;
-} 
+}
 
 #faq-jumbo h1{
 	font-weight: bold;
@@ -610,7 +610,7 @@ a.anchor{
 }
 
 
-/* FOOTER CONTENT 
+/* FOOTER CONTENT
 -------------------------------------------------- */
 
 footer .col-lg-8{
@@ -676,7 +676,7 @@ footer #logo-musedlab{
   background: url(../img/musedlab-logo.png) no-repeat;
   background-size: contain;
   background-position: center;
-  width:68px;
+  width:100px;
   height:100%;
   margin: 0px 15px 0px 20px;
 }
@@ -725,6 +725,5 @@ footer #logo-hewlett{
 		height:60%;
 		margin: 7px 0px 0px 15px;
 	}
-	
-}
 
+}
