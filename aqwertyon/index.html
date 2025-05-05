@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Puzzle Cards – NYU Music Experience Design Lab</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>aQWERTYon – NYU Music Experience Design Lab</title>
   <style>
     body {
       font-family: 'Lato', sans-serif;
@@ -39,10 +39,23 @@
     .btn:hover {
       background-color: #003f87;
     }
-    img.responsive {
+    iframe {
       max-width: 100%;
-      height: auto;
-      border-radius: 1rem;
+      margin-top: 1rem;
+      border-radius: 0.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+    }
+    th, td {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+    }
+    th {
+      background-color: #eee;
+      text-align: left;
     }
     .project-content {
       display: flex;
@@ -53,9 +66,10 @@
     .text-column, .image-column {
       flex: 1 1 45%;
     }
-    iframe {
+    img.responsive {
       max-width: 100%;
-      margin-top: 1rem;
+      height: auto;
+      border-radius: 1rem;
     }
     footer {
       text-align: center;
@@ -67,28 +81,45 @@
 </head>
 <body>
 <div class="container">
-  <h1>Puzzle Cards</h1>
+  <h1>aQWERTYon</h1>
   <div class="project-content">
     <div class="text-column">
-      <p>The <strong>Puzzle Cards</strong> app represents music as a sequence of cards showing graphical notation. Clicking a card plays the corresponding segment of the music. By reordering the cards, the user reorders the playback of the music excerpts. In Solve mode, the goal is to take a shuffled deck of cards and restore them to the correct order. In Remix mode, the user is free to order the cards freely, to create new variations.</p>
-      <p>Created in partnership with the <a href="http://www.chambermusicdetroit.org/" target="_blank">Chamber Music Society of Detroit</a>. Learn more <a href="http://siteline.vendini.com/site/chambermusicdetroit.org/interactive-learning" target="_blank">here</a>.</p>
-      <ul>
-        <li><a href="https://apps.musedlab.org/puzzlecards/remix.html?songs=&source=pub&session=ry1544Tb-&clone=true&song=moanin&can-save=true&">Haydn's Hunt Quartet</a> – performed by the <a href="https://www.aeolusquartet.com/" target="_blank">Aeolus Quartet</a></li>
-        <li><a href="https://apps.musedlab.org/puzzlecards/remix.html?source=pub&clone=true&song=lexi-aeolus2&can-save=true#close">Lexi Bryant Composition</a> – performed by the <a href="https://www.aeolusquartet.com/" target="_blank">Aeolus Quartet</a></li>
-        <li><a href="https://dev.musedlab.org/puzzlecards/remix.html?songs=default-songset&source=dev&session=rk0KBEp-Z&clone=true&song=moanin&can-save=true&">Moanin' Jazz Cards</a> – performed by Marcus Elliot and Michael Malis</li>
-      </ul>
-      <a href="https://apps.musedlab.org/puzzlecards/remix.html?source=pub&clone=true&song=lexi-aeolus2&can-save=true#close" target="_blank" class="btn">Try the App Now</a>
+      <p><strong>aQWERTYon</strong> is a browser-based musical instrument that transforms your computer keyboard into a customizable music controller. Designed to be intuitive for beginners and expressive for experienced users, it maps scales and chords across the QWERTY layout, enabling real-time music-making without requiring traditional instrumental skills.</p>
+
+      <p>Ideal for music education and creative play, aQWERTYon includes multiple built-in sounds and visual feedback. It can be used to explore music theory interactively, compose melodies, and perform live or in the classroom.</p>
+
+      <a href="https://apps.musedlab.org/aqwertyon/" class="btn" target="_blank">Try Original aQWERTYon Now</a>
+      <a href="https://apps.musedlab.org/aqwertyon/theory/" class="btn" target="_blank">Try aQWERTYon Theory Now</a>
     </div>
     <div class="image-column">
-      <a href="https://apps.musedlab.org/puzzlecards/remix.html?source=pub&clone=true&song=lexi-aeolus2&can-save=true#close" target="_blank">
-        <img src="http://res.cloudinary.com/dfwzmr3kv/image/upload/v1510889292/sfcicknx3fzbsckz0fqi.png" alt="Puzzle Cards" class="responsive">
+      <a href="https://apps.musedlab.org/aqwertyon/" target="_blank">
+        <img src="../img/aQW.png" alt="aQWERTYon Interface" class="responsive" height="300" width="300"/>
       </a>
     </div>
   </div>
 
-  <h2>About the Collaboration</h2>
-  <p>Founded in 1944, the Chamber Music Society of Detroit is one of the oldest and most prestigious chamber music presenters in the U.S. Through its Signature Chamber Series and Sunday Recital Series, CMSD brings the world’s best artists and ensembles to the metro Detroit stage in outstanding performances that inspire and delight thousands. Each year, CMSD reaches over 10,000 young people—mostly in underserved, inner-city communities—through educational programs in schools and community organizations.</p>
-  <p>Beyond sponsoring live performances, CMSD is collaborating with the MusEDLab to create online interactive experiences around classical repertoire. The Puzzle Cards app is one of these, inviting young people to explore music with the same creative freedom as hip-hop producers, giving them insight into the experiences of performers and composers alike.</p>
+  <h2>Curriculum Resources</h2>
+  <ul>
+    <li><a href="https://ethanhein.com/wp/aqwertyon-lesson-plans/" target="_blank">Lesson Plans and Teaching Guides by Ethan Hein</a></li>
+    <li><a href="https://www.youtube.com/watch?v=5vEoqaLMja0" target="_blank">Student Project Examples</a></li>
+  </ul>
+
+
+  <h2>Video Tutorials</h2>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/uRQtqEN7I30" frameborder="0" allowfullscreen></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/OtkbUj1R1DY" frameborder="0" allowfullscreen></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/Dog3FCquelk" frameborder="0" allowfullscreen></iframe>
+
+  <h2>Web MIDI Integration</h2>
+  <p>aQWERTYon supports <strong>Web MIDI API</strong> in Chrome-based browsers, allowing you to send MIDI output to other software instruments, digital audio workstations (DAWs), and web-based synths.</p>
+  <p>This means you can use your QWERTY keyboard to control GarageBand, Logic, Ableton Live, or online synths like <a href="https://www.audiotool.com/" target="_blank">Audiotool</a> or <a href="https://www.sampulator.com/" target="_blank">Sampulator</a>.</p>
+
+  <h3>Setup Guides for External MIDI</h3>
+  <ul>
+    <li><a href="https://support.apple.com/guide/audio-midi-setup/connect-midi-devices-ams59b80f9a1/mac" target="_blank">Using IAC MIDI on macOS</a></li>
+    <li><a href="https://www.tobias-erichsen.de/software/loopmidi.html" target="_blank">LoopMIDI for Windows</a></li>
+    <li><a href="https://www.soundonsound.com/techniques/using-virtual-midi-buses-control-your-digital-audio-workstation" target="_blank">General Inter-App MIDI Routing</a></li>
+  </ul>
 
   <footer>
     &copy; 2025 NYU Music Experience Design Lab
