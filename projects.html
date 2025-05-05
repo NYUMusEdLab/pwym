@@ -3,57 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="NYU Music Experience Design Lab">
-  <meta name="author" content="NYU Music Experience Design Lab">
-  <link rel="stylesheet" href="styles/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Projects – NYU Music Experience Design Lab</title>
+  <link rel="shortcut icon" href="img/favicon.png">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/custom-NEW.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1J5K700B51"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1J5K700B51');
+  </script>
   <style>
-    .header-nav {
-      background-color: #222;
-      padding: 10px 0;
+    .tile {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+      margin-bottom: 20px;
     }
-    .header-nav ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
+    .tile:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
-    .header-nav li {
-      display: inline;
+    .tile-content {
+      padding: 15px;
     }
-    .header-nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 400;
-      font-size: 1.1em;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
-    .header-nav a:hover {
-      text-decoration: underline;
+    img {
+      width: 100%;
+      height: auto;
+    }
+    h2 {
+      margin-top: 0;
+      color: #003366;
+    }
+    p {
+      margin-bottom: 0;
+    }
+    main.container {
+      padding-top: 120px;
     }
   </style>
-  <title>NYU Music Experience Design Lab</title>
 </head>
 <body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">
+        <img src="img/musedlab-logo.png"/>
+      </a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="about.html">About MusEDLab</a></li>
+        <li class="active"><a href="musedlab/index.html">Projects</a></li>
+        <li><a href="people.html">People</a></li>
+        <li><a href="press.html">Press</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-<nav class="header-nav">
-  <ul>
-    <li><a href="about.html">About</a></li>
-    <li><a href="index.html">Projects</a></li>
-    <li><a href="people.html">People</a></li>
-    <li><a href="resources.html">Resources</a></li>
-    <li><a href="press.html">Press</a></li>
-  </ul>
-</nav>
+<div class="jumbotron" id="about-jumbo">
+  <h1>Projects</h1>
+</div>
 
 <main class="container">
-  <header>
-    <h1>NYU Music Experience Design Lab Projects</h1>
-  </header>
   <section class="grid" id="projectGrid">
     <article class="tile" data-title="Groove Pizza">
       <a href="/groovepizza">
