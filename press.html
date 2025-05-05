@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Press – NYU Music Experience Design Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
   <link rel="shortcut icon" href="img/favicon.png">
+  <title>Publications | MusEDLab</title>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/custom-NEW.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-1J5K700B51"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -17,54 +19,16 @@
     gtag('config', 'G-1J5K700B51');
   </script>
   <style>
-    body {
-      font-family: 'Lato', sans-serif;
-      background-color: #fefefe;
-      color: #222;
-      line-height: 1.6;
-      margin: 0;
-      padding-top: 70px;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-    h1, h2 {
-      color: #003366;
-    }
-    a {
-      color: #0055aa;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .press-entry {
-      margin-bottom: 3rem;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 1.5rem;
+    .navbar-brand img {
+      max-height: 40px;
+      height: auto;
+      width: auto;
     }
     .press-entry img {
       max-width: 100%;
       height: auto;
-      border-radius: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    iframe {
-      max-width: 100%;
-      margin-top: 1rem;
-      border-radius: 0.5rem;
-    }
-    #filter-year {
-      margin-bottom: 2rem;
-      font-size: 1rem;
-    }
-    footer {
-      text-align: center;
-      margin-top: 4rem;
-      font-size: 0.9rem;
-      color: #888;
+      max-height: 200px;
+      object-fit: cover;
     }
   </style>
 </head>
@@ -79,7 +43,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="index.html">
-        <img src="img/musedlab-logo.png"/>
+        <img src="img/musedlab-logo.png" alt="MusEDLab Logo"/>
       </a>
     </div>
     <div class="navbar-collapse collapse">
@@ -87,117 +51,96 @@
         <li><a href="about.html">About MusEDLab</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="people.html">People</a></li>
-        <li><a href="press.html">Press</a></li>
+        <li class="active"><a href="press.html">Publications</a></li>
       </ul>
     </div>
   </div>
 </div>
 
 <div class="jumbotron" id="about-jumbo">
-  <h1>Press</h1>
+  <h1>Publications & Press</h1>
 </div>
 
 <div class="container">
-  <label for="filter-year">Filter by Year: </label>
-  <select id="filter-year" onchange="filterEntries()">
-    <option value="all">All</option>
-    <option value="2021">2021</option>
-    <option value="2018">2018</option>
-    <option value="2017">2017</option>
-    <option value="2016">2016</option>
-    <option value="2015">2015</option>
-    <option value="2014">2014</option>
-  </select>
+  <h2>Selected Publications</h2>
+  <ul class="publications">
+    <!-- [Publication list retained as is] -->
+    <li><a href="https://global.oup.com/academic/product/scratch-music-projects-9780199309276" target="_blank">Scratch Music Projects</a> - 2020 - Brown & Ruthmann. Oxford University Press.</li>
+    <li>Online Communities of Practice: SoundCloud and the Disquiet Junto - 2020 - Hein. In Oxford Handbook of Social Media and Music Learning.</li>
+    <li>Chris Thile, Kendrick Lamar, and the problem of the white rap cover - 2020 - Hein. Visions of Research in Music Education, 35(1).</li>
+    <li>Shared sample project - 2020 - Hein. In The Music Production Cookbook. Oxford University Press.</li>
+    <li><a href="https://jitp.commons.gc.cuny.edu/music-making-in-scratch-high-floors-low-ceilings-and-narrow-walls/" target="_blank">Making Music in Scratch</a> - 2019 - Payne & Ruthmann. Journal of Interactive Technology and Pedagogy.</li>
+    <li>The Groove Pizza: A Study in Music and HCI - 2019 - Hein & Srinivasan. In Music and Human Computer Interaction. Springer.</li>
+    <li>Reharmonization and recontextualization in Kanye West’s ‘Famous’ - 2018 - Hein. Journal of Popular Music Education.</li>
+    <li>Technology in the Lives and Schools of Adolescents - 2018 - Oxford Handbook Vol. 2.</li>
+    <li>Music Learning and New Media in Virtual and Online Environments - 2018 - Oxford Handbook Vol. 5.</li>
+    <li><a href="https://global.oup.com/academic/product/the-oxford-handbook-of-technology-and-music-education-9780199372133" target="_blank">Oxford Handbook of Technology and Music Education</a> - 2017 - Ruthmann & Mantie, Eds. Oxford University Press.</li>
+    <li><a href="https://www.routledge.com/The-Routledge-Companion-to-Music-Technology-and-Education/King-Himonides-Ruthmann/p/book/9781138921382" target="_blank">Routledge Companion to Music, Technology and Education</a> - 2017 - King, Himonides & Ruthmann, Eds.</li>
+    <li>Exploring New Media Musically and Creatively - 2017 - In Teaching Music Creatively.</li>
+    <li>Playing (in) the Digital Studio - 2017 - Hein. In Oxford Handbook of Technology & Music Education.</li>
+    <li>The Promise and Perils of the Digital Studio - 2017 - Hein. In Oxford Handbook of Technology & Music Education.</li>
+    <li><a href="http://arpjournal.com/beyond-skeuomorphism-the-evolution-of-music-production-software-user-interface-metaphors-2/" target="_blank">Beyond Skeuomorphism</a> - 2015 - Bell, Hein & Ratcliffe. Journal of the Art of Record Production.</li>
+    <li>Is It the Technology? - 2015 - Ruthmann et al. In Navigating the Future.</li>
+    <li><a href="http://reports.p2pu.org/play-with-your-music/" target="_blank">Play With Your Music 1.0 Research Report</a> - 2014 - Kahn & Gennarelli.</li>
+    <li>Music Games in Education - 2014 - Hein. In Learning and Education Games Volume 1.</li>
+    <li><a href="https://symposium.music.org/index.php?option=com_k2&view=item&id=9699:thinking-beyond-curriculum-and-pedagogy&Itemid=126" target="_blank">Thinking Beyond Curriculum and Pedagogy</a> - 2013 - Ruthmann et al. College Music Symposium, 53.</li>
+    <li><a href="https://global.oup.com/academic/product/electronic-music-school-9780190076641" target="_blank">Electronic Music School</a> - In Press - Kuhn & Hein. Oxford University Press.</li>
+  </ul>
 
-  <div id="press-entries"></div>
-
-  <footer>
-    &copy; 2025 NYU Music Experience Design Lab
-  </footer>
+  <h2>Press Coverage</h2>
+  <div class="press-entry">
+    <h3><a href="https://www.arts.gov/about/news/2021/national-endowment-arts-supports-arts-over-275-million-awards-first-round-fy2021-funding" target="_blank">NEA Supports the Arts with $27.5M – FY2021</a></h3>
+    <p><em>Feb 4, 2021</em></p>
+    <img src="https://res.cloudinary.com/dfwzmr3kv/image/upload/v1612857787/gtbqrdlwcikpiaa9ehai.png" alt="NEA Press Release">
+  </div>
+  <div class="press-entry">
+    <h3><a href="https://www.pmldaily.com/news/2018/11/us-embassy-launches-song-to-create-awareness-against-gender-based-violence-in-uganda.html" target="_blank">US Embassy Launches Anti-GBV Song in Uganda</a></h3>
+    <p><em>Nov 26, 2018</em></p>
+    <img src="https://www.pmldaily.com/wp-content/uploads/2018/11/usus.jpg" alt="Anti-GBV Song">
+  </div>
+  <div class="press-entry">
+    <h3><a href="https://blog.flat.io/experiment-generating-a-sheet-music-from-your-groove-pizza/" target="_blank">Flat.io Groove Pizza Experiment</a></h3>
+    <p><em>Aug 2, 2017</em></p>
+    <img src="https://blog.flat.io/content/images/2017/05/groove-pizza.gif" alt="Groove Pizza">
+  </div>
+  <div class="press-entry">
+    <h3><a href="https://nyphil.org/about-us/general-information/newsroom/press-releases/press-release?item=1617/ypc-play-final" target="_blank">NY Philharmonic Launches Young People’s Concerts Play!</a></h3>
+    <p><em>Nov 3, 2016</em></p>
+    <img src="https://nyphil.org/~/media/images/newsroom/logos/16-17-news-letterhead-logo-442w.ashx" alt="YPC Play">
+  </div>
+  <div class="press-entry">
+    <h3><a href="https://www.nyu.edu/about/news-publications/news/2016/april/museedlab-white-house-and-herbie-hancock-to-launch-math-science-music.html" target="_blank">MusEDLab Joins White House & Herbie Hancock</a></h3>
+    <p><em>Apr 25, 2016</em></p>
+    <img src="https://www.nyu.edu/content/nyu/en/about/news-publications/news/2016/april/museedlab-white-house-and-herbie-hancock-to-launch-math-science-music/jcr:content/page/image.img.620.high.png/1471023633728.png" alt="White House Press">
+  </div>
+  <div class="press-entry">
+    <h3><a href="https://steinhardt.nyu.edu/site/ataglance/2015/12/on-technology-and-musical-expression-an-interview-with-alex-ruthman.html" target="_blank">On Technology and Musical Expression: Interview with Alex Ruthmann</a></h3>
+    <p><em>Dec 9, 2015</em></p>
+    <img src="https://steinhardt.nyu.edu/site/ataglance/files/2015/12/10918978_10101194525912676_4558001071883028532_o1-1024x682.jpg" alt="Interview with Alex Ruthmann">
+  </div>
+  <div class="press-entry">
+    <h3><a href="http://evolver.fm/2015/12/08/music-education-hackathon/" target="_blank">Music Education Hackathon Focuses on New Ways to Teach Music</a></h3>
+    <p><em>Dec 8, 2015</em></p>
+    <img src="http://evolver.fm/wp-content/uploads/2015/12/music_ed_hack_tvs-591x332.jpg" alt="Music Hackathon">
+  </div>
+  <div class="press-entry">
+    <h3><a href="https://www.digitaltrends.com/music/free-nyu-online-class-uses-peter-gabriel-hits-teach-audio-production/" target="_blank">Free NYU Course Uses Peter Gabriel Hits to Teach Audio Production</a></h3>
+    <p><em>May 12, 2014</em></p>
+    <img src="https://icdn3.digitaltrends.com/image/nyu-class-header-2-640x0.jpg?ver=1" alt="Peter Gabriel Course">
+  </div>
 </div>
 
-<script>
-  const entries = [
-    {
-      title: "NEA Supports the Arts with $27.5M – FY2021",
-      date: "Feb 4, 2021",
-      year: "2021",
-      url: "https://www.arts.gov/about/news/2021/national-endowment-arts-supports-arts-over-275-million-awards-first-round-fy2021-funding",
-      image: "https://res.cloudinary.com/dfwzmr3kv/image/upload/v1612857787/gtbqrdlwcikpiaa9ehai.png"
-    },
-    {
-      title: "US Embassy Launches Anti-GBV Song in Uganda",
-      date: "Nov 26, 2018",
-      year: "2018",
-      url: "https://www.pmldaily.com/news/2018/11/us-embassy-launches-song-to-create-awareness-against-gender-based-violence-in-uganda.html",
-      image: "https://www.pmldaily.com/wp-content/uploads/2018/11/usus.jpg"
-    },
-    {
-      title: "Flat.io Groove Pizza Experiment",
-      date: "Aug 2, 2017",
-      year: "2017",
-      url: "https://blog.flat.io/experiment-generating-a-sheet-music-from-your-groove-pizza/",
-      image: "https://blog.flat.io/content/images/2017/05/groove-pizza.gif"
-    },
-    {
-      title: "NY Philharmonic Launches Young People’s Concerts Play!",
-      date: "Nov 3, 2016",
-      year: "2016",
-      url: "https://nyphil.org/about-us/general-information/newsroom/press-releases/press-release?item=1617/ypc-play-final",
-      image: "https://nyphil.org/~/media/images/newsroom/logos/16-17-news-letterhead-logo-442w.ashx"
-    },
-    {
-      title: "MusEDLab Joins White House & Herbie Hancock",
-      date: "Apr 25, 2016",
-      year: "2016",
-      url: "https://www.nyu.edu/about/news-publications/news/2016/april/museedlab-white-house-and-herbie-hancock-to-launch-math-science-music.html",
-      image: "https://www.nyu.edu/content/nyu/en/about/news-publications/news/2016/april/museedlab-white-house-and-herbie-hancock-to-launch-math-science-music/jcr:content/page/image.img.620.high.png/1471023633728.png"
-    },
-    {
-      title: "On Technology and Musical Expression: Interview with Alex Ruthmann",
-      date: "Dec 9, 2015",
-      year: "2015",
-      url: "https://steinhardt.nyu.edu/site/ataglance/2015/12/on-technology-and-musical-expression-an-interview-with-alex-ruthman.html",
-      image: "https://steinhardt.nyu.edu/site/ataglance/files/2015/12/10918978_10101194525912676_4558001071883028532_o1-1024x682.jpg"
-    },
-    {
-      title: "Music Education Hackathon Focuses on New Ways to Teach Music",
-      date: "Dec 8, 2015",
-      year: "2015",
-      url: "http://evolver.fm/2015/12/08/music-education-hackathon/",
-      image: "http://evolver.fm/wp-content/uploads/2015/12/music_ed_hack_tvs-591x332.jpg"
-    },
-    {
-      title: "Free NYU Course Uses Peter Gabriel Hits to Teach Audio Production",
-      date: "May 12, 2014",
-      year: "2014",
-      url: "https://www.digitaltrends.com/music/free-nyu-online-class-uses-peter-gabriel-hits-teach-audio-production/",
-      image: "https://icdn3.digitaltrends.com/image/nyu-class-header-2-640x0.jpg?ver=1"
-    }
-  ];
+<footer>
+  <div class="col-lg-8 col-md-8">
+    <p> Supported by: </p>
+    <div class="container" id="sponsor-logos">
+      <a href="http://steinhardt.nyu.edu/"><div id="logo-nyusteinhardt"></div></a>
+      <a href="http://musedlab.org"><div id="logo-musedlab"></div></a>
+    </div>
+  </div>
+</footer>
 
-  function renderEntries(year = 'all') {
-    const container = document.getElementById('press-entries');
-    container.innerHTML = '';
-    const filtered = year === 'all' ? entries : entries.filter(e => e.year === year);
-    filtered.forEach(entry => {
-      const div = document.createElement('div');
-      div.className = 'press-entry';
-      div.innerHTML = `
-          <h2><a href="${entry.url}" target="_blank">${entry.title}</a></h2>
-          <p><em>${entry.date}</em></p>
-          <img src="${entry.image}" alt="${entry.title}" />
-        `;
-      container.appendChild(div);
-    });
-  }
-
-  function filterEntries() {
-    const year = document.getElementById('filter-year').value;
-    renderEntries(year);
-  }
-
-  window.onload = () => renderEntries();
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

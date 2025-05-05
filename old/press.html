@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Press – NYU Music Experience Design Lab</title>
+  <link rel="shortcut icon" href="../img/favicon.png">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/custom-NEW.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1J5K700B51"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1J5K700B51');
+  </script>
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: #fefefe;
+      color: #222;
+      line-height: 1.6;
+      margin: 0;
+      padding-top: 70px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    h1, h2 {
+      color: #003366;
+    }
+    a {
+      color: #0055aa;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .press-entry {
+      margin-bottom: 3rem;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 1.5rem;
+    }
+    .press-entry img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    iframe {
+      max-width: 100%;
+      margin-top: 1rem;
+      border-radius: 0.5rem;
+    }
+    #filter-year {
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../index.html">
+        <img src="../img/musedlab-logo.png"/>
+      </a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="../about.html">About MusEDLab</a></li>
+        <li><a href="../projects.html">Projects</a></li>
+        <li><a href="../people.html">People</a></li>
+        <li><a href="press.html">Press</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron" id="about-jumbo">
+  <h1>Press</h1>
+</div>
+
+<div class="container">
+  <label for="filter-year">Filter by Year: </label>
+  <select id="filter-year" onchange="filterEntries()">
+    <option value="all">All</option>
+    <option value="2021">2021</option>
+    <option value="2018">2018</option>
+    <option value="2017">2017</option>
+    <option value="2016">2016</option>
+    <option value="2015">2015</option>
+    <option value="2014">2014</option>
+  </select>
+
+  <div id="press-entries"></div>
+
+  <footer>
+    &copy; 2025 NYU Music Experience Design Lab
+  </footer>
+</div>
+
+<script>
+  const entries = [
+    {
+      title: "NEA Supports the Arts with $27.5M – FY2021",
+      date: "Feb 4, 2021",
+      year: "2021",
+      url: "https://www.arts.gov/about/news/2021/national-endowment-arts-supports-arts-over-275-million-awards-first-round-fy2021-funding",
+      image: "https://res.cloudinary.com/dfwzmr3kv/image/upload/v1612857787/gtbqrdlwcikpiaa9ehai.png"
+    },
+    {
+      title: "US Embassy Launches Anti-GBV Song in Uganda",
+      date: "Nov 26, 2018",
+      year: "2018",
+      url: "https://www.pmldaily.com/news/2018/11/us-embassy-launches-song-to-create-awareness-against-gender-based-violence-in-uganda.html",
+      image: "https://www.pmldaily.com/wp-content/uploads/2018/11/usus.jpg"
+    },
+    {
+      title: "Flat.io Groove Pizza Experiment",
+      date: "Aug 2, 2017",
+      year: "2017",
+      url: "https://blog.flat.io/experiment-generating-a-sheet-music-from-your-groove-pizza/",
+      image: "https://blog.flat.io/content/images/2017/05/groove-pizza.gif"
+    },
+    {
+      title: "NY Philharmonic Launches Young People’s Concerts Play!",
+      date: "Nov 3, 2016",
+      year: "2016",
+      url: "https://nyphil.org/about-us/general-information/newsroom/press-releases/press-release?item=1617/ypc-play-final",
+      image: "https://nyphil.org/~/media/images/newsroom/logos/16-17-news-letterhead-logo-442w.ashx"
+    },
+    {
+      title: "MusEDLab Joins White House & Herbie Hancock",
+      date: "Apr 25, 2016",
+      year: "2016",
+      url: "https://www.nyu.edu/about/news-publications/news/2016/april/museedlab-white-house-and-herbie-hancock-to-launch-math-science-music.html",
+      image: "https://www.nyu.edu/content/nyu/en/about/news-publications/news/2016/april/museedlab-white-house-and-herbie-hancock-to-launch-math-science-music/jcr:content/page/image.img.620.high.png/1471023633728.png"
+    },
+    {
+      title: "On Technology and Musical Expression: Interview with Alex Ruthmann",
+      date: "Dec 9, 2015",
+      year: "2015",
+      url: "https://steinhardt.nyu.edu/site/ataglance/2015/12/on-technology-and-musical-expression-an-interview-with-alex-ruthman.html",
+      image: "https://steinhardt.nyu.edu/site/ataglance/files/2015/12/10918978_10101194525912676_4558001071883028532_o1-1024x682.jpg"
+    },
+    {
+      title: "Music Education Hackathon Focuses on New Ways to Teach Music",
+      date: "Dec 8, 2015",
+      year: "2015",
+      url: "http://evolver.fm/2015/12/08/music-education-hackathon/",
+      image: "http://evolver.fm/wp-content/uploads/2015/12/music_ed_hack_tvs-591x332.jpg"
+    },
+    {
+      title: "Free NYU Course Uses Peter Gabriel Hits to Teach Audio Production",
+      date: "May 12, 2014",
+      year: "2014",
+      url: "https://www.digitaltrends.com/music/free-nyu-online-class-uses-peter-gabriel-hits-teach-audio-production/",
+      image: "https://icdn3.digitaltrends.com/image/nyu-class-header-2-640x0.jpg?ver=1"
+    }
+  ];
+
+  function renderEntries(year = 'all') {
+    const container = document.getElementById('press-entries');
+    container.innerHTML = '';
+    const filtered = year === 'all' ? entries : entries.filter(e => e.year === year);
+    filtered.forEach(entry => {
+      const div = document.createElement('div');
+      div.className = 'press-entry';
+      div.innerHTML = `
+          <h2><a href="${entry.url}" target="_blank">${entry.title}</a></h2>
+          <p><em>${entry.date}</em></p>
+          <img src="${entry.image}" alt="${entry.title}" />
+        `;
+      container.appendChild(div);
+    });
+  }
+
+  function filterEntries() {
+    const year = document.getElementById('filter-year').value;
+    renderEntries(year);
+  }
+
+  window.onload = () => renderEntries();
+</script>
+</body>
+</html>
