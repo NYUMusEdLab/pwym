@@ -11,99 +11,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Step Inside Mahler – NYU Music Experience Design Lab</title>
+  <meta name="description" content="The history of Step Inside Mahler: NYU MusEDLab, the New York Philharmonic and MusIT’s 2016 archival listening prototype. Original interactive tools are offline.">
+  <link rel="stylesheet" href="../css/project-history.css">
+  <link rel="stylesheet" href="../css/immersive-editorial.css">
   <style>
-    body {
-      font-family: 'Lato', sans-serif;
-      background-color: #fefefe;
-      color: #222;
-      line-height: 1.6;
-      margin: 0;
-      padding: 2rem;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    h1, h2 {
-      color: #003366;
-    }
-    a {
-      color: #0055aa;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .btn {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background-color: #0055aa;
-      color: #fff;
-      border-radius: 5px;
-      text-decoration: none;
-      margin-top: 1rem;
-    }
-    .btn:hover {
-      background-color: #003f87;
-    }
-    img.responsive {
-      max-width: 100%;
-      height: auto;
-      border-radius: 1rem;
-    }
-    .project-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    .text-column, .image-column {
-      flex: 1 1 45%;
-    }
-    iframe {
-      max-width: 100%;
-      margin-top: 1rem;
-    }
-    footer {
-      text-align: center;
-      margin-top: 4rem;
-      font-size: 0.9rem;
-      color: #888;
-    }
+    .mahler-hero figure { max-width: 440px; justify-self: center; }
+    .availability { border-left: 4px solid var(--gold); padding: 16px 20px; background: #e7e6da; margin: 24px 0; }
+    .availability p { margin: 0; }
+    .history-details { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 48px; padding: 24px 0; }
+    .history-details > * { min-width: 0; }
+    .history-details h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); }
+    .history-details aside { border-top: 2px solid var(--ink); }
+    @media(max-width:700px) { .history-details { grid-template-columns: 1fr; gap: 20px; } }
   </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K66WXSZB"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K66WXSZB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<a class="skip-link" href="#history">Skip to project history</a>
 <div class="container">
-  <h1>Step Inside Mahler</h1>
-  <div class="project-content">
-    <div class="text-column">
-      <p><strong>Step Inside Mahler’s Sixth</strong> is a public event and interactive prototype developed by Prof. Alex Ruthmann and the NYU MusEDLab in collaboration with MusIT using OIID technology. It enables exploration of Mahler’s Sixth Symphony through multiple historical recordings and annotated scores.</p>
-      <p>The app includes performances by Dimitri Mitropoulos, Leonard Bernstein, Lorin Maazel, and Alan Gilbert, along with historic scores from the NY Philharmonic Leon Levy Digital Archives.</p>
-      <ul>
-        <li><a href="http://www.mastermixer.com/oiid/score.html?oiid=mahler/first" target="_blank">Mahler 6 Score</a></li>
-        <li><a href="http://www.mastermixer.com/oiid/space.html?song=stage/songs/middle&amp;lang=en" target="_blank">Mahler 6 Spot Mics</a></li>
+  <nav aria-label="Main navigation"><a href="../projects.html">Projects</a> · <a href="../archive/">Archive</a> · <a href="../immersiverecordings/index.html">Immersive Music &amp; Media</a></nav>
+  <header class="editorial-hero mahler-hero">
+    <div><p class="eyebrow">MusEDLab / Historical project / 2016</p>
+      <h1>Step Inside<br>Mahler.</h1>
+      <p class="dek">A new way to listen through an orchestra’s archives.</p>
+      <p>Recordings, annotated scores and instrumental perspectives brought Mahler’s Sixth Symphony into an interactive public event.</p>
+      <a class="primary" href="#history">Explore the project history ↓</a>
+    </div>
+    <figure><img src="../img/mahler.jpg" width="400" height="400" alt="Mahler Grooves title over annotated score pages and instrument icons"><figcaption>“Mahler Grooves”: the project’s historical image.</figcaption></figure>
+  </header>
+  <div class="availability"><p><strong>The original interactive tools are offline.</strong> The Mastermixer-hosted score and spatial-listening apps are no longer available. This page preserves the project’s history and documentation.</p></div>
+  <nav class="contents" aria-label="On this page"><a href="#history">The prototype</a><a href="#event">The public event</a><a href="#sources">Records &amp; credits</a><a href="#current">Explore current tools</a></nav>
+  <main>
+    <section class="history-details" id="history" aria-labelledby="history-title">
+      <div><p class="status">2016 · Archival listening prototype</p><h2 id="history-title">Four performances.<br>New perspectives.</h2>
+        <p>Alex Ruthmann and the NYU Music Experience Design Lab developed Step Inside Mahler with the New York Philharmonic and Norwegian developer MusIT, using MusIT’s OIID technology.</p>
+        <p>The prototype brought together four historical performances of Mahler’s Sixth Symphony, conducted by Dimitri Mitropoulos, Leonard Bernstein, Lorin Maazel and Alan Gilbert, with annotated scores from the Philharmonic’s Leon Levy Digital Archives.</p>
+        <p>Its score interface invited listeners to compare performances alongside the archival scores. A companion spatial-listening interface offered different instrumental perspectives within the orchestra.</p>
+      </div>
+      <aside id="event" aria-labelledby="event-title"><p class="status">10 February 2016</p><h2 id="event-title">Stepping Inside Mahler’s Sixth</h2>
+        <p>The public event took place at 7:30 p.m. at the David Rubenstein Atrium at Lincoln Center, as part of <em>Insights at the Atrium</em>, co-presented with Lincoln Center for the Performing Arts.</p>
+        <p>Interactive iPad stations let visitors explore the prototype. The event brought together Alex Ruthmann, historian Erik Ryding, Philharmonic Audio Director Lawrence Rock, and archivist and historian Barbara Haws.</p>
+      </aside>
+    </section>
+    <section class="supporting" id="sources" aria-labelledby="sources-title"><h2 id="sources-title">Surviving records &amp; credits</h2>
+      <ul class="source-list">
+        <li><a href="https://archives.nyphil.org/asset-management/2TTUGP9V9XYL?&amp;WS=PH1ND000000055276&amp;Flat=FP">Project record in the New York Philharmonic Archives</a> — the project-specific record identified by Alex Ruthmann. It is documentation, not a replacement for the offline apps.</li>
+        <li><a href="https://www.nyu.edu/about/news-publications/news/2016/february/steinhardt-music-app-allows-fans-to-step-inside-symphonies.html">Steinhardt Music App Allows Fans to “Step Inside” Symphonies</a> — NYU News, February 2016. The announcement documents the collaboration, archival materials and February 10 event.</li>
+        <li><a href="https://www.wqxr.org/story/mahler-grooves-new-music-app/">Mahler Grooves in New Music App</a> — John V. Bennett, WQXR, February 12, 2016.</li>
       </ul>
-      <p><em>*Links open best on a desktop/laptop using Google Chrome.</em></p>
-      <a href="https://www.mastermixer.com/mahler/space.html?song=stage/songs/middle&amp;lang=en" target="_blank" class="btn">Try the App Now</a>
-    </div>
-    <div class="image-column">
-      <a href="https://www.mastermixer.com/mahler/space.html?song=stage/songs/middle&amp;lang=en" target="_blank">
-        <img src="http://res.cloudinary.com/dfwzmr3kv/image/upload/v1605924251/f740ajahnaysajhvrdh1.jpg" alt="Step Inside Mahler" class="responsive">
-      </a>
-    </div>
-  </div>
-
-  <h2>More Info</h2>
-  <p><a href="https://nyphil.org/whats-new/2016/february/stepping-inside-mahler-sixth-insights-archives-nyu" target="_blank">Press release on Mahler 6 Event</a></p>
-  <p>Learn more about OIID technology at <a href="http://oiid.com/" target="_blank">oiid.com</a>.</p>
-
-  <footer>
-    &copy; 2025 NYU Music Experience Design Lab
-  </footer>
+      <p class="reading">The project record above is distinct from the historical scores and performance recordings used to create the prototype. Their use in the original app does not mean that a working version of the app survives in the archives.</p>
+      <p class="reading">Project partners: NYU MusEDLab, the New York Philharmonic and MusIT. Technology: OIID. Archival materials: the New York Philharmonic Leon Levy Digital Archives. Music and archival rights remain with their respective rights holders.</p>
+    </section>
+    <section class="supporting" id="current" aria-labelledby="current-title"><h2 id="current-title">Keep exploring</h2><p class="reading">Today’s Immersive Music &amp; Media projects offer other ways to move through a recording, change a mix and play alongside musicians.</p><a class="btn" href="../immersiverecordings/index.html#launch">Explore our current tools</a></section>
+  </main>
+  <footer>&copy; 2026 NYU Music Experience Design Lab</footer>
 </div>
 </body>
 </html>
