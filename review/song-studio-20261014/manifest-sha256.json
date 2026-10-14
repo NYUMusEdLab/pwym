@@ -1,0 +1,21 @@
+{
+  "README.md": "30c72672be1e48cc5f8d2cd29cfe069ef27b7ff25ea4b4ab8455bdec0934c1b3",
+  "app/adapter.mjs": "0da5c2dffdf634c9f5b4a5557ffea3bb12db51227bc3770eb02bf65130400f21",
+  "app/audio.mjs": "8f9d94d39aceff3436d0d36f6aaf8cd9fc874de332011a3c2a9afeae79693ee4",
+  "app/doodles.mjs": "ebbf24d40ea54650f3c63e9cc04ce2ae77e58958a69d57b5d0690a6a07ea85de",
+  "app/fresh-example.mjs": "6a6ba49522a98c842d273bb24bcab753248ba86ed75a926c5decd9c66a2c7d9c",
+  "app/harness.mjs": "d30503646a8b4e8df2445f9e136a43850df8a0a90907b849a69001ba111722e6",
+  "app/main.mjs": "1d5c3397514794d74333b05dc532030419c177d2e55afe914d26786ce404d56d",
+  "app/model.mjs": "3a60e1a840a75545ddcd58eac83990cbad6eefadbbcc014b1fcec1bdf6130177",
+  "app/storage.mjs": "db7dde6211696dea80c97a3b6c2b40a7aa8cf14bd51dffac4fdb097868046d84",
+  "examples/proof-in-the-passage.drawings.json": "e8a60d8bfd293cbd096113522abf2fe6a2ffa073ebf1012700c2e95dbb5e8bf8",
+  "fixtures/demo.annotator-bundle.json": "0d05ac0aac492255c2382de274842d61211addc322174563dae71af0c18c5258",
+  "fixtures/demo.song.json": "4f58a5e145b8d0268a5aee9805f18a812e62f8ef061d40fa33e1e93427ae25eb",
+  "fixtures/demo.wav": "ac439b3eeb8b0baaa92f787aabdde65e825b737ae545255b2fc1d9be11b63469",
+  "harness.html": "552f07e37c16faeca3a1ff08b61adc8b73c1567bfe140bbd22e704b99416ca70",
+  "img/spray_texture.png": "c8f1d26663b3807f57de5a19d3342cd0893fd5f8c1e4b4c66582c065eb1fa70d",
+  "index.html": "a8fbee73f420f56f55e1546ef0d4ace34ab14723f88f55ab3fdc7b38e50e7d1c",
+  "style.css": "4763188a5fbe92d87ec3273369b0da4fa099e272e5f6a88eac80ea61052fe9cf",
+  "vendor/annotator-bundle.js": "50f3eed7f8abc19f6f0901fea2a44a69fb38a8c3b9dac945d11fd735c032e268",
+  "version.json": "b3e6bf68dfe222f897a40b6fce9938543d529b877028e1ad662aec08e5584450"
+}

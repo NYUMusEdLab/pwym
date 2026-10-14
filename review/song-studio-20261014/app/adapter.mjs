@@ -1,0 +1,43 @@
+import {toAnnotator,clone,blankDrawing} from './model.mjs';
+// This harness deliberately runs the original SongLoader and Timing classes.
+// Only transport and annotation lookup are adapted for local, permanent word IDs.
+export async function loadThroughAnnotator(bundle){
+  const {SongLoader,Util}=window.Annotator;
+  const slug=bundle.song.slug,files={
+    'local/default-songset.json':bundle.catalog,
+    [`local/${slug}/${slug}.json`]:bundle.song,
+    [`local/${slug}/${slug}_events.json`]:bundle.events
+  };
+  const original=Util.get;
+  Util.get=url=>url in files?Promise.resolve(JSON.stringify(files[url])):Promise.reject(Error('Harness refused nonlocal asset: '+url));
+  try{const loader=new SongLoader({assetBase:'local/'});await loader.init();return await loader.findAndLoadSong(slug);}finally{Util.get=original;}
+}
+export class Preview {
+  constructor(audio,canvasParent,onKeyword,onLyric){
+    this.audio=audio;this.onKeyword=onKeyword;this.onLyric=onLyric;
+    this.graffiti=new window.Annotator.Graffiti(560,300,canvasParent);
+    this.parent=canvasParent;
+  }
+  async load(project,importedBundle=null){
+    this.project=project;const expected=toAnnotator(project);
+    if(importedBundle){
+      if(importedBundle.schema!=='musedlab.annotator-bundle'||importedBundle.version!==1||
+        JSON.stringify(importedBundle.events)!==JSON.stringify(expected.events)||
+        JSON.stringify(importedBundle.catalog)!==JSON.stringify(expected.catalog)||
+        JSON.stringify({...importedBundle.song,audioURL:expected.song.audioURL})!==JSON.stringify(expected.song)||
+        JSON.stringify(importedBundle.session)!==JSON.stringify(expected.session))
+        throw Error('The bundle and its canonical project disagree. Re-export from Song Studio.');
+    }
+    this.bundle=clone(importedBundle||expected);this.song=await loadThroughAnnotator(this.bundle);
+    this.timing=new window.Annotator.Timing();
+    // Avoid the original attachMedia listener accumulating each time an edit recompiles events.
+    this.timing._mediaSync=this.audio;
+    this.timing.setEventCallback('lyric',e=>this.onLyric(e),()=>this.onLyric(null));
+    this.timing.setEventCallback('keyword',e=>{this.active=e;this.onKeyword(e);},e=>{if(this.active===e){this.active=null;this.onKeyword(null);this.graffiti.drawing=blankDrawing();this.graffiti.draw(1);}},(e,progress)=>{
+      const a=this.project.annotations[e.data.wordId];this.graffiti.drawing=clone(a?.drawing||blankDrawing());
+      this.graffiti.playbackMode=a?.animation||'timed';this.parent.style.background=a?.background||'#f9f5e9';this.graffiti.draw(progress);
+    });
+    this.timing.addEvents(this.song.events,'song');this.active=null;this.graffiti.drawing=blankDrawing();this.graffiti.draw(1);this.tick();
+  }
+  tick(){this.timing?._updateEvents();}
+}
