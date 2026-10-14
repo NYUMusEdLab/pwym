@@ -63,6 +63,11 @@ html { scroll-padding-top: 18px; }
 .evidence-card > p:not(.eyebrow) { font-size: .9rem; line-height: 1.6; }
 .evidence-sources { display: flex; flex-direction: column; border-top: 1px solid var(--line); padding-top: 8px; margin-top: 20px; }
 .evidence-sources a { display: inline-flex; align-items: center; min-height: 44px; font-size: .8rem; line-height: 1.5; padding: 5px 0; }
+.evidence-card-pending { background: #ecebe7; border-color: #c6c6c1; color: #626662; }
+.evidence-card-pending .evidence-number, .evidence-card-pending .eyebrow, .evidence-card-pending h3, .evidence-card-pending a { color: inherit; }
+.evidence-card-pending .review-status { display: inline-block; margin: 0 0 8px; padding: 4px 9px; border: 1px solid #bfc1bb; border-radius: 3px; font: 600 .75rem/1.4 system-ui,sans-serif; }
+.evidence-card-pending .evidence-sources { border-color: #c6c6c1; }
+.evidence-card-pending a { cursor: default; text-decoration: none; }
 .source-note { color: var(--muted); font-size: .85rem; line-height: 1.6; }
 .closing-invitation { border-top: 1px solid var(--line); padding: 26px 0 10px; margin-top: 32px; }
 .closing-invitation h2 { font-size: 2rem; }
