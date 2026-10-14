@@ -1,5 +1,5 @@
 {
-  "README.md": "4d23c23e2868beee5b7d5689d9c41c3a761dcaa17fcc57c5e9810de48612e437",
+  "README.md": "924e394636ebd44b9a87fddb7add05464d7d1847372cb8d262b52762c53435f6",
   "app/adapter.mjs": "6c96a75bff45e0b9e55919f62193859995434d44556dbd1211cb520ccbf4638f",
   "app/audio.mjs": "8f9d94d39aceff3436d0d36f6aaf8cd9fc874de332011a3c2a9afeae79693ee4",
   "app/doodles.mjs": "ebbf24d40ea54650f3c63e9cc04ce2ae77e58958a69d57b5d0690a6a07ea85de",
@@ -8,7 +8,7 @@
   "app/main.mjs": "49bbb2389b5ad9bf76a67131125d0bcc660ae2c1397b9a2e31641dfc99542cfb",
   "app/model.mjs": "46f1093c42e831496810b6eace672d932d9a9a7c33626c2e3066ce35d757a5e3",
   "app/storage.mjs": "db7dde6211696dea80c97a3b6c2b40a7aa8cf14bd51dffac4fdb097868046d84",
-  "app/timing-service.mjs": "b87274e2f0c2b0e4faa45fc46bd7dc94a11774f108eed6d30d865eecae42d6f2",
+  "app/timing-service.mjs": "a71711ccb6a4cbc0f7558eb85d5991e376c8d3add11f68b3cb2858e559560a62",
   "app/visual-state.mjs": "9a8e2204c94c5ea386fda00c347958de29fa8d677d3a2a372c6d996b599f6c02",
   "examples/proof-in-the-passage.drawings.json": "e8a60d8bfd293cbd096113522abf2fe6a2ffa073ebf1012700c2e95dbb5e8bf8",
   "fixtures/demo.annotator-bundle.json": "0d05ac0aac492255c2382de274842d61211addc322174563dae71af0c18c5258",
@@ -16,8 +16,12 @@
   "fixtures/demo.wav": "ac439b3eeb8b0baaa92f787aabdde65e825b737ae545255b2fc1d9be11b63469",
   "harness.html": "552f07e37c16faeca3a1ff08b61adc8b73c1567bfe140bbd22e704b99416ca70",
   "img/spray_texture.png": "c8f1d26663b3807f57de5a19d3342cd0893fd5f8c1e4b4c66582c065eb1fa70d",
-  "index.html": "4eb0e12e0e3e11b52c5ad25e922d93f161078d72bcc598649821a775703d2061",
+  "index.html": "aa7c662596101160f91bde4263b69f5293d7bbbacccfc78fefb42444647a16cc",
   "style.css": "b57aa82507eecfb7f09e6b62ba84ed0fd57f6b56de09452021efb9e9bda61511",
+  "timing-lab/client.js": "29e37960be2e14300ee21e74e8cae0394ef88e5b87fa0b0e7ece851241ea6106",
+  "timing-lab/index.html": "d8acb73d5d8499c60c27565af6ad29844b88c7044c1bc601ea0b4fd341073bfe",
+  "timing-lab/review.mjs": "d28669fdd828d09086505e17746475be3f28942ed5b2def53f78a530b577852e",
+  "timing-lab/style.css": "caf3f5abda9f69601407342ce4bfe934cb74d0a0e64805a638eb54eb6d38ef3e",
   "vendor/annotator-bundle.js": "50f3eed7f8abc19f6f0901fea2a44a69fb38a8c3b9dac945d11fd735c032e268",
-  "version.json": "360571690575a30b1d8b798ea2f80e7bc67c52ef86c9d3330bfb1c555fbef8ed"
+  "version.json": "7bf658302c88ccace60e725597a19684f44e0b7d0d0ba366dbb8744df59c1261"
 }

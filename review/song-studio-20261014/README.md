@@ -16,3 +16,6 @@ Public, unlisted review URL: https://www.musedlab.org/review/song-studio-2026101
 The loaded-song overview shows waveform, following lyrics, and live drawings together. Drawings persist across blank keywords and gaps; a music-note illustration appears before the first artwork. The word editor scrolls within short desktop windows.
 
 A separate local Python timing-service pilot can align supplied English lyrics. Import its JSON through Import word-timed lyrics, then review selected changes. Matching words retain drawings and notes; changed lyrics require explicit archival. This public static site does not upload audio to that service.
+
+
+Timing Lab (`timing-lab/`) is an educational correction workspace: open an AI timing report and the matching audio, repair missing words, adjust boundaries, record listening checks and a reflection, and export to Song Studio. New AI analysis still requires the separate pilot service; this public review GUI does not upload the chosen audio or report. Save a correction draft to keep unfinished edits.

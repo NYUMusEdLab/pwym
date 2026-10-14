@@ -4,8 +4,9 @@
   "originalMediaRehosted": false,
   "modelServices": false,
   "backendUploads": false,
-  "tests": 31,
+  "tests": 32,
   "timingService": "local pilot; JSON import only",
   "persistentDrawings": true,
-  "combinedOverview": true
+  "combinedOverview": true,
+  "timingLab": "student correction GUI; local report/audio review"
 }

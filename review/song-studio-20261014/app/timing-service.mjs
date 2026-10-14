@@ -22,10 +22,10 @@ export function applyTimings(project,data,{words=true,sections=false,replace=fal
     if(info.missing)throw Error('Some words have no valid timing. Apply sections only, or correct and rerun alignment.');
     if(!info.matches&&!replace&&p.words.length)throw Error('Lyrics differ. Explicitly choose to archive and replace the existing words.');
     if(!info.matches){p.archivedWords.push(...p.words);p.words=data.words.map(w=>({id:uid('word'),text:w.text,line:w.line,keyword:false}));}
-    p.words.forEach((w,i)=>Object.assign(w,{start:data.words[i].start,end:Math.min(data.words[i].end,p.duration),timingSource:'Fresh Annotator alignment estimate',reviewed:false}));
+    p.words.forEach((w,i)=>Object.assign(w,{start:data.words[i].start,end:Math.min(data.words[i].end,p.duration),timingSource:data.words[i].edited?'student-corrected timing':'Fresh Annotator alignment estimate',reviewed:data.words[i].reviewed===true}));
     p.lyricsSource='Fresh Annotator timing service; unreviewed';
   }
-  if(sections){p.sections=data.sections.map(s=>({id:uid('section'),label:s.label,start:s.start,end:s.end,source:'Fresh Annotator section estimate',reviewed:false}));p.sections.at(-1).end=p.duration;}
-  p.timingAnalysis={engine:clone(data.engine),audioSha256:data.audioSha256,review:clone(data.review)};
+  if(sections){p.sections=data.sections.map(s=>({id:uid('section'),label:s.label,start:s.start,end:s.end,source:s.reviewed?'student-reviewed section':'Fresh Annotator section estimate',reviewed:s.reviewed===true}));p.sections.at(-1).end=p.duration;}
+  p.timingAnalysis={engine:clone(data.engine),audioSha256:data.audioSha256,review:clone(data.review),studentReview:clone(data.studentReview)};
   return validateProject(p);
 }
