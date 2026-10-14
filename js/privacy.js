@@ -64,8 +64,12 @@
     describe(persisted ? '' : ' Your browser could not save this preference; it applies to this visit only.');
     if (persisted) { panel.hidden = true; open.setAttribute('aria-expanded', 'false'); if (previousFocus) previousFocus.focus(); }
   }
-  const footer = document.createElement('div'); footer.className = 'privacy-footer';
-  document.body.appendChild(footer); footer.appendChild(open);
+  let footer = document.querySelector('[data-privacy-footer]');
+  if (!footer) {
+    footer = document.createElement('div'); footer.className = 'privacy-footer';
+    document.body.appendChild(footer);
+  }
+  footer.appendChild(open);
   open.hidden = false;
   open.addEventListener('click', () => {
     previousFocus = open; panel.hidden = !panel.hidden;
