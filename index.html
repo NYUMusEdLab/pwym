@@ -24,19 +24,17 @@
     <link href="css/custom-NEW.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 
-    <!-- MailChimp signup form styles -->
-    <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-      <style type="text/css">
-        #mc_embed_signup {font-family:Lato, Helvetica, sans-serif;}
-        #mc_embed_signup input {border:1px solid #fff; -webkit-appearance:none; border-radius:2px;}
-        #mc_embed_signup input:focus {border-color:#eee;}
-        #mc_embed_signup .button {clear:both; background-color: #0099cc; border: 0 none; border-radius:4px; color: #FFFFFF; cursor: pointer; display: inline-block; font-size:1.14em; font-weight: bold; height: 35px; line-height: 30px; margin: 0px 5px 10px 0; padding:0; text-align: center; text-decoration: none; vertical-align: top; white-space: nowrap; width: auto; text-shadow: 1px 1px 2px rgba(0,0,0,.8);
-}
-        #mc_embed_signup .button:hover {background-color:#fff; color:#191919; text-shadow:none;}
-        #mc_embed_signup input.email {display:block; padding:5px 0; margin:0 4% 10px 0; text-indent:5px; width:100%; color:#191919;}
-        #mc_embed_signup input.button {display:block; width:100px; margin:0px 0 10px 0; min-width:90px; background-color:transparent; color:#fff; border: 1px #fff solid;}
-      </style>
-
+    <style>
+      .home-footer .home-sponsors {display:flex; align-items:center; flex-wrap:wrap; gap:28px 48px; padding:12px 0;}
+      .home-sponsors a {display:block; max-width:100%;}
+      .home-sponsors img {display:block; height:auto; max-width:100%;}
+      .home-sponsors .shanghai-logo {width:220px;}
+      .home-sponsors .shanghai-link {background:#57068c; padding:18px 22px;}
+      .home-sponsors .musedlab-logo {width:140px;}
+      .home-sponsors .steinhardt-logo {width:240px;}
+      .home-sponsors .steinhardt-link {margin-left:auto;}
+      @media(max-width:767px) {.home-sponsors .steinhardt-link {margin-left:0;} .home-footer .home-sponsors {gap:28px 36px;}}
+    </style>
 
   </head>
 
@@ -82,49 +80,6 @@
           <p>Join a community of musicians exploring new ways to create, experiment and learn. <strong><br>Together we can reimagine and reinvent <br>music and audio education.</strong></p>
           <p id="learn-more"> <a href="about.html">LEARN MORE <span class="glyphicon glyphicon-chevron-right"></span></a></p>
         </div>
-
-        <!--Mail Chimp Email Sign-up Form
-        ====================================== -->
-        <div class="col-lg-3 col-md-5 col-sm-6 col-xs-6">
-          <div class="container">
-
-            <h2>Join a Cohort</h2>
-            <p><strong>SIGN-UP</strong> here to become a member of the next cohort participating in Play With Your Music. It's better together! </p>
-
-            <div id="mc_embed_signup">
-              <form action="http://playwithyourmusic.us9.list-manage.com/subscribe/post?u=fb331b4a9c535266ed92366cb&amp;id=ab01c3247a" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate style="padding: 8px 0 0;">
-                <input type="email" value="" name="EMAIL" class="email" style="" id="mce-EMAIL" placeholder="email address">
-                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                <div style="position: absolute; left: -5000px;">
-                  <input type="text" name="b_fb331b4a9c535266ed92366cb_ab01c3247a" value="">
-                </div>
-                <center>
-                <div class="clear">
-                  <input type="submit" value="SUBMIT" name="subscribe" id="mc-embedded-subscribe" class="button" style="" >
-                </div>
-              </center>
-              </form>
-            </div>
-        <!--End Sign-up Form-->
-
-
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-5 col-sm-6 col-xs-6">
-          <div class="container">
-            <h2>&hellip; or Start Now</h2>
-            <p> Start exploring our community and the ideas of creative music and audio production by checking out one of the topics below.</p>
-
-            <a href="#get-started">
-              <div class="my-button">
-                <span class="glyphicon glyphicon-chevron-down"></span>
-                <p id="gs-button">GET STARTED</p>
-                <span class="glyphicon glyphicon-chevron-down"></span>
-              </div>
-            </a>
-        </div>
-      </div>
 
       </div>
     </div>
@@ -248,13 +203,14 @@
 
       <!-- ====================  FOOTER  ====================== -->
       <hr>
-      <footer>
-        <div class="col-lg-8 col-md-8">
+      <footer class="home-footer">
+        <div class="col-xs-12">
 
           <p> Supported by: </p>
-          <div class="container" id="sponsor-logos">
-            <a href="http://steinhardt.nyu.edu/"><div id="logo-nyusteinhardt"></div></a>
-            <a href="http://musedlab.org"><div id="logo-musedlab"></div></a>
+          <div class="home-sponsors">
+            <a class="shanghai-link" href="https://shanghai.nyu.edu/"><img class="shanghai-logo" src="img/nyu-shanghai-logo.png" alt="NYU Shanghai"></a>
+            <a href="https://www.musedlab.org/"><img class="musedlab-logo" src="img/musedlab-logo.png" alt="NYU Music Experience Design Lab"></a>
+            <a class="steinhardt-link" href="https://steinhardt.nyu.edu/"><img class="steinhardt-logo" src="img/nyusteinhardt-logo.png" alt="NYU Steinhardt"></a>
           </div>
 
           <p id="license">All materials Copyright &#169; 2026 - NYU Music Experience Design Lab</p>
