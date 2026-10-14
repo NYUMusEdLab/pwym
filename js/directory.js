@@ -29,3 +29,24 @@ document.querySelectorAll('[data-directory]').forEach(directory => {
   });
   filter();
 });
+
+// A shared record URL opens its containing disclosures, even after searching.
+const revealDirectoryRecord = () => {
+  let id;
+  try { id = decodeURIComponent(window.location.hash.slice(1)); } catch { return; }
+  if (!id) return;
+  const target = document.getElementById(id);
+  if (!target) return;
+  const directory = target.closest('[data-directory]');
+  if (!directory) return;
+  const search = directory.querySelector('input[type="search"]');
+  if (search && search.value) {
+    search.value = '';
+    search.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+  for (let node = target; node && node !== directory; node = node.parentElement) {
+    if (node.tagName === 'DETAILS') node.open = true;
+  }
+};
+revealDirectoryRecord();
+window.addEventListener('hashchange', revealDirectoryRecord);

@@ -1,0 +1,103 @@
+{
+  "collection": "S. Alex Ruthmann: Michigan website",
+  "reviewed": "2026-10-14",
+  "records": [
+    {
+      "title": "Intonation & learning tools",
+      "id": "intonation",
+      "original_url": "http://www-personal.umich.edu:80/~sruthman/intonation.html",
+      "capture_timestamp_utc": "20000527133808",
+      "source_url": "https://web.archive.org/web/20000527133808/http://www-personal.umich.edu:80/~sruthman/intonation.html",
+      "publication_date": null,
+      "recovered": "2026-10-14",
+      "assets_recovered": false
+    },
+    {
+      "title": "Electronic performance interfaces",
+      "id": "interfaces",
+      "original_url": "http://www-personal.umich.edu:80/~sruthman/epi.html",
+      "capture_timestamp_utc": "20000709083504",
+      "source_url": "https://web.archive.org/web/20000709083504/http://www-personal.umich.edu:80/~sruthman/epi.html",
+      "publication_date": null,
+      "recovered": "2026-10-14",
+      "assets_recovered": false
+    },
+    {
+      "title": "Technology CV",
+      "id": "technology",
+      "original_url": "http://www-personal.umich.edu:80/~sruthman/technology.html",
+      "capture_timestamp_utc": "20000609160918",
+      "source_url": "https://web.archive.org/web/20000609160918/http://www-personal.umich.edu:80/~sruthman/technology.html",
+      "publication_date": null,
+      "recovered": "2026-10-14",
+      "assets_recovered": false
+    },
+    {
+      "title": "Selected compositions",
+      "id": "composition",
+      "original_url": "http://www-personal.umich.edu:80/~sruthman/comp.html",
+      "capture_timestamp_utc": "20000527122817",
+      "source_url": "https://web.archive.org/web/20000527122817/http://www-personal.umich.edu:80/~sruthman/comp.html",
+      "publication_date": null,
+      "recovered": "2026-10-14",
+      "assets_recovered": false
+    },
+    {
+      "title": "The music of Harry Partch",
+      "id": "partch",
+      "original_url": "http://www-personal.umich.edu:80/~sruthman/partch.html",
+      "capture_timestamp_utc": "20000522185053",
+      "source_url": "https://web.archive.org/web/20000522185053/http://www-personal.umich.edu:80/~sruthman/partch.html",
+      "publication_date": null,
+      "recovered": "2026-10-14",
+      "assets_recovered": false
+    },
+    {
+      "title": "A pond becomes an instrument",
+      "id": "pond",
+      "original_url": "http://www-personal.umich.edu:80/~sruthman/project.html",
+      "capture_timestamp_utc": "20010710030657",
+      "source_url": "https://web.archive.org/web/20010710030657/http://www-personal.umich.edu:80/~sruthman/project.html",
+      "publication_date": null,
+      "recovered": "2026-10-14",
+      "assets_recovered": false
+    },
+    {
+      "title": "Education, service & awards",
+      "id": "education",
+      "original_url": "http://www-personal.umich.edu:80/~sruthman/education.html",
+      "capture_timestamp_utc": "20000601104241",
+      "source_url": "https://web.archive.org/web/20000601104241/http://www-personal.umich.edu:80/~sruthman/education.html",
+      "publication_date": null,
+      "recovered": "2026-10-14",
+      "assets_recovered": false
+    }
+  ],
+  "homepage_captures": [
+    {
+      "capture_timestamp_utc": "19990220205415",
+      "original_url": "http://www-personal.umich.edu:80/%7Esruthman/",
+      "source_url": "https://web.archive.org/web/19990220205415/http://www-personal.umich.edu:80/%7Esruthman/"
+    },
+    {
+      "capture_timestamp_utc": "19991009131214",
+      "original_url": "http://www-personal.umich.edu:80/%7Esruthman/",
+      "source_url": "https://web.archive.org/web/19991009131214/http://www-personal.umich.edu:80/%7Esruthman/"
+    },
+    {
+      "capture_timestamp_utc": "20000919073258",
+      "original_url": "http://www-personal.umich.edu:80/~sruthman/",
+      "source_url": "https://web.archive.org/web/20000919073258/http://www-personal.umich.edu:80/~sruthman/"
+    },
+    {
+      "capture_timestamp_utc": "20010404080224",
+      "original_url": "http://www-personal.umich.edu:80/~sruthman/",
+      "source_url": "https://web.archive.org/web/20010404080224/http://www-personal.umich.edu:80/~sruthman/"
+    },
+    {
+      "capture_timestamp_utc": "20021122112443",
+      "original_url": "http://www-personal.umich.edu:80/~sruthman/",
+      "source_url": "https://web.archive.org/web/20021122112443/http://www-personal.umich.edu:80/~sruthman/"
+    }
+  ]
+}
