@@ -4,5 +4,8 @@
   "originalMediaRehosted": false,
   "modelServices": false,
   "backendUploads": false,
-  "tests": 25
+  "tests": 31,
+  "timingService": "local pilot; JSON import only",
+  "persistentDrawings": true,
+  "combinedOverview": true
 }

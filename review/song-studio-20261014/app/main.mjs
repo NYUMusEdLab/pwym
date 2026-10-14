@@ -2,6 +2,8 @@ import * as M from './model.mjs';
 import * as A from './audio.mjs';
 import * as Store from './storage.mjs';
 import * as D from './doodles.mjs';
+import * as Timing from './timing-service.mjs';
+let pendingTimings=null;
 import {loadFreshExample} from './fresh-example.mjs';
 import {Preview} from './adapter.mjs';
 const $=id=>document.getElementById(id),html=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -20,7 +22,7 @@ for(const type of ['pointerdown','mousedown','touchstart'])editor.canvas.addEven
 const preview=new Preview(audio,$('preview-stage'),event=>{
   $('preview-note').textContent=event?project?.annotations[event.data.wordId]?.note||'':'';
   document.querySelectorAll('[data-marker]').forEach(el=>el.classList.toggle('playing',el.dataset.marker===event?.data.wordId));
-},event=>{$('preview-lyric').textContent=event?.data.text||'♪';});
+},event=>{$('preview-lyric').textContent=event?.data.text||'♪';followLyric(event?.data.wordId);});
 function toast(message,error=false){clearTimeout(toastTimer);$('toast').textContent=message;$('toast').classList.toggle('error',error);$('toast').hidden=false;toastTimer=setTimeout(()=>$('toast').hidden=true,error?11000:5500);}
 function action(fn){return async event=>{try{await fn(event);}catch(error){console.error(error);toast(error.message||'Something went wrong.',true);}};}
 function on(id,type,fn){$(id).addEventListener(type,action(fn));}
@@ -48,6 +50,7 @@ function updatePreview(){
 }
 async function renderLibrary(){const items=await Store.listProjects();$('library-list').innerHTML=items.sort((a,b)=>b.updatedAt.localeCompare(a.updatedAt)).map(p=>`<button class="library-song ${p.id===project?.id?'current':''}" data-project="${p.id}">♫ &nbsp; ${html(p.title)}</button>`).join('');}
 async function openProject(p,provided=new Map()){
+  pendingTimings=null;$('timing-review').hidden=true;
   M.normalizeSourceNames(p);M.validateProject(p);audio.pause();tapState=null;$('tap-panel').hidden=true;loopUntil=null;
   closeSuggestion();$('sketch-result').hidden=true;
   if(project)await persist();editor.drawable=false;project=p;selected=p.words[0]?.id||null;history=[];
@@ -65,7 +68,7 @@ async function openProject(p,provided=new Map()){
     const player=new Audio(URL.createObjectURL(blobs.get(t.id)));urls.push(player.src);player.preload='auto';layers.push({id:t.id,audio:player});
   }
   $('welcome').hidden=true;$('workspace').hidden=false;$('lyrics-input-panel').hidden=!!p.words.length;$('lyrics-text').value='';
-  await persist();render();await updatePreview();await renderLibrary();setView('edit');
+  await persist();render();await updatePreview();await renderLibrary();setView('edit');$('song-overview').scrollIntoView({block:'start'});
 }
 async function chooseAudio(file,layer=false){
   if(!file)return;if(layer){requireProject();if(project.tracks.length>=8)throw Error('Use at most eight tracks.');}
@@ -92,11 +95,12 @@ function render(draw=true){
   if(!project)return;
   $('song-title').value=project.title;$('song-meta').textContent=`${fmt(project.duration)} · ${project.tracks.length} sound layer${project.tracks.length===1?'':'s'} · ${project.lyricsSource}`;
   $('fixture-label').hidden=!project.fixture;$('scrub').max=project.duration;$('undo').disabled=!history.length;
-  $('source-label').hidden=project.source?.kind!=='fresh-example';
+  $('source-label').hidden=project.source?.kind!=='fresh-example';$('source-details').hidden=$('source-label').hidden;
   if(project.source?.kind==='fresh-example')$('source-label').textContent=`Fresh Annotator example · ${project.source.artists} · ${project.source.album}. Original audio, lyrics, section timings, and recovered drawings. ${project.words.filter(w=>w.sourceUnit==='phrase').length} timed phrases are kept whole; their internal word times are unavailable. Timings still need your review.`;
   $('lyrics-toggle').textContent=project.words.length?'Replace lyrics':'Add lyrics';
   const lines=new Map();for(const w of project.words){if(!lines.has(w.line))lines.set(w.line,[]);lines.get(w.line).push(w);}
   $('word-list').innerHTML=project.words.length?[...lines.values()].map(words=>`<div class="lyric-line">${words.map(w=>`<div class="word-chip ${w.keyword?'keyword':''} ${w.id===selected?'selected':''} ${w.reviewed?'checked':''}" data-chip="${w.id}"><button data-word="${w.id}" aria-label="Edit ${html(w.text)} at ${w.start.toFixed(3)} seconds">${html(w.text)}</button><button class="word-star" data-star="${w.id}" aria-label="${w.keyword?'Remove':'Add'} keyword status for ${html(w.text)}" aria-pressed="${w.keyword}">${w.keyword?'★':'☆'}</button><small>${w.start.toFixed(3)} ${w.reviewed?'✓':'~'}</small></div>`).join('')}</div>`).join(''):'<p class="empty-hint">Your words will appear here.<br>Add lyrics above, then listen and give them their own moments.</p>';
+  $('live-lyrics').innerHTML=project.words.length?[...lines.values()].map(words=>`<p>${words.map(w=>`<button data-live-word="${w.id}" aria-label="Listen to ${html(w.text)} at ${w.start.toFixed(3)} seconds">${html(w.text)}</button>`).join(' ')}</p>`).join(''):'<p>Add lyrics to follow your song here.</p>';
   const reviewed=project.words.filter(w=>w.reviewed).length,units=project.words.some(w=>w.sourceUnit==='phrase')?'timed words / phrases':'words';
   $('word-count').textContent=`${project.words.length} ${units} · ${reviewed} reviewed by you · ${project.words.filter(w=>w.keyword).length} starred · ${project.archivedWords.length} archived`;
   $('export-review').textContent=`${reviewed} of ${project.words.length} word timings are marked reviewed. ${project.words.length-reviewed} still need a listen. Exports retain their timing source and review status.`;
@@ -179,7 +183,28 @@ on('library-list','click',async e=>{const button=e.target.closest('[data-project
 on('song-title','change',e=>{commit(p=>p.title=e.target.value.trim()||'My song',{draw:false});renderLibrary();});
 on('lyrics-toggle','click',()=>$('lyrics-input-panel').hidden=!$('lyrics-input-panel').hidden);
 on('apply-lyrics','click',()=>{requireProject();if(!$('lyrics-text').value.trim())throw Error('Type a few words first.');commit(p=>M.setLyrics(p,$('lyrics-text').value));$('lyrics-input-panel').hidden=true;toast('Words placed at rough, evenly spaced positions. Listen and adjust them.');});
-on('timings-file','change',async e=>{requireProject();const file=e.target.files[0];if(!file)return;if(file.size>10*1024*1024)throw Error('Use a lyric file smaller than 10 MB.');const text=await file.text();const words=file.name.toLowerCase().endsWith('.lrc')?M.fromLRC(text,project.duration):M.fromTranscript(JSON.parse(text),project.duration);commit(p=>{p.archivedWords.push(...p.words);p.words=words;p.lyricsSource='imported timing file; unreviewed';});$('lyrics-input-panel').hidden=true;toast('Imported word estimates. Please listen and review.');});
+on('timings-file','change',async e=>{
+  requireProject();const file=e.target.files[0];if(!file)return;e.target.value='';
+  if(file.size>10*1024*1024)throw Error('Use a lyric file smaller than 10 MB.');
+  const text=await file.text(),data=file.name.toLowerCase().endsWith('.lrc')?null:JSON.parse(text);
+  if(data?.schema==='musedlab.song-timings'){
+    const info=Timing.inspectTimings(data,project),blob=blobs.get(project.tracks[0]?.id);
+    if(!blob)throw Error('Load the original audio before importing this result.');
+    const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',await blob.arrayBuffer())),b=>b.toString(16).padStart(2,'0')).join('');
+    if(digest!==data.audioSha256)throw Error('This result belongs to a different audio file. Open the exact uploaded file first.');
+    pendingTimings={data,projectId:project.id};$('timing-summary').textContent=`${info.count} words · ${info.missing} untimed · ${info.sections} sections. ${info.matches?'Existing drawings and notes will stay attached.':'Lyrics differ from this project.'}`;
+    $('timing-words').checked=!info.missing;$('timing-words').disabled=!!info.missing;$('timing-sections').checked=false;$('timing-replace').checked=false;$('timing-replace-label').hidden=info.matches||!project.words.length;$('timing-review').hidden=false;return;
+  }
+  const words=data?M.fromTranscript(data,project.duration):M.fromLRC(text,project.duration);
+  commit(p=>{p.archivedWords.push(...p.words);p.words=words;p.lyricsSource='imported timing file; unreviewed';});$('lyrics-input-panel').hidden=true;toast('Imported word estimates. Please listen and review.');
+});
+on('timing-cancel','click',()=>{pendingTimings=null;$('timing-review').hidden=true;});
+on('timing-apply','click',()=>{
+  if(!pendingTimings||pendingTimings.projectId!==project?.id)throw Error('Import a result for the current song first.');
+  if(!$('timing-words').checked&&!$('timing-sections').checked)throw Error('Choose word timings or sections to apply.');
+  const next=Timing.applyTimings(project,pendingTimings.data,{words:$('timing-words').checked,sections:$('timing-sections').checked,replace:$('timing-replace').checked});
+  commit(p=>Object.assign(p,next));pendingTimings=null;$('timing-review').hidden=true;toast('Suggestions applied. Listen and review; Undo restores the previous version.');
+});
 on('word-list','click',e=>{const star=e.target.closest('[data-star]'),button=e.target.closest('[data-word]');if(star){selected=star.dataset.star;commit(p=>M.toggleKeyword(p,selected));}else if(button){selected=button.dataset.word;render();seek(current().start);}});
 on('apply-word','click',()=>commit(p=>M.editWord(p,selected,{text:$('word-text').value.trim(),start:M.round(Number($('word-start').value)),end:M.round(Number($('word-end').value))})));
 on('keyword-toggle','click',()=>commit(p=>M.toggleKeyword(p,selected)));
@@ -252,3 +277,10 @@ function tick(now){
 requestAnimationFrame(tick);renderLibrary().catch(()=>toast('Local storage is unavailable. Save project copies while you work.',true));
 // Read-only diagnostics used by the local integration tests.
 window.songStudio={get project(){return M.clone(project);},get preview(){return preview;},get audio(){return audio;},get ready(){return previewQueue;}};
+
+function followLyric(id){
+  const pane=$('live-lyrics');let active=null;
+  for(const el of pane.querySelectorAll('[data-live-word]')){const match=el.dataset.liveWord===id;el.classList.toggle('active',match);if(match){el.setAttribute('aria-current','true');active=el;}else el.removeAttribute('aria-current');}
+  if(active&&$('follow-lyrics').checked){const a=active.getBoundingClientRect(),b=pane.getBoundingClientRect();if(a.top<b.top+12||a.bottom>b.bottom-12)pane.scrollTop+=a.top-b.top-pane.clientHeight/2+a.height/2;}
+}
+on('live-lyrics','click',e=>{const button=e.target.closest('[data-live-word]');if(!button)return;selected=button.dataset.liveWord;renderInspector();seek(current().start);document.querySelectorAll('[data-chip]').forEach(el=>el.classList.toggle('selected',el.dataset.chip===selected));});

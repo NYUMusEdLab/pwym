@@ -11,3 +11,8 @@ This is a browser-local static prototype. There is no account, cloud storage, up
 The real example needs an internet connection on first load. Saved projects and audio stay in this browser; download a copy for backup and to move between devices. Exported Annotator kits are for the local integration harness; they do not publish to live Fresh Annotator. Only the synthetic melody fixture ships with the app as audio.
 
 Public, unlisted review URL: https://www.musedlab.org/review/song-studio-20261014/ . No sign-in required. The page requests no search indexing; this is not an access restriction.
+
+
+The loaded-song overview shows waveform, following lyrics, and live drawings together. Drawings persist across blank keywords and gaps; a music-note illustration appears before the first artwork. The word editor scrolls within short desktop windows.
+
+A separate local Python timing-service pilot can align supplied English lyrics. Import its JSON through Import word-timed lyrics, then review selected changes. Matching words retain drawings and notes; changed lyrics require explicit archival. This public static site does not upload audio to that service.
