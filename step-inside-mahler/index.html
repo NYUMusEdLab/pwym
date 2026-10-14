@@ -15,14 +15,14 @@
   <link rel="stylesheet" href="../css/project-history.css">
   <link rel="stylesheet" href="../css/immersive-editorial.css">
   <style>
-    .mahler-hero figure { max-width: 440px; justify-self: center; }
+    .mahler-hero figure { width: 100%; max-width: 400px; justify-self: center; }
     .availability { border-left: 4px solid var(--gold); padding: 16px 20px; background: #e7e6da; margin: 24px 0; }
     .availability p { margin: 0; }
     .history-details { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 48px; padding: 24px 0; }
     .history-details > * { min-width: 0; }
     .history-details h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); }
     .history-details aside { border-top: 2px solid var(--ink); }
-    @media(max-width:700px) { .history-details { grid-template-columns: 1fr; gap: 20px; } }
+    @media(max-width:700px) { .mahler-hero, .history-details { grid-template-columns: minmax(0, 1fr); gap: 20px; } }
   </style>
 </head>
 <body>
