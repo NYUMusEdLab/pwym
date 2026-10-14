@@ -838,10 +838,10 @@
     {
       "name": "Zehao Wang",
       "category": "Research alumni",
-      "lab_role": "Former lab manager and visiting researcher",
+      "lab_role": "Affiliate creator, research and design projects across the MusEDLab",
       "current_role": "Assistant Professor",
       "organization": "School of Music, The Chinese University of Hong Kong, Shenzhen",
-      "contribution": "Research and development in music technology.",
+      "contribution": "",
       "bio": "Zehao researches musical acoustics, sound synthesis, instrument design and spatial audio. He earned a PhD in computer music at UC San Diego and a mathematics bachelor’s degree at Peking University, and held visiting positions at NYU Shanghai and Stanford’s CCRMA.",
       "links": [
         {
@@ -849,7 +849,8 @@
           "url": "https://music.cuhk.edu.cn/en/faculty/zehao-wang"
         }
       ],
-      "image": "/img/zehao.jpg"
+      "image": "/img/zehao.jpg",
+      "bio_open": true
     },
     {
       "name": "Yiting Liu",
@@ -869,7 +870,8 @@
           "url": "https://www.yitingliu.com/work/vibes/"
         }
       ],
-      "image": "/img/yiting.jpg"
+      "image": "/img/yiting.jpg",
+      "bio_open": true
     },
     {
       "name": "Alex Zhang",
