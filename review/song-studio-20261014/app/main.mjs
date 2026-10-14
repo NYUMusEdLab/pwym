@@ -48,7 +48,7 @@ function updatePreview(){
 }
 async function renderLibrary(){const items=await Store.listProjects();$('library-list').innerHTML=items.sort((a,b)=>b.updatedAt.localeCompare(a.updatedAt)).map(p=>`<button class="library-song ${p.id===project?.id?'current':''}" data-project="${p.id}">♫ &nbsp; ${html(p.title)}</button>`).join('');}
 async function openProject(p,provided=new Map()){
-  M.validateProject(p);audio.pause();tapState=null;$('tap-panel').hidden=true;loopUntil=null;
+  M.normalizeSourceNames(p);M.validateProject(p);audio.pause();tapState=null;$('tap-panel').hidden=true;loopUntil=null;
   closeSuggestion();$('sketch-result').hidden=true;
   if(project)await persist();editor.drawable=false;project=p;selected=p.words[0]?.id||null;history=[];
   layers.forEach(l=>{l.audio.pause();l.audio.removeAttribute('src');l.audio.load();});layers=[];urls.forEach(URL.revokeObjectURL);urls=[];blobs=new Map();
@@ -81,11 +81,11 @@ async function demo(){const p=M.fixtureProject(),blob=A.fixtureAudio();await Sto
 async function freshExample(){
   const buttons=[$('fresh-example'),$('welcome-fresh')];buttons.forEach(b=>b.disabled=true);
   try{
-    toast('Opening the original FResh song, lyrics, and recovered drawings…');
+    toast('Opening the original Fresh Annotator song, lyrics, and recovered drawings…');
     const result=await loadFreshExample(window.Annotator.Graffiti.decompressDrawing),p=result.project;
     await Store.saveAudio(p.tracks[0].id,result.audio);await openProject(p,new Map([[p.tracks[0].id,result.audio]]));
     selected=p.words.find(w=>p.annotations[w.id]?.drawing.strokes.length)?.id||selected;render();seek(current()?.start||0);
-    toast('Real FResh example ready. Your edits save as an independent copy on this device.');
+    toast('Real Fresh Annotator example ready. Your edits save as an independent copy on this device.');
   }finally{buttons.forEach(b=>b.disabled=false);}
 }
 function render(draw=true){
@@ -93,7 +93,7 @@ function render(draw=true){
   $('song-title').value=project.title;$('song-meta').textContent=`${fmt(project.duration)} · ${project.tracks.length} sound layer${project.tracks.length===1?'':'s'} · ${project.lyricsSource}`;
   $('fixture-label').hidden=!project.fixture;$('scrub').max=project.duration;$('undo').disabled=!history.length;
   $('source-label').hidden=project.source?.kind!=='fresh-example';
-  if(project.source?.kind==='fresh-example')$('source-label').textContent=`FResh example · ${project.source.artists} · ${project.source.album}. Original audio, lyrics, section timings, and recovered drawings. ${project.words.filter(w=>w.sourceUnit==='phrase').length} timed phrases are kept whole; their internal word times are unavailable. Timings still need your review.`;
+  if(project.source?.kind==='fresh-example')$('source-label').textContent=`Fresh Annotator example · ${project.source.artists} · ${project.source.album}. Original audio, lyrics, section timings, and recovered drawings. ${project.words.filter(w=>w.sourceUnit==='phrase').length} timed phrases are kept whole; their internal word times are unavailable. Timings still need your review.`;
   $('lyrics-toggle').textContent=project.words.length?'Replace lyrics':'Add lyrics';
   const lines=new Map();for(const w of project.words){if(!lines.has(w.line))lines.set(w.line,[]);lines.get(w.line).push(w);}
   $('word-list').innerHTML=project.words.length?[...lines.values()].map(words=>`<div class="lyric-line">${words.map(w=>`<div class="word-chip ${w.keyword?'keyword':''} ${w.id===selected?'selected':''} ${w.reviewed?'checked':''}" data-chip="${w.id}"><button data-word="${w.id}" aria-label="Edit ${html(w.text)} at ${w.start.toFixed(3)} seconds">${html(w.text)}</button><button class="word-star" data-star="${w.id}" aria-label="${w.keyword?'Remove':'Add'} keyword status for ${html(w.text)}" aria-pressed="${w.keyword}">${w.keyword?'★':'☆'}</button><small>${w.start.toFixed(3)} ${w.reviewed?'✓':'~'}</small></div>`).join('')}</div>`).join(''):'<p class="empty-hint">Your words will appear here.<br>Add lyrics above, then listen and give them their own moments.</p>';

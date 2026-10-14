@@ -184,3 +184,15 @@ export function fixtureProject(){
   a.drawing={version:2,isCompressed:false,duration:1,strokes:[{shape:'circle',color:'#eb7448',size:.45,start:0,duration:1,points:[[0,[.5,.18],.3],[.2,[.59,.42],.3],[.4,[.85,.45],.3],[.6,[.63,.6],.3],[.8,[.7,.85],.3],[1,[.5,.7],.3]]}]};
   return p;
 }
+
+// Refresh generated provenance labels in previously saved example projects.
+export function normalizeSourceNames(p) {
+  if(p.source?.kind!=='fresh-example')return p;
+  const rename=value=>typeof value==='string'?value.replace(/F[R]esh/g,'Fresh Annotator'):value;
+  p.lyricsSource=rename(p.lyricsSource);
+  for(const w of [...(p.words||[]),...(p.archivedWords||[])])w.timingSource=rename(w.timingSource);
+  for(const section of p.sections||[])section.source=rename(section.source);
+  for(const a of Object.values(p.annotations||{}))if(a.drawingSource)a.drawingSource.kind=rename(a.drawingSource.kind);
+  p.source.drawings=rename(p.source.drawings);
+  return p;
+}
