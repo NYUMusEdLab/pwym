@@ -1,0 +1,24 @@
+
+:root{--ink:#172c3a;--paper:#f6f1e7;--teal:#075b61;--line:#c9c7bd;--gold:#a64a25}
+body{background:var(--paper);color:var(--ink);font-family:system-ui,sans-serif;padding:28px;line-height:1.65}.container{max-width:1200px}h1,h2,h3{color:var(--ink)}h1,h2{font-family:Georgia,serif;font-weight:normal;line-height:1.08}h1{font-size:clamp(3rem,7vw,6.5rem);letter-spacing:-.045em;margin:.2em 0}h2{font-size:clamp(2rem,4vw,3.4rem)}h3{font-size:1.25rem;line-height:1.3}a{color:var(--teal);text-decoration:underline;text-underline-offset:.18em}a:focus-visible{outline:3px solid #8f380f;outline-offset:4px}.review-note{font-size:.75rem;letter-spacing:.13em;color:#664928}.editorial-hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:32px 0 48px}.editorial-hero figure{margin:0;transform:rotate(-2deg)}.editorial-hero img{display:block;width:100%;height:auto;border-radius:4px}.eyebrow{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em}.dek{font-size:1.35rem;max-width:30ch}.primary,.btn{display:inline-block;background:var(--teal);color:white;border-radius:3px;padding:12px 18px;text-decoration:none;min-height:44px;box-sizing:border-box}.text-link{margin-left:20px}.contents{border-color:var(--line);gap:22px}.launch-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-bottom:1px solid var(--line);margin-bottom:64px}.launch-strip a{padding:20px 14px;text-decoration:none;border-right:1px solid var(--line)}.launch-strip span{display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}.launch-strip strong{font-size:1rem}.timeline>li{border-left:none;padding-left:0;margin:48px 0 72px}.status{color:var(--gold);text-transform:uppercase;letter-spacing:.1em;font-size:.75rem}.timeline .project-row{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:64px;align-items:start;border:none}.project-row img{border-radius:4px;background:white;max-height:420px;object-fit:contain}.timeline .project-row img{max-height:480px}.project-row p{max-width:60ch}#history>.reading{font-size:1.15rem}.project-row{border-color:var(--line)}#tools{border-top:2px solid var(--ink);padding-top:20px}#tools .project-row{padding:24px 0;gap:32px;grid-template-columns:1.4fr 1fr}#tools .project-row img{max-height:240px}#tools .project-row p{font-size:.95rem}.archive-record{background:#e7e6da}.source-list{max-width:78ch}.source-list li{font-size:.95rem}.reading{max-width:65ch}figcaption{color:#47535a;font-size:.8rem;line-height:1.5;margin-top:12px}#tools-in-action{border-top:2px solid var(--ink);padding-top:12px}.demo-links{gap:12px;margin:24px 0}.section-heading{margin-top:64px}
+@media(max-width:900px){.editorial-hero{gap:28px}.launch-strip{grid-template-columns:repeat(3,1fr)}.timeline .project-row{gap:28px}}
+@media(max-width:700px){body{padding:20px}.editorial-hero,.timeline .project-row,#tools .project-row{grid-template-columns:1fr}.editorial-hero figure{transform:none}.launch-strip{grid-template-columns:1fr 1fr;margin-bottom:40px}.launch-strip a{border-bottom:1px solid var(--line)}.contents{gap:4px 16px}.timeline>li{margin:28px 0 48px}h1{font-size:3.4rem}.text-link{display:inline-block;margin:16px 0 0 16px}.section-heading{margin-top:40px}}
+
+/* Production refinements: readable contrast, resilient sizing and keyboard targets. */
+* { box-sizing: border-box; }
+.editorial-hero > *, .project-row > * { min-width: 0; }
+.editorial-hero { padding-top: 20px; padding-bottom: 28px; }
+.editorial-hero h1 { font-size: clamp(3rem, 6vw, 5.25rem); }
+.editorial-hero figure { transform: none; }
+footer { color: #47535a; }
+.source-list a { overflow-wrap: anywhere; }
+.contents a, .text-link { min-height: 44px; display: inline-flex; align-items: center; }
+.primary:hover, .btn:hover { background: #08484d; color: white; }
+.launch-strip a:hover { background: #e7e6da; }
+.launch-strip a:focus-visible { outline-offset: -4px; }
+.featured-demo { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 28px; align-items: center; margin: 24px 0; }
+.featured-demo iframe { width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0; margin: 0; }
+.supporting { font-size: .95rem; }
+.supporting h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); }
+@media(max-width:700px) { .featured-demo { grid-template-columns: 1fr; } .editorial-hero { gap: 20px; } }
+@media(max-width:360px) { .launch-strip { grid-template-columns: 1fr; } }
