@@ -10,7 +10,7 @@
   <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Immersive Recordings – NYU Music Experience Design Lab</title>
+  <title>Immersive Music &amp; Media Experiments – NYU Music Experience Design Lab</title>
   <style>
     body {
       font-family: 'Lato', sans-serif;
@@ -57,6 +57,12 @@
       gap: 2rem;
       margin-bottom: 2rem;
     }
+    section { margin-bottom: 2.5rem; }
+    nav { margin-bottom: 1.5rem; }
+    @media (max-width: 640px) {
+      body { padding: 1rem; }
+      .project-content { display: block; }
+    }
     .text-column, .image-column {
       flex: 1 1 45%;
     }
@@ -78,30 +84,40 @@
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <div class="container">
-  <h1>Immersive Music & Media Experiments</h1>
+  <nav aria-label="Main navigation"><a href="../projects.html">Projects</a> · <a href="../archive/">Archive</a></nav>
+  <h1>Immersive Music &amp; Media Experiments</h1>
+  <p>Explore music through interactive performance and spatial listening. Choose an experience below, or read about the research behind it.</p>
   <div class="project-content">
     <div class="text-column">
       <section id="virtual-piano-duet">
-        <h2>Virtual Piano Duet v2</h2>
+        <h2>Play: Virtual Piano Duet v2</h2>
         <p>Improvise with recorded pianist Steve Wogaman of the Chamber Music Society of Detroit and see your melodies take shape in a Melody Notebook. V2 automatically captures your played notes, timing and chords as piano rolls. Name and save phrases in your browser, replay them alone or with the duet, and export or import compatible melody JSON files. These are note recordings, not microphone audio; saved phrases stay in this browser rather than syncing to an account.</p>
         <a href="https://apps.musedlab.org/virtualduet/cmsd/v2/" class="btn">Play Virtual Piano Duet v2</a>
       </section>
 
-      <p>These experiments explore how spatial sound, interactive technology, and creative design can deepen engagement with music performance and listening. In collaboration with the Aeolus String Quartet, the Lab created immersive recordings that place listeners inside the spatial and expressive environment of the ensemble. Developed in partnership with Steve Wogaman and the Chamber Music Society of Detroit, these projects combine high-resolution audio capture, spatial mixing, and interactive media design to create new ways of experiencing chamber music through headphones, web platforms, and immersive listening environments. </p>
-      <a href="https://www.youtube.com/playlist?list=PLZJ0v6XRg7z3Uk9A2-HJS25FyX4m8uVpu" target="_blank" class="btn">Step Inside the Aeolus String Quartet</a><br>
-      <p>The MusEDLab, together with IRCAM developed an interactive platform exploring Pierre Boulez’s Dialogue de l’ombre double, a landmark work in spatial electroacoustic music. The project integrates archival recordings, score materials, and spatial audio processing into an interactive web environment that allows listeners to explore the piece’s complex spatial design and musical structure. The platform was developed collaboratively with Alex Zhang, James Chang, and Zehao Wang, combining Web Audio technologies, spatial audio visualization, and interactive media design to make historically important electroacoustic works more accessible for students, performers, and audiences. </p>
-      <a href="https://github.com/NYUMusEdLab/aimusicmixer" target="_blank" class="btn">Step Inside the Boulez' Dialogue L'ombre Double</a><br>
-      <p>Most recently, the MusEDLab expanded this work into projects focused on Chinese traditional music and immersive cultural media. In collaboration with Yiting Liu, the Lab designed immersive multichannel recording approaches and AI-enabled interfaces that allow users to explore traditional instrumental performances through spatial listening, analysis, and interactive media tools. These projects reflect MusEDLab’s broader mission to connect music performance, cultural heritage, and emerging technologies in ways that support creative learning, research, and public engagement.</p>
-      <a href="" target="_blank" class="btn">Step Inside Chinese Traditional Music</a>
+      <section id="aeolus">
+        <h2>Listen: Inside the Aeolus String Quartet</h2>
+        <p>Step inside the ensemble through immersive recordings developed with the Aeolus String Quartet, Steve Wogaman and the Chamber Music Society of Detroit. Spatial recording and mixing offer new ways to experience chamber music through headphones and web platforms.</p>
+        <a href="https://www.youtube.com/playlist?list=PLZJ0v6XRg7z3Uk9A2-HJS25FyX4m8uVpu" class="btn">Watch the Aeolus playlist</a>
+      </section>
+      <section id="boulez">
+        <h2>Explore the source: Boulez’s Dialogue de l’ombre double</h2>
+        <p>MusEDLab and IRCAM developed an interactive exploration of Boulez’s spatial electroacoustic work, combining recordings, score materials and spatial audio visualization. Alex Zhang, James Chang and Zehao Wang collaborated on the platform.</p>
+        <a href="https://github.com/NYUMusEdLab/aimusicmixer" class="btn">View mixer source</a>
+      </section>
+      <section id="chinese-traditional-music">
+        <h2>Explore: Chinese traditional music</h2>
+        <p>In collaboration with Yiting Liu, MusEDLab explores traditional instrumental performances through immersive multichannel recording, spatial listening and interactive media. The project connects musical performance and cultural heritage with creative learning and research.</p>
+        <p>Spatial Music Lab opens with Chinese Instrumental, featuring music by Justin Scholar 玉刻. Move individual sounds to explore the spatial mix.</p>
+        <a href="https://interactive-music-test-2.vercel.app/" class="btn">Open Spatial Music Lab</a>
+      </section>
     </div>
     <div class="image-column">
-      <a href="" target="_blank">
-        <img src="../img/yiting.png" alt="Immersive Recording" class="responsive">
-      </a>
+      <img src="../img/yiting.png" alt="Chinese traditional music immersive media project" class="responsive">
     </div>
   </div>
   <footer>
-    &copy; 2025 NYU Music Experience Design Lab
+    &copy; 2026 NYU Music Experience Design Lab
   </footer>
 </div>
 </body>
