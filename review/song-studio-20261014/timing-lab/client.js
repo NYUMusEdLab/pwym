@@ -21,13 +21,26 @@ async function attachAudio(file){
  const context=new AudioContext();try{const buffer=await context.decodeAudioData(bytes.slice(0)),channel=buffer.getChannelData(0),step=Math.max(1,Math.floor(channel.length/700));peaks=[];for(let i=0;i<channel.length;i+=step){let peak=0;for(let j=i;j<Math.min(i+step,channel.length);j++)peak=Math.max(peak,Math.abs(channel[j]));peaks.push(peak);}}finally{await context.close();}
  renderAudio();paint();if(result)render();
 }
+function selectWord(index){
+ selected=index;clipEnd=null;
+ if(matched()){
+   const w=result.words[index];let time=w.start;
+   if(!Number.isFinite(time)){
+     time=0;for(let i=index-1;i>=0;i--)if(Number.isFinite(result.words[i].end)){time=result.words[i].end;break;}
+     say('This word has no start yet. The playhead is at the preceding timed word’s end; listen and set its boundaries.');
+   }
+   player.currentTime=Math.max(0,Math.min(time,Number.isFinite(player.duration)?player.duration:result.duration));
+   $('clock').textContent=player.currentTime.toFixed(3)+' s';$('seek').max=result.duration;$('seek').value=player.currentTime;
+ }
+ render();
+}
 function renderAudio(){const ok=matched();$('audio-status').textContent=audioFile?(ok?'✓ Same audio verified. Ready to listen.':result?'Choose the matching audio for this report.':'Audio ready. Open its timing report.'):'Choose the exact audio used for this report.';for(const id of ['listen','set-start','set-end'])$(id).disabled=!ok;}
 function render(){
  selected=Math.max(0,Math.min(selected,result.words.length-1));const p=issues(),count=result.words.filter(w=>w.reviewed).length;
  $('summary').textContent=`${count} of ${result.words.length} words checked · ${p.invalidWords} missing or invalid timings · ${result.words.filter(w=>w.edited).length} words edited`;
  $('progress').style.width=`${count/result.words.length*100}%`;$('undo').disabled=!history.length;
  const list=$('word-list');list.replaceChildren();
- result.words.forEach((w,i)=>{if($('only-attention').checked&&!p.words[i].attention&&i!==selected)return;const b=document.createElement('button');b.type='button';b.className='word'+(p.words[i].errors.length?' invalid':'')+(i===selected?' selected':'')+(w.reviewed?' reviewed':'');b.textContent=w.text+(w.reviewed?' ✓':'');b.setAttribute('aria-pressed',String(i===selected));b.setAttribute('aria-label',`${i+1}. ${w.text}${p.words[i].errors.length?', needs timing':w.reviewed?', checked':', needs a listen'}`);b.onclick=()=>{selected=i;render();};list.append(b);});
+ result.words.forEach((w,i)=>{if($('only-attention').checked&&!p.words[i].attention&&i!==selected)return;const b=document.createElement('button');b.type='button';b.className='word'+(p.words[i].errors.length?' invalid':'')+(i===selected?' selected':'')+(w.reviewed?' reviewed':'');b.textContent=w.text+(w.reviewed?' ✓':'');b.setAttribute('aria-pressed',String(i===selected));b.setAttribute('aria-label',`${i+1}. ${w.text}${p.words[i].errors.length?', needs timing':w.reviewed?', checked':', needs a listen'}`);b.onclick=()=>selectWord(i);list.append(b);});
  const w=result.words[selected];$('word-number').textContent=`WORD ${selected+1} OF ${result.words.length}`;$('selected-word').textContent=w.text;$('word-text').value=w.text;$('word-start').value=w.start??'';$('word-end').value=w.end??'';
  $('word-issue').textContent=p.words[selected].errors.join(' · ')||(w.reviewed?'Checked by you.':w.issues.includes('low_model_score')?'The AI was unsure. Listen and decide.':'Does this word start and end where you hear it?');
  const original=result.originalAnalysis.words.find((x,i)=>(x.reviewId||`original-${i}`)===w.reviewId);
