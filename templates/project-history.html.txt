@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{title}} – MusEDLab</title><link rel="stylesheet" href="/css/project-history.css"></head><body>
+<a class="skip-link" href="#tools">Skip to current tools</a><div class="container">
+<nav aria-label="Main navigation"><a href="/projects.html">Projects</a> · <a href="/archive/">Archive</a></nav>
+<h1>{{title}}</h1><p class="reading">{{purpose_and_collective_context}}</p>
+<nav class="contents" aria-label="On this page"><a href="#tools">Try the tools</a><a href="#history">History</a><a href="#tools-in-action">Tools in action</a><a href="#archived">Archive</a><a href="#sources">Sources</a><a href="#credits">Credits</a></nav>
+<main>
+<section id="tools"><h2>Try the current experiences</h2>{{project_rows_with_launch_access_labels_and_figures}}</section>
+<section id="history"><h2>How the ideas developed</h2><ol class="timeline">{{milestones_with_date_precision_status_credit_image_caption_and_source}}</ol></section>
+<section id="tools-in-action"><h2>Tools in action</h2>{{verified_lab_demos}}{{separately_reviewed_community_examples_if_any}}</section>
+<section id="archived"><h2>Archived experiences</h2>{{documentation_first_archive_records}}</section>
+<section id="sources"><h2>Sources and further reading</h2>{{primary_records_media_press_and_verified_publications}}</section>
+<section id="credits"><h2>People and credits</h2>{{role_specific_credits_and_review_date}}</section>
+</main></div></body></html>
+
+EDITOR NOTES
+Copy as an HTML page and replace all placeholders. Remove empty optional sections AND their contents links. Use class project-row for two-column text/figure rows; retain natural image ratios. Approximate dates stay approximate. Distinguish event dates from release dates. Every image needs provenance, alt text, caption and permitted public use. Access labels belong to individual launch links. Do not expose protected titles/media or private sources in prose, screenshots or links. Lab demos are not community evidence. No invented publications. Validate anchors, URLs, image paths and responsive layout before publication.

@@ -11,69 +11,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Immersive Music &amp; Media Experiments – NYU Music Experience Design Lab</title>
-  <style>
-    body {
-      font-family: 'Lato', sans-serif;
-      background-color: #fefefe;
-      color: #222;
-      line-height: 1.6;
-      margin: 0;
-      padding: 2rem;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    h1, h2 {
-      color: #003366;
-    }
-    a {
-      color: #0055aa;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .btn {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background-color: #0055aa;
-      color: #fff;
-      border-radius: 5px;
-      text-decoration: none;
-      margin-top: 1rem;
-    }
-    .btn:hover {
-      background-color: #003f87;
-    }
-    img.responsive {
-      max-width: 100%;
-      height: auto;
-      border-radius: 1rem;
-    }
-    .project-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2.5rem; align-items: center; padding: 2.5rem 0; border-bottom: 1px solid #dce4ec; }
-    .project-row h2 { margin-top: 0; }
-    .project-row figure { margin: 0; min-width: 0; }
-    .project-row img { display: block; width: 100%; height: auto; border: 1px solid #dce4ec; box-sizing: border-box; }
-    figcaption { font-size: .875rem; color: #526477; margin-top: .6rem; }
-    nav { margin-bottom: 1.5rem; }
-    .btn { min-height: 44px; box-sizing: border-box; }
-    a:focus-visible { outline: 3px solid #cc8b21; outline-offset: 4px; }
-    @media (max-width: 900px) { body { padding: 1.5rem; } .project-row { gap: 1.5rem; } }
-    @media (max-width: 700px) { body { padding: 1rem; } .project-row { grid-template-columns: 1fr; padding: 1.75rem 0; } h1 { font-size: 2rem; line-height: 1.2; } }
-    iframe {
-      max-width: 100%;
-      margin-top: 1rem;
-    }
-    footer {
-      text-align: center;
-      margin-top: 4rem;
-      font-size: 0.9rem;
-      color: #888;
-    }
-  </style>
+  <link rel="stylesheet" href="../css/project-history.css">
 </head>
 <body>
+<a class="skip-link" href="#tools">Skip to current tools</a>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K66WXSZB"
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -81,33 +22,93 @@
 <div class="container">
   <nav aria-label="Main navigation"><a href="../projects.html">Projects</a> · <a href="../archive/">Archive</a></nav>
   <h1>Immersive Music &amp; Media Experiments</h1>
-  <p>Explore music through interactive performance and spatial listening. Choose an experience below, or read about the research behind it.</p>
-  <main>
+  <p class="reading">From moving animated musicians to exploring recordings from inside the ensemble, our work invites listeners to learn through action. Try the current experiences, then explore the ideas, collaborators and earlier prototypes behind them.</p>
+  <nav class="contents" aria-label="On this page"><a href="#tools">Try the tools</a><a href="#history">History</a><a href="#tools-in-action">Tools in action</a><a href="#archived">Archived experiences</a><a href="#sources">Sources</a><a href="#credits">Credits</a></nav>
+  <main id="main">
+  <section id="tools" aria-labelledby="tools-title"><h2 id="tools-title">Try the current experiences</h2>
       <section class="project-row" id="virtual-piano-duet"><div>
-        <h2>Play: Virtual Piano Duet v2</h2>
+        <h3>Play: Virtual Piano Duet v2</h3>
         <p>Improvise with recorded pianist Steve Wogaman of the Chamber Music Society of Detroit and see your melodies take shape in a Melody Notebook. V2 automatically captures your played notes, timing and chords as piano rolls. Name and save phrases in your browser, replay them alone or with the duet, and export or import compatible melody JSON files. These are note recordings, not microphone audio; saved phrases stay in this browser rather than syncing to an account.</p>
         <a href="https://apps.musedlab.org/virtualduet/cmsd/v2/" class="btn">Play Virtual Piano Duet v2</a>
       </div><figure><img src="../archive/images/virtual-piano-duet-v2.png" alt="Virtual Piano Duet with its Melody Notebook" class="responsive" loading="lazy"><figcaption>Virtual Piano Duet v2 and its Melody Notebook.</figcaption></figure></section>
 
       <section class="project-row" id="aeolus"><div>
-        <h2>Listen: Inside the Aeolus String Quartet</h2>
+        <h3>Listen: Inside the Aeolus String Quartet</h3>
         <p>Step inside the ensemble through immersive recordings developed with the Aeolus String Quartet, Steve Wogaman and the Chamber Music Society of Detroit. Spatial recording and mixing offer new ways to experience chamber music through headphones and web platforms.</p>
         <a href="https://www.youtube.com/playlist?list=PLZJ0v6XRg7z3Uk9A2-HJS25FyX4m8uVpu" class="btn">Watch the Aeolus playlist</a>
       </div><figure><img src="../img/aeolus.png" alt="Aeolus String Quartet recording project" class="responsive" loading="lazy"><figcaption>Aeolus String Quartet — existing project image.</figcaption></figure></section>
       <section class="project-row" id="boulez"><div>
-        <h2>Explore: Boulez’s Dialogue de l’ombre double</h2>
+        <h3>Explore: Boulez’s Dialogue de l’ombre double</h3>
         <p>MusEDLab and IRCAM developed an interactive exploration of Boulez’s spatial electroacoustic work, combining recordings, score materials and spatial audio visualization. Alex Zhang, James Chang and Zehao Wang collaborated on the platform.</p>
         <a href="https://nyumusedlab.github.io/SpatialAudioNav/" class="btn">Play the Boulez spatial audio experience</a>
       </div><figure><img src="../img/spatialaudionav-preview.jpg" alt="Boulez SpatialAudioNav audience view with six virtual speakers" class="responsive" loading="lazy"><figcaption>SpatialAudioNav audience view.</figcaption></figure></section>
       <section class="project-row" id="chinese-traditional-music"><div>
-        <h2>Explore: Chinese traditional music</h2>
+        <h3>Explore: Chinese traditional music</h3>
         <p>In collaboration with Yiting Liu, MusEDLab explores traditional instrumental performances through immersive multichannel recording, spatial listening and interactive media. The project connects musical performance and cultural heritage with creative learning and research.</p>
         <p>Spatial Music Lab opens with Chinese Instrumental, featuring music by Justin Scholar 玉刻. Move individual sounds to explore the spatial mix.</p>
         <a href="https://interactive-music-test-2.vercel.app/" class="btn">Open Spatial Music Lab</a>
       </div><figure><img src="../img/spatial-music-lab-preview.jpg" alt="Spatial Music Lab Chinese instrumental sound controls" class="responsive" loading="lazy"><figcaption>Spatial Music Lab — Chinese Instrumental.</figcaption></figure></section>
-  <h2>Immersive recording &amp; mixing interfaces</h2>
+  <h3>Immersive recording &amp; mixing interfaces</h3>
 <section class="project-row" id="airtraffic"><div><h3>Air Traffic</h3><p>Explore Clara Berry &amp; Wooldog’s recording with the public PWYM mixing console.</p><p><strong>Public access; no sign-in required.</strong> Music rights remain with the artists and publishers.</p><a class="btn" href="https://pwymmixer.musedlab.org/public/airtraffic/index.html">Open Air Traffic</a></div><figure><img src="../img/airtraffic-preview.jpg" alt="Air Traffic mixing console." class="responsive" loading="lazy"><figcaption>Air Traffic mixing console.</figcaption></figure></section>
   <p><a href="https://pwymmixer.musedlab.org/">Open the mixer collection</a></p>
+
+  </section>
+  <section id="history" aria-labelledby="history-title">
+    <h2 class="section-heading" id="history-title">How the ideas developed</h2>
+    <p class="reading">The interfaces have changed, but a question connects them: what becomes possible when listeners can act on the parts and perspectives inside a recording?</p>
+    <ol class="timeline">
+      <li><p class="status">Around 2005 · Historical Flash interface</p>
+        <article class="project-row"><div><h3>MusicDelta: a stage you could change</h3>
+          <p>Our work in this area began with a collaboration with the Norwegian company MusicDelta around 2005, as recalled by Alex Ruthmann. Its Flash-based music-history platform combined articles, recordings and video with an invitation to change what learners heard.</p>
+          <p>Rather than only reading about an ensemble or watching it perform, a learner could move its animated musicians. Moving a musician forward or backward changed the volume of that musician’s audio stem; moving left or right changed its stereo placement. The stage made a multitrack recording something to explore through familiar physical actions.</p>
+          <p>Gisle Johnsen’s <a href="https://www.gislejohnsen.com/">founder account</a> dates Grieg Music Education to 2005, identifies Music Delta as its product and dates OIID’s launch to 2015. A <a href="https://wp.nyu.edu/musedlab/2013/07/">July 2013 MusEDLab post</a> also names MusicDelta.</p>
+        </div><figure><img src="../img/musicdelta-history.png" alt="Animated string players on a stage, labeled by instrument, with a move control beside the central player" width="670" height="384" class="responsive" loading="lazy"><figcaption>MusicDelta ensemble interface, supplied by Alex Ruthmann. Screenshot date and version are not established. Interaction details and the approximate beginning of our involvement come from his firsthand account.</figcaption></figure></article>
+      </li>
+      <li><p class="status">10 February 2016 · Public event and archival prototype</p>
+        <article class="project-row"><div><h3>Step Inside Mahler: listening through the archives</h3>
+          <p>In Alex’s account, the MusicDelta experiments helped inspire a later collaboration involving OIID and the New York Philharmonic archives. Step Inside Mahler brought the invitation to “step inside” music into an orchestral and archival setting.</p>
+          <p>The <a href="#source-nyu">NYU announcement</a> credits the MusEDLab team led by Alex Ruthmann, the New York Philharmonic and Norwegian developer MusIT. Built with MusIT’s OIID technology, the prototype brought together four historical performances of Mahler’s Sixth Symphony and annotated scores from the Philharmonic’s Leon Levy Digital Archives.</p>
+          <p>Listeners could compare recordings and scores, while a spatial-listening interface offered instrumental perspectives. The February 10 event at Lincoln Center’s David Rubenstein Atrium included interactive iPad stations. The NYU release names Barbara Haws, Lawrence Rock and Erik Ryding alongside Ruthmann as event participants.</p>
+          <a class="btn" href="../step-inside-mahler/index.html">Read the historical project record</a>
+        </div><figure><img src="../img/mahler.jpg" alt="Mahler Grooves title over annotated score pages and instrument icons" width="400" height="400" class="responsive" loading="lazy"><figcaption>“Mahler Grooves,” preserved on the MusEDLab website. This historical project image does not indicate a newly restored application.</figcaption></figure></article>
+      </li>
+      <li><p class="status">Later iterations · Individual project dates vary</p>
+        <div class="reading"><h3>More ways to listen, move and play</h3>
+          <p>Later MusEDLab projects pursue related questions through different interfaces and collaborations. The Aeolus recordings invite listening from within an ensemble. Virtual Piano Duet adds a way to perform alongside a recorded musician. SpatialAudioNav makes listening position part of exploring Boulez’s music. Spatial Music Lab represents individual sounds as movable objects, while Air Traffic exposes the balance of a recording through a mixing console.</p>
+          <p>These projects share an interest in making musical relationships available to exploration. They are not one continuous software product or the work of one person: performers, designers, developers and institutional collaborators are part of each story.</p>
+          <p><a href="#tools">Return to the current experiences ↑</a></p>
+        </div>
+      </li>
+    </ol>
+  </section>
+  <section id="tools-in-action" aria-labelledby="action-title"><h2 class="section-heading" id="action-title">Tools in action</h2>
+    <div class="reading"><h3>Demonstrations from the lab</h3><p>See the interfaces and the ideas behind them in lab demonstrations. Alex Ruthmann’s TEDx talk, <em>Lowering the Barriers to Creative Musical Expression</em>, presents the approach in a public setting. Alex recalls a live demonstration in the talk; we do not identify it here as the later 2016 event release.</p><p>These are lab demonstrations, not independent evaluations or community-use examples.</p></div>
+    <div class="demo-links"><a class="btn" href="https://www.youtube.com/playlist?list=PLZJ0v6XRg7z2RTi5Tu0o4fi5nz19ZlT83">Watch the demonstration playlist</a><a class="btn" href="https://www.youtube.com/watch?v=pRlSaiOkXNU">Watch MusEDLab App Demos</a><a class="btn" href="https://www.youtube.com/watch?v=k4j3SdcFPt8">Watch Alex Ruthmann’s TEDx talk</a></div>
+  </section>
+  <section id="archived" aria-labelledby="archived-title"><h2 class="section-heading" id="archived-title">Archived experiences</h2>
+    <article class="archive-record"><h3>MusicDelta</h3><p><strong>Historical Flash interface.</strong> The image and account above document its interaction approach. A current playable version has not been verified.</p></article>
+    <article class="archive-record"><h3>Step Inside Mahler</h3><p><strong>Historical prototype and event documentation.</strong> The existing record preserves credits and legacy links. Current playback of those legacy applications has not been verified.</p><a href="../step-inside-mahler/index.html">Read the archived project documentation</a></article>
+  </section>
+  <section id="sources" aria-labelledby="sources-title"><h2 class="section-heading" id="sources-title">Sources and further reading</h2>
+    <h3>Primary project and event records</h3><ul class="source-list">
+      <li id="source-nyu"><a href="https://www.nyu.edu/about/news-publications/news/2016/february/steinhardt-music-app-allows-fans-to-step-inside-symphonies.html">Steinhardt Music App Allows Fans to “Step Inside” Symphonies</a> — NYU News, February 2016. Primary announcement of the February 10 event, collaboration, archival materials and prototype.</li>
+      <li><a href="https://www.gislejohnsen.com/">Gisle Johnsen’s founder biography</a> — company and product history for Grieg Music Education, Music Delta and OIID.</li>
+      <li><a href="https://wp.nyu.edu/musedlab/2013/07/">MusEDLab, July 2013</a> — contemporary NYU post naming MusicDelta.</li>
+      <li><a href="https://wp.nyu.edu/musedlab/author/sar17/">MusEDLab course resources, June 20, 2016</a> — includes “OIID Partnership Apps” and the NY Phil Archives score and Audio Zoom tools.</li>
+      <li><a href="../step-inside-mahler/index.html">Existing Step Inside Mahler project record</a> — historical credits and application references.</li>
+    </ul>
+    <h3>Contemporary press coverage</h3><ul class="source-list">
+      <li><a href="https://www.wqxr.org/story/mahler-grooves-new-music-app/">Mahler Grooves in New Music App</a> — John V. Bennett, WQXR, February 12, 2016.</li>
+      <li><a href="https://www.broadwayworld.com/article/Semyon-Bychkov-to-Conduct-New-York-Philharmonic-in-Mahler-This-February-20160107">Semyon Bychkov to Conduct New York Philharmonic in Mahler This February</a> — BroadwayWorld, January 7, 2016; contemporary reproduction of the institutional announcement.</li>
+      <li><a href="https://www.classicalite.com/articles/37210/20160209/new-york-philharmonics-insights-atrium-continues-feb-10-mahlers-sixth.htm">New York Philharmonic’s Insights at the Atrium continues February 10</a> — Classicalite, February 9, 2016; contemporary coverage.</li>
+    </ul>
+    <h3>Current software sources</h3><p><a href="https://github.com/NYUMusEdLab/cmsdpiano">Virtual Piano Duet</a> · <a href="https://github.com/NYUMusEdLab/SpatialAudioNav">SpatialAudioNav</a> · <a href="https://github.com/NYUMusEdLab/aimusicmixer">Spatial Music Lab</a></p>
+  </section>
+  <section id="credits" aria-labelledby="credits-title"><h2 class="section-heading" id="credits-title">People and credits</h2><div class="reading">
+    <p>The MusicDelta history draws on Alex Ruthmann’s firsthand account and supplied image, alongside Gisle Johnsen’s company history. The Mahler prototype was a collaboration between NYU MusEDLab, the New York Philharmonic and MusIT using OIID technology; the Philharmonic’s Leon Levy Digital Archives supplied archival material.</p>
+    <p>Later project credits include the Aeolus String Quartet, Steve Wogaman and the Chamber Music Society of Detroit; IRCAM and developers Alex Zhang, James Chang and Zehao Wang; Yiting Liu and musician Justin Scholar 玉刻; and Clara Berry &amp; Wooldog. Follow the individual project records and source repositories for further credits.</p>
+    <p>Content reviewed 14 October 2026. Historical images document earlier interfaces; a working project link does not establish that every feature or device has been tested. Music rights remain with the credited artists and publishers.</p>
+  </div></section>
   </main>
   <footer>
     &copy; 2026 NYU Music Experience Design Lab
