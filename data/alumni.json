@@ -912,11 +912,11 @@
     {
       "name": "Joshua Emanuel",
       "category": "Research alumni",
-      "lab_role": "Music education researcher; NYU graduate",
+      "lab_role": "Music education researcher; NYU Music Education PhD, 2026",
       "current_role": "Music educator",
       "organization": "A. MacArthur Barr Middle School, Nanuet",
       "contribution": "Research on songwriting and classroom music learning.",
-      "bio": "Joshua is a music educator, percussionist and songwriter. His 2024 conference research presentation examined an eighth-grade songwriting curriculum through iterative teaching, creative practice, reflection and conversations with teacher peers.",
+      "bio": "Joshua is a music educator, percussionist and songwriter.",
       "links": [
         {
           "label": "Educator profile",
@@ -927,12 +927,17 @@
           "url": "https://trinity-laban-assets.s3.amazonaws.com/uploads/2024/10/2024-PG-Research-in-Music-Education-Symposium-Programme.pdf"
         }
       ],
-      "image": ""
+      "image": "",
+      "dissertation": {
+        "title": "A Design-Based, Practitioner Inquiry into Developing a Middle School Songwriting Curriculum",
+        "summary": "Joshua’s doctoral research examines how songwriting teaching develops through the iterative design of an eighth-grade music curriculum. Combining practitioner inquiry, his own songwriting and dialogue with fellow educators, it explores curricular structure and creative freedom, constructive feedback and teacher identity. Findings offer practical principles for songwriting instruction and professional learning communities.",
+        "degree": "PhD in Music Education, NYU Steinhardt, 2026"
+      }
     },
     {
       "name": "Meghan Todt Williams",
       "category": "Research alumni",
-      "lab_role": "Music education researcher; NYU graduate",
+      "lab_role": "Music education researcher; NYU Music Education PhD, 2026",
       "current_role": "Violinist, educator and artistic producer",
       "organization": "New York / NYU teaching",
       "contribution": "Research associate with the NYU NEA Research Lab.",
@@ -947,7 +952,12 @@
           "url": "https://www.meghantodt.com/"
         }
       ],
-      "image": ""
+      "image": "",
+      "dissertation": {
+        "title": "“This Is Who I Am”: Mapping the Education, Careers, and Lives of Interdisciplinary Musicians in the United States",
+        "summary": "Meghan’s doctoral research examines how musicians combine intensive musical training with other fields of study to build their careers and lives. A questionnaire with 98 respondents and two interview rounds with 10 interdisciplinary musicians informed narrative and voice-centered analysis of nonlinear, evolving careers. It offers guidance for young musicians considering interdisciplinary higher education and connections between musical study, work and lifelong music making.",
+        "degree": "PhD in Music Education, NYU Steinhardt, 2026"
+      }
     },
     {
       "name": "Matthew Fontana",
