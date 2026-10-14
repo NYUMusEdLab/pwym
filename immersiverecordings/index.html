@@ -51,21 +51,16 @@
       height: auto;
       border-radius: 1rem;
     }
-    .project-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    section { margin-bottom: 2.5rem; }
+    .project-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2.5rem; align-items: center; padding: 2.5rem 0; border-bottom: 1px solid #dce4ec; }
+    .project-row h2 { margin-top: 0; }
+    .project-row figure { margin: 0; min-width: 0; }
+    .project-row img { display: block; width: 100%; height: auto; border: 1px solid #dce4ec; box-sizing: border-box; }
+    figcaption { font-size: .875rem; color: #526477; margin-top: .6rem; }
     nav { margin-bottom: 1.5rem; }
-    @media (max-width: 640px) {
-      body { padding: 1rem; }
-      .project-content { display: block; }
-    }
-    .text-column, .image-column {
-      flex: 1 1 45%;
-    }
+    .btn { min-height: 44px; box-sizing: border-box; }
+    a:focus-visible { outline: 3px solid #cc8b21; outline-offset: 4px; }
+    @media (max-width: 900px) { body { padding: 1.5rem; } .project-row { gap: 1.5rem; } }
+    @media (max-width: 700px) { body { padding: 1rem; } .project-row { grid-template-columns: 1fr; padding: 1.75rem 0; } h1 { font-size: 2rem; line-height: 1.2; } }
     iframe {
       max-width: 100%;
       margin-top: 1rem;
@@ -87,35 +82,35 @@
   <nav aria-label="Main navigation"><a href="../projects.html">Projects</a> · <a href="../archive/">Archive</a></nav>
   <h1>Immersive Music &amp; Media Experiments</h1>
   <p>Explore music through interactive performance and spatial listening. Choose an experience below, or read about the research behind it.</p>
-  <div class="project-content">
-    <div class="text-column">
-      <section id="virtual-piano-duet">
+  <main>
+      <section class="project-row" id="virtual-piano-duet"><div>
         <h2>Play: Virtual Piano Duet v2</h2>
         <p>Improvise with recorded pianist Steve Wogaman of the Chamber Music Society of Detroit and see your melodies take shape in a Melody Notebook. V2 automatically captures your played notes, timing and chords as piano rolls. Name and save phrases in your browser, replay them alone or with the duet, and export or import compatible melody JSON files. These are note recordings, not microphone audio; saved phrases stay in this browser rather than syncing to an account.</p>
         <a href="https://apps.musedlab.org/virtualduet/cmsd/v2/" class="btn">Play Virtual Piano Duet v2</a>
-      </section>
+      </div><figure><img src="../archive/images/virtual-piano-duet-v2.png" alt="Virtual Piano Duet with its Melody Notebook" class="responsive" loading="lazy"><figcaption>Virtual Piano Duet v2 and its Melody Notebook.</figcaption></figure></section>
 
-      <section id="aeolus">
+      <section class="project-row" id="aeolus"><div>
         <h2>Listen: Inside the Aeolus String Quartet</h2>
         <p>Step inside the ensemble through immersive recordings developed with the Aeolus String Quartet, Steve Wogaman and the Chamber Music Society of Detroit. Spatial recording and mixing offer new ways to experience chamber music through headphones and web platforms.</p>
         <a href="https://www.youtube.com/playlist?list=PLZJ0v6XRg7z3Uk9A2-HJS25FyX4m8uVpu" class="btn">Watch the Aeolus playlist</a>
-      </section>
-      <section id="boulez">
-        <h2>Explore the source: Boulez’s Dialogue de l’ombre double</h2>
+      </div><figure><img src="../img/aeolus.png" alt="Aeolus String Quartet recording project" class="responsive" loading="lazy"><figcaption>Aeolus String Quartet — existing project image.</figcaption></figure></section>
+      <section class="project-row" id="boulez"><div>
+        <h2>Explore: Boulez’s Dialogue de l’ombre double</h2>
         <p>MusEDLab and IRCAM developed an interactive exploration of Boulez’s spatial electroacoustic work, combining recordings, score materials and spatial audio visualization. Alex Zhang, James Chang and Zehao Wang collaborated on the platform.</p>
-        <a href="https://github.com/NYUMusEdLab/aimusicmixer" class="btn">View mixer source</a>
-      </section>
-      <section id="chinese-traditional-music">
+        <a href="https://nyumusedlab.github.io/SpatialAudioNav/" class="btn">Play the Boulez spatial audio experience</a>
+      </div><figure><img src="../img/spatialaudionav-preview.jpg" alt="Boulez SpatialAudioNav audience view with six virtual speakers" class="responsive" loading="lazy"><figcaption>SpatialAudioNav audience view.</figcaption></figure></section>
+      <section class="project-row" id="chinese-traditional-music"><div>
         <h2>Explore: Chinese traditional music</h2>
         <p>In collaboration with Yiting Liu, MusEDLab explores traditional instrumental performances through immersive multichannel recording, spatial listening and interactive media. The project connects musical performance and cultural heritage with creative learning and research.</p>
         <p>Spatial Music Lab opens with Chinese Instrumental, featuring music by Justin Scholar 玉刻. Move individual sounds to explore the spatial mix.</p>
         <a href="https://interactive-music-test-2.vercel.app/" class="btn">Open Spatial Music Lab</a>
-      </section>
-    </div>
-    <div class="image-column">
-      <img src="../img/yiting.png" alt="Chinese traditional music immersive media project" class="responsive">
-    </div>
-  </div>
+      </div><figure><img src="../img/spatial-music-lab-preview.jpg" alt="Spatial Music Lab Chinese instrumental sound controls" class="responsive" loading="lazy"><figcaption>Spatial Music Lab — Chinese Instrumental.</figcaption></figure></section>
+  <h2>Immersive recording &amp; mixing interfaces</h2>
+<section class="project-row" id="inyoureyes"><div><h3>In Your Eyes</h3><p>Explore Peter Gabriel’s recording through the restored PWYM mixing console.</p><p><strong>Class and lab sign-in required.</strong> Music rights remain with the artists and publishers.</p><a class="btn" href="https://pwymmixer.musedlab.org/#access-title">Open class &amp; lab sign-in</a></div><figure><img src="../img/pwym-mixer-entry.jpg" alt="PWYM entry page; the recording interface requires class access." class="responsive" loading="lazy"><figcaption>PWYM entry page; the recording interface requires class access.</figcaption></figure></section>
+<section class="project-row" id="sledgehammer"><div><h3>Sledgehammer</h3><p>Explore the balance of Peter Gabriel’s multitrack recording with the restored PWYM mixing console.</p><p><strong>Class and lab sign-in required.</strong> Music rights remain with the artists and publishers.</p><a class="btn" href="https://pwymmixer.musedlab.org/#access-title">Open class &amp; lab sign-in</a></div><figure><img src="../img/pwym-mixer-entry.jpg" alt="PWYM entry page; the recording interface requires class access." class="responsive" loading="lazy"><figcaption>PWYM entry page; the recording interface requires class access.</figcaption></figure></section>
+<section class="project-row" id="candide"><div><h3>Candide</h3><p>Explore Leonard Bernstein’s orchestral music by moving across the stage to hear nearby spot microphones.</p><p><strong>Class and lab sign-in required.</strong> Music rights remain with the artists and publishers.</p><a class="btn" href="https://pwymmixer.musedlab.org/#access-title">Open class &amp; lab sign-in</a></div><figure><img src="../img/pwym-mixer-entry.jpg" alt="PWYM entry page; the recording interface requires class access." class="responsive" loading="lazy"><figcaption>PWYM entry page; the recording interface requires class access.</figcaption></figure></section>
+<section class="project-row" id="airtraffic"><div><h3>Air Traffic</h3><p>Explore Clara Berry &amp; Wooldog’s recording with the public PWYM mixing console.</p><p><strong>Public access; no sign-in required.</strong> Music rights remain with the artists and publishers.</p><a class="btn" href="https://pwymmixer.musedlab.org/public/airtraffic/index.html">Open Air Traffic</a></div><figure><img src="../img/airtraffic-preview.jpg" alt="Air Traffic mixing console." class="responsive" loading="lazy"><figcaption>Air Traffic mixing console.</figcaption></figure></section>
+  </main>
   <footer>
     &copy; 2026 NYU Music Experience Design Lab
   </footer>
