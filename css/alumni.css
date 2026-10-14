@@ -1,0 +1,24 @@
+.directory-page .people-overview{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}
+.directory-page #members .people-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.alumni-directory{border-top:1px solid var(--line);padding-top:24px;margin-top:24px}
+.alumni-directory h2{font:1.8rem Georgia,serif;margin:0 0 12px}
+.alumni-directory header>p{max-width:75ch;font-size:.95rem}
+.alumni-controls{display:flex;align-items:end;flex-wrap:wrap;gap:12px;margin:20px 0}
+.alumni-controls label{font-size:.8rem;display:flex;flex-direction:column;gap:5px}
+.alumni-controls label:first-child{flex:1 1 260px}
+.alumni-controls input,.alumni-controls select,.alumni-controls button,#alumni-more{font:inherit;min-height:44px;border:1px solid var(--line);border-radius:4px;background:#fffcf6;padding:9px 12px;color:var(--ink)}
+#alumni-more{cursor:pointer;margin-top:16px;color:var(--teal)}
+.alumni-controls button{cursor:pointer}.alumni-controls p{width:100%;font-size:.8rem;margin:0}
+.alumni-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:start}
+.alumni-card{border:1px solid var(--line);border-radius:5px;background:#fffcf6;padding:16px;min-width:0;overflow-wrap:anywhere}
+.alumni-card h3{font:600 1rem/1.35 system-ui,sans-serif;margin:0}
+.alumni-card p{font-size:.85rem;line-height:1.5;margin:10px 0 0}
+.alumni-card .alumni-role{margin-top:4px;font-size:.8rem}
+.alumni-card .person-heading img{width:44px;height:44px;object-fit:cover;border-radius:50%}
+.alumni-card summary{cursor:pointer;min-height:44px;display:flex;align-items:center;color:var(--teal);font-size:.85rem}
+.alumni-card summary::after{content:' +';margin-left:6px}.alumni-card details[open] summary::after{content:' −'}
+.alumni-links{display:flex;flex-wrap:wrap;gap:0 12px}.alumni-links a{display:inline-flex;align-items:center;min-height:44px}
+.alumni-directory :focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+@media(max-width:1000px){.alumni-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.directory-page .people-overview,.directory-page #members .people-grid{grid-template-columns:1fr}.directory-page .people-overview #members{grid-column:auto}.alumni-grid{grid-template-columns:1fr}.alumni-controls label{width:100%}}
+@media print{.alumni-controls,#alumni-more{display:none!important}.alumni-card[hidden]{display:block!important}.alumni-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
