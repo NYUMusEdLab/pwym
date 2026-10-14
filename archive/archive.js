@@ -1,15 +1,20 @@
 'use strict';
-const search = document.querySelector('#archive-search');
-const cards = [...document.querySelectorAll('.archive-card')];
-document.querySelector('.search-tools').hidden = false;
-search.addEventListener('input', () => {
-  const query = search.value.trim().toLocaleLowerCase();
-  let count = 0;
-  cards.forEach(card => {
-    const matches = card.dataset.search.toLocaleLowerCase().includes(query);
-    card.hidden = !matches;
-    if (matches) count++;
-  });
-  document.querySelector('#result-count').textContent = `${count} project${count === 1 ? '' : 's'}`;
-  document.querySelector('#empty-state').hidden = count !== 0;
-});
+
+// Keep existing archive bookmarks useful when records are collapsed.
+const openArchiveRecord = () => {
+  let id;
+  try { id = decodeURIComponent(window.location.hash.slice(1)); } catch { return; }
+  const target = document.getElementById(id);
+  const record = target?.closest('.directory-record');
+  if (!record) return;
+  const search = document.querySelector('#archive-search');
+  if (search?.value) {
+    search.value = '';
+    search.dispatchEvent(new Event('input'));
+  }
+  record.hidden = false;
+  record.open = true;
+  requestAnimationFrame(() => record.scrollIntoView({ block: 'start' }));
+};
+window.addEventListener('hashchange', openArchiveRecord);
+openArchiveRecord();
