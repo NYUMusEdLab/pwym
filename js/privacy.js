@@ -8,7 +8,7 @@
   const open = document.querySelector('#privacy-preferences');
   if (!panel || !open) return;
   let choice = null, loaded = false, previousFocus = null;
-  try { const stored = localStorage.getItem(key); if (stored === 'accepted' || stored === 'rejected') choice = stored; } catch (_) {}
+  try { const stored = localStorage.getItem(key); if (stored === 'accepted' || stored === 'rejected' || stored === 'dismissed') choice = stored; } catch (_) {}
   const status = panel.querySelector('[data-privacy-status]');
   function describe(extra = '') {
     panel.querySelector('[data-privacy-reject]').textContent = choice === 'accepted' ? 'Withdraw analytics' : 'Reject analytics';
@@ -64,6 +64,8 @@
     describe(persisted ? '' : ' Your browser could not save this preference; it applies to this visit only.');
     if (persisted) { panel.hidden = true; open.setAttribute('aria-expanded', 'false'); if (previousFocus) previousFocus.focus(); }
   }
+  const footer = document.createElement('div'); footer.className = 'privacy-footer';
+  document.body.appendChild(footer); footer.appendChild(open);
   open.hidden = false;
   open.addEventListener('click', () => {
     previousFocus = open; panel.hidden = !panel.hidden;
@@ -72,8 +74,13 @@
   });
   panel.querySelector('[data-privacy-accept]').addEventListener('click', () => setChoice('accepted'));
   panel.querySelector('[data-privacy-reject]').addEventListener('click', () => setChoice('rejected'));
-  panel.querySelector('[data-privacy-close]').addEventListener('click', () => { panel.hidden = true; open.setAttribute('aria-expanded', 'false'); open.focus(); });
-  panel.addEventListener('keydown', event => { if (event.key === 'Escape') { panel.hidden = true; open.setAttribute('aria-expanded', 'false'); open.focus(); } });
+  function dismiss() {
+    if (choice === null) { choice = 'dismissed'; try { localStorage.setItem(key, choice); } catch (_) {} }
+    panel.hidden = true; open.setAttribute('aria-expanded', 'false');
+    if (previousFocus) open.focus();
+  }
+  panel.querySelector('[data-privacy-close]').addEventListener('click', dismiss);
+  panel.addEventListener('keydown', event => { if (event.key === 'Escape') dismiss(); });
   document.querySelectorAll('[data-embed]').forEach(box => {
     const button = box.querySelector('[data-load-embed]'); button.hidden = false;
     button.addEventListener('click', () => {
