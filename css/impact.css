@@ -108,7 +108,7 @@ html { scroll-padding-top: 18px; }
 .chinese-section h2, .chinese-section h3, [lang="zh-Hans"] { font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif; }
 .historical-note { padding: 14px 18px; background: #eee9db; border-left: 3px solid #a64a25; color: var(--muted); font-size: .85rem; line-height: 1.6; margin-bottom: 16px; }
 .archive-collections { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 20px; }
-.archive-collections > a { display: grid; grid-template-columns: 110px minmax(0,1fr); gap: 16px; align-items: center; min-height: 88px; padding: 14px 18px; background: #e5e8dc; border-radius: 4px; text-decoration: none; }
+.archive-collections > a, .archive-collections > .collection-pending { display: grid; grid-template-columns: 110px minmax(0,1fr); gap: 16px; align-items: center; min-height: 88px; padding: 14px 18px; background: #e5e8dc; border-radius: 4px; text-decoration: none; }
 .archive-collections .collection-year { font: 400 1.35rem/1.1 Georgia,serif; }
 .archive-collections strong { display: block; font-size: .95rem; color: var(--ink); }
 .archive-collections small { display: block; font-size: .77rem; color: var(--muted); margin-top: 4px; }
@@ -160,7 +160,7 @@ html { scroll-padding-top: 18px; }
   .portfolio-intro { font-size: .95rem; }
   .wide-break { display: none; }
   .pathways { grid-template-columns: 1fr 1fr; }
-  .archive-collections > a { grid-template-columns: 1fr; gap: 7px; }
+  .archive-collections > a, .archive-collections > .collection-pending { grid-template-columns: 1fr; gap: 7px; }
   .evidence-reach { gap: 30px; padding: 24px; }
 }
 @media (max-width: 700px) {
@@ -203,7 +203,7 @@ html { scroll-padding-top: 18px; }
   .invitation-note { padding: 20px; }
   .invitation-note h2 { font-size: 2rem; }
   .archive-collections { gap: 8px; }
-  .archive-collections > a { padding: 14px; }
+  .archive-collections > a, .archive-collections > .collection-pending { padding: 14px; }
   .archive-collections .collection-year { font-size: 1.1rem; }
   .archive-collections strong { font-size: .85rem; }
   .archive-collections small { font-size: .7rem; }
