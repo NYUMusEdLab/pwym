@@ -74,5 +74,10 @@
       "description_en": "Try local AI rhythm variations. First AI use downloads about 18 MB.",
       "description_zh": "尝试在设备上生成AI节奏变体。首次使用AI约下载18 MB。"
     }
-  ]
+  ],
+  "local_replay": {
+    "version": "researcher-interface-replay-1",
+    "url": "https://ruthmann.github.io/rengongfu-sandbox/workbench/teacher-pilot/replay/",
+    "scope": "Local Mirror packages and pinned MelodyMorph proof; synthetic demo; no cloud-data access"
+  }
 }
