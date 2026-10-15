@@ -19,3 +19,9 @@ A separate local Python timing-service pilot can align supplied English lyrics. 
 
 
 Timing Lab (`timing-lab/`) is an educational correction workspace: open an AI timing report and the matching audio, repair missing words, adjust boundaries, record listening checks and a reflection, and export to Song Studio. New AI analysis still requires the separate pilot service; this public review GUI does not upload the chosen audio or report. Save a correction draft to keep unfinished edits.
+
+## English / 中文
+
+The main Song Studio workspace has a persistent English / 中文 switch. Initial `lang=en|zh` (including `zh-CN` and `zh-Hans`) overrides the saved preference; `launcherlang` is also accepted. Switching changes presentation text without restarting playback, replacing the editor, or translating your titles, lyrics, notes, section names or drawings. The current choice is retained in the URL and on this device when browser storage is available.
+
+Primary workflow, editing controls, help and recovery/validation messages are translated. Proper names and original project/source labels remain unchanged. Timing Lab and the independent import harness remain English. Five isolated Chrome scenarios cover synthetic music, playback, focus, unsaved lyrics, stored project preservation, refresh, blocked preference storage and desktop/tablet/phone layouts. Physical iPad/Safari testing is still needed.

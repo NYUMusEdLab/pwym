@@ -8,5 +8,15 @@
   "timingService": "local pilot; JSON import only",
   "persistentDrawings": true,
   "combinedOverview": true,
-  "timingLab": "student correction GUI; local report/audio review"
+  "timingLab": "student correction GUI; local report/audio review",
+  "languageRelease": "song-studio-language-20261015",
+  "languages": [
+    "en",
+    "zh-CN"
+  ],
+  "languageScope": "Main Song Studio interface; Timing Lab and import harness remain English",
+  "languageValidation": {
+    "syntheticBrowserScenarios": 5,
+    "physicalTabletValidated": false
+  }
 }

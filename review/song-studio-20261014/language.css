@@ -1,0 +1,5 @@
+header{flex-wrap:wrap}header .workshop-language{display:flex;gap:4px;margin-left:auto;order:5;flex-shrink:0}
+.workshop-language button{font:14px system-ui,sans-serif;min-width:44px;min-height:44px;padding:8px 10px;border:1px solid #78857b;background:#fffaf1;color:#263f36;border-radius:7px;cursor:pointer}
+.workshop-language button[aria-pressed=true]{font-weight:700;text-decoration:underline;text-underline-offset:4px;background:#dfebdc}
+.workshop-language button:focus-visible{outline:3px solid #a66412;outline-offset:2px}
+@media(max-width:600px){header{display:grid;grid-template-columns:minmax(0,1fr) auto;height:auto;min-height:74px}header .brand{grid-row:1;grid-column:1;min-width:0;margin:0}header .brand small{font-size:9px}header .workshop-language{grid-row:1;grid-column:2;margin:0;justify-self:end}.workshop-language button{font-size:13px;padding:6px}header>button{grid-row:2}header>#save-file{grid-column:1;justify-self:start}header>#undo{grid-column:2;justify-self:end}}

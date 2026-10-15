@@ -25,7 +25,7 @@
       "en": "Song Studio",
       "zh": "歌曲工作室",
       "url": "https://www.musedlab.org/review/song-studio-20261014/",
-      "version": "Published review",
+      "version": "20261015 · English / 中文",
       "description_en": "Lyrics, timing and drawings around your audio.",
       "description_zh": "围绕音频编辑歌词、时间与绘画。"
     },
@@ -76,8 +76,8 @@
     }
   ],
   "local_replay": {
-    "version": "researcher-interface-replay-1",
+    "version": "researcher-replay-local-drafts-1",
     "url": "https://ruthmann.github.io/rengongfu-sandbox/workbench/teacher-pilot/replay/",
-    "scope": "Local Mirror packages and pinned MelodyMorph proof; synthetic demo; no cloud-data access"
+    "scope": "Local Mirror packages and pinned MelodyMorph proof; local notes/bookmarks/playhead recovery; deliberate local package reopen; synthetic demo; no cloud-data access"
   }
 }

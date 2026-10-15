@@ -22,7 +22,7 @@ for(const type of ['pointerdown','mousedown','touchstart'])editor.canvas.addEven
 const preview=new Preview(audio,$('preview-stage'),event=>{
   $('preview-note').textContent=event?project?.annotations[event.data.wordId]?.note||'':'';
   document.querySelectorAll('[data-marker]').forEach(el=>el.classList.toggle('playing',el.dataset.marker===event?.data.wordId));
-},event=>{$('preview-lyric').textContent=event?.data.text||'♪';followLyric(event?.data.wordId);});
+},event=>{$('preview-lyric').setAttribute('data-no-translate','');$('preview-lyric').textContent=event?.data.text||'♪';followLyric(event?.data.wordId);});
 function toast(message,error=false){clearTimeout(toastTimer);$('toast').textContent=message;$('toast').classList.toggle('error',error);$('toast').hidden=false;toastTimer=setTimeout(()=>$('toast').hidden=true,error?11000:5500);}
 function action(fn){return async event=>{try{await fn(event);}catch(error){console.error(error);toast(error.message||'Something went wrong.',true);}};}
 function on(id,type,fn){$(id).addEventListener(type,action(fn));}
@@ -111,7 +111,7 @@ function render(draw=true){
   if(draw)renderInspector();syncLayers();paintWave();
 }
 function renderInspector(){
-  editor.drawable=false;const w=current();$('word-controls').hidden=!w;$('selected-heading').textContent=w?.text||'Pick a word';if(!w){closeSuggestion();return;}
+  editor.drawable=false;const w=current();$('word-controls').hidden=!w;$('selected-heading').toggleAttribute('data-no-translate',!!w);$('selected-heading').textContent=w?.text||'Pick a word';if(!w){closeSuggestion();return;}
   if(suggestionContext?.id!==w.id||suggestionContext?.text!==w.text)closeSuggestion();
   $('word-text').value=w.text;$('word-start').value=w.start.toFixed(3);$('word-end').value=w.end.toFixed(3);
   $('timing-status').textContent=w.reviewed?'✓ Reviewed by you':`${w.timingSource} · needs a listen`;$('timing-status').className='small '+(w.reviewed?'reviewed':'estimate');
