@@ -1,5 +1,6 @@
 import * as M from './model.mjs';
 import {decodeBlob} from './audio.mjs';
+import {fetchBody} from './fetch-body.mjs';
 
 // One explicit public-catalog import. No remote session IDs, notes, or recordings.
 export const EXAMPLE={slug:'proof-in-the-passage',title:'The Proof is in the Passage',
@@ -53,14 +54,18 @@ export function importFreshExample(song,lrc,seed,decompress,audioDuration=song.d
     phraseUnits:p.words.filter(w=>w.sourceUnit==='phrase').length,catalogDuration:song.duration};
   return M.validateProject(p);
 }
-export async function loadFreshExample(decompress){
+export async function loadFreshExample(decompress,{signal}={}){
   const root=EXAMPLE.base+EXAMPLE.slug+'/'+EXAMPLE.slug;
-  async function get(url,type){
-    const response=await fetch(url,{credentials:'omit',referrerPolicy:'no-referrer',signal:AbortSignal.timeout(45000)});
-    if(!response.ok)throw Error('Could not load the public Fresh Annotator example. Please try again.');
-    return response[type]();
+  const requests=new AbortController(),cancel=()=>requests.abort();
+  if(signal?.aborted)cancel();else signal?.addEventListener('abort',cancel,{once:true});
+  const get=(url,type)=>fetchBody(url,type,{signal:requests.signal});
+  let song,lrc,seed,audio;
+  try{
+    [song,lrc,seed,audio]=await Promise.all([get(root+'.json','json'),get(root+'.lrc','text'),get(EXAMPLE.seed,'json'),get(root+'.mp3','blob')]);
+  }finally{
+    // A failed request also stops its siblings; repeated attempts do not leave downloads running.
+    requests.abort();signal?.removeEventListener('abort',cancel);
   }
-  const [song,lrc,seed,audio]=await Promise.all([get(root+'.json','json'),get(root+'.lrc','text'),get(EXAMPLE.seed,'json'),get(root+'.mp3','blob')]);
   const buffer=await decodeBlob(audio);
   return {project:importFreshExample(song,lrc,seed,decompress,buffer.duration),audio};
 }

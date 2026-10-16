@@ -3,9 +3,10 @@
   "app/adapter.mjs": "6c96a75bff45e0b9e55919f62193859995434d44556dbd1211cb520ccbf4638f",
   "app/audio.mjs": "8f9d94d39aceff3436d0d36f6aaf8cd9fc874de332011a3c2a9afeae79693ee4",
   "app/doodles.mjs": "ebbf24d40ea54650f3c63e9cc04ce2ae77e58958a69d57b5d0690a6a07ea85de",
-  "app/fresh-example.mjs": "051ec42114a1ae1236fa3bb9781c122e0260b5619e001943f99a273bea522ec2",
+  "app/fetch-body.mjs": "cd0ce7c0a4109f9f103073bed9f7b2a16914b7ba0dac4ac9f6e4954a4c2effe5",
+  "app/fresh-example.mjs": "d699a32769e7f4d19ba743d4d05584f8119b27e32d6c6e7e044275b4ff33f582",
   "app/harness.mjs": "d30503646a8b4e8df2445f9e136a43850df8a0a90907b849a69001ba111722e6",
-  "app/language-dictionary.mjs": "5f3b01ca2233fe92ddc7469e5816846adf4fd0ba1d47d8b3893b83d536f7c40f",
+  "app/language-dictionary.mjs": "2d808f6b2c77402a373a7b8e5056341d30c9662fcb4de3ea754fa6455e1f6f1e",
   "app/language.mjs": "cbfad4db09d2d0315fa7635f9608f1ba91e8d6bf7ff15fb6f9d353be943ce582",
   "app/main.mjs": "98cfd4befb8199d3d63bc2dc16e8f9b2e2de38aa1255eb85da7b886ba0781d73",
   "app/model.mjs": "46f1093c42e831496810b6eace672d932d9a9a7c33626c2e3066ce35d757a5e3",
@@ -26,5 +27,5 @@
   "timing-lab/review.mjs": "d28669fdd828d09086505e17746475be3f28942ed5b2def53f78a530b577852e",
   "timing-lab/style.css": "caf3f5abda9f69601407342ce4bfe934cb74d0a0e64805a638eb54eb6d38ef3e",
   "vendor/annotator-bundle.js": "50f3eed7f8abc19f6f0901fea2a44a69fb38a8c3b9dac945d11fd735c032e268",
-  "version.json": "0d687c770f5eb959699762c8987afe1f88eb6844c07b259ce976bc5b553fa0b4"
+  "version.json": "4cd8fdda1cb75a9a735285a5848baa56318081632a9ecc22f94d5a4b20b6e00d"
 }

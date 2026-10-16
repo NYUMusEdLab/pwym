@@ -18,5 +18,11 @@
   "languageValidation": {
     "syntheticBrowserScenarios": 5,
     "physicalTabletValidated": false
+  },
+  "compatibilityRelease": "song-studio-timeout-compat-20261016",
+  "compatibilityValidation": {
+    "nodeCases": 16,
+    "syntheticBrowserChecks": 25,
+    "physicalSafariValidated": false
   }
 }
