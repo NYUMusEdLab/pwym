@@ -54,7 +54,7 @@ export function importFreshExample(song,lrc,seed,decompress,audioDuration=song.d
     phraseUnits:p.words.filter(w=>w.sourceUnit==='phrase').length,catalogDuration:song.duration};
   return M.validateProject(p);
 }
-export async function loadFreshExample(decompress,{signal}={}){
+export async function loadFreshExample(decompress,{signal,onStage=()=>{}}={}){
   const root=EXAMPLE.base+EXAMPLE.slug+'/'+EXAMPLE.slug;
   const requests=new AbortController(),cancel=()=>requests.abort();
   if(signal?.aborted)cancel();else signal?.addEventListener('abort',cancel,{once:true});
@@ -66,6 +66,7 @@ export async function loadFreshExample(decompress,{signal}={}){
     // A failed request also stops its siblings; repeated attempts do not leave downloads running.
     requests.abort();signal?.removeEventListener('abort',cancel);
   }
+  onStage('Preparing audio on this device…');
   const buffer=await decodeBlob(audio);
   return {project:importFreshExample(song,lrc,seed,decompress,buffer.duration),audio};
 }

@@ -6,8 +6,10 @@ import * as Timing from './timing-service.mjs';
 let pendingTimings=null;
 import {loadFreshExample} from './fresh-example.mjs';
 import {Preview} from './adapter.mjs';
+import {createMediaLoading} from './media-loading.mjs';
 const $=id=>document.getElementById(id),html=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const audio=$('audio');let project=null,selected=null,env=null,blobs=new Map(),layers=[],urls=[],history=[],saveQueue=Promise.resolve(),view='edit',tapState=null,toastTimer,loopUntil=null;
+const mediaLoading=createMediaLoading($('media-loading'),{controls:['#fresh-example,#welcome-fresh,#demo,#welcome-demo,#audio-file,#welcome-audio,#track-file,#project-file,.library-song']});
 const editor=new window.Annotator.Graffiti(300,220,$('draw-area'));
 const suggestionPreview=new window.Annotator.Graffiti(240,180,$('suggestion-canvas'));
 suggestionPreview.canvas.setAttribute('aria-label','Suggested drawing preview');
@@ -72,24 +74,25 @@ async function openProject(p,provided=new Map()){
 }
 async function chooseAudio(file,layer=false){
   if(!file)return;if(layer){requireProject();if(project.tracks.length>=8)throw Error('Use at most eight tracks.');}
-  toast('Opening audio on this device…');const result=await A.readAudio(file);
+  return mediaLoading.run('Preparing audio on this device…',async task=>{
+  const result=await A.readAudio(file);task.commit();
   await Store.saveAudio(result.track.id,result.blob);
   if(layer){
     commit(p=>p.tracks.push(result.track));blobs.set(result.track.id,result.blob);
     const player=new Audio(URL.createObjectURL(result.blob));urls.push(player.src);layers.push({id:result.track.id,audio:player});syncLayers(true);
   }else await openProject(M.createProject(file.name.replace(/\.[^.]+$/,''),result.buffer.duration,result.track),new Map([[result.track.id,result.blob]]));
   toast(layer?'Sound layer added.':'Your song is ready. Add the words you want to animate.');
+  });
 }
-async function demo(){const p=M.fixtureProject(),blob=A.fixtureAudio();await Store.saveAudio(p.tracks[0].id,blob);await openProject(p,new Map([[p.tracks[0].id,blob]]));toast('Demo loaded: generated tones and invented lyrics.');}
+async function demo(){return mediaLoading.run('Preparing audio on this device…',async task=>{const p=M.fixtureProject(),blob=A.fixtureAudio();task.commit();await Store.saveAudio(p.tracks[0].id,blob);await openProject(p,new Map([[p.tracks[0].id,blob]]));toast('Demo loaded: generated tones and invented lyrics.');});}
 async function freshExample(){
-  const buttons=[$('fresh-example'),$('welcome-fresh')];buttons.forEach(b=>b.disabled=true);
-  try{
-    toast('Opening the original Fresh Annotator song, lyrics, and recovered drawings…');
-    const result=await loadFreshExample(window.Annotator.Graffiti.decompressDrawing),p=result.project;
+  return mediaLoading.run('Loading the example audio, lyrics and drawings…',async task=>{
+    const result=await loadFreshExample(window.Annotator.Graffiti.decompressDrawing,{signal:task.signal,onStage:task.stage}),p=result.project;
+    task.commit();
     await Store.saveAudio(p.tracks[0].id,result.audio);await openProject(p,new Map([[p.tracks[0].id,result.audio]]));
     selected=p.words.find(w=>p.annotations[w.id]?.drawing.strokes.length)?.id||selected;render();seek(current()?.start||0);
     toast('Real Fresh Annotator example ready. Your edits save as an independent copy on this device.');
-  }finally{buttons.forEach(b=>b.disabled=false);}
+  });
 }
 function render(draw=true){
   if(!project)return;
@@ -178,8 +181,8 @@ async function exportKit(){
 on('audio-file','change',e=>chooseAudio(e.target.files[0]));on('welcome-audio','change',e=>chooseAudio(e.target.files[0]));on('track-file','change',e=>chooseAudio(e.target.files[0],true));
 on('demo','click',demo);on('welcome-demo','click',demo);
 on('fresh-example','click',freshExample);on('welcome-fresh','click',freshExample);
-on('project-file','change',async e=>{const file=e.target.files[0];if(!file)return;if(file.size>250*1024*1024)throw Error('This project file is too large.');const p=M.importProject(JSON.parse(await file.text()));await openProject(p);toast('Project reopened, including permanent word IDs and artwork.');});
-on('library-list','click',async e=>{const button=e.target.closest('[data-project]');if(button)await openProject(await Store.getProject(button.dataset.project));});
+on('project-file','change',async e=>{const file=e.target.files[0];if(!file)return;return mediaLoading.run('Preparing audio on this device…',async task=>{if(file.size>250*1024*1024)throw Error('This project file is too large.');const p=M.importProject(JSON.parse(await file.text()));task.commit();await openProject(p);toast('Project reopened, including permanent word IDs and artwork.');});});
+on('library-list','click',async e=>{const button=e.target.closest('[data-project]');if(button)return mediaLoading.run('Preparing audio on this device…',async task=>{const p=await Store.getProject(button.dataset.project);task.commit();await openProject(p);});});
 on('song-title','change',e=>{commit(p=>p.title=e.target.value.trim()||'My song',{draw:false});renderLibrary();});
 on('lyrics-toggle','click',()=>$('lyrics-input-panel').hidden=!$('lyrics-input-panel').hidden);
 on('apply-lyrics','click',()=>{requireProject();if(!$('lyrics-text').value.trim())throw Error('Type a few words first.');commit(p=>M.setLyrics(p,$('lyrics-text').value));$('lyrics-input-panel').hidden=true;toast('Words placed at rough, evenly spaced positions. Listen and adjust them.');});

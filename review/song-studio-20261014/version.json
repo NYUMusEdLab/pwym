@@ -24,5 +24,11 @@
     "nodeCases": 16,
     "syntheticBrowserChecks": 25,
     "physicalSafariValidated": false
+  },
+  "loadingRelease": "song-studio-media-readiness-20261016",
+  "loadingValidation": {
+    "syntheticBrowserAssertions": 85,
+    "timeoutRegressions": 16,
+    "physicalTabletValidated": false
   }
 }
