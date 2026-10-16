@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-15",
+  "updated": "2026-10-16",
   "access": "public app previews; no workshop sign-in; no participant records",
   "tools": [
     {
@@ -7,10 +7,10 @@
       "en": "MelodyMorph",
       "zh": "旋律变形",
       "url": "https://ruthmann.github.io/rengongfu-sandbox/workbench/tools/melodymorph/",
-      "version": "0.1.4 · iPad canvas update",
-      "description_en": "Bells, connected paths and musical landscapes.",
-      "description_zh": "音乐铃、联动路径与音乐画布。",
-      "build": "0.1.4-ipad-20261015",
+      "version": "0.1.5 r2 · local landscape library",
+      "description_en": "Save, reopen and duplicate named landscapes; export/import between devices.",
+      "description_zh": "保存、打开和复制命名作品；通过导出和导入在设备间传递。",
+      "build": "0.1.5-library-r2-20261015",
       "workshop_metadata": "Temporarily unavailable for this release; standalone playback/save/export remain available"
     },
     {
