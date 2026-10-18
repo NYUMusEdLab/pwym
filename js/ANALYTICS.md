@@ -1,6 +1,6 @@
 # Optional GA4 public reach
 
-Release: 2026-10-18a. Uses the existing MusEDLab Website property 488086218,
+Release: 2026-10-18b. Uses the existing MusEDLab Website property 488086218,
 web stream 11184051177, measurement ID G-HY8ELV8WGM. Enhanced measurement was
 observed OFF on 2026-10-18. Keep it off: automatic form, outbound-link, download,
 video and history events have not been approved for these creative tools.
@@ -23,7 +23,7 @@ This is aggregate reach measurement, not research session capture or replay.
 It cannot reconstruct the October 17 workshop retroactively, identify attendees,
 or measure visitors who decline/block GA or cannot reach Google services.
 
-Local browser fixture: 22 checks passed, with all Google loads intercepted (no
+Local browser fixture: 24 checks passed, with all Google loads intercepted (no
 test events sent to GA). Checks cover off-before-consent, accept/reject/dismiss,
 withdrawal, cross-tab changes, blocked storage, existing PWYM UI, duplicate
 inclusion, sanitized payload, cookie scope, and Chinese controls. Static checks

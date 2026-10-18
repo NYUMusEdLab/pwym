@@ -122,7 +122,12 @@
     if (previousFocus) open.focus();
   }
   panel.querySelector('[data-privacy-close]').addEventListener('click', dismiss);
-  panel.addEventListener('keydown', event => { if (event.key === 'Escape') dismiss(); });
+  panel.addEventListener('keydown', event => {
+    // Preference controls should not trigger the instrument's global shortcuts.
+    event.stopPropagation();
+    if (event.key === 'Escape') dismiss();
+  });
+  open.addEventListener('keydown', event => event.stopPropagation());
   document.querySelectorAll('[data-embed]').forEach(box => {
     const button = box.querySelector('[data-load-embed]'); button.hidden = false;
     button.addEventListener('click', () => {
@@ -136,8 +141,8 @@
     });
   });
   window.addEventListener('storage', event => {
-    if (event.key !== key) return;
-    choice = event.newValue === 'accepted' ? 'accepted' : 'rejected';
+    if (event.key !== key && event.key !== null) return;
+    choice = event.key !== null && event.newValue === 'accepted' ? 'accepted' : 'rejected';
     if (choice === 'accepted') analytics();
     else { if (id) window['ga-disable-' + id] = true; clearAnalyticsCookies(); resetEmbeds(); }
     describe();
