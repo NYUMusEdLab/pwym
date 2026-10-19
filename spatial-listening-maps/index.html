@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Make your listening visible. Map the perceived position, distance, and width of sounds in sections of a recording. Audio stays on your device.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self' blob:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Spatial Listening Maps · Experimental</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">◌</span><div><h1>Spatial Listening Maps</h1><span class="eyebrow">EXPERIMENTAL · LISTEN · PLACE · DISCUSS</span></div></div>
+    <div class="project-heading"><label class="sr-only" for="project-title">Project title</label><input id="project-title" maxlength="200" value="Untitled listening map"><span id="save-state">Saved on this device</span></div>
+    <nav aria-label="Project actions"><button id="new-project" class="quiet">New</button><button id="import" class="quiet">Import</button><button id="export">Export map</button><button id="help" class="icon-button" aria-label="Help, privacy, and credits">?</button></nav>
+  </header>
+  <div class="sectionbar">
+    <div class="section-picker"><label for="section-select">SECTION</label><select id="section-select"></select><span id="section-range"></span></div>
+    <div class="section-actions"><button id="add-section" title="Add a section at the playhead">+ Section</button><button id="duplicate">Duplicate</button><button id="compare" aria-pressed="false">Compare</button><button id="toggle-panel" aria-expanded="true" aria-controls="inspector">Details <span aria-hidden="true">◧</span></button></div>
+  </div>
+  <main class="workspace">
+    <section class="map-workspace" aria-label="Listening maps">
+      <div class="stage-toolbar"><div><span class="eyebrow">PERCEIVED SPACE</span><h2 id="map-name">First listen</h2></div><div class="stage-tools"><button id="add-sound" class="primary">+ Sound</button><button id="draw" aria-pressed="false">Draw</button><button id="finish-trace" hidden>Finish trace</button><button id="undo-trace" aria-label="Undo last trace">Undo trace</button></div></div>
+      <div id="compare-settings" class="compare-settings" hidden><label for="compare-select">Compare with</label><select id="compare-select"></select><span>Same sound colors help you follow a change.</span></div>
+      <div class="maps">
+        <div class="map-card"><div class="map-caption" id="current-caption" hidden></div><div id="stage" class="stage" tabindex="0" aria-label="Perceived space stage. Select a sound, then use arrow keys to move it."><span class="axis far">FARTHER AWAY</span><span class="axis near">NEARER TO YOU</span><span class="axis left">LEFT</span><span class="axis right">RIGHT</span><div class="field" id="field"><svg class="traces" id="traces" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"></svg><div id="tokens"></div><span id="draw-cursor" hidden></span></div><div class="stage-empty" id="empty-stage"><span class="empty-orbit" aria-hidden="true">◌</span><h3>Where do you hear it?</h3><p>Listen to a moment. Name a sound.<br>Place it where it feels to you.</p><button id="empty-add">+ Place your first sound</button></div></div></div>
+        <div class="map-card" id="comparison" hidden><div class="map-caption" id="reference-caption"></div><div class="stage reference" aria-label="Comparison map, read only"><span class="axis far">FARTHER AWAY</span><span class="axis near">NEARER TO YOU</span><span class="axis left">LEFT</span><span class="axis right">RIGHT</span><div class="field"><svg class="traces" id="reference-traces" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"></svg><div id="reference-tokens"></div></div></div></div>
+      </div>
+      <div class="stage-foot"><span id="stage-hint">Drag sounds, or select one and use arrow keys. Wider marks mean wider stereo spread.</span><span class="interpretation">A listening interpretation</span></div>
+    </section>
+    <aside id="inspector" aria-label="Map details">
+      <div class="panel-tabs" role="tablist" aria-label="Detail panels"><button role="tab" id="sound-tab" aria-controls="sound-panel" aria-selected="true" data-panel="sound">Sound</button><button role="tab" id="section-tab" aria-controls="section-panel" aria-selected="false" data-panel="section" tabindex="-1">Section</button><button role="tab" id="notes-tab" aria-controls="notes-panel" aria-selected="false" data-panel="notes" tabindex="-1">Notes</button></div>
+      <div class="panel-body">
+        <section id="sound-panel" role="tabpanel" aria-labelledby="sound-tab">
+          <div id="sound-empty"><h3>A different way to listen</h3><p>Separate what you hear into named sounds: an instrument, a voice, or a texture you cannot quite identify.</p><p>Each map is your interpretation. It can change as you listen again.</p><button id="panel-add">+ Add a sound</button></div>
+          <div id="sound-editor" hidden>
+            <label for="token-select">Sounds in this section</label><select id="token-select"></select>
+            <label for="token-label">Instrument, voice, or texture</label><input id="token-label" maxlength="80">
+            <label for="token-x">Left / right <output id="x-value"></output></label><input id="token-x" type="range" min="-1" max="1" step="0.01"><div class="range-ends"><span>Left</span><span>Right</span></div>
+            <label for="token-depth">Perceived distance <output id="depth-value"></output></label><input id="token-depth" type="range" min="0" max="1" step="0.01"><div class="range-ends"><span>Near</span><span>Far</span></div>
+            <label for="token-spread">Stereo spread <output id="spread-value"></output></label><input id="token-spread" type="range" min="0" max="1" step="0.01"><div class="range-ends"><span>Narrow</span><span>Wide</span></div>
+            <p class="micro">Spread describes width across the stereo image, not loudness.</p>
+            <label for="token-confidence">How sure do you feel?</label><select id="token-confidence"><option value="tentative">Tentative · dashed outline</option><option value="confident">More confident · solid outline</option></select>
+            <label for="token-note">What do you hear?</label><textarea id="token-note" rows="2" maxlength="1000" placeholder="Breathy, bright, distant… what is your evidence?"></textarea>
+            <div class="color-row"><label for="token-color">Map color</label><input id="token-color" type="color"></div><button id="remove-sound" class="danger">Remove from this section</button>
+          </div>
+        </section>
+        <section id="section-panel" role="tabpanel" aria-labelledby="section-tab" hidden>
+          <h3>Choose a moment</h3><label for="section-name">Section name</label><input id="section-name" maxlength="100">
+          <label for="section-start">Start · seconds</label><div class="input-action"><input id="section-start" type="number" min="0" step="0.1"><button id="mark-start">Use playhead</button></div>
+          <label for="section-end">End · seconds</label><div class="input-action"><input id="section-end" type="number" min="0.1" step="0.1"><button id="mark-end">Use playhead</button></div>
+          <p class="micro">A section is at least 0.1 seconds. Selecting a section cues its start. Overlapping sections can hold different readings of the same moment.</p><button id="cue-section">Go to section start</button><button id="remove-section" class="danger">Delete section</button>
+        </section>
+        <section id="notes-panel" role="tabpanel" aria-labelledby="notes-tab" hidden><h3>Leave a listening note</h3><p>What changed? What makes you think so? What might another listener hear differently?</p><label for="section-notes">Observations for this section</label><textarea id="section-notes" rows="9" maxlength="5000" placeholder="Describe the timbres, sounds entering or leaving, and what feels near, far, focused, or spread out…"></textarea><p class="micro">Notes are included in exported maps. Add the artist, exact recording, source, and why you chose it if useful.</p></section>
+      </div>
+    </aside>
+  </main>
+  <footer class="transport" aria-label="Audio transport">
+    <div class="audio-heading"><div class="audio-title"><span class="audio-dot" id="audio-dot"></span><strong id="audio-name">Bring a recording you want to understand</strong><span id="audio-state">Audio stays on your device</span></div><div class="audio-actions"><button id="practice">Try practice audio</button><button id="load-audio">Load local audio</button></div></div>
+    <div class="playback-row"><button id="play" class="play-button" disabled aria-label="Play recording">▶</button><button id="restart" disabled aria-label="Go to selected section start">↤</button><span id="current-time" class="time">0:00.0</span><div class="seek-wrap"><div id="section-band"></div><input id="seek" type="range" min="0" max="30" step="0.01" value="0" aria-label="Recording position in seconds" disabled></div><span id="duration" class="time">0:00</span><button id="loop" aria-pressed="false" disabled>↻ <span>Loop section</span></button></div>
+    <div class="transport-foot"><span id="play-context">Load a local file, or explore the original synthesized practice.</span><span>Moving a mark changes your map. The recording stays unchanged.</span></div>
+  </footer>
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+</div>
+<input id="audio-file" type="file" accept="audio/*,.wav,.mp3,.m4a,.flac,.ogg,.aac,.aiff" hidden>
+<input id="map-file" type="file" accept="application/json,.json" hidden>
+<button id="restore-backup" hidden>Restore previous map</button>
+<dialog id="help-dialog"><div class="dialog-header"><h2>Make your listening visible</h2><button id="close-help" aria-label="Close help">✕</button></div><div class="dialog-body"><p>Choose a recording, focus on a section, then name and place the sounds you hear. Left and right describe stereo position. Near and far describe perceived distance. Width describes stereo spread.</p><h3>Your interpretation matters</h3><p>There are no automatically detected instruments or correct positions here. Moving or widening a mark does not isolate, pan, or change a sound in the recording. Use tentative labels and notes when you are unsure.</p><h3>Listen, then compare</h3><p>Set section boundaries in Details → Section or use the playhead buttons. Duplicate a map to follow the same sounds into another section; then change its times and positions. Compare shows both maps with the same coordinate system. A sound can be removed from one section when it is absent.</p><h3>Files and privacy</h3><p>Audio is decoded in memory on this device. No upload, account, cloud storage, or analytics collection is used. Maps autosave in this browser. Export JSON for a portable backup: it includes your notes and recording filename, size, duration, and SHA-256 identity, but never audio. Private browsing, clearing site data, or changing browser/address can remove local maps.</p><p>After reload or import, choose the exact same audio file to relink it. The fingerprint prevents attaching a different recording to your timestamps. For a different recording, start a new project. Keep your original audio separately; share recordings only when you have permission.</p><h3>Keyboard and touch</h3><p>Tab to a sound; arrow keys move it (Shift for a larger step). Details provides labeled sliders and a sound selector as alternatives to dragging. Space plays or pauses when focus is outside an editing control. In Draw mode, focus the stage: arrows move the cursor, Enter adds a point, and Finish trace saves it. Escape cancels an unfinished trace. Pointer drawing and Undo trace are also available.</p><h3>Where this comes from</h3><p>Based on Alex Ruthmann’s Perceived Space Graph activity for Play With Your Music, inspired by William Moylan’s writings and work on spatial listening and recording analysis. Original interface and implementation; no endorsement or coauthorship is implied.</p><ul><li><a href="https://playwithyourmusic.wordpress.com/course-content/" target="_blank" rel="noreferrer">PWYM course and listening activity</a> · <a href="https://docs.google.com/drawings/d/1eoxDQyI8b5spi7rDb_zh5xoHAFt7pawO7Xry7zUHGSw/edit" target="_blank" rel="noreferrer">Original Perceived Space Graph</a></li><li>William Moylan (2007), <i>Understanding and Crafting the Mix: The Art of Recording</i>. <a href="https://www.arpjournal.com/asarpwp/considering-space-in-music/" target="_blank" rel="noreferrer">Considering Space in Music (2009)</a> includes diagrams across musical sections.</li><li><a href="https://github.com/YitingLiu97/interactive-music-test-2" target="_blank" rel="noreferrer">Spatial Music Lab</a>, designed and developed by Yiting Liu for the NYU Shanghai Creative Innovation Lab led by Alex Ruthmann, inspired the visible stage and transport.</li></ul><p class="micro">Prototype 0.1.0 · Original synthesized practice audio · No third-party chart, code, or recording assets copied.</p></div></dialog>
+</body>
+</html>
