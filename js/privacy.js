@@ -1,4 +1,5 @@
-/* Local, optional analytics preferences. No third-party code runs before opt-in. */
+/* Local, optional analytics preferences. No third-party analytics code runs before opt-in.
+   Media loading and playback are independent of the analytics choice. */
 'use strict';
 (() => {
   // One owner per document, even if a template includes this file twice.
@@ -81,12 +82,6 @@
       domains.forEach(domain => paths.forEach(path => { document.cookie = name + '=; Max-Age=0; path=' + path + (domain ? '; domain=' + domain : '') + '; SameSite=Lax'; }));
     });
   }
-  function resetEmbeds() {
-    document.querySelectorAll('[data-embed]').forEach(box => {
-      const iframe = box.querySelector('iframe'); if (iframe) iframe.remove();
-      box.querySelector('[data-load-embed]').hidden = false;
-    });
-  }
   function setChoice(next) {
     choice = next;
     let persisted = true;
@@ -94,7 +89,7 @@
     if (next === 'accepted') analytics();
     else {
       if (id) window['ga-disable-' + id] = true;
-      clearAnalyticsCookies(); resetEmbeds();
+      clearAnalyticsCookies();
       // The GA disable switch stops subsequent measurement without reloading an
       // editor, interrupting audio, or discarding unsaved work.
     }
@@ -144,7 +139,7 @@
     if (event.key !== key && event.key !== null) return;
     choice = event.key !== null && event.newValue === 'accepted' ? 'accepted' : 'rejected';
     if (choice === 'accepted') analytics();
-    else { if (id) window['ga-disable-' + id] = true; clearAnalyticsCookies(); resetEmbeds(); }
+    else { if (id) window['ga-disable-' + id] = true; clearAnalyticsCookies(); }
     describe();
   });
   describe(); panel.hidden = choice !== null || !configured;
