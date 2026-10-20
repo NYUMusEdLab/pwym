@@ -1,0 +1,43 @@
+/* One directory, with native disclosures and all records present without JavaScript. */
+.people-directory .index-hero { padding-bottom: 20px; }
+.people-directory [hidden] { display: none !important; }
+.people-controls { padding: 22px 24px 12px; margin: 0 0 30px; background: #eeeee5; border: 1px solid #d6d9cf; border-radius: 4px; }
+.people-controls label, .people-controls legend { font-size: .85rem; font-weight: 600; }
+.people-search-label { display: block; }
+.people-controls input[type="search"] { box-sizing: border-box; display: block; width: 100%; margin-top: 8px; min-height: 48px; padding: 10px 14px; border: 1px solid #8c9996; border-radius: 3px; background: #fffefa; color: #173f40; font: inherit; font-size: 1rem; }
+.people-group { border: 0; padding: 0; margin: 18px 0; }
+.people-group legend { margin-bottom: 8px; }
+.people-group-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.people-group-options label { display: flex; align-items: center; gap: 8px; padding: 10px 14px; min-height: 44px; box-sizing: border-box; border: 1px solid #bcc5ba; border-radius: 3px; cursor: pointer; }
+.people-group-options label:has(input:checked) { background: #173f40; color: #fff; border-color: #173f40; }
+.people-group input { accent-color: #b78650; width: 16px; height: 16px; margin: 0; }
+.people-secondary { display: flex; align-items: end; flex-wrap: wrap; gap: 12px 20px; }
+.people-secondary label { display: grid; gap: 6px; flex: 1 1 220px; max-width: 420px; }
+.people-controls select { min-height: 44px; max-width: 100%; padding: 8px 12px; border: 1px solid #8c9996; border-radius: 3px; background: #fffefa; color: #173f40; font: inherit; }
+.people-controls select:disabled { opacity: .55; }
+.people-directory button { min-height: 44px; padding: 10px 16px; border: 1px solid #173f40; border-radius: 3px; background: transparent; color: #173f40; font: inherit; font-size: .85rem; cursor: pointer; }
+.people-directory button:hover { background: #dde6dc; }
+.people-directory :focus-visible { outline: 3px solid #a66b31; outline-offset: 3px; }
+#people-count { font-size: .82rem; color: #475b58; margin: 14px 0 0; min-height: 1.5em; }
+.directory-group { margin: 0 0 30px; scroll-margin-top: 20px; }
+.people-directory .directory-group > h2 { margin: 0 0 12px; padding-bottom: 9px; border-bottom: 1px solid #cbd3c7; font-size: .85rem; text-transform: uppercase; letter-spacing: .1em; }
+.directory-group > p { margin: 0 0 14px; font-size: .9rem; color: #52635e; }
+.people-results-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; align-items: start; }
+.directory-person { min-width: 0; padding: 16px; background: #fffefa; border: 1px solid #d8ddd3; border-radius: 3px; scroll-margin-top: 24px; }
+.directory-person .person-heading { display: grid; grid-template-columns: 56px minmax(0,1fr); align-items: start; gap: 14px; }
+.directory-person .person-heading img, .directory-person .person-initials { box-sizing: border-box; width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
+.directory-person .person-initials { display: flex; align-items: center; justify-content: center; background: #e3e9dc; color: #173f40; font-size: .9rem; font-weight: 600; }
+.directory-person h3 { margin: 0 0 5px; font-size: 1.08rem; line-height: 1.3; }
+.directory-person h3 a { color: inherit; }
+.directory-person .person-heading p { margin: 0; font-size: .81rem; line-height: 1.5; color: #4b5f59; }
+.directory-person .person-heading .person-lab-role, .directory-person .person-heading .alumni-history { font-size: .73rem; color: #68746d; margin-top: 7px; }
+.directory-person details { margin: 6px 0 0 70px; }
+.directory-person summary { min-height: 44px; display: list-item; align-content: center; cursor: pointer; font-size: .8rem; font-weight: 600; color: #173f40; }
+.directory-person .person-biography { font-size: .85rem; line-height: 1.65; overflow-wrap: anywhere; }
+.directory-person .person-biography p { margin: 0 0 12px; }
+.directory-person .alumni-links { display: flex; flex-wrap: wrap; gap: 8px 14px; }
+.directory-person .alumni-links a { display: inline-flex; align-items: center; min-height: 44px; }
+.people-pagination { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 32px; }
+.people-pagination #people-more { background: #173f40; color: #fff; }
+.people-directory .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media(max-width: 700px) { .people-results-grid { grid-template-columns: 1fr; } .people-controls { padding: 18px 16px 12px; } .directory-person { padding: 14px; } .people-group-options label { padding: 9px 10px; } }

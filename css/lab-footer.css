@@ -1,41 +1,18 @@
-/* Lab identity and university support have distinct, consistent roles. */
-.directory-page .lab-footer { background: #fff; border-top: 3px solid #163f40; padding: 28px 32px 12px; margin-top: 32px; color: var(--ink); }
-.lab-footer-main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 40px; align-items: center; }
-.lab-footer-identity > a { display: inline-block; padding: 4px 0; }
-.lab-footer-identity img { display: block; width: 210px; max-width: 100%; height: auto; }
-.lab-footer-identity p { font-size: .78rem; color: var(--muted, #47535a); line-height: 1.5; margin: 10px 0 0; }
-.lab-footer .affiliation-label { font-size: .65rem; text-transform: uppercase; letter-spacing: .12em; font-weight: 600; color: var(--muted, #47535a); margin: 0 0 10px; }
-.lab-affiliations { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center; }
-.lab-affiliations a { min-width: 0; min-height: 72px; display: flex; align-items: center; justify-content: center; padding: 16px; text-decoration: none; }
-.lab-affiliations .lab-shanghai { background: #57068c; border-radius: 2px; }
-.lab-affiliations img { display: block; width: 100%; max-width: 210px; height: auto; object-fit: contain; }
-.lab-affiliations .lab-steinhardt { padding-inline: 0; }
-.lab-affiliations .lab-steinhardt img { max-width: 250px; }
-.lab-footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px 24px; border-top: 1px solid #e2e5e0; margin-top: 22px; padding-top: 10px; }
-.lab-footer-bottom > p { margin: 0; font-size: .72rem; color: var(--muted, #47535a); }
+/* Shared main-site footer. Official institutional marks retain their colors and proportions. */
+.directory-page .lab-footer { box-sizing: border-box; background: #efeee6; border-top: 1px solid #ccd1c6; padding: 28px 30px 20px; margin-top: 40px; color: #173f40; }
+.lab-footer-main { display: flex; align-items: start; justify-content: space-between; gap: 24px 48px; flex-wrap: wrap; }
+.lab-footer .site-brand { display: inline-block; text-decoration: none; color: #173f40; }
+.lab-footer-identity p { font-size: .8rem; line-height: 1.65; color: #52615b; margin: 12px 0 0; }
 .lab-footer-links { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 22px; margin: 0; }
-.lab-footer-links > a, .lab-footer #privacy-preferences { display: inline-flex; align-items: center; min-height: 44px; font-size: .74rem; }
-.lab-footer .privacy-footer { padding: 0; margin: 0; width: auto; font: inherit; }
-.people-directory .people-overview { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
-.people-directory #members .people-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.people-directory .person details { margin-left: 0; }
-@media (max-width: 900px) {
-  .lab-footer-main { grid-template-columns: 1fr; gap: 24px; }
-  .lab-footer-identity { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-  .lab-footer-identity p { margin: 0; max-width: 25ch; }
-  .lab-footer-support { max-width: 560px; }
-  .people-directory .people-overview { grid-template-columns: minmax(0, 1fr); }
-  .people-directory .people-overview #members, .people-directory .people-overview #team { grid-column: auto; grid-row: auto; }
-}
-@media (max-width: 600px) {
-  .directory-page .lab-footer { padding: 22px 18px 8px; margin-top: 24px; }
-  .lab-footer-identity { display: block; }
-  .lab-footer-identity img { width: 184px; }
-  .lab-footer-identity p { max-width: none; margin-top: 8px; }
-  .lab-footer-main { gap: 22px; }
-  .lab-affiliations { gap: 18px; }
-  .lab-affiliations a { min-height: 60px; padding: 10px; }
-  .lab-footer-bottom { gap: 6px; margin-top: 20px; padding-top: 14px; }
-  .lab-footer-links { gap: 4px 18px; }
-  .people-directory #members .people-grid { grid-template-columns: minmax(0, 1fr); }
-}
+.lab-footer-links > a, .lab-footer #privacy-preferences { display: inline-flex; align-items: center; min-height: 44px; color: #173f40; font: inherit; font-size: .8rem; }
+.lab-footer .privacy-footer { width: auto; border: 0; padding: 0; margin: 0; }
+.lab-footer #privacy-preferences { padding: 0; }
+.lab-footer-bottom { display: flex; align-items: end; justify-content: space-between; flex-wrap: wrap; gap: 18px 28px; border-top: 1px solid #d4d7cd; margin-top: 24px; padding-top: 18px; }
+.lab-footer-bottom > p { margin: 0; color: #52615b; font-size: .69rem; }
+.lab-footer .affiliation-label { font-size: .61rem; text-transform: uppercase; letter-spacing: .12em; color: #52615b; margin: 0 0 8px; }
+.lab-affiliations { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; }
+.lab-affiliations a { display: flex; align-items: center; justify-content: center; min-height: 44px; text-decoration: none; }
+.lab-affiliations .lab-shanghai { background: #57068c; padding: 0 10px; border-radius: 2px; }
+.lab-affiliations img { display: block; height: 22px; width: auto; max-width: 100%; object-fit: contain; }
+.lab-footer a:focus-visible, .lab-footer button:focus-visible { outline: 3px solid #a66b31; outline-offset: 3px; }
+@media(max-width: 700px) { .directory-page .lab-footer { padding: 24px 18px 18px; margin-top: 28px; } .lab-footer-main { gap: 14px; } .lab-footer-links { gap: 4px 18px; } .lab-footer-bottom { margin-top: 18px; } .lab-affiliations { gap: 10px 16px; } .lab-affiliations img { height: 20px; } }
