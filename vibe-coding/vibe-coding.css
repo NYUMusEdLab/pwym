@@ -8,3 +8,11 @@
 @media(max-width:1000px){.vibe-page .vibe-hero{gap:32px}.vibe-section{gap:28px;grid-template-columns:minmax(0,.6fr) minmax(0,1.5fr)}.scratch-grid{grid-template-columns:1fr}.scratch-grid article{padding:20px}.scratch-grid h4{margin-bottom:10px}.scratch-grid p:last-child{margin-bottom:0}}
 @media(max-width:700px){.vibe-page .vibe-hero,.vibe-section{grid-template-columns:1fr}.vibe-page .vibe-hero{padding:32px 0;gap:28px}.vibe-hero h1{font-size:4.6rem}.vibe-score{transform:none;max-width:430px;width:100%;justify-self:center;padding:22px 16px 12px}.vibe-section{padding:32px 0;gap:20px}.vibe-section h2{font-size:2.4rem}.section-aside{max-width:none}.prompt-grid{gap:14px}.prompt-grid p{font-size:.9rem}.related-experiments{grid-template-columns:1fr;gap:28px}.scratch-grid{grid-template-columns:1fr}.feature>h3{font-size:2.3rem}.intake-status{padding:20px}}
 @media(max-width:420px){.prompt-grid{grid-template-columns:1fr}.prompt-grid article{padding-top:12px}.prompt-grid p{margin-bottom:0}.hero-actions{align-items:flex-start;flex-direction:column}.vibe-hero h1{font-size:4.2rem}}
+/* Keep the invitation close to the top, including on small screens. */
+.vibe-page .vibe-hero{grid-template-columns:minmax(0,1.5fr) minmax(0,.65fr);gap:36px;padding:28px 0}
+.vibe-hero h1{font-size:clamp(2.8rem,5vw,4.5rem);line-height:1.06;letter-spacing:-.045em;margin:.2em 0 .3em}
+.vibe-hero h1 span{font-size:.74em;letter-spacing:-.025em}
+.hero-line{font-size:1.2rem;line-height:1.4;margin:0 0 12px}.hero-intro{max-width:60ch;margin:0}.hero-actions{margin-top:18px}
+.vibe-score{padding:16px 12px 8px}.vibe-score .eyebrow{font-size:.65rem}.vibe-score .score-caption{font-size:1.25rem;margin-bottom:12px}
+#community{padding-top:32px}#community .section-aside{font-size:1.1rem}
+@media(max-width:700px){.vibe-page .vibe-hero{grid-template-columns:1fr;padding:24px 0;gap:0}.vibe-score{display:none}.vibe-hero h1{font-size:clamp(2.65rem,8vw,3.5rem)}.vibe-hero h1 span{font-size:.78em}.hero-line{font-size:1.1rem}.hero-actions{flex-direction:row;gap:8px 20px}#community{padding-top:24px}}
