@@ -16,3 +16,4 @@
 .vibe-score{padding:16px 12px 8px}.vibe-score .eyebrow{font-size:.65rem}.vibe-score .score-caption{font-size:1.25rem;margin-bottom:12px}
 #community{padding-top:32px}#community .section-aside{font-size:1.1rem}
 @media(max-width:700px){.vibe-page .vibe-hero{grid-template-columns:1fr;padding:24px 0;gap:0}.vibe-score{display:none}.vibe-hero h1{font-size:clamp(2.65rem,8vw,3.5rem)}.vibe-hero h1 span{font-size:.78em}.hero-line{font-size:1.1rem}.hero-actions{flex-direction:row;gap:8px 20px}#community{padding-top:24px}}
+.groove-to-code{border-top:3px solid var(--teal);padding:20px 0 12px;margin-bottom:24px}.groove-to-code h3{font-family:Georgia,serif;font-size:1.8rem;font-weight:normal;margin:.3em 0}.groove-to-code .note{margin-bottom:0}
