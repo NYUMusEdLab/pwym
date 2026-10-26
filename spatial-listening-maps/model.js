@@ -9,7 +9,7 @@ export function newSection(start = 0, end = 30, name = 'First listen') {
 }
 export function newProject() {
   const section = newSection();
-  return { schema: SCHEMA, schemaVersion: VERSION, appVersion: '0.2.0', id: uid(), title: 'Untitled listening map', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString(), audio: null, sections: [section], activeSectionId: section.id };
+  return { schema: SCHEMA, schemaVersion: VERSION, appVersion: '0.3.0', id: uid(), title: 'Untitled listening map', createdAt: new Date().toISOString(), updatedAt: new Date().toISOString(), audio: null, sections: [section], activeSectionId: section.id };
 }
 export function newToken(label = 'New sound', index = 0) {
   return { id: uid(), soundId: uid(), label, x: 0, depth: 0.5, spread: 0.15, color: COLORS[index % COLORS.length], confidence: 'tentative', note: '' };
@@ -42,9 +42,14 @@ export function validateProject(raw) {
   let audio = null;
   if (raw.audio !== null) {
     const a = raw.audio;
-    if (!a || !['local', 'practice'].includes(a.kind)) fail('Invalid audio reference.');
-    audio = { kind:a.kind, name:str(a.name,'Audio name',255), size:num(a.size,'Audio size',0,2e9), type:str(a.type,'Audio type',100), duration:num(a.duration,'Audio duration',0.1,86400), fingerprint: a.fingerprint === null ? null : str(a.fingerprint,'Audio fingerprint',64) };
-    if (a.kind === 'local' && !/^[a-f0-9]{64}$/.test(audio.fingerprint || '')) fail('Local audio needs a SHA-256 identity for safe relinking.');
+    if (!a || !['local', 'practice', 'youtube'].includes(a.kind)) fail('Invalid audio reference.');
+    if (a.kind === 'youtube') {
+      if (typeof a.videoId !== 'string' || !/^[A-Za-z0-9_-]{11}$/.test(a.videoId)) fail('Invalid YouTube video identity.');
+      audio = {kind:'youtube', videoId:a.videoId, name:str(a.name,'Video name',255), duration:num(a.duration,'Video duration',0.1,86400)};
+    } else {
+      audio = { kind:a.kind, name:str(a.name,'Audio name',255), size:num(a.size,'Audio size',0,2e9), type:str(a.type,'Audio type',100), duration:num(a.duration,'Audio duration',0.1,86400), fingerprint: a.fingerprint === null ? null : str(a.fingerprint,'Audio fingerprint',64) };
+      if (a.kind === 'local' && !/^[a-f0-9]{64}$/.test(audio.fingerprint || '')) fail('Local audio needs a SHA-256 identity for safe relinking.');
+    }
   }
   const sections = arr(raw.sections,'Sections',100).map(s => {
     if (!s) fail('Invalid section.');
@@ -63,7 +68,7 @@ export function validateProject(raw) {
   if (!sections.length) fail('The map needs at least one section.');
   unique(sections,'section');
   if (!sections.some(s=>s.id === raw.activeSectionId)) fail('The selected section is missing.');
-  return {schema:SCHEMA,schemaVersion:VERSION,appVersion:'0.2.0',id:str(raw.id,'Project ID',100),title:str(raw.title,'Title',200),createdAt:str(raw.createdAt,'Created time',100),updatedAt:str(raw.updatedAt,'Updated time',100),audio,sections,activeSectionId:raw.activeSectionId};
+  return {schema:SCHEMA,schemaVersion:VERSION,appVersion:'0.3.0',id:str(raw.id,'Project ID',100),title:str(raw.title,'Title',200),createdAt:str(raw.createdAt,'Created time',100),updatedAt:str(raw.updatedAt,'Updated time',100),audio,sections,activeSectionId:raw.activeSectionId};
 }
 export function parseProject(text) {
   if (text.length > 2_000_000) fail('Map file exceeds the 2 MB limit.');

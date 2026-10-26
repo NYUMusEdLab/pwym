@@ -1,9 +1,11 @@
-import {STORAGE_KEY, clamp, uid, newProject, newSection, newToken, duplicateSection, parseProject, serializeProject, formatTime, makePracticeProject} from './model.js?v=0.2.0';
-import {LocalAudio} from './audio.js';
-import {SectionTimeline} from './timeline.js';
+import {STORAGE_KEY, clamp, uid, newProject, newSection, newToken, duplicateSection, parseProject, serializeProject, formatTime, makePracticeProject} from './model.js?v=0.3.0';
+import {LocalAudio} from './audio.js?v=0.3.0';
+import {SectionTimeline} from './timeline.js?v=0.3.0';
+import {YouTubeAudio, parseYouTubeURL} from './youtube.js?v=0.3.0';
 
 const $ = id => document.getElementById(id);
-const audio = new LocalAudio();
+const localAudio = new LocalAudio(), youtube = new YouTubeAudio($('youtube-host'));
+let audio = localAudio;
 let project = newProject(), selectedTokenId = null, loop = false, comparing = false, compareId = null, drawing = false, draft = [], cursor = {x:0,depth:0.5}, drag = null, saveBlocked = false, loading = false, loadGeneration = 0, statusTimer;
 try { const saved = localStorage.getItem(STORAGE_KEY); if (saved) project = parseProject(saved); }
 catch { saveBlocked = true; setTimeout(()=>announce('Saved map could not be restored. Its stored data is preserved. Import a backup or start a new project to resume autosaving.',true),0); }
@@ -116,11 +118,18 @@ function renderEditor() {
   updateOutputs();
 }
 function renderAudio() {
-  const ready=!!audio.buffer;
+  const ready=audio.ready, isVideo=project.audio?.kind==='youtube'||audio===youtube;
+  $('video-panel').hidden=!isVideo;document.querySelector('.app').classList.toggle('has-video',isVideo);
+  $('disconnect-youtube').disabled=audio!==youtube;
+  $('load-youtube').textContent=project.audio?.kind==='youtube'?'Connect YouTube':'YouTube link';
+  $('load-youtube').disabled=loading;
+  $('youtube-link').href=`https://www.youtube.com/watch?v=${project.audio?.kind==='youtube'?project.audio.videoId:pendingVideoId}`;
+  $('youtube-link').hidden=!isVideo;
+  if(isVideo&&!loading&&audio!==youtube)$('video-status').textContent=youtube.error||'Video disconnected. Use Connect YouTube to listen; your map is saved.';
   $('audio-name').textContent=project.audio?.name || 'Bring a recording you want to understand';
-  $('audio-state').textContent=ready?'Local audio ready':project.audio?'Relink audio to listen':'Audio stays on your device';
+  $('audio-state').textContent=ready?(isVideo?'YouTube connected · online':'Local audio ready'):project.audio?'Reconnect recording to listen':'Local audio stays on your device';
   $('audio-dot').classList.toggle('ready',ready);
-  $('load-audio').textContent=loading?'Reading audio…':project.audio?.kind==='local'&&!ready?'Relink local audio':'Load local audio';
+  $('load-audio').textContent=loading&&audio===localAudio?'Reading audio…':project.audio?.kind==='local'&&!ready?'Relink local audio':'Load local audio';
   $('load-audio').disabled=loading;
   $('practice').textContent=project.audio?.kind==='practice'?'Reload practice audio':'Try practice audio';
   for(const id of ['play','restart','seek','loop','mark-start','mark-end'])$(id).disabled=!ready || loading;
@@ -140,13 +149,13 @@ function selectToken(id, focus=false) {
 }
 async function selectSection(id) {
   draft=[];project.activeSectionId=id;selectedTokenId=null;
-  if(audio.buffer) {await audio.setLoop(loop?section():null);await audio.seek(section().start);}
+  if(audio.ready) {await audio.setLoop(loop?section():null);await audio.seek(section().start);}
   renderAll();save();
 }
 function hasWork() {return project.audio || project.sections.some(s=>s.tokens.length||s.traces.length||s.notes);}
 function backupAndReplace(next) {
   try {localStorage.setItem(STORAGE_KEY+'.previous',serializeProject(project));}catch{}
-  loadGeneration++;loading=false;audio.unload();project=next;selectedTokenId=null;loop=false;comparing=false;draft=[];saveBlocked=false;setDrawing(false);save();renderAll();
+  loadGeneration++;loading=false;audio.unload();audio=localAudio;project=next;selectedTokenId=null;loop=false;comparing=false;draft=[];saveBlocked=false;setDrawing(false);save();renderAll();
 }
 function confirmReplacement() {return !hasWork() || confirm('Replace this map? Export it first if you want a portable copy. The previous map will be available from Restore previous map in Help.');}
 
@@ -174,12 +183,12 @@ async function setBoundary(key,value) {
   const s=section(), end=key==='end'?value:s.end, start=key==='start'?value:s.start;
   if(!Number.isFinite(value)||start<0||end-start<0.1-1e-9||end>(project.audio?.duration || 86400)+0.001){announce('Use times within the recording, with end at least 0.1 seconds after start.');renderSectionControls();return;}
   s[key]=value;
-  if(audio.buffer&&loop) await audio.setLoop(s);
+  if(audio.ready&&loop) await audio.setLoop(s);
   renderSectionControls();save();
 }
 async function splitSection() {
   const s=section(),at=Math.round(audio.currentTime()*1000)/1000;
-  if(!audio.buffer||project.sections.length>=100||at<s.start+.1||at>s.end-.1)return;
+  if(!audio.ready||project.sections.length>=100||at<s.start+.1||at>s.end-.1)return;
   const next=duplicateSection(s);next.start=at;next.name=`${s.name} · next`;s.end=at;
   project.sections.splice(project.sections.indexOf(s)+1,0,next);
   await selectSection(next.id);announce('Section split. Both maps keep the sounds and notes; edit each independently.');
@@ -196,7 +205,7 @@ $('add-section').onclick=async()=>{
 };
 $('duplicate').onclick=async()=>{if(project.sections.length>=100)return announce('This project already has 100 sections.');const s=duplicateSection(section());project.sections.push(s);await selectSection(s.id);setPanel('section');announce('Map duplicated. Change its name and times to follow the sounds into another section.');};
 $('remove-section').onclick=async()=>{if(project.sections.length<=1)return;if(!confirm('Delete this section and its sounds, traces, and notes?'))return;project.sections=project.sections.filter(s=>s.id!==project.activeSectionId);await selectSection(project.sections[0].id);};
-$('cue-section').onclick=$('restart').onclick=async()=>{if(audio.buffer)await audio.seek(section().start);else announce('Relink the recording to cue this section.');};
+$('cue-section').onclick=$('restart').onclick=async()=>{if(audio.ready)await audio.seek(section().start);else announce('Relink the recording to cue this section.');};
 
 function setDrawing(active) {
   drawing=active;draft=[];drag=null;
@@ -242,11 +251,11 @@ $('stage').addEventListener('keydown',e=>{
 $('tokens').addEventListener('focusin',e=>{const el=e.target.closest('[data-token]');if(el&&el.dataset.token!==selectedTokenId)selectToken(el.dataset.token);});
 $('tokens').addEventListener('click',e=>{const el=e.target.closest('[data-token]');if(el)selectToken(el.dataset.token);});
 
-async function togglePlayback(){if(!audio.buffer)return;try{if(audio.playing)audio.pause();else await audio.play();tick();}catch{announce('Playback could not start. Try Play again or relink the audio.');}}
+async function togglePlayback(){if(!audio.ready)return;try{if(audio.playing)audio.pause();else await audio.play();tick();}catch{announce('Playback could not start. Try Play again or relink the audio.');}}
 $('play').onclick=togglePlayback;
 $('seek').addEventListener('input',async()=>{await audio.seek(Number($('seek').value));tick();});
 $('loop').onclick=async()=>{loop=!loop;await audio.setLoop(loop?section():null);$('loop').setAttribute('aria-pressed',String(loop));tick();};
-document.addEventListener('keydown',e=>{if(e.code==='Space'&&!e.repeat&&!$('help-dialog').open&&!e.target.closest('input,textarea,select,button,a,[contenteditable]')){e.preventDefault();togglePlayback();}});
+document.addEventListener('keydown',e=>{if(e.code==='Space'&&!e.repeat&&!$('help-dialog').open&&!$('youtube-dialog').open&&!e.target.closest('input,textarea,select,button,a,[contenteditable]')){e.preventDefault();togglePlayback();}});
 $('load-audio').onclick=()=>$('audio-file').click();
 $('audio-file').onchange=async e=>{
   const file=e.target.files[0];e.target.value='';if(!file)return;
@@ -254,14 +263,14 @@ $('audio-file').onchange=async e=>{
   const generation=++loadGeneration;
   loading=true;audio.pause();renderAudio();
   try {
-    const {buffer,metadata}=await audio.decode(file);
+    const {buffer,metadata}=await localAudio.decode(file);
     if(generation!==loadGeneration)return;
     if(project.audio&&(project.audio.kind!=='local'||project.audio.fingerprint!==metadata.fingerprint))throw new Error('This is a different recording. Relink the exact original file, or start a new project for this audio. Your map is unchanged.');
     if(!project.audio){
       if(project.sections.length===1&&!section().tokens.length&&!section().notes&&!section().traces.length){section().start=0;section().end=metadata.duration;}
       else if(project.sections.some(s=>s.end>metadata.duration))throw new Error('Some sections extend beyond this recording. Shorten those section times before linking it.');
     }
-    project.audio=metadata;audio.setBuffer(buffer);if(loop)await audio.setLoop(section());await audio.seek(section().start);save();renderAll();announce('Audio linked locally. No audio was uploaded.');
+    project.audio=metadata;audio.unload();audio=localAudio;audio.setBuffer(buffer);if(loop)await audio.setLoop(section());await audio.seek(section().start);save();renderAll();announce('Audio linked locally. No audio was uploaded.');
   } catch(err){announce(err.message?.includes('recording')||err.message?.includes('sections')?err.message:'This audio could not be decoded. Try a browser-supported WAV, MP3, M4A, OGG, or FLAC file.',true);}
   finally {if(generation===loadGeneration){loading=false;renderAudio();}}
 };
@@ -269,25 +278,67 @@ $('practice').onclick=()=>{
   if(project.audio?.kind==='practice'){audio.practice();if(loop)audio.setLoop(section());audio.seek(section().start);renderAudio();announce('Practice audio regenerated on this device.');return;}
   if(!confirmReplacement())return;backupAndReplace(makePracticeProject());audio.practice();renderAll();announce('Practice map loaded. Its positions are illustrative starting points, not an answer key.');
 };
+let pendingVideoId='';
+function disconnectYouTube() {
+  loadGeneration++;loading=false;youtube.unload();audio=localAudio;loop=false;renderAll();
+}
+youtube.onStatus=message=>{$('video-status').textContent=message;};
+youtube.onError=message=>{$('video-status').textContent=message;announce(message,true);renderAudio();};
+$('disconnect-youtube').onclick=()=>{disconnectYouTube();announce('YouTube disconnected. Your map and video reference are saved.');};
+$('load-youtube').onclick=()=>{
+  audio.pause();$('youtube-input-error').textContent='';
+  $('youtube-url').value=project.audio?.kind==='youtube'?`https://www.youtube.com/watch?v=${project.audio.videoId}`:'';
+  $('youtube-name').value=project.audio?.kind==='youtube'?project.audio.name:'';
+  $('youtube-dialog').showModal();$('youtube-url').focus();
+};
+$('close-youtube').onclick=()=>$('youtube-dialog').close();
+$('youtube-form').onsubmit=async event=>{
+  event.preventDefault();
+  let reference;
+  try {
+    reference=parseYouTubeURL($('youtube-url').value);
+    if(project.audio&&(project.audio.kind!=='youtube'||project.audio.videoId!==reference.videoId))throw new Error('This map belongs to a different recording. Choose New to analyze this video; your current map is unchanged.');
+  }catch(err){$('youtube-input-error').textContent=err.message;return;}
+  const name=$('youtube-name').value.trim();
+  const generation=++loadGeneration;pendingVideoId=reference.videoId;loading=true;
+  audio.unload();audio=youtube;$('youtube-dialog').close();
+  $('video-status').textContent='Connecting to YouTube…';renderAudio();
+  try {
+    const metadata=await youtube.load(reference.videoId);
+    if(generation!==loadGeneration)return;
+    if(!youtube.ready)throw new Error(youtube.error||'YouTube could not finish connecting. Please retry.');
+    if(project.audio&&Math.abs(project.audio.duration-metadata.duration)>.25)throw new Error('The video duration has changed since this map was saved. Your timestamps are preserved. Use New for this version, or export your map before revising it.');
+    if(!project.audio&&project.sections.length===1&&!section().tokens.length&&!section().notes&&!section().traces.length){section().start=0;section().end=metadata.duration;}
+    else if(project.sections.some(s=>s.end>metadata.duration+.001))throw new Error('Some sections extend beyond this video. Shorten those times before connecting.');
+    project.audio={...metadata,name:name||metadata.name};
+    if(loop)audio.setLoop(section());audio.seek(section().start);
+    save();renderAll();$('video-status').textContent='Connected. Use the app transport or the video controls.';
+    announce('YouTube connected. Your sections and sound positions are saved locally; no video is downloaded.');
+  }catch(err){
+    if(generation!==loadGeneration)return;
+    youtube.unload();audio=localAudio;renderAudio();$('video-status').textContent=err.message;announce(err.message,true);
+  }finally{if(generation===loadGeneration){loading=false;renderAudio();}}
+};
 $('new-project').onclick=()=>{if(confirmReplacement()){backupAndReplace(newProject());announce('New listening map ready.');}};
 function download(text,filename,type='application/json') {const blob=new Blob([text],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 $('export').onclick=()=>{try{download(serializeProject(project),(project.title.replace(/[^\p{L}\p{N}\-_ ]/gu,'').trim()||'listening-map')+'.slmap.json');announce('Map exported. Audio is not included; keep the original recording to relink.');}catch(err){announce(err.message,true);}};
 $('import').onclick=()=>$('map-file').click();
 $('map-file').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;try{if(f.size>2_000_000)throw new Error('Map file exceeds the 2 MB limit.');const next=parseProject(await f.text());if(!confirmReplacement())return;backupAndReplace(next);announce('Map imported. Relink the original recording to listen.');}catch(err){announce(`Map not imported: ${err.message}`,true);}};
 $('restore-backup').onclick=()=>{try{const raw=localStorage.getItem(STORAGE_KEY+'.previous');if(!raw)return announce('No previous map is available.');const next=parseProject(raw);if(confirmReplacement()){backupAndReplace(next);$('help-dialog').close();announce('Previous map restored. Relink its audio.');}}catch{announce('Previous map could not be restored. Import a JSON backup.',true);}};
-$('help').onclick=()=>{const restore=$('restore-backup');restore.hidden=false;document.querySelector('.dialog-body').append(restore);$('help-dialog').showModal();};
+$('help').onclick=()=>{audio.pause();const restore=$('restore-backup');restore.hidden=false;document.querySelector('#help-dialog .dialog-body').append(restore);$('help-dialog').showModal();};
 $('close-help').onclick=()=>$('help-dialog').close();
-audio.onEnded=()=>{tick();announce('Recording ended.');};
+for(const engine of [localAudio,youtube])engine.onEnded=()=>{tick();announce('Recording ended.');};
 function tick() {
   const t=audio.currentTime(), s=section();
-  timeline.tick(t,!!audio.buffer&&!loading);
+  timeline.tick(t,!!audio.ready&&!loading);
   $('current-time').textContent=formatTime(t,true);$('seek').value=t;
   $('seek').setAttribute('aria-valuetext',`${formatTime(t,true)} of ${formatTime(audio.duration || project.audio?.duration || 0)}`);
   $('play').textContent=audio.playing?'Ⅱ':'▶';$('play').setAttribute('aria-label',audio.playing?'Pause recording':'Play recording');
   const d=Number($('seek').max)||1;$('section-band').style.left=`${s.start/d*100}%`;$('section-band').style.width=`${(s.end-s.start)/d*100}%`;
-  $('play-context').textContent=!audio.buffer?(project.audio?'Audio is not linked. Your map is saved; choose the original recording.':'Load a local file, or explore the original synthesized practice.'):(t>=s.start&&t<s.end?`${loop?'Looping':'Selected map'}: ${s.name} · ${formatTime(s.start,true)}–${formatTime(s.end,true)}`:`Outside “${s.name}” · cue its start or select a matching section.`);
+  $('play-context').textContent=!audio.ready?(project.audio?'Recording disconnected. Your map is saved; reconnect to listen.':'Choose local audio, a YouTube video, or the practice recording.'):(t>=s.start&&t<s.end?`${loop?'Looping':'Selected map'}: ${s.name} · ${formatTime(s.start,true)}–${formatTime(s.end,true)}`:`Outside “${s.name}” · cue its start or select a matching section.`);
 }
 function frame(){tick();requestAnimationFrame(frame);}
 if(window.innerWidth<850){$('inspector').hidden=true;$('toggle-panel').setAttribute('aria-expanded','false');}
 renderAll();requestAnimationFrame(frame);
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&audio===youtube)audio.pause();});
 window.addEventListener('pagehide',()=>{audio.pause();if(!saveBlocked)save();});

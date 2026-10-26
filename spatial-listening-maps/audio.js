@@ -1,6 +1,7 @@
 // Audio is independent of all token geometry. No panner, isolation, or stem graph.
 export class LocalAudio {
   constructor() { this.context = null; this.buffer = null; this.source = null; this.offset = 0; this.startedAt = 0; this.loop = null; this.playing = false; this.generation = 0; this.onEnded = () => {}; }
+  get ready() { return !!this.buffer; }
   get duration() { return this.buffer?.duration || 0; }
   ensureContext() {
     if (!this.context) {

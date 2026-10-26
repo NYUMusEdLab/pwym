@@ -1,4 +1,4 @@
-import {clamp, formatTime} from './model.js?v=0.2.0';
+import {clamp, formatTime} from './model.js?v=0.3.0';
 
 // A view over section times; it never owns audio or changes the project schema.
 export class SectionTimeline {
