@@ -1,5 +1,6 @@
-import {STORAGE_KEY, clamp, uid, newProject, newSection, newToken, duplicateSection, parseProject, serializeProject, formatTime, makePracticeProject} from './model.js';
+import {STORAGE_KEY, clamp, uid, newProject, newSection, newToken, duplicateSection, parseProject, serializeProject, formatTime, makePracticeProject} from './model.js?v=0.2.0';
 import {LocalAudio} from './audio.js';
+import {SectionTimeline} from './timeline.js';
 
 const $ = id => document.getElementById(id);
 const audio = new LocalAudio();
@@ -8,6 +9,7 @@ try { const saved = localStorage.getItem(STORAGE_KEY); if (saved) project = pars
 catch { saveBlocked = true; setTimeout(()=>announce('Saved map could not be restored. Its stored data is preserved. Import a backup or start a new project to resume autosaving.',true),0); }
 const section = () => project.sections.find(s=>s.id===project.activeSectionId);
 const token = () => section().tokens.find(t=>t.id===selectedTokenId);
+const timeline=new SectionTimeline({getProject:()=>project,select:selectSection,boundary:setBoundary,seek:async time=>{await audio.seek(time);tick();},split:splitSection,edit:()=>{setPanel('section');$('section-name').focus();},announce});
 function announce(message, sticky = false) {
   $('status').textContent = message; $('status').classList.add('visible'); clearTimeout(statusTimer);
   if (!sticky) statusTimer=setTimeout(()=>$('status').classList.remove('visible'),5500);
@@ -49,6 +51,7 @@ function renderSectionControls() {
   $('current-caption').textContent=`${s.name} · editing`;
   const ref=project.sections.find(x=>x.id===compareId);
   if(ref) $('reference-caption').textContent=`${ref.name} · ${formatTime(ref.start)}–${formatTime(ref.end)} · reference`;
+  timeline.render();
 }
 function position(element,t) {
   element.style.left=`${(t.x+1)*50}%`; element.style.top=`${(1-t.depth)*100}%`; element.style.setProperty('--token-color',t.color);
@@ -166,13 +169,20 @@ for(const key of ['label','x','depth','spread','confidence','note','color']) {
   $('token-'+key).addEventListener('input',e=>{const t=token();if(!t)return;t[key]=['x','depth','spread'].includes(key)?Number(e.target.value):e.target.value;updateTokenView(t);if(key==='label')$('token-select').selectedOptions[0].textContent=t.label||'Unnamed sound';save();});
 }
 $('remove-sound').onclick=()=>{const t=token();if(!t)return;section().tokens=section().tokens.filter(x=>x.id!==t.id);selectedTokenId=null;renderEditor();renderMaps();save();announce(`Removed ${t.label} from this section.`);};
-$('section-name').oninput=()=>{section().name=$('section-name').value;$('map-name').textContent=section().name;$('section-select').selectedOptions[0].textContent=section().name;save();};
+$('section-name').oninput=()=>{section().name=$('section-name').value;$('map-name').textContent=section().name;$('section-select').selectedOptions[0].textContent=section().name;timeline.render();save();};
 async function setBoundary(key,value) {
   const s=section(), end=key==='end'?value:s.end, start=key==='start'?value:s.start;
   if(!Number.isFinite(value)||start<0||end-start<0.1-1e-9||end>(project.audio?.duration || 86400)+0.001){announce('Use times within the recording, with end at least 0.1 seconds after start.');renderSectionControls();return;}
   s[key]=value;
   if(audio.buffer&&loop) await audio.setLoop(s);
   renderSectionControls();save();
+}
+async function splitSection() {
+  const s=section(),at=Math.round(audio.currentTime()*1000)/1000;
+  if(!audio.buffer||project.sections.length>=100||at<s.start+.1||at>s.end-.1)return;
+  const next=duplicateSection(s);next.start=at;next.name=`${s.name} · next`;s.end=at;
+  project.sections.splice(project.sections.indexOf(s)+1,0,next);
+  await selectSection(next.id);announce('Section split. Both maps keep the sounds and notes; edit each independently.');
 }
 $('section-start').onchange=()=>setBoundary('start',Number($('section-start').value));
 $('section-end').onchange=()=>setBoundary('end',Number($('section-end').value));
@@ -270,6 +280,7 @@ $('close-help').onclick=()=>$('help-dialog').close();
 audio.onEnded=()=>{tick();announce('Recording ended.');};
 function tick() {
   const t=audio.currentTime(), s=section();
+  timeline.tick(t,!!audio.buffer&&!loading);
   $('current-time').textContent=formatTime(t,true);$('seek').value=t;
   $('seek').setAttribute('aria-valuetext',`${formatTime(t,true)} of ${formatTime(audio.duration || project.audio?.duration || 0)}`);
   $('play').textContent=audio.playing?'Ⅱ':'▶';$('play').setAttribute('aria-label',audio.playing?'Pause recording':'Play recording');
