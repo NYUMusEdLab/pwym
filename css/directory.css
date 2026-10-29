@@ -88,3 +88,45 @@
 @media print { .directory-toolbar { display: none; } .directory-grid { grid-template-columns: repeat(3, 1fr); } }
 
 @media (min-width: 761px) { .home-sponsors .steinhardt-link { margin-left: auto; } }
+
+/* Archive cards share the tallest collapsed summary, including wrapped titles. */
+.archive-directory .directory-record:not([open]) > summary {
+  grid-template-columns: minmax(0, 1fr) 14px;
+  grid-template-rows: 60px 1fr;
+  gap: 12px 8px;
+  align-items: start;
+  align-content: stretch;
+  min-height: var(--archive-card-height, 0px);
+}
+.archive-directory .directory-record:not([open]) > summary img {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  height: 60px;
+  object-fit: contain;
+}
+.archive-directory .directory-record:not([open]) > summary .summary-copy {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: stretch;
+  gap: 8px;
+}
+.archive-directory .directory-record:not([open]) > summary::after {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: center;
+}
+@media (max-width: 600px) {
+  .archive-directory .directory-grid { grid-template-columns: minmax(0, 1fr); }
+  .archive-directory .directory-record:not([open]) > summary {
+    grid-template-columns: 64px minmax(0, 1fr) 14px;
+    grid-template-rows: 1fr;
+    gap: 12px;
+  }
+  .archive-directory .directory-record:not([open]) > summary img { width: 64px; }
+  .archive-directory .directory-record:not([open]) > summary .summary-copy { grid-column: 2; grid-row: 1; }
+  .archive-directory .directory-record:not([open]) > summary::after { grid-column: 3; grid-row: 1; }
+}
