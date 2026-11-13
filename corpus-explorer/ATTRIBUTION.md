@@ -17,7 +17,7 @@ Adaptation by MusEDLab,2026: ViolinI first-layer melodic reduction, highest chor
 ## Reuse
 Adapted corpus-index.json is distributed under CC BY-NC-SA4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/ . The full legal terms govern. Retain source attribution, licence links and change notices, indicate further changes, do not use the licensed material commercially, and apply the same licence to further adapted material. Source corpus and edition rights are not replaced by a software licence.
 
-The original interface implementation is separate from the licensed data; no rights are asserted over original compositions. No Shanghai/Bach data, source archives, third-party recordings, private paths or user research records are bundled.
+The original interface implementation is separate from the licensed data; no rights are asserted over original compositions. No Shanghai or previous music21 Bach data, source archives, third-party recordings, private paths or user research records are bundled.
 
 ### Mozart edition credits from original MEI headers
 - K543-1: See source MEI file description for edition contributors; https://dme.mozarteum.at/movi/file/543/1/nma
@@ -32,3 +32,13 @@ The original interface implementation is separate from the licensed data; no rig
 - K551-2: See source MEI file description for edition contributors; https://dme.mozarteum.at/movi/file/551/2/nma
 - K551-3: See source MEI file description for edition contributors; https://dme.mozarteum.at/movi/file/551/3/nma
 - K551-4: See source MEI file description for edition contributors; https://dme.mozarteum.at/movi/file/551/4/nma
+
+## Bach: licensed389-setting edition (added2026-11-13)
+
+Gertim Alberda & Johannes Hentschel (2024), *A digital edition of the389 Chorale Settings (Choralgesänge) by J.S. Bach*, https://doi.org/10.5281/zenodo.11358762 . Authoritative MuseScore source: https://github.com/johentsch/389_chorale_settings . Dataset author Gertim Alberda explicitly agreed to CC BY-NC-SA4.0; licence https://creativecommons.org/licenses/by-nc-sa/4.0/ .
+
+Chorale Corpus derived TSV releasev1.1: https://github.com/Chorale-Corpus/Bach_JS/releases/tag/v1.1 . Cite Gerhardt, K., Hentschel, J., Phan, V. D., Kirsch, M., Kirsch, K., & Gotham, M. R. H. (2026), Beyond Ba(t)ch: A Multimodal Meta-Corpus of Digital Chorale Transcriptions and Related Data. TISMIR9(1),440–455. https://doi.org/10.5334/tismir.226 .
+
+MusEDLab adaptation: soprano staff1/voice1 extracted from ms3 notes/chords TSV; lyrics retained; ties merged; grace events omitted. Written sequence includes alternative endings but repeats are not unfolded. Encoded playback tempo may reflect Alberda's editorial humanization rather than historical metronome evidence. Complete soprano pitch sequences in B001,B014,B199 and B389 were compared with authoritative MSCX and matched; this spot check is not full scholarly validation. Structural timing/array checks cover all389.
+
+The upstream project warns that its converted MusicXML and MEI are unsuitable for scholarly work; neither conversion was used here. Commercial recordings and their audio excerpts are NOT included. This licence covers this distinct corpus, NOT the previously used409 music21 encoding files. Adapted Bach data remains CC BY-NC-SA4.0, with the same attribution/non-commercial/share-alike and change-notice conditions as the other data.
