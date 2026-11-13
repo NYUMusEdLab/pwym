@@ -1,0 +1,257 @@
+{
+  "format": "jam2jam-sf2-index-v1",
+  "banks": [
+    {
+      "id": "AirBank",
+      "sourceFile": "AirBank.sf2",
+      "sourceSha256": "c9b7b9036b57605cbe2089cd176c8af3b963aa9a8a481785a544709265e45a0f",
+      "metadata": "AirBank/bank.json",
+      "samples": 35,
+      "regions": 35,
+      "presets": [
+        {
+          "bank": 0,
+          "program": 4,
+          "name": "Rhodes Piano       ",
+          "regions": 16
+        },
+        {
+          "bank": 0,
+          "program": 38,
+          "name": "Synth Bass 1       ",
+          "regions": 4
+        },
+        {
+          "bank": 0,
+          "program": 88,
+          "name": "Synth Pad 1        ",
+          "regions": 1
+        },
+        {
+          "bank": 128,
+          "program": 0,
+          "name": "Drum Kit           ",
+          "regions": 14
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "j2j_170708",
+      "sourceFile": "j2j_170708.sf2",
+      "sourceSha256": "2fb1c6df5b1c877fbabad22546a9993d4a6fa6553d907151ec198dd22541ce35",
+      "metadata": "j2j_170708/bank.json",
+      "samples": 84,
+      "regions": 84,
+      "presets": [
+        {
+          "bank": 0,
+          "program": 4,
+          "name": "Rhodes Piano       ",
+          "regions": 16
+        },
+        {
+          "bank": 0,
+          "program": 38,
+          "name": "Synth Bass 1       ",
+          "regions": 4
+        },
+        {
+          "bank": 0,
+          "program": 88,
+          "name": "Synth Pad 1        ",
+          "regions": 1
+        },
+        {
+          "bank": 128,
+          "program": 0,
+          "name": "Drum Kit           ",
+          "regions": 30
+        },
+        {
+          "bank": 0,
+          "program": 8,
+          "name": "Clavinet           ",
+          "regions": 6
+        },
+        {
+          "bank": 0,
+          "program": 90,
+          "name": "Synth Pad 2        ",
+          "regions": 4
+        },
+        {
+          "bank": 0,
+          "program": 34,
+          "name": "Electric Bass, Fing",
+          "regions": 3
+        },
+        {
+          "bank": 0,
+          "program": 36,
+          "name": "Fretless Bass      ",
+          "regions": 6
+        },
+        {
+          "bank": 0,
+          "program": 74,
+          "name": "Flute              ",
+          "regions": 12
+        },
+        {
+          "bank": 0,
+          "program": 100,
+          "name": "Atmosphere         ",
+          "regions": 2
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "MelloBank",
+      "sourceFile": "MelloBank.sf2",
+      "sourceSha256": "6c7c463838229c4bd8957943879dccf7be95ef77d83eed6b9150148825b8192d",
+      "metadata": "MelloBank/bank.json",
+      "samples": 30,
+      "regions": 30,
+      "presets": [
+        {
+          "bank": 128,
+          "program": 0,
+          "name": "Drum Kit           ",
+          "regions": 11
+        },
+        {
+          "bank": 0,
+          "program": 36,
+          "name": "Fretless Bass      ",
+          "regions": 6
+        },
+        {
+          "bank": 0,
+          "program": 74,
+          "name": "Flute              ",
+          "regions": 11
+        },
+        {
+          "bank": 0,
+          "program": 100,
+          "name": "Atmosphere         ",
+          "regions": 2
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "ChineseCanto",
+      "sourceFile": "ChineseCanto.sf2",
+      "sourceSha256": "fc4beea443b30975148e8df0c4861cf26cf2c32359ee8cd2100f6ca12e666c39",
+      "metadata": "ChineseCanto/bank.json",
+      "samples": 43,
+      "regions": 43,
+      "presets": [
+        {
+          "bank": 0,
+          "program": 8,
+          "name": "Celesta 9          ",
+          "regions": 9
+        },
+        {
+          "bank": 0,
+          "program": 34,
+          "name": "Electric Bass, Pick",
+          "regions": 8
+        },
+        {
+          "bank": 0,
+          "program": 48,
+          "name": "Acoustic String Ens",
+          "regions": 9
+        },
+        {
+          "bank": 128,
+          "program": 0,
+          "name": "Drum Kit 129       ",
+          "regions": 17
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "TechnoJam",
+      "sourceFile": "TechnoJam.sf2",
+      "sourceSha256": "b8df61847ae343ec92f0092b6b2a5a3cabe27abfc4d932cad52dabc2232a8262",
+      "metadata": "TechnoJam/bank.json",
+      "samples": 13,
+      "regions": 13,
+      "presets": [
+        {
+          "bank": 0,
+          "program": 39,
+          "name": "Synth Bass 2 40    ",
+          "regions": 1
+        },
+        {
+          "bank": 0,
+          "program": 83,
+          "name": "Chiffer 84         ",
+          "regions": 1
+        },
+        {
+          "bank": 0,
+          "program": 87,
+          "name": "Synth Lead 8 88    ",
+          "regions": 1
+        },
+        {
+          "bank": 128,
+          "program": 0,
+          "name": "Drum Kit 129       ",
+          "regions": 10
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "HipHopBank",
+      "sourceFile": "HipHopBank.sf2",
+      "sourceSha256": "12a764da6a871dee24fa165b0e43cd6bb0f93aa4893da11ac3cf4f84a8dcc3dc",
+      "metadata": "HipHopBank/bank.json",
+      "samples": 28,
+      "regions": 28,
+      "presets": [
+        {
+          "bank": 0,
+          "program": 18,
+          "name": "Rock Organ         ",
+          "regions": 4
+        },
+        {
+          "bank": 0,
+          "program": 39,
+          "name": "Synth Bass 2       ",
+          "regions": 2
+        },
+        {
+          "bank": 0,
+          "program": 84,
+          "name": "Synth Lead 5       ",
+          "regions": 1
+        },
+        {
+          "bank": 0,
+          "program": 85,
+          "name": "Synth Lead 6       ",
+          "regions": 1
+        },
+        {
+          "bank": 128,
+          "program": 0,
+          "name": "Drum Kit           ",
+          "regions": 20
+        }
+      ],
+      "warnings": []
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+// Browser approximation: overlapping delay grains, with a gentle articulation gate.
+class MicPitch extends AudioWorkletProcessor{
+ static get parameterDescriptors(){return[{name:'ratio',defaultValue:1,minValue:.25,maxValue:4,automationRate:'k-rate'},{name:'articulation',defaultValue:.5,minValue:0,maxValue:1,automationRate:'k-rate'}];}
+ constructor(){super();this.ring=new Float32Array(32768);this.write=0;this.phase=0;this.clock=0;}
+ process(inputs,outputs,p){const input=inputs[0]?.[0],out=outputs[0];if(!input)return true;const ratio=p.ratio[0],size=2048,N=this.ring.length;for(let i=0;i<out[0].length;i++){this.ring[this.write]=input[i]||0;let value=0;for(let grain=0;grain<2;grain++){const phase=(this.phase+grain*.5)%1;const delay=ratio>=1?(1-phase)*size:phase*size;const pos=(this.write-delay-128+N)%N,a=Math.floor(pos),f=pos-a;value+=(this.ring[a]*(1-f)+this.ring[(a+1)%N]*f)*(1-Math.cos(phase*2*Math.PI))*.5;}this.phase=(this.phase+Math.abs(1-ratio)/size)%1;if(Math.abs(ratio-1)<.0001)value=this.ring[(this.write-128+N)%N];const gate=1-p.articulation[0]*.25*(1-Math.sin(this.clock/sampleRate*(1+19*p.articulation[0])*2*Math.PI));for(const channel of out)channel[i]=value*gate;this.write=(this.write+1)%N;this.clock++;}return true;}
+}registerProcessor('jam2jam-mic',MicPitch);

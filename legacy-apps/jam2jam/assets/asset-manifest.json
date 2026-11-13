@@ -1,0 +1,3928 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "asset-prep/prepare_assets.py",
+  "notes": [
+    "Source assets from recovered native bundles. No synthetic notes or imagery.",
+    "MIDI beat times and note durations are exact tick/PPQN ratios; rounded only by JSON numeric serialization.",
+    "MIDI tempo events retained as provenance; live scene tempo comes from Scheme defaults.",
+    "All notes retained; inLoop indicates the source loop window. Do not trigger notes outside it.",
+    "Program values are raw zero-based MIDI values; null means no explicit native program change.",
+    "OriginalPath is relative to the selected app application resources, not a public download URL."
+  ],
+  "assets": [
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/air/air-miditrax.scm",
+      "sourceSha256": "60f9e3a3a3eb4417b8332dc38436c0b934fddf0ddd5e8748dc261f48862fd9f1",
+      "sourceBytes": 8932,
+      "transformation": "read Scheme scene configuration",
+      "output": "scenes/av-air.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/air/air-graph.scm",
+      "sourceSha256": "724782eb89885ee93934989b06abf9d6a76cbf950abb532df9d0cb972a7675bb",
+      "sourceBytes": 6473,
+      "transformation": "read Scheme graph configuration",
+      "output": "scenes/av-air.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_drums_full.mid",
+      "sourceSha256": "d8b1cee392d9b4d3d4de8770e3f5cc73a14a59a84abad3543007b541a19ef2af",
+      "sourceBytes": 8558,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-air.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_drums_medium.mid",
+      "sourceSha256": "0fd9ebf1acfe4cd7d660731e643ab4b56a6b03308ed79e63f6dbd7f4172ad2fc",
+      "sourceBytes": 5150,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-air.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_drums_light.mid",
+      "sourceSha256": "b423744b8a0a186e725911178d913170ba63449c0d47bbe2fa3ff83c6cd63f92",
+      "sourceBytes": 1550,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-air.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_pad_full.mid",
+      "sourceSha256": "d5a43eeded84673326006d7279fe55e50b8edfa96a2cc4f144a573c533a6b9c4",
+      "sourceBytes": 428,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-air.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_pad_medium.mid",
+      "sourceSha256": "2fe5513b889072354bdc9a97fd348e22d398bead1432d988db6f30a970450244",
+      "sourceBytes": 369,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-air.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_pad_light.mid",
+      "sourceSha256": "63c627d39767cdf62b78fe18a0b7157d33a84eee4b00c6f52c319ed1e43a5503",
+      "sourceBytes": 226,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-air.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_keys_full.mid",
+      "sourceSha256": "2fd769af72e1a79dbb822e67b00c6828328fb5fc341626944abdf8ffd517e016",
+      "sourceBytes": 2880,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-air.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_keys_medium.mid",
+      "sourceSha256": "c555c8c82363496c78c84d52cd17cf8ecfab8f51d8f8a7d3250a09963a63c61d",
+      "sourceBytes": 964,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-air.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_keys_light.mid",
+      "sourceSha256": "a1d6bbc79fa12fffde1b83bc83ccb77791dd9ca8bc32d118c1ad5967d0fc9457",
+      "sourceBytes": 381,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-air.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_bass_full.mid",
+      "sourceSha256": "0a025a793ace051de9de21a49179471fe8af3bc8575e0509f0c1716fd4d30c8a",
+      "sourceBytes": 709,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-air.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_bass_medium.mid",
+      "sourceSha256": "2a906596d217e002fc52e7fc383b282a5200fab14ae70c7c99dd0cfdf85500ed",
+      "sourceBytes": 477,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-air.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_bass_light.mid",
+      "sourceSha256": "4c456cab55b0f254d91f4c86a0bf9954793de098ba55169556124a8e2aab82de",
+      "sourceBytes": 359,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-air.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/city/city-miditrax.scm",
+      "sourceSha256": "81133de7a18853053dba61caf9ba168145093f804a7b51f57a2fe525afe859ab",
+      "sourceBytes": 8700,
+      "transformation": "read Scheme scene configuration",
+      "output": "scenes/av-city.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/city/city-graph.scm",
+      "sourceSha256": "4042a01a8c01796477e5aa63ec23fdf629347035151890a939bcbb9558a9e9d7",
+      "sourceBytes": 6890,
+      "transformation": "read Scheme graph configuration",
+      "output": "scenes/av-city.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-drums-full.mid",
+      "sourceSha256": "6ac1ad3f0754800c361d98ef86e711e69c9e979949f6676225596e4ea732e726",
+      "sourceBytes": 1952,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose -12; velocities and durations retained",
+      "output": "scenes/av-city.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-drums-medium.mid",
+      "sourceSha256": "10b12adbe0dc920c1b7140c3e4494239d98eca6c6cb27bf89bcca2c7940b6887",
+      "sourceBytes": 902,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose -12; velocities and durations retained",
+      "output": "scenes/av-city.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-drums-light.mid",
+      "sourceSha256": "23421ba4f5e7146129ef25697ee2a46afc0b7f682de0d6032ada15a9cf39e2bb",
+      "sourceBytes": 571,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose -12; velocities and durations retained",
+      "output": "scenes/av-city.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-pads-full.mid",
+      "sourceSha256": "421a94614c411a5c3e7d5c2435c8f9e4bc11727831456a57a5dc167f446b8a9a",
+      "sourceBytes": 1075,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-city.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-pads-medium.mid",
+      "sourceSha256": "9798b49355e0a48df27837ab615339cf1ff06615444072643f1e6d7fc2b1ab55",
+      "sourceBytes": 250,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-city.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-pads-light.mid",
+      "sourceSha256": "bcc4d724753c7728dfd9fd03861500ea67321a83daf08f0e11068b755446f2c6",
+      "sourceBytes": 153,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-city.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-keys-full.mid",
+      "sourceSha256": "a4a51bd88cedaa5e22046775d411884e544194a2c8e20bbdf31dd75fdd705c8f",
+      "sourceBytes": 635,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-city.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-keys-medium.mid",
+      "sourceSha256": "40f14c04995361abe17d5a54b7c3339426de5dd5d929ff5584dd9f3369ea0dca",
+      "sourceBytes": 359,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-city.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-keys-light.mid",
+      "sourceSha256": "cfbf499b8bd8e6e8496a11d8ea6744ff41dfc8dfb2ff2be707e574fd78b76650",
+      "sourceBytes": 258,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-city.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-bass-full.mid",
+      "sourceSha256": "d364a1f95c65f1aca38a0df89c07468ce58b377a2df3079ba9c0dd7d5eeb169b",
+      "sourceBytes": 335,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-city.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-bass-medium.mid",
+      "sourceSha256": "621b656f0d584fd2d9528fca9434fa5651644593996dc0e0615299dba666b3c7",
+      "sourceBytes": 306,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-city.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-bass-light.mid",
+      "sourceSha256": "44747f35d39bfe3b63bcb7c3b8e1d29408569bd12ce011c35cef27d37205c9eb",
+      "sourceBytes": 220,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-city.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/cloud/cloud-miditrax.scm",
+      "sourceSha256": "bcda2d2d9b5434aa86e105ee545980753310b6fb55d92a832a672dc226295cb0",
+      "sourceBytes": 9297,
+      "transformation": "read Scheme scene configuration",
+      "output": "scenes/av-cloud.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/cloud/cloud-graph.scm",
+      "sourceSha256": "024da8a2e67ae38e21b8f15ea8701181c94c27acc83326486631fa592178d379",
+      "sourceBytes": 5779,
+      "transformation": "read Scheme graph configuration",
+      "output": "scenes/av-cloud.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_drums_full.mid",
+      "sourceSha256": "57c3dd9ae8a2a57c50d8a6b6bddbdf01bbe735287cb59b2b89b2327b028a34d1",
+      "sourceBytes": 4715,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-cloud.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_drums_medium.mid",
+      "sourceSha256": "7582ae7ee491e6dd5b3f3c1f2ef9a02aad90e6f0735cdb0d4080035f1c8bf7e0",
+      "sourceBytes": 3339,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-cloud.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_drums_light.mid",
+      "sourceSha256": "ab18a6bd60ddf2b2600d422ea28b3fac910bac65faf9f8fb79799a7346bb16f1",
+      "sourceBytes": 2382,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-cloud.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_atmos_full.mid",
+      "sourceSha256": "9f59eaa8ffdaa8f4a499b633849938e86df02a528302e076bbf8c88885b5b947",
+      "sourceBytes": 330,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-cloud.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_atmos_medium.mid",
+      "sourceSha256": "e50b7439574625d601e3be4db2142a0f5775f2d4d3a9bc09fa7257ecbf86f55d",
+      "sourceBytes": 320,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-cloud.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_atmos_light.mid",
+      "sourceSha256": "6dcc62be64136ab8694384618b8e6bc22fbc2e4f2ee82d4437c6ca63e88ec859",
+      "sourceBytes": 251,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-cloud.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_flute_full.mid",
+      "sourceSha256": "f56ba365b378133cdcef1416804f25d64adc3ab3e580c9590e3b98fad3ded0cc",
+      "sourceBytes": 1799,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-cloud.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_flute_medium.mid",
+      "sourceSha256": "3f4f8cd98870609ffae8b5ca5439cb1bab91ae019abe0d43fa62a74094d808db",
+      "sourceBytes": 1298,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-cloud.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_flute_light.mid",
+      "sourceSha256": "b1e72cd714484094863936c38dce656fa25e04672158c35f47df20d42a592baf",
+      "sourceBytes": 873,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-cloud.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_bass_full.mid",
+      "sourceSha256": "f10c76a4b022a1fe6e89b8b1f537a17095a723442b4cfb559917c6c5b02c86ee",
+      "sourceBytes": 1654,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-cloud.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_bass_medium.mid",
+      "sourceSha256": "079fb44db27d0edb4d57a636cb327d8d37aa49c41b63a533b41d1f574aff1ef8",
+      "sourceBytes": 1154,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-cloud.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_bass_light.mid",
+      "sourceSha256": "1bf2da38cec5353d6a6a36dc5ce2c16840e7e2d4f0e856f0c39c5798aca575f0",
+      "sourceBytes": 702,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-cloud.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/earth/earth-miditrax.scm",
+      "sourceSha256": "7b0086670c40472f3aedf1c1f604d60cf7934a97fddd2a2643fbe98d8f7c84f7",
+      "sourceBytes": 8455,
+      "transformation": "read Scheme scene configuration",
+      "output": "scenes/av-earth.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/earth/earth-graph.scm",
+      "sourceSha256": "60cb557ce4e06af14f16e34787ee1600ad8608db0c8e72072fe38a0319984fe0",
+      "sourceBytes": 5748,
+      "transformation": "read Scheme graph configuration",
+      "output": "scenes/av-earth.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/earth/earth_MIDI_Files/DrumsFull.mid",
+      "sourceSha256": "db0cf0ff9c528ea00fcd0f22dd70560100a17e443ffaf3eec3f3b35c9b6ec96c",
+      "sourceBytes": 6489,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-earth.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/earth/earth_MIDI_Files/DrumsMedium.mid",
+      "sourceSha256": "9760d4a5304225097e1faec60c821b80adcfca7afee9e31b54809b07acf197c2",
+      "sourceBytes": 5254,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-earth.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/earth/earth_MIDI_Files/DrumsLight.mid",
+      "sourceSha256": "ddd72b83990fbf27a316b71c2b309a0dad7ee138ea04293e034d3e958d808fd5",
+      "sourceBytes": 4789,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-earth.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/earth/earth_MIDI_Files/ChordsFull.mid",
+      "sourceSha256": "56e4d93effd924a398f284e16036ef8428ac30cade6b470cd0f1a97662ac8ccc",
+      "sourceBytes": 3817,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-earth.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/earth/earth_MIDI_Files/ChordsMedium.mid",
+      "sourceSha256": "30356f31e614f408f7d1006a3210c334073659696ad55db1fc72222c6d586436",
+      "sourceBytes": 2214,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-earth.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/earth/earth_MIDI_Files/ChordsLight.mid",
+      "sourceSha256": "12bb4683816d533d3d84e188eafb4164ca633434f60c94ea1de2dcf259de7283",
+      "sourceBytes": 1835,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-earth.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/earth/earth_MIDI_Files/LeadFull.mid",
+      "sourceSha256": "c01e200769a55a487a92b8c1e685befcaa19daeb5e637f4fe4480dad816d1ffb",
+      "sourceBytes": 1638,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-earth.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/earth/earth_MIDI_Files/LeadMedium.mid",
+      "sourceSha256": "d2eaad2e54705f767786dad35ea77103bb96636c9e8645f1d518061805c5b866",
+      "sourceBytes": 929,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-earth.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/earth/earth_MIDI_Files/LeadLight.mid",
+      "sourceSha256": "dedd4d6e7f02e4f29c693fba009c887150d398d481c39b6b6024517a90485cda",
+      "sourceBytes": 686,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-earth.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/earth/earth_MIDI_Files/BassFull.mid",
+      "sourceSha256": "a4c45c9ad9713fcd5bc62f522266695eda825028023341400f85e410284d31c4",
+      "sourceBytes": 1505,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-earth.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/earth/earth_MIDI_Files/BassMedium.mid",
+      "sourceSha256": "d76be4e69f66f4394580041efefd859ab68d9cd5f4f9078726f2e93ea7c8cc03",
+      "sourceBytes": 1207,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-earth.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/earth/earth_MIDI_Files/BassLight.mid",
+      "sourceSha256": "470652505478845ea0cfb78b667c436ee48f3bd4f08c0678f41f67d5a425b553",
+      "sourceBytes": 806,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-earth.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sea/sea-miditrax.scm",
+      "sourceSha256": "afd489ca2a4997eefcd5347ddafee9d75e2b33321540c6c038ea0141242e1303",
+      "sourceBytes": 8589,
+      "transformation": "read Scheme scene configuration",
+      "output": "scenes/av-sea.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sea/sea-graph.scm",
+      "sourceSha256": "dc5af731f621896efbf3647d90365253208f47a765e472cc22d2ab84bf0b51e6",
+      "sourceBytes": 6500,
+      "transformation": "read Scheme graph configuration",
+      "output": "scenes/av-sea.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/TechnoJam-Drums-Heavy.mid",
+      "sourceSha256": "c670285d30db1b2c08a60f8f1a5ae7707994e54c201a613d52a12de9ca415a55",
+      "sourceBytes": 6522,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sea.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/TechnoJam-Drums-Medium.mid",
+      "sourceSha256": "87b614e2748d350221407273ef11c6914cb1879f8261255f6101379eb128621a",
+      "sourceBytes": 4976,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sea.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/TechnoJam-Drums-Light.mid",
+      "sourceSha256": "3a52355dce2d331455f0d62971849136cb2e88c555c0540085166b0ba7f12e05",
+      "sourceBytes": 1181,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sea.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/TechnoJam-DigiPerc-Heavy.mid",
+      "sourceSha256": "0477743b02560e8fb4fde31dbd492f22c53b94fcfaf493ce08343aa713c09538",
+      "sourceBytes": 1494,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sea.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/TechnoJam-DigiPerc-Medium.mid",
+      "sourceSha256": "82016b6bdbc4587610ec28e6a7b2c3a3c5d26826cf6d35ef0fee6ca93b920a11",
+      "sourceBytes": 1122,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sea.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/TechnoJam-DigiPerc-Light.mid",
+      "sourceSha256": "060972ec9ccd79b29df547ce526e18297479b6922a0f0038479da3a91bbad98a",
+      "sourceBytes": 584,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sea.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/TechnoJam-Pitches-Heavy.mid",
+      "sourceSha256": "e76952a35f010f6d01e97b425b18dd00ba5519afec6db7e75c23976080a24102",
+      "sourceBytes": 713,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sea.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/TechnoJam-Pitches-Medium.mid",
+      "sourceSha256": "6bd24aa7f88f409c1e47337c32acfd021a27059e1e7d021b2a7b0a6a472e9879",
+      "sourceBytes": 489,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sea.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/TechnoJam-Pitches-Light.mid",
+      "sourceSha256": "e853f072db23aa845ed26605dea59c95fc312a624633d904e7ad93564c393de6",
+      "sourceBytes": 530,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sea.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/TechnoJam-Bass-Heavy.mid",
+      "sourceSha256": "e55277037993ccb9aaf4dceeff3774c728aa555f0081f2de279e8dd68cc3e160",
+      "sourceBytes": 736,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sea.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/TechnoJam-Bass-Medium.mid",
+      "sourceSha256": "232dd1737584b4298aca2bda7c4301ac679a8181c3cbcce079720069c9df8342",
+      "sourceBytes": 547,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sea.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/TechnoJam-Bass-Light.mid",
+      "sourceSha256": "6abcd6e9bdb0e94789c930bd25e6460eee47af8dc912ec98eae347e3ed4733da",
+      "sourceBytes": 528,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sea.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sunshine/sunshine-miditrax.scm",
+      "sourceSha256": "ddb991a96f88b3fee68f18a5a4192cf15c5743b0f3f2f0408db62821fdbd5360",
+      "sourceBytes": 8388,
+      "transformation": "read Scheme scene configuration",
+      "output": "scenes/av-sunshine.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sunshine/sunshine-graph.scm",
+      "sourceSha256": "d7a959fa7eed451c7efdb92c22277705850394af511014ed0ceef6fad837bee2",
+      "sourceBytes": 5841,
+      "transformation": "read Scheme graph configuration",
+      "output": "scenes/av-sunshine.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-Drums-full.mid",
+      "sourceSha256": "8d67c0fc031793cf168fd7e592d95a1aa7effa2a792922138d8276de960264cb",
+      "sourceBytes": 3351,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sunshine.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-Drums-medium.mid",
+      "sourceSha256": "11fd2e4896a4125c40304b26f4a0892dd92e8a43d2630b49e36ad012488c9240",
+      "sourceBytes": 2185,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sunshine.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-Drums-light.mid",
+      "sourceSha256": "4f3000231e5a412e8598fe751e0b1567865ff7323c33ac5cfe6899a8159423df",
+      "sourceBytes": 972,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sunshine.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-Organ-full.mid",
+      "sourceSha256": "f58233054612fc0401b3542c93017cccb02a49e3e527808d7ee3615386356e30",
+      "sourceBytes": 1112,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sunshine.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-Organ-medium.mid",
+      "sourceSha256": "335fc2b260bed1cb81da76bf8151f64e5d66f25013c19c9430195a656e58f306",
+      "sourceBytes": 929,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sunshine.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-Organ-light.mid",
+      "sourceSha256": "00ba35e52eae0b8b2c8d1d5d16022c722f020416e62087381e89ab6632e0b912",
+      "sourceBytes": 636,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sunshine.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-WestSideLead-full.mid",
+      "sourceSha256": "f51fc57d84b70caf317a0bfa4fec7378b36f24ab8ed7158e0e45fc70ad5cccb4",
+      "sourceBytes": 1058,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sunshine.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-WestSideLead-medium.mid",
+      "sourceSha256": "a3b81a624b7d7d7909062e895562001cd011a653c2e1bed12972685cb2987846",
+      "sourceBytes": 803,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sunshine.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-WestSideLead-light.mid",
+      "sourceSha256": "96508c2d990f26745511bf48734f81aecc442a029516882e211cdf2222b62483",
+      "sourceBytes": 603,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sunshine.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-bass-full.mid",
+      "sourceSha256": "240ca8cee5b6a4381d03c5621c03f92186d6a897884af25a7e3f17ddfb9e6384",
+      "sourceBytes": 941,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sunshine.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-bass-medium.mid",
+      "sourceSha256": "3daa1cf3e593b1462fdd194d39421cf4f08eaa524ca144e32814e2af44d347da",
+      "sourceBytes": 757,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sunshine.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-bass-light.mid",
+      "sourceSha256": "1ac00b8e0ac4c50e43919aaab3189fcda37a0a12ba48f9975c99d38d53317cc7",
+      "sourceBytes": 709,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/av-sunshine.json"
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Acid_logo_cropped_small.png",
+      "sourceSha256": "cfde951c26727cd5d487319a8ce7b2be26bf80501c26a983f936aa73d311694e",
+      "sourceBytes": 22916,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/acid_logo_cropped_small.png",
+      "outputSha256": "cfde951c26727cd5d487319a8ce7b2be26bf80501c26a983f936aa73d311694e",
+      "outputBytes": 22916
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Circular Buttons/bass.png",
+      "sourceSha256": "eebed5233c5178e3b0196dbff783caa365fc6ec065d8de5404fd11c6c159dc99",
+      "sourceBytes": 2349,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/circular buttons/bass.png",
+      "outputSha256": "eebed5233c5178e3b0196dbff783caa365fc6ec065d8de5404fd11c6c159dc99",
+      "outputBytes": 2349
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Circular Buttons/bassJamming.png",
+      "sourceSha256": "642db0d27ee4cf4bf34ec07127a0e543767c9ece1c03ee2884e3f5f94886a713",
+      "sourceBytes": 3440,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/circular buttons/bassjamming.png",
+      "outputSha256": "642db0d27ee4cf4bf34ec07127a0e543767c9ece1c03ee2884e3f5f94886a713",
+      "outputBytes": 3440
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Circular Buttons/bassMoving.png",
+      "sourceSha256": "321c99b35565d8e2c30cc0fc25c826179e1db9b4cca33a2a46f17a8c44d59538",
+      "sourceBytes": 3477,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/circular buttons/bassmoving.png",
+      "outputSha256": "321c99b35565d8e2c30cc0fc25c826179e1db9b4cca33a2a46f17a8c44d59538",
+      "outputBytes": 3477
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Circular Buttons/drums.png",
+      "sourceSha256": "b9916d148d88aee21abe57718a972f776f9e2ad6b65b9c130b155b8a8698f3f8",
+      "sourceBytes": 3094,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/circular buttons/drums.png",
+      "outputSha256": "b9916d148d88aee21abe57718a972f776f9e2ad6b65b9c130b155b8a8698f3f8",
+      "outputBytes": 3094
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Circular Buttons/drumsJamming.png",
+      "sourceSha256": "57767ba55ead09d93fc91aca85bca1ff541cb6ef9ef7da7e0f6143f048b004a2",
+      "sourceBytes": 4095,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/circular buttons/drumsjamming.png",
+      "outputSha256": "57767ba55ead09d93fc91aca85bca1ff541cb6ef9ef7da7e0f6143f048b004a2",
+      "outputBytes": 4095
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Circular Buttons/drumsMoving.png",
+      "sourceSha256": "146c373f75616cdb20d53c46ef8626c8265433c9e435d2349b39c9936375a842",
+      "sourceBytes": 4333,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/circular buttons/drumsmoving.png",
+      "outputSha256": "146c373f75616cdb20d53c46ef8626c8265433c9e435d2349b39c9936375a842",
+      "outputBytes": 4333
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Circular Buttons/guitar.png",
+      "sourceSha256": "70b660bcf0f4955efe7a4040ce6195e0256672040fd6c663b9e14da06071eea7",
+      "sourceBytes": 2233,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/circular buttons/guitar.png",
+      "outputSha256": "70b660bcf0f4955efe7a4040ce6195e0256672040fd6c663b9e14da06071eea7",
+      "outputBytes": 2233
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Circular Buttons/guitarJamming.png",
+      "sourceSha256": "b463d4f0a989c320ef5206f9896cf40682f67295641b4f494682c1fd8faa12ab",
+      "sourceBytes": 3265,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/circular buttons/guitarjamming.png",
+      "outputSha256": "b463d4f0a989c320ef5206f9896cf40682f67295641b4f494682c1fd8faa12ab",
+      "outputBytes": 3265
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Circular Buttons/guitarMoving.png",
+      "sourceSha256": "74fca39ce695c17bc7b565c9fa12805c90da27482ec5c2048b3b3aedc8a88129",
+      "sourceBytes": 3445,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/circular buttons/guitarmoving.png",
+      "outputSha256": "74fca39ce695c17bc7b565c9fa12805c90da27482ec5c2048b3b3aedc8a88129",
+      "outputBytes": 3445
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Circular Buttons/mic.png",
+      "sourceSha256": "978b77c252836ac042d159b36a6c9bd11a271410c4a138ab75095a0228fcbe91",
+      "sourceBytes": 2290,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/circular buttons/mic.png",
+      "outputSha256": "978b77c252836ac042d159b36a6c9bd11a271410c4a138ab75095a0228fcbe91",
+      "outputBytes": 2290
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Circular Buttons/micJamming.png",
+      "sourceSha256": "e93d323f0b927d781580368eabcb939a1829bda11f566e4691eaa07eead972a6",
+      "sourceBytes": 3117,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/circular buttons/micjamming.png",
+      "outputSha256": "e93d323f0b927d781580368eabcb939a1829bda11f566e4691eaa07eead972a6",
+      "outputBytes": 3117
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Circular Buttons/micMoving.png",
+      "sourceSha256": "8c3ec5a7823b71d0d826da5404a93b57e608416d1b9cae78d2eaed8c4db6b949",
+      "sourceBytes": 3446,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/circular buttons/micmoving.png",
+      "outputSha256": "8c3ec5a7823b71d0d826da5404a93b57e608416d1b9cae78d2eaed8c4db6b949",
+      "outputBytes": 3446
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Circular Buttons/piano.png",
+      "sourceSha256": "0f5961ae01c3609a63308911d85829142946545031c1964afd7c218b135f7aeb",
+      "sourceBytes": 1935,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/circular buttons/piano.png",
+      "outputSha256": "0f5961ae01c3609a63308911d85829142946545031c1964afd7c218b135f7aeb",
+      "outputBytes": 1935
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Circular Buttons/pianoJamming.png",
+      "sourceSha256": "48f850d0f3ea72588c2f4b870767a6f0f0adcc2dedbdfe186f78dec142ff47c0",
+      "sourceBytes": 4391,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/circular buttons/pianojamming.png",
+      "outputSha256": "48f850d0f3ea72588c2f4b870767a6f0f0adcc2dedbdfe186f78dec142ff47c0",
+      "outputBytes": 4391
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Circular Buttons/pianoMoving.png",
+      "sourceSha256": "5ac3da823b04220fbc9dc40662f01b83f4ecb6ba9ed031ea43b9721064010eb9",
+      "sourceBytes": 2999,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/circular buttons/pianomoving.png",
+      "outputSha256": "5ac3da823b04220fbc9dc40662f01b83f4ecb6ba9ed031ea43b9721064010eb9",
+      "outputBytes": 2999
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Circular Buttons/video.png",
+      "sourceSha256": "5cd6444db19a50464e7d6aab72ec074932ebf79dba54284cef161c2ad7f86d03",
+      "sourceBytes": 2793,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/circular buttons/video.png",
+      "outputSha256": "5cd6444db19a50464e7d6aab72ec074932ebf79dba54284cef161c2ad7f86d03",
+      "outputBytes": 2793
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Circular Buttons/videoJamming.png",
+      "sourceSha256": "4695fd61ba8c3c8ca91488e502da0d9cf4dadffe073080813509b77a19410dc0",
+      "sourceBytes": 3863,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/circular buttons/videojamming.png",
+      "outputSha256": "4695fd61ba8c3c8ca91488e502da0d9cf4dadffe073080813509b77a19410dc0",
+      "outputBytes": 3863
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Circular Buttons/videoMoving.png",
+      "sourceSha256": "07383268a77e2fcfa4759bd6d39ff4c9ae0507e0c9369b7e5677bfe06dc22335",
+      "sourceBytes": 4021,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/circular buttons/videomoving.png",
+      "outputSha256": "07383268a77e2fcfa4759bd6d39ff4c9ae0507e0c9369b7e5677bfe06dc22335",
+      "outputBytes": 4021
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Corner Buttons/jamwithothers.png",
+      "sourceSha256": "e234265ed83cfb6ab207cbed0364d996749c99300d9bbb77bf6ccb28fab2805d",
+      "sourceBytes": 1945,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/corner buttons/jamwithothers.png",
+      "outputSha256": "e234265ed83cfb6ab207cbed0364d996749c99300d9bbb77bf6ccb28fab2805d",
+      "outputBytes": 1945
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Corner Buttons/notjamming.png",
+      "sourceSha256": "7461b3e7e41cf6369b4206c0414f5a880b938885dfe601068fbc2fe6f211fca8",
+      "sourceBytes": 4799,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/corner buttons/notjamming.png",
+      "outputSha256": "7461b3e7e41cf6369b4206c0414f5a880b938885dfe601068fbc2fe6f211fca8",
+      "outputBytes": 4799
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Corner Buttons/pause.png",
+      "sourceSha256": "c525929cfd23edafad2762f6e920474870c0f054dd8f3976f59af72811b06cc4",
+      "sourceBytes": 756,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/corner buttons/pause.png",
+      "outputSha256": "c525929cfd23edafad2762f6e920474870c0f054dd8f3976f59af72811b06cc4",
+      "outputBytes": 756
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Corner Buttons/play.png",
+      "sourceSha256": "25998edf54bb4fa56ad0cb02fcdab5df0829c4d3cf88bf3fff1a5ae36fe1d799",
+      "sourceBytes": 1005,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/corner buttons/play.png",
+      "outputSha256": "25998edf54bb4fa56ad0cb02fcdab5df0829c4d3cf88bf3fff1a5ae36fe1d799",
+      "outputBytes": 1005
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Corner Buttons/record.png",
+      "sourceSha256": "299cf74bb67ab5ad783561c518b1751091e3204b4494a88983f634bb93450d9d",
+      "sourceBytes": 1174,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/corner buttons/record.png",
+      "outputSha256": "299cf74bb67ab5ad783561c518b1751091e3204b4494a88983f634bb93450d9d",
+      "outputBytes": 1174
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Corner Buttons/replay.png",
+      "sourceSha256": "4cdd588a1421ce24c830b8d7f3a322427c6b0359b6e19444f971fe24622f5f88",
+      "sourceBytes": 2388,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/corner buttons/replay.png",
+      "outputSha256": "4cdd588a1421ce24c830b8d7f3a322427c6b0359b6e19444f971fe24622f5f88",
+      "outputBytes": 2388
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Corner Buttons/stop.png",
+      "sourceSha256": "2b39ba3cb74fe2477d76313b91095333fa50a11577d046f8a31195f05f7e3fe4",
+      "sourceBytes": 449,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/corner buttons/stop.png",
+      "outputSha256": "2b39ba3cb74fe2477d76313b91095333fa50a11577d046f8a31195f05f7e3fe4",
+      "outputBytes": 449
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Jammers/single-jammer-blue.png",
+      "sourceSha256": "db1813e7d6cbb1d6806ab124003d8186d4770664f936c2a8064e24f28593edb2",
+      "sourceBytes": 1300,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/jammers/single-jammer-blue.png",
+      "outputSha256": "db1813e7d6cbb1d6806ab124003d8186d4770664f936c2a8064e24f28593edb2",
+      "outputBytes": 1300
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Jammers/single-jammer-green.png",
+      "sourceSha256": "ab8f6495fe427874a3e266daef738f008636f8509c186d5148518459274d6a0a",
+      "sourceBytes": 1273,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/jammers/single-jammer-green.png",
+      "outputSha256": "ab8f6495fe427874a3e266daef738f008636f8509c186d5148518459274d6a0a",
+      "outputBytes": 1273
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Jammers/single-jammer-grey.png",
+      "sourceSha256": "001cdcf224993e233306158600ff69fff62aa1f31b4cb3ef970f78c3fce229d1",
+      "sourceBytes": 1396,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/jammers/single-jammer-grey.png",
+      "outputSha256": "001cdcf224993e233306158600ff69fff62aa1f31b4cb3ef970f78c3fce229d1",
+      "outputBytes": 1396
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Jammers/single-jammer.png",
+      "sourceSha256": "429c2f4713e9f45f992bed8b6d361dfc92ee2211e44657f6a713d4a4de559a75",
+      "sourceBytes": 1335,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/jammers/single-jammer.png",
+      "outputSha256": "429c2f4713e9f45f992bed8b6d361dfc92ee2211e44657f6a713d4a4de559a75",
+      "outputBytes": 1335
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Notifying Sound Buttons/articulation.png",
+      "sourceSha256": "762cbf0bec5e254e0d048f8d6a33273b3bf4fafd97720ba70bdfb1dbb7a4a661",
+      "sourceBytes": 1629,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/notifying sound buttons/articulation.png",
+      "outputSha256": "762cbf0bec5e254e0d048f8d6a33273b3bf4fafd97720ba70bdfb1dbb7a4a661",
+      "outputBytes": 1629
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Notifying Sound Buttons/density.png",
+      "sourceSha256": "281f4d32a4d2d7403210c6ffcb2d2ee4044d8e3b11b0da5273fac1d36593d76c",
+      "sourceBytes": 1335,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/notifying sound buttons/density.png",
+      "outputSha256": "281f4d32a4d2d7403210c6ffcb2d2ee4044d8e3b11b0da5273fac1d36593d76c",
+      "outputBytes": 1335
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Notifying Sound Buttons/pitch.png",
+      "sourceSha256": "83a9cb6b69c7d6aab64b737d0a77b3e84dde0cce086e454a5ad70055c5710eeb",
+      "sourceBytes": 1926,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/notifying sound buttons/pitch.png",
+      "outputSha256": "83a9cb6b69c7d6aab64b737d0a77b3e84dde0cce086e454a5ad70055c5710eeb",
+      "outputBytes": 1926
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Notifying Sound Buttons/tempo.png",
+      "sourceSha256": "a84180f6934545cd59fdb0b76f8adf8e455e1de5991b3e6fba6c4a05f50ab10f",
+      "sourceBytes": 2043,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/notifying sound buttons/tempo.png",
+      "outputSha256": "a84180f6934545cd59fdb0b76f8adf8e455e1de5991b3e6fba6c4a05f50ab10f",
+      "outputBytes": 2043
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Notifying Sound Buttons/timbre.png",
+      "sourceSha256": "fdc16d1993ad90ae8e3cd57a87b0c6bb3964b6d2ee54cf9daa6563bf0b23442d",
+      "sourceBytes": 2310,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/notifying sound buttons/timbre.png",
+      "outputSha256": "fdc16d1993ad90ae8e3cd57a87b0c6bb3964b6d2ee54cf9daa6563bf0b23442d",
+      "outputBytes": 2310
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Notifying Sound Buttons/volume.png",
+      "sourceSha256": "c4a8b7d14328628e1ae6c3e0af684b47687fbef2e3509a4c70c9d7befd338528",
+      "sourceBytes": 1868,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/notifying sound buttons/volume.png",
+      "outputSha256": "c4a8b7d14328628e1ae6c3e0af684b47687fbef2e3509a4c70c9d7befd338528",
+      "outputBytes": 1868
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Notifying Visual Buttons/brightness.png",
+      "sourceSha256": "c6dd124c1f5fca11f594ec06a9faa48aa18230f505efaf9efde10259061069a4",
+      "sourceBytes": 2184,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/notifying visual buttons/brightness.png",
+      "outputSha256": "c6dd124c1f5fca11f594ec06a9faa48aa18230f505efaf9efde10259061069a4",
+      "outputBytes": 2184
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Notifying Visual Buttons/crossfade.png",
+      "sourceSha256": "cd2ce14db551fb0927dc68d4e7a00c430f23f6720315142d06e06dd2e50ea3e5",
+      "sourceBytes": 1458,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/notifying visual buttons/crossfade.png",
+      "outputSha256": "cd2ce14db551fb0927dc68d4e7a00c430f23f6720315142d06e06dd2e50ea3e5",
+      "outputBytes": 1458
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Notifying Visual Buttons/framerate.png",
+      "sourceSha256": "7d5fc40473b18329869fc157f018e47b2502e4c35c5b938e660a1bab0b46c2d6",
+      "sourceBytes": 2143,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/notifying visual buttons/framerate.png",
+      "outputSha256": "7d5fc40473b18329869fc157f018e47b2502e4c35c5b938e660a1bab0b46c2d6",
+      "outputBytes": 2143
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Notifying Visual Buttons/ghosting.png",
+      "sourceSha256": "8c95c52adff62c2f63409cfbf237ccbf1ad31a034382acbf5cf9acc167ca27d2",
+      "sourceBytes": 2419,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/notifying visual buttons/ghosting.png",
+      "outputSha256": "8c95c52adff62c2f63409cfbf237ccbf1ad31a034382acbf5cf9acc167ca27d2",
+      "outputBytes": 2419
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Notifying Visual Buttons/kaleidoscope.png",
+      "sourceSha256": "be7b2544cad01d52c351ce6b457044595902a2aa025a2c1435f2178209575f77",
+      "sourceBytes": 2333,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/notifying visual buttons/kaleidoscope.png",
+      "outputSha256": "be7b2544cad01d52c351ce6b457044595902a2aa025a2c1435f2178209575f77",
+      "outputBytes": 2333
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Notifying Visual Buttons/saturation.png",
+      "sourceSha256": "82f47ef9d09a9111d5cd710fe9d86a8cab5a304862722240e53090a21f439641",
+      "sourceBytes": 1378,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/notifying visual buttons/saturation.png",
+      "outputSha256": "82f47ef9d09a9111d5cd710fe9d86a8cab5a304862722240e53090a21f439641",
+      "outputBytes": 1378
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Room Selection/air.png",
+      "sourceSha256": "c8ca8bf24dba4a06f1efc9e8880cc3a02edca2715d7de9c9ca83a70d144488a3",
+      "sourceBytes": 19652,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/room selection/air.png",
+      "outputSha256": "c8ca8bf24dba4a06f1efc9e8880cc3a02edca2715d7de9c9ca83a70d144488a3",
+      "outputBytes": 19652
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Room Selection/background.png",
+      "sourceSha256": "063e8ae3991eb108c899ebbe3bfd9575d2300662607e11c0ae1a056879035059",
+      "sourceBytes": 11385,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/room selection/background.png",
+      "outputSha256": "063e8ae3991eb108c899ebbe3bfd9575d2300662607e11c0ae1a056879035059",
+      "outputBytes": 11385
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Room Selection/blue-button.png",
+      "sourceSha256": "14f63eaaeddf5c83086d710372bfc8d2accad37dcd8bf60a637efe91ac9a81eb",
+      "sourceBytes": 5107,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/room selection/blue-button.png",
+      "outputSha256": "14f63eaaeddf5c83086d710372bfc8d2accad37dcd8bf60a637efe91ac9a81eb",
+      "outputBytes": 5107
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Room Selection/camera.png",
+      "sourceSha256": "40b668488afc961f6e0bce2d71c503c63f3002e9c119dcc2b3ce5bc3b3860e4e",
+      "sourceBytes": 18515,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/room selection/camera.png",
+      "outputSha256": "40b668488afc961f6e0bce2d71c503c63f3002e9c119dcc2b3ce5bc3b3860e4e",
+      "outputBytes": 18515
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Room Selection/city.png",
+      "sourceSha256": "b8b48f64d3093dc5b25869f48ba2466d97f9815e39882817f1d1ebbd4d7bdd73",
+      "sourceBytes": 19088,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/room selection/city.png",
+      "outputSha256": "b8b48f64d3093dc5b25869f48ba2466d97f9815e39882817f1d1ebbd4d7bdd73",
+      "outputBytes": 19088
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Room Selection/cloud.png",
+      "sourceSha256": "616e447c761670b35c8b296f1fef68ca1eb2cc32349d9aa466235615c205a2d5",
+      "sourceBytes": 18505,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/room selection/cloud.png",
+      "outputSha256": "616e447c761670b35c8b296f1fef68ca1eb2cc32349d9aa466235615c205a2d5",
+      "outputBytes": 18505
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Room Selection/earth.png",
+      "sourceSha256": "54b05d4ca6055ec590dc65cc2164daff7696641593b6ecd9a2dc09610a9329e8",
+      "sourceBytes": 25840,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/room selection/earth.png",
+      "outputSha256": "54b05d4ca6055ec590dc65cc2164daff7696641593b6ecd9a2dc09610a9329e8",
+      "outputBytes": 25840
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Room Selection/green-button.png",
+      "sourceSha256": "6f95fc99c197035ef629e94613440e12372bd22df1bdf9e05051d066a398d429",
+      "sourceBytes": 4996,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/room selection/green-button.png",
+      "outputSha256": "6f95fc99c197035ef629e94613440e12372bd22df1bdf9e05051d066a398d429",
+      "outputBytes": 4996
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Room Selection/magenta-button.png",
+      "sourceSha256": "1a924480af2d09310fb4b7ebb0f1c846c72f6402d5b6e0d800690b2ce68b9795",
+      "sourceBytes": 4939,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/room selection/magenta-button.png",
+      "outputSha256": "1a924480af2d09310fb4b7ebb0f1c846c72f6402d5b6e0d800690b2ce68b9795",
+      "outputBytes": 4939
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Room Selection/orange-button.png",
+      "sourceSha256": "859556fd6d6a042fefb383bde2d3b1f55af445a0ce4e7db7ed614d050e6d6282",
+      "sourceBytes": 5001,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/room selection/orange-button.png",
+      "outputSha256": "859556fd6d6a042fefb383bde2d3b1f55af445a0ce4e7db7ed614d050e6d6282",
+      "outputBytes": 5001
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Room Selection/paperfold.png",
+      "sourceSha256": "0bef59828ae75c17e2b00dd4f8b31df94722601e0fca398e3038fadd29df3259",
+      "sourceBytes": 976,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/room selection/paperfold.png",
+      "outputSha256": "0bef59828ae75c17e2b00dd4f8b31df94722601e0fca398e3038fadd29df3259",
+      "outputBytes": 976
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Room Selection/purple-button.png",
+      "sourceSha256": "d2a42b2ac2cccf3b028b23ba4ed9e4a353becb2d67ad464345df1de3109501b7",
+      "sourceBytes": 4931,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/room selection/purple-button.png",
+      "outputSha256": "d2a42b2ac2cccf3b028b23ba4ed9e4a353becb2d67ad464345df1de3109501b7",
+      "outputBytes": 4931
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Room Selection/sea.png",
+      "sourceSha256": "946fd4f426a191083fc637b89c578622d13181e467fac4d642fc1c578eaa6753",
+      "sourceBytes": 27604,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/room selection/sea.png",
+      "outputSha256": "946fd4f426a191083fc637b89c578622d13181e467fac4d642fc1c578eaa6753",
+      "outputBytes": 27604
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Room Selection/sunshine.png",
+      "sourceSha256": "8fe959a97b59f574559cc936785987acccf16a8f667263c7e581dca1b7b8994a",
+      "sourceBytes": 14830,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/room selection/sunshine.png",
+      "outputSha256": "8fe959a97b59f574559cc936785987acccf16a8f667263c7e581dca1b7b8994a",
+      "outputBytes": 14830
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Room Selection/yellow-button.png",
+      "sourceSha256": "b36f1020f84408c7ae0d180896f6692cf8e2ba2f447c9d9082e537b8ec159639",
+      "sourceBytes": 4944,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/room selection/yellow-button.png",
+      "outputSha256": "b36f1020f84408c7ae0d180896f6692cf8e2ba2f447c9d9082e537b8ec159639",
+      "outputBytes": 4944
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Selected Corner Buttons/jamwithothers.png",
+      "sourceSha256": "ed6552ef4636a8708289394bd2d71300873b1ac1f4adce7413a9c5ad12e99a61",
+      "sourceBytes": 1907,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/selected corner buttons/jamwithothers.png",
+      "outputSha256": "ed6552ef4636a8708289394bd2d71300873b1ac1f4adce7413a9c5ad12e99a61",
+      "outputBytes": 1907
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Selected Corner Buttons/pause.png",
+      "sourceSha256": "1ce3253f34da7384273107d2b997175a471c172a2643b1e236ef21e45bebdb73",
+      "sourceBytes": 935,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/selected corner buttons/pause.png",
+      "outputSha256": "1ce3253f34da7384273107d2b997175a471c172a2643b1e236ef21e45bebdb73",
+      "outputBytes": 935
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Selected Corner Buttons/play.png",
+      "sourceSha256": "6abe304688a4dcaa7a4aa2fa590569387e506a4e6a1ee0a8b52b29b77d7da44f",
+      "sourceBytes": 972,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/selected corner buttons/play.png",
+      "outputSha256": "6abe304688a4dcaa7a4aa2fa590569387e506a4e6a1ee0a8b52b29b77d7da44f",
+      "outputBytes": 972
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Selected Corner Buttons/record.png",
+      "sourceSha256": "8e8a7923b4966367ba50ffb39b0880a945402646a796a6b49c11108f303b0fdb",
+      "sourceBytes": 1179,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/selected corner buttons/record.png",
+      "outputSha256": "8e8a7923b4966367ba50ffb39b0880a945402646a796a6b49c11108f303b0fdb",
+      "outputBytes": 1179
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Selected Corner Buttons/replay.png",
+      "sourceSha256": "e0ea962adf4b0adb47c4ce6998b4965259d4c0872dbb69b3564665a7b8aa08bd",
+      "sourceBytes": 2341,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/selected corner buttons/replay.png",
+      "outputSha256": "e0ea962adf4b0adb47c4ce6998b4965259d4c0872dbb69b3564665a7b8aa08bd",
+      "outputBytes": 2341
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Selected Corner Buttons/stop.png",
+      "sourceSha256": "2b05248b0e2a7041e484ed989eed2b967c16d0e7f939bcb9d396a916e92899fc",
+      "sourceBytes": 460,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/selected corner buttons/stop.png",
+      "outputSha256": "2b05248b0e2a7041e484ed989eed2b967c16d0e7f939bcb9d396a916e92899fc",
+      "outputBytes": 460
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Selected Sound Buttons/articulation.png",
+      "sourceSha256": "409901f4df17b7f37c2ed7580e6f0ad64cee972e0cb483c0896957fe55adb587",
+      "sourceBytes": 720,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/selected sound buttons/articulation.png",
+      "outputSha256": "409901f4df17b7f37c2ed7580e6f0ad64cee972e0cb483c0896957fe55adb587",
+      "outputBytes": 720
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Selected Sound Buttons/density.png",
+      "sourceSha256": "8b9e8e82d823a75b7e40b4117c325546f2484bb9f0628428e415fbd5c28e5292",
+      "sourceBytes": 389,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/selected sound buttons/density.png",
+      "outputSha256": "8b9e8e82d823a75b7e40b4117c325546f2484bb9f0628428e415fbd5c28e5292",
+      "outputBytes": 389
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Selected Sound Buttons/pitch.png",
+      "sourceSha256": "c8686124f890f1020cf55c677ca1c74d0942e26330635ee1d864d59804eb50c1",
+      "sourceBytes": 971,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/selected sound buttons/pitch.png",
+      "outputSha256": "c8686124f890f1020cf55c677ca1c74d0942e26330635ee1d864d59804eb50c1",
+      "outputBytes": 971
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Selected Sound Buttons/tempo.png",
+      "sourceSha256": "89a47b9f145b0b6e310826822dc4a2cf4f59ca8eb76d0383ca7f5178ed72a5f2",
+      "sourceBytes": 1120,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/selected sound buttons/tempo.png",
+      "outputSha256": "89a47b9f145b0b6e310826822dc4a2cf4f59ca8eb76d0383ca7f5178ed72a5f2",
+      "outputBytes": 1120
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Selected Sound Buttons/timbre.png",
+      "sourceSha256": "0fe337b94c60ad7a7cc68f7da6221a8ceacf5aa3d7044629a6771b97d9ea8040",
+      "sourceBytes": 1279,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/selected sound buttons/timbre.png",
+      "outputSha256": "0fe337b94c60ad7a7cc68f7da6221a8ceacf5aa3d7044629a6771b97d9ea8040",
+      "outputBytes": 1279
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Selected Sound Buttons/volume.png",
+      "sourceSha256": "ea9a5f165619d06d72937d50f605fae087f4c7af75d545df4ab706bf2272a7ee",
+      "sourceBytes": 869,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/selected sound buttons/volume.png",
+      "outputSha256": "ea9a5f165619d06d72937d50f605fae087f4c7af75d545df4ab706bf2272a7ee",
+      "outputBytes": 869
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Selected Visual Buttons/brightness.png",
+      "sourceSha256": "67757d759c227c17c8830b5342eb88df7d00cf1554a1aba366595e06bea0d9e8",
+      "sourceBytes": 1186,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/selected visual buttons/brightness.png",
+      "outputSha256": "67757d759c227c17c8830b5342eb88df7d00cf1554a1aba366595e06bea0d9e8",
+      "outputBytes": 1186
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Selected Visual Buttons/crossfade.png",
+      "sourceSha256": "2de4b232978d76899db1353b858b640cdfbf871f9aa1694f72aa87098248d95f",
+      "sourceBytes": 449,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/selected visual buttons/crossfade.png",
+      "outputSha256": "2de4b232978d76899db1353b858b640cdfbf871f9aa1694f72aa87098248d95f",
+      "outputBytes": 449
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Selected Visual Buttons/framerate.png",
+      "sourceSha256": "ae6b25e2dc46f52f982842714f1f69341a3e1213a23bba1c49a07db7544e411a",
+      "sourceBytes": 1163,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/selected visual buttons/framerate.png",
+      "outputSha256": "ae6b25e2dc46f52f982842714f1f69341a3e1213a23bba1c49a07db7544e411a",
+      "outputBytes": 1163
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Selected Visual Buttons/ghosting.png",
+      "sourceSha256": "79295af9c5f80d4634dac50f5fb4fa0c9066d54fe1b0cc49792b6652a1e2775f",
+      "sourceBytes": 1500,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/selected visual buttons/ghosting.png",
+      "outputSha256": "79295af9c5f80d4634dac50f5fb4fa0c9066d54fe1b0cc49792b6652a1e2775f",
+      "outputBytes": 1500
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Selected Visual Buttons/kaleidoscope.png",
+      "sourceSha256": "39841dc8b27f371011511087bbc2340fc462d13c11593d7cd6bae714dbab1402",
+      "sourceBytes": 1382,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/selected visual buttons/kaleidoscope.png",
+      "outputSha256": "39841dc8b27f371011511087bbc2340fc462d13c11593d7cd6bae714dbab1402",
+      "outputBytes": 1382
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Selected Visual Buttons/saturation.png",
+      "sourceSha256": "a089299df17cfd0ef837eebc5aa7152b2e3449ecd61d7946994b27e91dab47ec",
+      "sourceBytes": 426,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/selected visual buttons/saturation.png",
+      "outputSha256": "a089299df17cfd0ef837eebc5aa7152b2e3449ecd61d7946994b27e91dab47ec",
+      "outputBytes": 426
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Sound Buttons/articulation.png",
+      "sourceSha256": "b8d14ce7cd768c9badec2eb612d36c993039234604ac64f9098ceb1d4dd619f1",
+      "sourceBytes": 713,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/sound buttons/articulation.png",
+      "outputSha256": "b8d14ce7cd768c9badec2eb612d36c993039234604ac64f9098ceb1d4dd619f1",
+      "outputBytes": 713
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Sound Buttons/density.png",
+      "sourceSha256": "5be93b00c3c3ab1d97df1fa0d900f92397e0c11e678d7325ed9ea9c68a8a9108",
+      "sourceBytes": 386,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/sound buttons/density.png",
+      "outputSha256": "5be93b00c3c3ab1d97df1fa0d900f92397e0c11e678d7325ed9ea9c68a8a9108",
+      "outputBytes": 386
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Sound Buttons/pitch.png",
+      "sourceSha256": "fe73abd4cc12721c89d6aefeab6c383280454a0adb612e4862506dbf97908f68",
+      "sourceBytes": 965,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/sound buttons/pitch.png",
+      "outputSha256": "fe73abd4cc12721c89d6aefeab6c383280454a0adb612e4862506dbf97908f68",
+      "outputBytes": 965
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Sound Buttons/tempo.png",
+      "sourceSha256": "25ec01d2ccd70f6f3f3ed1f1671b04a338b938a6d34abc1c3fba41aebd087637",
+      "sourceBytes": 1103,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/sound buttons/tempo.png",
+      "outputSha256": "25ec01d2ccd70f6f3f3ed1f1671b04a338b938a6d34abc1c3fba41aebd087637",
+      "outputBytes": 1103
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Sound Buttons/timbre.png",
+      "sourceSha256": "ef2fdfa65c6c5ae7e5819c7a04a1ad7d67114ff86c6f4f9540f4dc777ed8747b",
+      "sourceBytes": 1273,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/sound buttons/timbre.png",
+      "outputSha256": "ef2fdfa65c6c5ae7e5819c7a04a1ad7d67114ff86c6f4f9540f4dc777ed8747b",
+      "outputBytes": 1273
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Sound Buttons/volume.png",
+      "sourceSha256": "c0351f070f8b868a5eac99c522241370c459ec41e4e5e59a73c83b35f4d1d8eb",
+      "sourceBytes": 861,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/sound buttons/volume.png",
+      "outputSha256": "c0351f070f8b868a5eac99c522241370c459ec41e4e5e59a73c83b35f4d1d8eb",
+      "outputBytes": 861
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Visual Buttons/brightness.png",
+      "sourceSha256": "a3b3bd7ab7241afa6a7ca1b71077ac6fbb71907f131668bcc4ba5d57b8280626",
+      "sourceBytes": 1102,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/visual buttons/brightness.png",
+      "outputSha256": "a3b3bd7ab7241afa6a7ca1b71077ac6fbb71907f131668bcc4ba5d57b8280626",
+      "outputBytes": 1102
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Visual Buttons/crossfade.png",
+      "sourceSha256": "cac80eab604da0ee9573ba5264b2e57c4957c0d4d9cfd2306fd083d98183a568",
+      "sourceBytes": 430,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/visual buttons/crossfade.png",
+      "outputSha256": "cac80eab604da0ee9573ba5264b2e57c4957c0d4d9cfd2306fd083d98183a568",
+      "outputBytes": 430
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Visual Buttons/framerate.png",
+      "sourceSha256": "88f9f15bcd56d13664f8f459c8503c67d5607e746ae550948c8687398f664060",
+      "sourceBytes": 1061,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/visual buttons/framerate.png",
+      "outputSha256": "88f9f15bcd56d13664f8f459c8503c67d5607e746ae550948c8687398f664060",
+      "outputBytes": 1061
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Visual Buttons/ghosting.png",
+      "sourceSha256": "3ec2eebd22a0a45946782dfc687385411be9daf0f8c47893ebe22618878fe206",
+      "sourceBytes": 1379,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/visual buttons/ghosting.png",
+      "outputSha256": "3ec2eebd22a0a45946782dfc687385411be9daf0f8c47893ebe22618878fe206",
+      "outputBytes": 1379
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Visual Buttons/kaleidoscope.png",
+      "sourceSha256": "c33f1fea2bfb89f7b5e0e13b29b4d9babf6591fa8787a83af0636acc84ef7f33",
+      "sourceBytes": 1271,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/visual buttons/kaleidoscope.png",
+      "outputSha256": "c33f1fea2bfb89f7b5e0e13b29b4d9babf6591fa8787a83af0636acc84ef7f33",
+      "outputBytes": 1271
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/Visual Buttons/saturation.png",
+      "sourceSha256": "44cbae95b8107bf2df7613e74d26855fc193bab374a4b82444d96375b20126ae",
+      "sourceBytes": 406,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/visual buttons/saturation.png",
+      "outputSha256": "44cbae95b8107bf2df7613e74d26855fc193bab374a4b82444d96375b20126ae",
+      "outputBytes": 406
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "images/XArtLogoTransp.png",
+      "sourceSha256": "18702ed70ff843d196daefcb43fddd90e2f3354dee62680ac87b333b20d0e5c1",
+      "sourceBytes": 71382,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "av/images/xartlogotransp.png",
+      "outputSha256": "18702ed70ff843d196daefcb43fddd90e2f3354dee62680ac87b333b20d0e5c1",
+      "outputBytes": 71382
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "Movies/City-short.mov",
+      "sourceSha256": "5c91ed645b1afce49092d4cb0329fceead32253594fb653e1ca0f7e5b2aba3c6",
+      "sourceBytes": 381714,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "av/movies/city-short.mp4",
+      "outputSha256": "ff6a99bdbe9337e9fbab72b95f9dbbf9b8a9bef138bfc505bed88f60a8fd6f9f",
+      "outputBytes": 156559,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mpeg4",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "2.531600"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "2.579200"
+        }
+      }
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "Movies/Fire-short.mov",
+      "sourceSha256": "d4cb874bc1de45065b0b2cc51d23aef10921c7514151958e5d102dc0e07889fc",
+      "sourceBytes": 568197,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "av/movies/fire-short.mp4",
+      "outputSha256": "b44fe685a28f2b81968a8ae530c11189b846986875c516aa667e8cfbbceecf57",
+      "outputBytes": 336168,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mpeg4",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "5.590000"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "5.657600"
+        }
+      }
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "Movies/Nature-short.mov",
+      "sourceSha256": "1f2bc93499e80b2724df50e8c352221d996181082e37aee0a32c0691be844088",
+      "sourceBytes": 1408377,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "av/movies/nature-short.mp4",
+      "outputSha256": "669f81a35efa210d5ac432df7385813d0626fd773dbfbbab26874daa325fca07",
+      "outputBytes": 305051,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mpeg4",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "duration": "5.631667"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "duration": "5.666667"
+        }
+      }
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "Movies/butterfly-short.mov",
+      "sourceSha256": "236559dc2397d62d92e7826ffbb7421f9385ad7c8fb11a83f421f0fe78009cf6",
+      "sourceBytes": 1381387,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "av/movies/butterfly-short.mp4",
+      "outputSha256": "211befcf97b6a871ebb0a9bfd41901ec43866f8bad6f0e3e6db340cdc6561c4f",
+      "outputBytes": 541379,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mpeg4",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "duration": "5.390000"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "duration": "5.416667"
+        }
+      }
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "Movies/clouds-short.mov",
+      "sourceSha256": "874b85676031f5f4f89a61590e63657f717bc30d1c19bcbb28fe60dbb8c2fa57",
+      "sourceBytes": 591259,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "av/movies/clouds-short.mp4",
+      "outputSha256": "b16a2e46366dc25153e32b2e8521b303aa8ef8393fa69f79c172451df30ed2b8",
+      "outputBytes": 215406,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mpeg4",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "5.013200"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "5.075200"
+        }
+      }
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "Movies/people-short.mov",
+      "sourceSha256": "d4063809562bbef7c1cefab864ad24083095dba8b6ad68cf426c9281da50a3db",
+      "sourceBytes": 441372,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "av/movies/people-short.mp4",
+      "outputSha256": "cb0c35997f53a269dbebe30b313247e286a285ff7a13652f3a95712ca8e7a49d",
+      "outputBytes": 238931,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mpeg4",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "4.498400"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "4.576000"
+        }
+      }
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "Movies/ripple-short.mov",
+      "sourceSha256": "d5091f6fa562a32fc2fe2a9705c1b98c7921b02a900e2cf9ac093d914b739ebd",
+      "sourceBytes": 823337,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "av/movies/ripple-short.mp4",
+      "outputSha256": "bf840dd7dce3f1985746d6fc901858c985c2e856679ceccdd7b9c32cdc1b27a3",
+      "outputBytes": 368581,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mpeg4",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "7.413200"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "7.488000"
+        }
+      }
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "Movies/static-short.mov",
+      "sourceSha256": "196b6469ec294eb08d9d9f5719e0f1c8b6184e087204b9018a6567b252b51a4c",
+      "sourceBytes": 1113414,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "av/movies/static-short.mp4",
+      "outputSha256": "6d6e1b3cdc3d8ea456dc52ddf5c813abe6e33216115b953f007db7d25433cc53",
+      "outputBytes": 475713,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mpeg4",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "duration": "5.468333"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "duration": "5.500000"
+        }
+      }
+    },
+    {
+      "sourceVersion": "av",
+      "originalPath": "Movies/water-short.mov",
+      "sourceSha256": "387d1b0f34837e70c61ea19d05010da79fcb543f5b9d1448434e2f3c242948da",
+      "sourceBytes": 1362534,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "av/movies/water-short.mp4",
+      "outputSha256": "29f964b2b605eeabfd9102db4eea08c93cfb5d9c859ce1055789106db923de16",
+      "outputBytes": 579142,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mpeg4",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "7.610000"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "7.654400"
+        }
+      }
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air-miditrax.scm",
+      "sourceSha256": "251140fafda93124193394bd12659f11286a26b58820af2ea0487a610145f18c",
+      "sourceBytes": 7785,
+      "transformation": "read Scheme scene configuration",
+      "output": "scenes/skolan-air.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air-graph.scm",
+      "sourceSha256": "bf7ad94554a51f196372274c998192cf3fd695e953e95039b09cd04be5cd4c48",
+      "sourceBytes": 5636,
+      "transformation": "read Scheme graph configuration",
+      "output": "scenes/skolan-air.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_pad_full.mid",
+      "sourceSha256": "d395c9ff6e33ba1932e67c6b5fadfdc4f484a4c74ad9b9945f4972b1851d363a",
+      "sourceBytes": 412,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-air.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_pad_medium.mid",
+      "sourceSha256": "39172380d33771dcd8f3e1905117c75a7f9a2e7702205739642ca159a1b92598",
+      "sourceBytes": 329,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-air.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_pad_light.mid",
+      "sourceSha256": "29ce4c7f4a5232eeec91e75cb99f0df906984799e233f1af8481aa38475313f2",
+      "sourceBytes": 186,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-air.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_keys_full.mid",
+      "sourceSha256": "cf21b64c611557261737125d35f851faa9af5cadce93259dcf29a17b6349e516",
+      "sourceBytes": 4799,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-air.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_keys_medium.mid",
+      "sourceSha256": "625ee74735a661843ad539a35c2660726f1af58bac6e837c3f4d5e0ca6bcca85",
+      "sourceBytes": 1108,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-air.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_keys_light.mid",
+      "sourceSha256": "29cd891a7affd68324c07c47a8b8da20814614d264704d4aa4b50e2e1b9d370a",
+      "sourceBytes": 353,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-air.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_drums_full.mid",
+      "sourceSha256": "beb1eea3502d5c610e2ccca5c973db38f299c2302799ed3209578fd779b6dd85",
+      "sourceBytes": 8599,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose -12; velocities and durations retained",
+      "output": "scenes/skolan-air.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_drums_medium.mid",
+      "sourceSha256": "75bd63ca43fa7d2bdfef2d82fb742405dcbebc52c85919ce6f5b739a71a235c9",
+      "sourceBytes": 5149,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose -12; velocities and durations retained",
+      "output": "scenes/skolan-air.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_drums_light.mid",
+      "sourceSha256": "3c0ecb0ed66978ce07af11fea377c845e2d971b99a0bb7a8f232d638928c6ef2",
+      "sourceBytes": 1529,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose -12; velocities and durations retained",
+      "output": "scenes/skolan-air.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_bass_full.mid",
+      "sourceSha256": "2bbb58bebac5f8e07cacabd4bbbb35f8fa164f48ae519452c8be334beccc9a8f",
+      "sourceBytes": 1111,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-air.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_bass_medium.mid",
+      "sourceSha256": "e3cf639b1d37bad3662d6387c4672ee620eea2c549332dd26492307574fe11e5",
+      "sourceBytes": 443,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-air.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_bass_light.mid",
+      "sourceSha256": "65bf9439e307e8ddf84bfee8dd698097aa6fb9e66308be6b6f98b462fb8e4aee",
+      "sourceBytes": 329,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-air.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/city/city-miditrax.scm",
+      "sourceSha256": "c055ed3e9c9d87148619d966a09630dc5523cea072b2f94511966d96e790d488",
+      "sourceBytes": 7924,
+      "transformation": "read Scheme scene configuration",
+      "output": "scenes/skolan-city.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/city/city-graph.scm",
+      "sourceSha256": "a1da92d70f0b0635c10610b7a5a302fbe81112eaa835397f7291151f9a8c25ee",
+      "sourceBytes": 6262,
+      "transformation": "read Scheme graph configuration",
+      "output": "scenes/skolan-city.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-pads-full.mid",
+      "sourceSha256": "421a94614c411a5c3e7d5c2435c8f9e4bc11727831456a57a5dc167f446b8a9a",
+      "sourceBytes": 1075,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-city.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-pads-medium.mid",
+      "sourceSha256": "9798b49355e0a48df27837ab615339cf1ff06615444072643f1e6d7fc2b1ab55",
+      "sourceBytes": 250,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-city.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-pads-light.mid",
+      "sourceSha256": "bcc4d724753c7728dfd9fd03861500ea67321a83daf08f0e11068b755446f2c6",
+      "sourceBytes": 153,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-city.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-keys-full.mid",
+      "sourceSha256": "a4a51bd88cedaa5e22046775d411884e544194a2c8e20bbdf31dd75fdd705c8f",
+      "sourceBytes": 635,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-city.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-keys-medium.mid",
+      "sourceSha256": "40f14c04995361abe17d5a54b7c3339426de5dd5d929ff5584dd9f3369ea0dca",
+      "sourceBytes": 359,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-city.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-keys-light.mid",
+      "sourceSha256": "cfbf499b8bd8e6e8496a11d8ea6744ff41dfc8dfb2ff2be707e574fd78b76650",
+      "sourceBytes": 258,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-city.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-drums-full.mid",
+      "sourceSha256": "6ac1ad3f0754800c361d98ef86e711e69c9e979949f6676225596e4ea732e726",
+      "sourceBytes": 1952,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose -12; velocities and durations retained",
+      "output": "scenes/skolan-city.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-drums-medium.mid",
+      "sourceSha256": "10b12adbe0dc920c1b7140c3e4494239d98eca6c6cb27bf89bcca2c7940b6887",
+      "sourceBytes": 902,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose -12; velocities and durations retained",
+      "output": "scenes/skolan-city.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-drums-light.mid",
+      "sourceSha256": "23421ba4f5e7146129ef25697ee2a46afc0b7f682de0d6032ada15a9cf39e2bb",
+      "sourceBytes": 571,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose -12; velocities and durations retained",
+      "output": "scenes/skolan-city.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-bass-full.mid",
+      "sourceSha256": "d364a1f95c65f1aca38a0df89c07468ce58b377a2df3079ba9c0dd7d5eeb169b",
+      "sourceBytes": 335,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-city.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-bass-medium.mid",
+      "sourceSha256": "621b656f0d584fd2d9528fca9434fa5651644593996dc0e0615299dba666b3c7",
+      "sourceBytes": 306,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-city.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/city/city_MIDI_Files/DanceMusic1-bass-light.mid",
+      "sourceSha256": "44747f35d39bfe3b63bcb7c3b8e1d29408569bd12ce011c35cef27d37205c9eb",
+      "sourceBytes": 220,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-city.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/cloud/cloud-miditrax.scm",
+      "sourceSha256": "1e81772855986afc67c8c7e46b2720918b56393807247dc172b7dde219719494",
+      "sourceBytes": 8583,
+      "transformation": "read Scheme scene configuration",
+      "output": "scenes/skolan-cloud.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/cloud/cloud-graph.scm",
+      "sourceSha256": "a8ce2ee81e858201384084780839733efc0a4a4426e73c9ff3f74864109951fa",
+      "sourceBytes": 5097,
+      "transformation": "read Scheme graph configuration",
+      "output": "scenes/skolan-cloud.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mellow_atmos_full.mid",
+      "sourceSha256": "6e523b01231f527bed00736d0a84beadb78a2e07e59f7a88753436d68cf0f918",
+      "sourceBytes": 375,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-cloud.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mellow_atmos_medium.mid",
+      "sourceSha256": "d886745e13246895a75bcc826db4a09cd3e669a48efce3c7b5367f34bac152ec",
+      "sourceBytes": 377,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-cloud.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mellow_atmos_light.mid",
+      "sourceSha256": "ff672cf959fd3c6a6f9ef1eb58549ae3680b8837f94f420ddbbc8c525de6dc76",
+      "sourceBytes": 296,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-cloud.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_flute_full.mid",
+      "sourceSha256": "009c89c7eaaede39ddd60a3f10142da32144f68a9c00b4a93de702a1c42fc684",
+      "sourceBytes": 1779,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-cloud.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_flute_medium.mid",
+      "sourceSha256": "241700fe962a6ab5219db3397ad9e9b80630d1802b66f642f29e1940a6739aad",
+      "sourceBytes": 1276,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-cloud.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_flute_light.mid",
+      "sourceSha256": "8a76ab5c45c3b10feb0f94095d5579c2be4ba34a311ae50fd13ec253de0ec10e",
+      "sourceBytes": 589,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-cloud.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_drums_full.mid",
+      "sourceSha256": "0d319fdaa9c67a591e8a484d2ffc776fbb86fd073ff55915a755fd1489e7d815",
+      "sourceBytes": 3805,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose -12; velocities and durations retained",
+      "output": "scenes/skolan-cloud.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_drums_medium.mid",
+      "sourceSha256": "6edb645acde2089b3a222908f458b4edfbfe46f1a0a0333ab81890eeeba882a9",
+      "sourceBytes": 3326,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose -12; velocities and durations retained",
+      "output": "scenes/skolan-cloud.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_drums_light.mid",
+      "sourceSha256": "91e3953e1765d20fc70cfa46781ff956e16bf9c9ceaa9bfdda0d4e3e2af1552a",
+      "sourceBytes": 2349,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose -12; velocities and durations retained",
+      "output": "scenes/skolan-cloud.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_bass_full.mid",
+      "sourceSha256": "1dc53a638a3c038e2b9fc2e9c424cb6ec5998723da7cdd6dce3401fbabf19917",
+      "sourceBytes": 1626,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-cloud.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_bass_medium.mid",
+      "sourceSha256": "678878d903d0320d89a426d9f892d039054f3fc9f302806e6795074d41023d02",
+      "sourceBytes": 1126,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-cloud.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/cloud/cloud_MIDI_Files/mello_bass_light.mid",
+      "sourceSha256": "0c77e4b8e3cd5d53d2639ac76eddac50316d8e7d1d6e78de60e041407335255d",
+      "sourceBytes": 674,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-cloud.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/earth/earth-miditrax.scm",
+      "sourceSha256": "afe3639de05e21efad7ee654386dc5695ed85c73332b3a64536783270c7ea0a9",
+      "sourceBytes": 7823,
+      "transformation": "read Scheme scene configuration",
+      "output": "scenes/skolan-earth.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/earth/earth-graph.scm",
+      "sourceSha256": "98d5d5d8781a60ce3c5a5fdfcd83d9d4c6e0c3651b9e647ded702c6afd1244be",
+      "sourceBytes": 5717,
+      "transformation": "read Scheme graph configuration",
+      "output": "scenes/skolan-earth.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_pad_full.mid",
+      "sourceSha256": "d395c9ff6e33ba1932e67c6b5fadfdc4f484a4c74ad9b9945f4972b1851d363a",
+      "sourceBytes": 412,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-earth.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_pad_medium.mid",
+      "sourceSha256": "39172380d33771dcd8f3e1905117c75a7f9a2e7702205739642ca159a1b92598",
+      "sourceBytes": 329,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-earth.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_pad_light.mid",
+      "sourceSha256": "29ce4c7f4a5232eeec91e75cb99f0df906984799e233f1af8481aa38475313f2",
+      "sourceBytes": 186,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-earth.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_keys_full.mid",
+      "sourceSha256": "cf21b64c611557261737125d35f851faa9af5cadce93259dcf29a17b6349e516",
+      "sourceBytes": 4799,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-earth.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_keys_medium.mid",
+      "sourceSha256": "625ee74735a661843ad539a35c2660726f1af58bac6e837c3f4d5e0ca6bcca85",
+      "sourceBytes": 1108,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-earth.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_keys_light.mid",
+      "sourceSha256": "29cd891a7affd68324c07c47a8b8da20814614d264704d4aa4b50e2e1b9d370a",
+      "sourceBytes": 353,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-earth.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_drums_full.mid",
+      "sourceSha256": "beb1eea3502d5c610e2ccca5c973db38f299c2302799ed3209578fd779b6dd85",
+      "sourceBytes": 8599,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose -12; velocities and durations retained",
+      "output": "scenes/skolan-earth.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_drums_medium.mid",
+      "sourceSha256": "75bd63ca43fa7d2bdfef2d82fb742405dcbebc52c85919ce6f5b739a71a235c9",
+      "sourceBytes": 5149,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose -12; velocities and durations retained",
+      "output": "scenes/skolan-earth.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_drums_light.mid",
+      "sourceSha256": "3c0ecb0ed66978ce07af11fea377c845e2d971b99a0bb7a8f232d638928c6ef2",
+      "sourceBytes": 1529,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose -12; velocities and durations retained",
+      "output": "scenes/skolan-earth.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_bass_full.mid",
+      "sourceSha256": "2bbb58bebac5f8e07cacabd4bbbb35f8fa164f48ae519452c8be334beccc9a8f",
+      "sourceBytes": 1111,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-earth.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_bass_medium.mid",
+      "sourceSha256": "e3cf639b1d37bad3662d6387c4672ee620eea2c549332dd26492307574fe11e5",
+      "sourceBytes": 443,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-earth.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/air/air_MIDI_Files/dnb_bass_light.mid",
+      "sourceSha256": "65bf9439e307e8ddf84bfee8dd698097aa6fb9e66308be6b6f98b462fb8e4aee",
+      "sourceBytes": 329,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-earth.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sea/sea-miditrax.scm",
+      "sourceSha256": "a463a5604599fd55fc26b5b583ed68abfceb8db906a27ce639527731e6d99137",
+      "sourceBytes": 7872,
+      "transformation": "read Scheme scene configuration",
+      "output": "scenes/skolan-sea.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sea/sea-graph.scm",
+      "sourceSha256": "acf14f6cb4a428d8035f95b08c4674288bac37a4a08792cc488598b378499dcf",
+      "sourceBytes": 6337,
+      "transformation": "read Scheme graph configuration",
+      "output": "scenes/skolan-sea.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/DanceMusic1-pads-full.mid",
+      "sourceSha256": "421a94614c411a5c3e7d5c2435c8f9e4bc11727831456a57a5dc167f446b8a9a",
+      "sourceBytes": 1075,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sea.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/DanceMusic1-pads-medium.mid",
+      "sourceSha256": "9798b49355e0a48df27837ab615339cf1ff06615444072643f1e6d7fc2b1ab55",
+      "sourceBytes": 250,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sea.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/DanceMusic1-pads-light.mid",
+      "sourceSha256": "bcc4d724753c7728dfd9fd03861500ea67321a83daf08f0e11068b755446f2c6",
+      "sourceBytes": 153,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sea.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/DanceMusic1-keys-full.mid",
+      "sourceSha256": "a4a51bd88cedaa5e22046775d411884e544194a2c8e20bbdf31dd75fdd705c8f",
+      "sourceBytes": 635,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sea.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/DanceMusic1-keys-medium.mid",
+      "sourceSha256": "40f14c04995361abe17d5a54b7c3339426de5dd5d929ff5584dd9f3369ea0dca",
+      "sourceBytes": 359,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sea.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/DanceMusic1-keys-light.mid",
+      "sourceSha256": "cfbf499b8bd8e6e8496a11d8ea6744ff41dfc8dfb2ff2be707e574fd78b76650",
+      "sourceBytes": 258,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sea.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/DanceMusic1-drums-full.mid",
+      "sourceSha256": "6ac1ad3f0754800c361d98ef86e711e69c9e979949f6676225596e4ea732e726",
+      "sourceBytes": 1952,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose -12; velocities and durations retained",
+      "output": "scenes/skolan-sea.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/DanceMusic1-drums-medium.mid",
+      "sourceSha256": "10b12adbe0dc920c1b7140c3e4494239d98eca6c6cb27bf89bcca2c7940b6887",
+      "sourceBytes": 902,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose -12; velocities and durations retained",
+      "output": "scenes/skolan-sea.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/DanceMusic1-drums-light.mid",
+      "sourceSha256": "23421ba4f5e7146129ef25697ee2a46afc0b7f682de0d6032ada15a9cf39e2bb",
+      "sourceBytes": 571,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose -12; velocities and durations retained",
+      "output": "scenes/skolan-sea.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/DanceMusic1-bass-full.mid",
+      "sourceSha256": "d364a1f95c65f1aca38a0df89c07468ce58b377a2df3079ba9c0dd7d5eeb169b",
+      "sourceBytes": 335,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sea.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/DanceMusic1-bass-medium.mid",
+      "sourceSha256": "621b656f0d584fd2d9528fca9434fa5651644593996dc0e0615299dba666b3c7",
+      "sourceBytes": 306,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sea.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sea/sea_MIDI_Files/DanceMusic1-bass-light.mid",
+      "sourceSha256": "44747f35d39bfe3b63bcb7c3b8e1d29408569bd12ce011c35cef27d37205c9eb",
+      "sourceBytes": 220,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sea.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sunshine/sunshine-miditrax.scm",
+      "sourceSha256": "9e2de836faf3f1f1a9d245b5ba2de5a23c333a7a0c50196fda676ea33f6ab687",
+      "sourceBytes": 7639,
+      "transformation": "read Scheme scene configuration",
+      "output": "scenes/skolan-sunshine.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sunshine/sunshine-graph.scm",
+      "sourceSha256": "1b49f0d426ab6a84bdbd9e2ec6d31885e2409c7fbf8f36ac70e7b3a0ecf348f0",
+      "sourceBytes": 5065,
+      "transformation": "read Scheme graph configuration",
+      "output": "scenes/skolan-sunshine.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-Organ-full.mid",
+      "sourceSha256": "f5469868fcf5d66345edbef8c65f2d744098d7c4f3669886d92ee8c111b0bf86",
+      "sourceBytes": 1923,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sunshine.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-Organ-medium.mid",
+      "sourceSha256": "5c7cc715feac63b9c9354bc060b2f027a4a1dede46526ee3a0436b913914e474",
+      "sourceBytes": 1638,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sunshine.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-Organ-light.mid",
+      "sourceSha256": "8dbf0c0aa90d4ebd3d9461a57f526cacf173d6af077e1563edccc13cdf82445a",
+      "sourceBytes": 1326,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sunshine.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-WestSideLead-full.mid",
+      "sourceSha256": "f1b6fc785dac1c8cc933777ea8ede0ae43e4399008dcec6997aebf36b19ab24f",
+      "sourceBytes": 1649,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sunshine.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-WestSideLead-medium.mid",
+      "sourceSha256": "2474147af6d72786c771ce7107b4f96c86560b51852b9674377415be3c04a534",
+      "sourceBytes": 1653,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sunshine.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-WestSideLead-light.mid",
+      "sourceSha256": "ee7ecd36634fe94a820a7d413a0da5f14eb70cadf391b003b51bfa988c03a3e8",
+      "sourceBytes": 1351,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sunshine.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-Drums-full.mid",
+      "sourceSha256": "459a3077bee51d317895f56abd2f590823bc82f902ec7f2b63cac0c049a79dfd",
+      "sourceBytes": 4965,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sunshine.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-Drums-medium.mid",
+      "sourceSha256": "941396a1e981408dd37ee31c200aa2b9a280e0b48b6f70635cde9a84afd4a76c",
+      "sourceBytes": 4000,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sunshine.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-Drums-light.mid",
+      "sourceSha256": "5a7cd7794337cf48f7c8d6174aab74169e68b7d69310634014baf978604c868f",
+      "sourceBytes": 1703,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sunshine.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-bass-full.mid",
+      "sourceSha256": "0d28f28f91778101940117b23ecd2e9d1a99f3cecdd264dbfb46311555e4a6aa",
+      "sourceBytes": 1417,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sunshine.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-bass-medium.mid",
+      "sourceSha256": "4c6ac34266ff5dfb2f94eeef0f9eea7ca802fd2977fbda74bc23a7425bd74b30",
+      "sourceBytes": 1294,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sunshine.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "dance-music/sunshine/sun_MIDI_Files/HipHop-bass-light.mid",
+      "sourceSha256": "aa591dafe4a013ba8646b3e165d40f02b0a13d71ba7ae4923872941cc7531b03",
+      "sourceBytes": 1220,
+      "transformation": "SMF ticks/PPQN to beats; pitch transpose +0; velocities and durations retained",
+      "output": "scenes/skolan-sunshine.json"
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Acid_logo_cropped_small.png",
+      "sourceSha256": "cfde951c26727cd5d487319a8ce7b2be26bf80501c26a983f936aa73d311694e",
+      "sourceBytes": 22916,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/acid_logo_cropped_small.png",
+      "outputSha256": "cfde951c26727cd5d487319a8ce7b2be26bf80501c26a983f936aa73d311694e",
+      "outputBytes": 22916
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Circular Buttons/bass.png",
+      "sourceSha256": "eebed5233c5178e3b0196dbff783caa365fc6ec065d8de5404fd11c6c159dc99",
+      "sourceBytes": 2349,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/circular buttons/bass.png",
+      "outputSha256": "eebed5233c5178e3b0196dbff783caa365fc6ec065d8de5404fd11c6c159dc99",
+      "outputBytes": 2349
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Circular Buttons/bassJamming.png",
+      "sourceSha256": "642db0d27ee4cf4bf34ec07127a0e543767c9ece1c03ee2884e3f5f94886a713",
+      "sourceBytes": 3440,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/circular buttons/bassjamming.png",
+      "outputSha256": "642db0d27ee4cf4bf34ec07127a0e543767c9ece1c03ee2884e3f5f94886a713",
+      "outputBytes": 3440
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Circular Buttons/bassMoving.png",
+      "sourceSha256": "321c99b35565d8e2c30cc0fc25c826179e1db9b4cca33a2a46f17a8c44d59538",
+      "sourceBytes": 3477,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/circular buttons/bassmoving.png",
+      "outputSha256": "321c99b35565d8e2c30cc0fc25c826179e1db9b4cca33a2a46f17a8c44d59538",
+      "outputBytes": 3477
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Circular Buttons/drums.png",
+      "sourceSha256": "b9916d148d88aee21abe57718a972f776f9e2ad6b65b9c130b155b8a8698f3f8",
+      "sourceBytes": 3094,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/circular buttons/drums.png",
+      "outputSha256": "b9916d148d88aee21abe57718a972f776f9e2ad6b65b9c130b155b8a8698f3f8",
+      "outputBytes": 3094
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Circular Buttons/drumsJamming.png",
+      "sourceSha256": "57767ba55ead09d93fc91aca85bca1ff541cb6ef9ef7da7e0f6143f048b004a2",
+      "sourceBytes": 4095,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/circular buttons/drumsjamming.png",
+      "outputSha256": "57767ba55ead09d93fc91aca85bca1ff541cb6ef9ef7da7e0f6143f048b004a2",
+      "outputBytes": 4095
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Circular Buttons/drumsMoving.png",
+      "sourceSha256": "146c373f75616cdb20d53c46ef8626c8265433c9e435d2349b39c9936375a842",
+      "sourceBytes": 4333,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/circular buttons/drumsmoving.png",
+      "outputSha256": "146c373f75616cdb20d53c46ef8626c8265433c9e435d2349b39c9936375a842",
+      "outputBytes": 4333
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Circular Buttons/guitar.png",
+      "sourceSha256": "70b660bcf0f4955efe7a4040ce6195e0256672040fd6c663b9e14da06071eea7",
+      "sourceBytes": 2233,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/circular buttons/guitar.png",
+      "outputSha256": "70b660bcf0f4955efe7a4040ce6195e0256672040fd6c663b9e14da06071eea7",
+      "outputBytes": 2233
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Circular Buttons/guitarJamming.png",
+      "sourceSha256": "b463d4f0a989c320ef5206f9896cf40682f67295641b4f494682c1fd8faa12ab",
+      "sourceBytes": 3265,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/circular buttons/guitarjamming.png",
+      "outputSha256": "b463d4f0a989c320ef5206f9896cf40682f67295641b4f494682c1fd8faa12ab",
+      "outputBytes": 3265
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Circular Buttons/guitarMoving.png",
+      "sourceSha256": "74fca39ce695c17bc7b565c9fa12805c90da27482ec5c2048b3b3aedc8a88129",
+      "sourceBytes": 3445,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/circular buttons/guitarmoving.png",
+      "outputSha256": "74fca39ce695c17bc7b565c9fa12805c90da27482ec5c2048b3b3aedc8a88129",
+      "outputBytes": 3445
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Circular Buttons/mic.png",
+      "sourceSha256": "978b77c252836ac042d159b36a6c9bd11a271410c4a138ab75095a0228fcbe91",
+      "sourceBytes": 2290,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/circular buttons/mic.png",
+      "outputSha256": "978b77c252836ac042d159b36a6c9bd11a271410c4a138ab75095a0228fcbe91",
+      "outputBytes": 2290
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Circular Buttons/micJamming.png",
+      "sourceSha256": "e93d323f0b927d781580368eabcb939a1829bda11f566e4691eaa07eead972a6",
+      "sourceBytes": 3117,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/circular buttons/micjamming.png",
+      "outputSha256": "e93d323f0b927d781580368eabcb939a1829bda11f566e4691eaa07eead972a6",
+      "outputBytes": 3117
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Circular Buttons/micMoving.png",
+      "sourceSha256": "8c3ec5a7823b71d0d826da5404a93b57e608416d1b9cae78d2eaed8c4db6b949",
+      "sourceBytes": 3446,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/circular buttons/micmoving.png",
+      "outputSha256": "8c3ec5a7823b71d0d826da5404a93b57e608416d1b9cae78d2eaed8c4db6b949",
+      "outputBytes": 3446
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Circular Buttons/piano.png",
+      "sourceSha256": "0f5961ae01c3609a63308911d85829142946545031c1964afd7c218b135f7aeb",
+      "sourceBytes": 1935,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/circular buttons/piano.png",
+      "outputSha256": "0f5961ae01c3609a63308911d85829142946545031c1964afd7c218b135f7aeb",
+      "outputBytes": 1935
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Circular Buttons/pianoJamming.png",
+      "sourceSha256": "48f850d0f3ea72588c2f4b870767a6f0f0adcc2dedbdfe186f78dec142ff47c0",
+      "sourceBytes": 4391,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/circular buttons/pianojamming.png",
+      "outputSha256": "48f850d0f3ea72588c2f4b870767a6f0f0adcc2dedbdfe186f78dec142ff47c0",
+      "outputBytes": 4391
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Circular Buttons/pianoMoving.png",
+      "sourceSha256": "5ac3da823b04220fbc9dc40662f01b83f4ecb6ba9ed031ea43b9721064010eb9",
+      "sourceBytes": 2999,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/circular buttons/pianomoving.png",
+      "outputSha256": "5ac3da823b04220fbc9dc40662f01b83f4ecb6ba9ed031ea43b9721064010eb9",
+      "outputBytes": 2999
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Circular Buttons/video.png",
+      "sourceSha256": "5cd6444db19a50464e7d6aab72ec074932ebf79dba54284cef161c2ad7f86d03",
+      "sourceBytes": 2793,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/circular buttons/video.png",
+      "outputSha256": "5cd6444db19a50464e7d6aab72ec074932ebf79dba54284cef161c2ad7f86d03",
+      "outputBytes": 2793
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Circular Buttons/videoJamming.png",
+      "sourceSha256": "4695fd61ba8c3c8ca91488e502da0d9cf4dadffe073080813509b77a19410dc0",
+      "sourceBytes": 3863,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/circular buttons/videojamming.png",
+      "outputSha256": "4695fd61ba8c3c8ca91488e502da0d9cf4dadffe073080813509b77a19410dc0",
+      "outputBytes": 3863
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Circular Buttons/videoMoving.png",
+      "sourceSha256": "07383268a77e2fcfa4759bd6d39ff4c9ae0507e0c9369b7e5677bfe06dc22335",
+      "sourceBytes": 4021,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/circular buttons/videomoving.png",
+      "outputSha256": "07383268a77e2fcfa4759bd6d39ff4c9ae0507e0c9369b7e5677bfe06dc22335",
+      "outputBytes": 4021
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Corner Buttons/jamwithothers.png",
+      "sourceSha256": "e234265ed83cfb6ab207cbed0364d996749c99300d9bbb77bf6ccb28fab2805d",
+      "sourceBytes": 1945,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/corner buttons/jamwithothers.png",
+      "outputSha256": "e234265ed83cfb6ab207cbed0364d996749c99300d9bbb77bf6ccb28fab2805d",
+      "outputBytes": 1945
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Corner Buttons/notjamming.png",
+      "sourceSha256": "7461b3e7e41cf6369b4206c0414f5a880b938885dfe601068fbc2fe6f211fca8",
+      "sourceBytes": 4799,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/corner buttons/notjamming.png",
+      "outputSha256": "7461b3e7e41cf6369b4206c0414f5a880b938885dfe601068fbc2fe6f211fca8",
+      "outputBytes": 4799
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Corner Buttons/pause.png",
+      "sourceSha256": "c525929cfd23edafad2762f6e920474870c0f054dd8f3976f59af72811b06cc4",
+      "sourceBytes": 756,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/corner buttons/pause.png",
+      "outputSha256": "c525929cfd23edafad2762f6e920474870c0f054dd8f3976f59af72811b06cc4",
+      "outputBytes": 756
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Corner Buttons/play.png",
+      "sourceSha256": "25998edf54bb4fa56ad0cb02fcdab5df0829c4d3cf88bf3fff1a5ae36fe1d799",
+      "sourceBytes": 1005,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/corner buttons/play.png",
+      "outputSha256": "25998edf54bb4fa56ad0cb02fcdab5df0829c4d3cf88bf3fff1a5ae36fe1d799",
+      "outputBytes": 1005
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Corner Buttons/record.png",
+      "sourceSha256": "299cf74bb67ab5ad783561c518b1751091e3204b4494a88983f634bb93450d9d",
+      "sourceBytes": 1174,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/corner buttons/record.png",
+      "outputSha256": "299cf74bb67ab5ad783561c518b1751091e3204b4494a88983f634bb93450d9d",
+      "outputBytes": 1174
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Corner Buttons/replay.png",
+      "sourceSha256": "4cdd588a1421ce24c830b8d7f3a322427c6b0359b6e19444f971fe24622f5f88",
+      "sourceBytes": 2388,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/corner buttons/replay.png",
+      "outputSha256": "4cdd588a1421ce24c830b8d7f3a322427c6b0359b6e19444f971fe24622f5f88",
+      "outputBytes": 2388
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Corner Buttons/stop.png",
+      "sourceSha256": "2b39ba3cb74fe2477d76313b91095333fa50a11577d046f8a31195f05f7e3fe4",
+      "sourceBytes": 449,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/corner buttons/stop.png",
+      "outputSha256": "2b39ba3cb74fe2477d76313b91095333fa50a11577d046f8a31195f05f7e3fe4",
+      "outputBytes": 449
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Jammers/single-jammer-blue.png",
+      "sourceSha256": "db1813e7d6cbb1d6806ab124003d8186d4770664f936c2a8064e24f28593edb2",
+      "sourceBytes": 1300,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/jammers/single-jammer-blue.png",
+      "outputSha256": "db1813e7d6cbb1d6806ab124003d8186d4770664f936c2a8064e24f28593edb2",
+      "outputBytes": 1300
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Jammers/single-jammer-green.png",
+      "sourceSha256": "ab8f6495fe427874a3e266daef738f008636f8509c186d5148518459274d6a0a",
+      "sourceBytes": 1273,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/jammers/single-jammer-green.png",
+      "outputSha256": "ab8f6495fe427874a3e266daef738f008636f8509c186d5148518459274d6a0a",
+      "outputBytes": 1273
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Jammers/single-jammer-grey.png",
+      "sourceSha256": "001cdcf224993e233306158600ff69fff62aa1f31b4cb3ef970f78c3fce229d1",
+      "sourceBytes": 1396,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/jammers/single-jammer-grey.png",
+      "outputSha256": "001cdcf224993e233306158600ff69fff62aa1f31b4cb3ef970f78c3fce229d1",
+      "outputBytes": 1396
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Jammers/single-jammer.png",
+      "sourceSha256": "429c2f4713e9f45f992bed8b6d361dfc92ee2211e44657f6a713d4a4de559a75",
+      "sourceBytes": 1335,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/jammers/single-jammer.png",
+      "outputSha256": "429c2f4713e9f45f992bed8b6d361dfc92ee2211e44657f6a713d4a4de559a75",
+      "outputBytes": 1335
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Notifying Sound Buttons/articulation.png",
+      "sourceSha256": "762cbf0bec5e254e0d048f8d6a33273b3bf4fafd97720ba70bdfb1dbb7a4a661",
+      "sourceBytes": 1629,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/notifying sound buttons/articulation.png",
+      "outputSha256": "762cbf0bec5e254e0d048f8d6a33273b3bf4fafd97720ba70bdfb1dbb7a4a661",
+      "outputBytes": 1629
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Notifying Sound Buttons/density.png",
+      "sourceSha256": "281f4d32a4d2d7403210c6ffcb2d2ee4044d8e3b11b0da5273fac1d36593d76c",
+      "sourceBytes": 1335,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/notifying sound buttons/density.png",
+      "outputSha256": "281f4d32a4d2d7403210c6ffcb2d2ee4044d8e3b11b0da5273fac1d36593d76c",
+      "outputBytes": 1335
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Notifying Sound Buttons/pitch.png",
+      "sourceSha256": "83a9cb6b69c7d6aab64b737d0a77b3e84dde0cce086e454a5ad70055c5710eeb",
+      "sourceBytes": 1926,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/notifying sound buttons/pitch.png",
+      "outputSha256": "83a9cb6b69c7d6aab64b737d0a77b3e84dde0cce086e454a5ad70055c5710eeb",
+      "outputBytes": 1926
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Notifying Sound Buttons/tempo.png",
+      "sourceSha256": "a84180f6934545cd59fdb0b76f8adf8e455e1de5991b3e6fba6c4a05f50ab10f",
+      "sourceBytes": 2043,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/notifying sound buttons/tempo.png",
+      "outputSha256": "a84180f6934545cd59fdb0b76f8adf8e455e1de5991b3e6fba6c4a05f50ab10f",
+      "outputBytes": 2043
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Notifying Sound Buttons/timbre.png",
+      "sourceSha256": "fdc16d1993ad90ae8e3cd57a87b0c6bb3964b6d2ee54cf9daa6563bf0b23442d",
+      "sourceBytes": 2310,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/notifying sound buttons/timbre.png",
+      "outputSha256": "fdc16d1993ad90ae8e3cd57a87b0c6bb3964b6d2ee54cf9daa6563bf0b23442d",
+      "outputBytes": 2310
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Notifying Sound Buttons/volume.png",
+      "sourceSha256": "c4a8b7d14328628e1ae6c3e0af684b47687fbef2e3509a4c70c9d7befd338528",
+      "sourceBytes": 1868,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/notifying sound buttons/volume.png",
+      "outputSha256": "c4a8b7d14328628e1ae6c3e0af684b47687fbef2e3509a4c70c9d7befd338528",
+      "outputBytes": 1868
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Notifying Visual Buttons/brightness.png",
+      "sourceSha256": "c6dd124c1f5fca11f594ec06a9faa48aa18230f505efaf9efde10259061069a4",
+      "sourceBytes": 2184,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/notifying visual buttons/brightness.png",
+      "outputSha256": "c6dd124c1f5fca11f594ec06a9faa48aa18230f505efaf9efde10259061069a4",
+      "outputBytes": 2184
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Notifying Visual Buttons/crossfade.png",
+      "sourceSha256": "cd2ce14db551fb0927dc68d4e7a00c430f23f6720315142d06e06dd2e50ea3e5",
+      "sourceBytes": 1458,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/notifying visual buttons/crossfade.png",
+      "outputSha256": "cd2ce14db551fb0927dc68d4e7a00c430f23f6720315142d06e06dd2e50ea3e5",
+      "outputBytes": 1458
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Notifying Visual Buttons/framerate.png",
+      "sourceSha256": "7d5fc40473b18329869fc157f018e47b2502e4c35c5b938e660a1bab0b46c2d6",
+      "sourceBytes": 2143,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/notifying visual buttons/framerate.png",
+      "outputSha256": "7d5fc40473b18329869fc157f018e47b2502e4c35c5b938e660a1bab0b46c2d6",
+      "outputBytes": 2143
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Notifying Visual Buttons/ghosting.png",
+      "sourceSha256": "8c95c52adff62c2f63409cfbf237ccbf1ad31a034382acbf5cf9acc167ca27d2",
+      "sourceBytes": 2419,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/notifying visual buttons/ghosting.png",
+      "outputSha256": "8c95c52adff62c2f63409cfbf237ccbf1ad31a034382acbf5cf9acc167ca27d2",
+      "outputBytes": 2419
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Notifying Visual Buttons/kaleidoscope.png",
+      "sourceSha256": "be7b2544cad01d52c351ce6b457044595902a2aa025a2c1435f2178209575f77",
+      "sourceBytes": 2333,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/notifying visual buttons/kaleidoscope.png",
+      "outputSha256": "be7b2544cad01d52c351ce6b457044595902a2aa025a2c1435f2178209575f77",
+      "outputBytes": 2333
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Notifying Visual Buttons/saturation.png",
+      "sourceSha256": "82f47ef9d09a9111d5cd710fe9d86a8cab5a304862722240e53090a21f439641",
+      "sourceBytes": 1378,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/notifying visual buttons/saturation.png",
+      "outputSha256": "82f47ef9d09a9111d5cd710fe9d86a8cab5a304862722240e53090a21f439641",
+      "outputBytes": 1378
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Room Selection/air.png",
+      "sourceSha256": "c8ca8bf24dba4a06f1efc9e8880cc3a02edca2715d7de9c9ca83a70d144488a3",
+      "sourceBytes": 19652,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/room selection/air.png",
+      "outputSha256": "c8ca8bf24dba4a06f1efc9e8880cc3a02edca2715d7de9c9ca83a70d144488a3",
+      "outputBytes": 19652
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Room Selection/background.png",
+      "sourceSha256": "063e8ae3991eb108c899ebbe3bfd9575d2300662607e11c0ae1a056879035059",
+      "sourceBytes": 11385,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/room selection/background.png",
+      "outputSha256": "063e8ae3991eb108c899ebbe3bfd9575d2300662607e11c0ae1a056879035059",
+      "outputBytes": 11385
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Room Selection/blue-button.png",
+      "sourceSha256": "14f63eaaeddf5c83086d710372bfc8d2accad37dcd8bf60a637efe91ac9a81eb",
+      "sourceBytes": 5107,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/room selection/blue-button.png",
+      "outputSha256": "14f63eaaeddf5c83086d710372bfc8d2accad37dcd8bf60a637efe91ac9a81eb",
+      "outputBytes": 5107
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Room Selection/camera.png",
+      "sourceSha256": "40b668488afc961f6e0bce2d71c503c63f3002e9c119dcc2b3ce5bc3b3860e4e",
+      "sourceBytes": 18515,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/room selection/camera.png",
+      "outputSha256": "40b668488afc961f6e0bce2d71c503c63f3002e9c119dcc2b3ce5bc3b3860e4e",
+      "outputBytes": 18515
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Room Selection/city.png",
+      "sourceSha256": "b8b48f64d3093dc5b25869f48ba2466d97f9815e39882817f1d1ebbd4d7bdd73",
+      "sourceBytes": 19088,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/room selection/city.png",
+      "outputSha256": "b8b48f64d3093dc5b25869f48ba2466d97f9815e39882817f1d1ebbd4d7bdd73",
+      "outputBytes": 19088
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Room Selection/cloud.png",
+      "sourceSha256": "616e447c761670b35c8b296f1fef68ca1eb2cc32349d9aa466235615c205a2d5",
+      "sourceBytes": 18505,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/room selection/cloud.png",
+      "outputSha256": "616e447c761670b35c8b296f1fef68ca1eb2cc32349d9aa466235615c205a2d5",
+      "outputBytes": 18505
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Room Selection/earth.png",
+      "sourceSha256": "54b05d4ca6055ec590dc65cc2164daff7696641593b6ecd9a2dc09610a9329e8",
+      "sourceBytes": 25840,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/room selection/earth.png",
+      "outputSha256": "54b05d4ca6055ec590dc65cc2164daff7696641593b6ecd9a2dc09610a9329e8",
+      "outputBytes": 25840
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Room Selection/green-button.png",
+      "sourceSha256": "6f95fc99c197035ef629e94613440e12372bd22df1bdf9e05051d066a398d429",
+      "sourceBytes": 4996,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/room selection/green-button.png",
+      "outputSha256": "6f95fc99c197035ef629e94613440e12372bd22df1bdf9e05051d066a398d429",
+      "outputBytes": 4996
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Room Selection/magenta-button.png",
+      "sourceSha256": "1a924480af2d09310fb4b7ebb0f1c846c72f6402d5b6e0d800690b2ce68b9795",
+      "sourceBytes": 4939,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/room selection/magenta-button.png",
+      "outputSha256": "1a924480af2d09310fb4b7ebb0f1c846c72f6402d5b6e0d800690b2ce68b9795",
+      "outputBytes": 4939
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Room Selection/orange-button.png",
+      "sourceSha256": "859556fd6d6a042fefb383bde2d3b1f55af445a0ce4e7db7ed614d050e6d6282",
+      "sourceBytes": 5001,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/room selection/orange-button.png",
+      "outputSha256": "859556fd6d6a042fefb383bde2d3b1f55af445a0ce4e7db7ed614d050e6d6282",
+      "outputBytes": 5001
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Room Selection/paperfold.png",
+      "sourceSha256": "0bef59828ae75c17e2b00dd4f8b31df94722601e0fca398e3038fadd29df3259",
+      "sourceBytes": 976,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/room selection/paperfold.png",
+      "outputSha256": "0bef59828ae75c17e2b00dd4f8b31df94722601e0fca398e3038fadd29df3259",
+      "outputBytes": 976
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Room Selection/purple-button.png",
+      "sourceSha256": "d2a42b2ac2cccf3b028b23ba4ed9e4a353becb2d67ad464345df1de3109501b7",
+      "sourceBytes": 4931,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/room selection/purple-button.png",
+      "outputSha256": "d2a42b2ac2cccf3b028b23ba4ed9e4a353becb2d67ad464345df1de3109501b7",
+      "outputBytes": 4931
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Room Selection/sea.png",
+      "sourceSha256": "946fd4f426a191083fc637b89c578622d13181e467fac4d642fc1c578eaa6753",
+      "sourceBytes": 27604,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/room selection/sea.png",
+      "outputSha256": "946fd4f426a191083fc637b89c578622d13181e467fac4d642fc1c578eaa6753",
+      "outputBytes": 27604
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Room Selection/sunshine.png",
+      "sourceSha256": "8fe959a97b59f574559cc936785987acccf16a8f667263c7e581dca1b7b8994a",
+      "sourceBytes": 14830,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/room selection/sunshine.png",
+      "outputSha256": "8fe959a97b59f574559cc936785987acccf16a8f667263c7e581dca1b7b8994a",
+      "outputBytes": 14830
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Room Selection/yellow-button.png",
+      "sourceSha256": "b36f1020f84408c7ae0d180896f6692cf8e2ba2f447c9d9082e537b8ec159639",
+      "sourceBytes": 4944,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/room selection/yellow-button.png",
+      "outputSha256": "b36f1020f84408c7ae0d180896f6692cf8e2ba2f447c9d9082e537b8ec159639",
+      "outputBytes": 4944
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Selected Corner Buttons/jamwithothers.png",
+      "sourceSha256": "ed6552ef4636a8708289394bd2d71300873b1ac1f4adce7413a9c5ad12e99a61",
+      "sourceBytes": 1907,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/selected corner buttons/jamwithothers.png",
+      "outputSha256": "ed6552ef4636a8708289394bd2d71300873b1ac1f4adce7413a9c5ad12e99a61",
+      "outputBytes": 1907
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Selected Corner Buttons/pause.png",
+      "sourceSha256": "1ce3253f34da7384273107d2b997175a471c172a2643b1e236ef21e45bebdb73",
+      "sourceBytes": 935,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/selected corner buttons/pause.png",
+      "outputSha256": "1ce3253f34da7384273107d2b997175a471c172a2643b1e236ef21e45bebdb73",
+      "outputBytes": 935
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Selected Corner Buttons/play.png",
+      "sourceSha256": "6abe304688a4dcaa7a4aa2fa590569387e506a4e6a1ee0a8b52b29b77d7da44f",
+      "sourceBytes": 972,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/selected corner buttons/play.png",
+      "outputSha256": "6abe304688a4dcaa7a4aa2fa590569387e506a4e6a1ee0a8b52b29b77d7da44f",
+      "outputBytes": 972
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Selected Corner Buttons/record.png",
+      "sourceSha256": "8e8a7923b4966367ba50ffb39b0880a945402646a796a6b49c11108f303b0fdb",
+      "sourceBytes": 1179,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/selected corner buttons/record.png",
+      "outputSha256": "8e8a7923b4966367ba50ffb39b0880a945402646a796a6b49c11108f303b0fdb",
+      "outputBytes": 1179
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Selected Corner Buttons/replay.png",
+      "sourceSha256": "e0ea962adf4b0adb47c4ce6998b4965259d4c0872dbb69b3564665a7b8aa08bd",
+      "sourceBytes": 2341,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/selected corner buttons/replay.png",
+      "outputSha256": "e0ea962adf4b0adb47c4ce6998b4965259d4c0872dbb69b3564665a7b8aa08bd",
+      "outputBytes": 2341
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Selected Corner Buttons/stop.png",
+      "sourceSha256": "2b05248b0e2a7041e484ed989eed2b967c16d0e7f939bcb9d396a916e92899fc",
+      "sourceBytes": 460,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/selected corner buttons/stop.png",
+      "outputSha256": "2b05248b0e2a7041e484ed989eed2b967c16d0e7f939bcb9d396a916e92899fc",
+      "outputBytes": 460
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Selected Sound Buttons/articulation.png",
+      "sourceSha256": "409901f4df17b7f37c2ed7580e6f0ad64cee972e0cb483c0896957fe55adb587",
+      "sourceBytes": 720,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/selected sound buttons/articulation.png",
+      "outputSha256": "409901f4df17b7f37c2ed7580e6f0ad64cee972e0cb483c0896957fe55adb587",
+      "outputBytes": 720
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Selected Sound Buttons/density.png",
+      "sourceSha256": "8b9e8e82d823a75b7e40b4117c325546f2484bb9f0628428e415fbd5c28e5292",
+      "sourceBytes": 389,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/selected sound buttons/density.png",
+      "outputSha256": "8b9e8e82d823a75b7e40b4117c325546f2484bb9f0628428e415fbd5c28e5292",
+      "outputBytes": 389
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Selected Sound Buttons/pitch.png",
+      "sourceSha256": "c8686124f890f1020cf55c677ca1c74d0942e26330635ee1d864d59804eb50c1",
+      "sourceBytes": 971,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/selected sound buttons/pitch.png",
+      "outputSha256": "c8686124f890f1020cf55c677ca1c74d0942e26330635ee1d864d59804eb50c1",
+      "outputBytes": 971
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Selected Sound Buttons/tempo.png",
+      "sourceSha256": "89a47b9f145b0b6e310826822dc4a2cf4f59ca8eb76d0383ca7f5178ed72a5f2",
+      "sourceBytes": 1120,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/selected sound buttons/tempo.png",
+      "outputSha256": "89a47b9f145b0b6e310826822dc4a2cf4f59ca8eb76d0383ca7f5178ed72a5f2",
+      "outputBytes": 1120
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Selected Sound Buttons/timbre.png",
+      "sourceSha256": "0fe337b94c60ad7a7cc68f7da6221a8ceacf5aa3d7044629a6771b97d9ea8040",
+      "sourceBytes": 1279,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/selected sound buttons/timbre.png",
+      "outputSha256": "0fe337b94c60ad7a7cc68f7da6221a8ceacf5aa3d7044629a6771b97d9ea8040",
+      "outputBytes": 1279
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Selected Sound Buttons/volume.png",
+      "sourceSha256": "ea9a5f165619d06d72937d50f605fae087f4c7af75d545df4ab706bf2272a7ee",
+      "sourceBytes": 869,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/selected sound buttons/volume.png",
+      "outputSha256": "ea9a5f165619d06d72937d50f605fae087f4c7af75d545df4ab706bf2272a7ee",
+      "outputBytes": 869
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Selected Visual Buttons/brightness.png",
+      "sourceSha256": "67757d759c227c17c8830b5342eb88df7d00cf1554a1aba366595e06bea0d9e8",
+      "sourceBytes": 1186,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/selected visual buttons/brightness.png",
+      "outputSha256": "67757d759c227c17c8830b5342eb88df7d00cf1554a1aba366595e06bea0d9e8",
+      "outputBytes": 1186
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Selected Visual Buttons/crossfade.png",
+      "sourceSha256": "2de4b232978d76899db1353b858b640cdfbf871f9aa1694f72aa87098248d95f",
+      "sourceBytes": 449,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/selected visual buttons/crossfade.png",
+      "outputSha256": "2de4b232978d76899db1353b858b640cdfbf871f9aa1694f72aa87098248d95f",
+      "outputBytes": 449
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Selected Visual Buttons/framerate.png",
+      "sourceSha256": "ae6b25e2dc46f52f982842714f1f69341a3e1213a23bba1c49a07db7544e411a",
+      "sourceBytes": 1163,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/selected visual buttons/framerate.png",
+      "outputSha256": "ae6b25e2dc46f52f982842714f1f69341a3e1213a23bba1c49a07db7544e411a",
+      "outputBytes": 1163
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Selected Visual Buttons/ghosting.png",
+      "sourceSha256": "79295af9c5f80d4634dac50f5fb4fa0c9066d54fe1b0cc49792b6652a1e2775f",
+      "sourceBytes": 1500,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/selected visual buttons/ghosting.png",
+      "outputSha256": "79295af9c5f80d4634dac50f5fb4fa0c9066d54fe1b0cc49792b6652a1e2775f",
+      "outputBytes": 1500
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Selected Visual Buttons/kaleidoscope.png",
+      "sourceSha256": "39841dc8b27f371011511087bbc2340fc462d13c11593d7cd6bae714dbab1402",
+      "sourceBytes": 1382,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/selected visual buttons/kaleidoscope.png",
+      "outputSha256": "39841dc8b27f371011511087bbc2340fc462d13c11593d7cd6bae714dbab1402",
+      "outputBytes": 1382
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Selected Visual Buttons/saturation.png",
+      "sourceSha256": "a089299df17cfd0ef837eebc5aa7152b2e3449ecd61d7946994b27e91dab47ec",
+      "sourceBytes": 426,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/selected visual buttons/saturation.png",
+      "outputSha256": "a089299df17cfd0ef837eebc5aa7152b2e3449ecd61d7946994b27e91dab47ec",
+      "outputBytes": 426
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Sound Buttons/articulation.png",
+      "sourceSha256": "b8d14ce7cd768c9badec2eb612d36c993039234604ac64f9098ceb1d4dd619f1",
+      "sourceBytes": 713,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/sound buttons/articulation.png",
+      "outputSha256": "b8d14ce7cd768c9badec2eb612d36c993039234604ac64f9098ceb1d4dd619f1",
+      "outputBytes": 713
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Sound Buttons/density.png",
+      "sourceSha256": "5be93b00c3c3ab1d97df1fa0d900f92397e0c11e678d7325ed9ea9c68a8a9108",
+      "sourceBytes": 386,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/sound buttons/density.png",
+      "outputSha256": "5be93b00c3c3ab1d97df1fa0d900f92397e0c11e678d7325ed9ea9c68a8a9108",
+      "outputBytes": 386
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Sound Buttons/pitch.png",
+      "sourceSha256": "fe73abd4cc12721c89d6aefeab6c383280454a0adb612e4862506dbf97908f68",
+      "sourceBytes": 965,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/sound buttons/pitch.png",
+      "outputSha256": "fe73abd4cc12721c89d6aefeab6c383280454a0adb612e4862506dbf97908f68",
+      "outputBytes": 965
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Sound Buttons/tempo.png",
+      "sourceSha256": "25ec01d2ccd70f6f3f3ed1f1671b04a338b938a6d34abc1c3fba41aebd087637",
+      "sourceBytes": 1103,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/sound buttons/tempo.png",
+      "outputSha256": "25ec01d2ccd70f6f3f3ed1f1671b04a338b938a6d34abc1c3fba41aebd087637",
+      "outputBytes": 1103
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Sound Buttons/timbre.png",
+      "sourceSha256": "ef2fdfa65c6c5ae7e5819c7a04a1ad7d67114ff86c6f4f9540f4dc777ed8747b",
+      "sourceBytes": 1273,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/sound buttons/timbre.png",
+      "outputSha256": "ef2fdfa65c6c5ae7e5819c7a04a1ad7d67114ff86c6f4f9540f4dc777ed8747b",
+      "outputBytes": 1273
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Sound Buttons/volume.png",
+      "sourceSha256": "c0351f070f8b868a5eac99c522241370c459ec41e4e5e59a73c83b35f4d1d8eb",
+      "sourceBytes": 861,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/sound buttons/volume.png",
+      "outputSha256": "c0351f070f8b868a5eac99c522241370c459ec41e4e5e59a73c83b35f4d1d8eb",
+      "outputBytes": 861
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Visual Buttons/brightness.png",
+      "sourceSha256": "a3b3bd7ab7241afa6a7ca1b71077ac6fbb71907f131668bcc4ba5d57b8280626",
+      "sourceBytes": 1102,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/visual buttons/brightness.png",
+      "outputSha256": "a3b3bd7ab7241afa6a7ca1b71077ac6fbb71907f131668bcc4ba5d57b8280626",
+      "outputBytes": 1102
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Visual Buttons/crossfade.png",
+      "sourceSha256": "cac80eab604da0ee9573ba5264b2e57c4957c0d4d9cfd2306fd083d98183a568",
+      "sourceBytes": 430,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/visual buttons/crossfade.png",
+      "outputSha256": "cac80eab604da0ee9573ba5264b2e57c4957c0d4d9cfd2306fd083d98183a568",
+      "outputBytes": 430
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Visual Buttons/framerate.png",
+      "sourceSha256": "88f9f15bcd56d13664f8f459c8503c67d5607e746ae550948c8687398f664060",
+      "sourceBytes": 1061,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/visual buttons/framerate.png",
+      "outputSha256": "88f9f15bcd56d13664f8f459c8503c67d5607e746ae550948c8687398f664060",
+      "outputBytes": 1061
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Visual Buttons/ghosting.png",
+      "sourceSha256": "3ec2eebd22a0a45946782dfc687385411be9daf0f8c47893ebe22618878fe206",
+      "sourceBytes": 1379,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/visual buttons/ghosting.png",
+      "outputSha256": "3ec2eebd22a0a45946782dfc687385411be9daf0f8c47893ebe22618878fe206",
+      "outputBytes": 1379
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Visual Buttons/kaleidoscope.png",
+      "sourceSha256": "c33f1fea2bfb89f7b5e0e13b29b4d9babf6591fa8787a83af0636acc84ef7f33",
+      "sourceBytes": 1271,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/visual buttons/kaleidoscope.png",
+      "outputSha256": "c33f1fea2bfb89f7b5e0e13b29b4d9babf6591fa8787a83af0636acc84ef7f33",
+      "outputBytes": 1271
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "images/Visual Buttons/saturation.png",
+      "sourceSha256": "44cbae95b8107bf2df7613e74d26855fc193bab374a4b82444d96375b20126ae",
+      "sourceBytes": 406,
+      "transformation": "byte-identical PNG copy; normalized output path case",
+      "output": "skolan/images/visual buttons/saturation.png",
+      "outputSha256": "44cbae95b8107bf2df7613e74d26855fc193bab374a4b82444d96375b20126ae",
+      "outputBytes": 406
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "Movies/City-short.mov",
+      "sourceSha256": "ea7b13a97b178a074c95311aec1a5007571fbe757323fa28bf319402e931386d",
+      "sourceBytes": 362627,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "skolan/movies/city-short.mp4",
+      "outputSha256": "16ffd1e83b4b830c4deac43459701e0d6deb1c47ed28079b0b27bb31c592d02b",
+      "outputBytes": 151565,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "aic",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "2.531600"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "2.579200"
+        }
+      }
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "Movies/Fire-short.mov",
+      "sourceSha256": "aeb9820db4fae6ed73b409c0071eb852e4a8f8379814dac2039208f725165cc9",
+      "sourceBytes": 687063,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "skolan/movies/fire-short.mp4",
+      "outputSha256": "e9a574ca8bedd3f695b627694b947ed4435e739e160374405667f063cc004c24",
+      "outputBytes": 318974,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "aic",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "5.590000"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "5.657600"
+        }
+      }
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "Movies/Nature-short.mov",
+      "sourceSha256": "0c18bec6afee41f74cb8543460e7fd7dc280cf20d423d036e42236f05a0c9dbc",
+      "sourceBytes": 1041755,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "skolan/movies/nature-short.mp4",
+      "outputSha256": "0f433f39ab74fc6327456431361d874a61207c38831408492fa870773deba710",
+      "outputBytes": 279697,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "aic",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "duration": "5.631667"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "duration": "5.666667"
+        }
+      }
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "Movies/butterfly-short.mov",
+      "sourceSha256": "4d922a077991f74fb4ffe568aca808702c4300df42d19881b23142c5b8f7310a",
+      "sourceBytes": 1073551,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "skolan/movies/butterfly-short.mp4",
+      "outputSha256": "4a6f63241f54a007ecfd217a3ede85c60ebc0861475abf53385d74de6ccc6427",
+      "outputBytes": 509372,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "aic",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "duration": "5.390000"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "duration": "5.416667"
+        }
+      }
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "Movies/clouds-short.mov",
+      "sourceSha256": "2a7ebe754fd00c445ea0c93eeee6d94d5c4c1e590efd4c95f416d7f6dc315ebf",
+      "sourceBytes": 628175,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "skolan/movies/clouds-short.mp4",
+      "outputSha256": "7cf9bfb72a24e52e92d1673e992c82adb26c84a4db0eec962ef1f40fb75482ad",
+      "outputBytes": 197481,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "aic",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "5.013200"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "5.075200"
+        }
+      }
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "Movies/people-short.mov",
+      "sourceSha256": "48449318e9bf975b9d8991d2802cc6b7fd56e6a34cd3ec61ff5bc56514b937aa",
+      "sourceBytes": 521719,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "skolan/movies/people-short.mp4",
+      "outputSha256": "4da69e1c5b30609c6c4fdb02c83065bdbcabb42f700f480ffa08d74e96b349ee",
+      "outputBytes": 224653,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "aic",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "4.498400"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "4.576000"
+        }
+      }
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "Movies/ripple-short.mov",
+      "sourceSha256": "9621ed798f5214e1ef93233dc9c3be0aa235ec0bfa55bc4a5fd838ce26d180bc",
+      "sourceBytes": 867423,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "skolan/movies/ripple-short.mp4",
+      "outputSha256": "f2760218f6e527f19f853d68dacf0679fe9fd419ba727e13c653833194e1b182",
+      "outputBytes": 346993,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "aic",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "7.413200"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "7.488000"
+        }
+      }
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "Movies/static-short.mov",
+      "sourceSha256": "8bb4d5f221d780b01608e84754267e7154c401cd5c64fc6a3c864600e8a74172",
+      "sourceBytes": 935075,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "skolan/movies/static-short.mp4",
+      "outputSha256": "e2bc54f23665250c9b2dc6dd02863fe38d472113a2e3fc952f99699a8bdd7eac",
+      "outputBytes": 452951,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "aic",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "duration": "5.468333"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "duration": "5.500000"
+        }
+      }
+    },
+    {
+      "sourceVersion": "skolan",
+      "originalPath": "Movies/water-short.mov",
+      "sourceSha256": "c6ab212105aef4724bbf3c51798d0cb3facf3ad5099451612c373a933af37563",
+      "sourceBytes": 1161703,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "skolan/movies/water-short.mp4",
+      "outputSha256": "974731b158efaa53af7d0882bf0175e45ae936710a972c56e1963f470499954f",
+      "outputBytes": 559657,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "aic",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "7.610000"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "625/52"
+          }
+        ],
+        "format": {
+          "duration": "7.654400"
+        }
+      }
+    },
+    {
+      "sourceVersion": "fixture",
+      "originalPath": "jam2jam3_6_10.txt",
+      "sourceSha256": "d64a77b576676c171fc6c0bedfef3b011f9febe3fa73783076b8f39685384563",
+      "sourceBytes": 106480,
+      "transformation": "byte-identical legacy gesture log",
+      "output": "fixture/jam2jam3_6_10.txt",
+      "outputSha256": "d64a77b576676c171fc6c0bedfef3b011f9febe3fa73783076b8f39685384563",
+      "outputBytes": 106480
+    },
+    {
+      "sourceVersion": "fixture",
+      "originalPath": "jam2jam3_6_10.mov",
+      "sourceSha256": "455617ce9ef3ff57f3e396f50bd543fdbb9bd450b12d8d50505971ac45783986",
+      "sourceBytes": 25717444,
+      "transformation": "H.264 CRF18 yuv420p + AAC160k; original dimensions/fps retained; even-dimension padding only",
+      "output": "fixture/jam2jam3_6_10.mp4",
+      "outputSha256": "ab76166ab506e0afedeb831e92bae7bc71cdb21975d02854023f52b657b36b20",
+      "outputBytes": 5250083,
+      "sourceMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "mpeg4",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "11025/512"
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "r_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "79.271678"
+        }
+      },
+      "outputMedia": {
+        "programs": [],
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "r_frame_rate": "11025/512"
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "r_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "79.272993"
+        }
+      }
+    }
+  ]
+}

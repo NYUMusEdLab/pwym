@@ -1,0 +1,343 @@
+{
+  "schemaVersion": 1,
+  "scenes": [
+    {
+      "version": "av",
+      "scene": "air",
+      "tempo": 120,
+      "tempoDeviation": 50,
+      "programs": {
+        "bass": 35,
+        "pads": 88,
+        "keys": 4,
+        "drums": 9
+      },
+      "key": 9,
+      "mode": "minor",
+      "pitchClasses": [
+        9,
+        11,
+        0,
+        2,
+        4,
+        7
+      ],
+      "loopBeats": 128,
+      "movies": [
+        "av/movies/static-short.mp4",
+        "av/movies/clouds-short.mp4"
+      ],
+      "sceneImage": "av/images/room selection/air.png",
+      "file": "scenes/av-air.json"
+    },
+    {
+      "version": "av",
+      "scene": "city",
+      "tempo": 124,
+      "tempoDeviation": 50,
+      "programs": {
+        "bass": 34,
+        "pads": 90,
+        "keys": 8,
+        "drums": 9
+      },
+      "key": 9,
+      "mode": "minor",
+      "pitchClasses": [
+        9,
+        11,
+        0,
+        4,
+        5
+      ],
+      "loopBeats": 32,
+      "movies": [
+        "av/movies/city-short.mp4",
+        "av/movies/people-short.mp4"
+      ],
+      "sceneImage": "av/images/room selection/city.png",
+      "file": "scenes/av-city.json"
+    },
+    {
+      "version": "av",
+      "scene": "cloud",
+      "tempo": 100,
+      "tempoDeviation": 50,
+      "programs": {
+        "bass": 36,
+        "pads": 100,
+        "keys": 74,
+        "drums": 9
+      },
+      "key": 9,
+      "mode": "minor",
+      "pitchClasses": [
+        9,
+        0,
+        2,
+        4,
+        5,
+        7
+      ],
+      "loopBeats": 128,
+      "movies": [
+        "av/movies/clouds-short.mp4",
+        "av/movies/water-short.mp4"
+      ],
+      "sceneImage": "av/images/room selection/cloud.png",
+      "file": "scenes/av-cloud.json"
+    },
+    {
+      "version": "av",
+      "scene": "earth",
+      "tempo": 70,
+      "tempoDeviation": 20,
+      "programs": {
+        "bass": 34,
+        "pads": 8,
+        "keys": 48,
+        "drums": 9
+      },
+      "key": 5,
+      "mode": "major",
+      "pitchClasses": [
+        5,
+        7,
+        9,
+        0,
+        2
+      ],
+      "loopBeats": 128,
+      "movies": [
+        "av/movies/butterfly-short.mp4",
+        "av/movies/nature-short.mp4"
+      ],
+      "sceneImage": "av/images/room selection/earth.png",
+      "file": "scenes/av-earth.json"
+    },
+    {
+      "version": "av",
+      "scene": "sea",
+      "tempo": 150,
+      "tempoDeviation": 50,
+      "programs": {
+        "bass": 39,
+        "pads": 83,
+        "keys": 87,
+        "drums": 9
+      },
+      "key": 10,
+      "mode": "minor",
+      "pitchClasses": [
+        10,
+        0,
+        1,
+        3,
+        5
+      ],
+      "loopBeats": 64,
+      "movies": [
+        "av/movies/water-short.mp4",
+        "av/movies/ripple-short.mp4"
+      ],
+      "sceneImage": "av/images/room selection/sea.png",
+      "file": "scenes/av-sea.json"
+    },
+    {
+      "version": "av",
+      "scene": "sunshine",
+      "tempo": 100,
+      "tempoDeviation": 50,
+      "programs": {
+        "bass": 39,
+        "pads": 18,
+        "keys": 84,
+        "drums": 9
+      },
+      "key": 5,
+      "mode": "minor",
+      "pitchClasses": [
+        5,
+        7,
+        8,
+        10,
+        3
+      ],
+      "loopBeats": 64,
+      "movies": [
+        "av/movies/fire-short.mp4",
+        "av/movies/butterfly-short.mp4"
+      ],
+      "sceneImage": "av/images/room selection/sunshine.png",
+      "file": "scenes/av-sunshine.json"
+    },
+    {
+      "version": "skolan",
+      "scene": "air",
+      "tempo": 170,
+      "tempoDeviation": 50,
+      "programs": {
+        "bass": 38,
+        "pads": 88,
+        "keys": 4,
+        "drums": null
+      },
+      "key": 9,
+      "mode": "minor",
+      "pitchClasses": [
+        9,
+        11,
+        0,
+        4,
+        5
+      ],
+      "loopBeats": 124,
+      "movies": [
+        "skolan/movies/static-short.mp4",
+        "skolan/movies/clouds-short.mp4"
+      ],
+      "sceneImage": "skolan/images/room selection/air.png",
+      "file": "scenes/skolan-air.json"
+    },
+    {
+      "version": "skolan",
+      "scene": "city",
+      "tempo": 124,
+      "tempoDeviation": 50,
+      "programs": {
+        "bass": 34,
+        "pads": 90,
+        "keys": 8,
+        "drums": null
+      },
+      "key": 9,
+      "mode": "minor",
+      "pitchClasses": [
+        9,
+        11,
+        0,
+        4,
+        5
+      ],
+      "loopBeats": 32,
+      "movies": [
+        "skolan/movies/city-short.mp4",
+        "skolan/movies/people-short.mp4"
+      ],
+      "sceneImage": "skolan/images/room selection/city.png",
+      "file": "scenes/skolan-city.json"
+    },
+    {
+      "version": "skolan",
+      "scene": "cloud",
+      "tempo": 100,
+      "tempoDeviation": 50,
+      "programs": {
+        "bass": 36,
+        "pads": 100,
+        "keys": 74,
+        "drums": null
+      },
+      "key": 9,
+      "mode": "minor",
+      "pitchClasses": [
+        9,
+        11,
+        0,
+        4,
+        5
+      ],
+      "loopBeats": 127,
+      "movies": [
+        "skolan/movies/clouds-short.mp4",
+        "skolan/movies/water-short.mp4"
+      ],
+      "sceneImage": "skolan/images/room selection/cloud.png",
+      "file": "scenes/skolan-cloud.json"
+    },
+    {
+      "version": "skolan",
+      "scene": "earth",
+      "tempo": 170,
+      "tempoDeviation": 50,
+      "programs": {
+        "bass": 38,
+        "pads": 88,
+        "keys": 4,
+        "drums": null
+      },
+      "key": 9,
+      "mode": "minor",
+      "pitchClasses": [
+        9,
+        11,
+        0,
+        4,
+        5
+      ],
+      "loopBeats": 124,
+      "movies": [
+        "skolan/movies/butterfly-short.mp4",
+        "skolan/movies/nature-short.mp4"
+      ],
+      "sceneImage": "skolan/images/room selection/earth.png",
+      "file": "scenes/skolan-earth.json"
+    },
+    {
+      "version": "skolan",
+      "scene": "sea",
+      "tempo": 124,
+      "tempoDeviation": 50,
+      "programs": {
+        "bass": 34,
+        "pads": 90,
+        "keys": 8,
+        "drums": null
+      },
+      "key": 9,
+      "mode": "minor",
+      "pitchClasses": [
+        9,
+        11,
+        0,
+        4,
+        5
+      ],
+      "loopBeats": 32,
+      "movies": [
+        "skolan/movies/water-short.mp4",
+        "skolan/movies/ripple-short.mp4"
+      ],
+      "sceneImage": "skolan/images/room selection/sea.png",
+      "file": "scenes/skolan-sea.json"
+    },
+    {
+      "version": "skolan",
+      "scene": "sunshine",
+      "tempo": 100,
+      "tempoDeviation": 50,
+      "programs": {
+        "bass": 39,
+        "pads": 18,
+        "keys": 84,
+        "drums": null
+      },
+      "key": 5,
+      "mode": "minor",
+      "pitchClasses": [
+        9,
+        11,
+        0,
+        4,
+        5
+      ],
+      "loopBeats": 64,
+      "movies": [
+        "skolan/movies/fire-short.mp4",
+        "skolan/movies/butterfly-short.mp4"
+      ],
+      "sceneImage": "skolan/images/room selection/sunshine.png",
+      "file": "scenes/skolan-sunshine.json"
+    }
+  ]
+}

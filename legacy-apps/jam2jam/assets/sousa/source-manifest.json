@@ -1,0 +1,91 @@
+{
+  "sources": [
+    {
+      "file": "HipHop-Drums-medium.mid",
+      "bytes": 4016,
+      "sha256": "2fee73181ed66d977137d171412e702263ea18fa187b58bcc43eabf63221e53d",
+      "dropboxContentHash": "30ba2b7e046ae969f9ee2da1a1d7b6cfdb7fff42c71ccd9f6e31a060821b622d"
+    },
+    {
+      "file": "HipHop-WestSideLead-light.mid",
+      "bytes": 2023,
+      "sha256": "bc673a41399c7af69ef0985d70f450adc44a906de6bbfb42c5f809dbfd9b314f",
+      "dropboxContentHash": "16c1198571b29548ae3951ca1b9ca33ad364605ea32524fa9306074031e235c4"
+    },
+    {
+      "file": "HipHop-WestSideLead-medium.mid",
+      "bytes": 5661,
+      "sha256": "0485a4ec3e459752e6725d4f918e559f68ed68e6f1e3ad339da77f1a30a81ded",
+      "dropboxContentHash": "d804ca1cc6949faa2391770ba5fd207945692363f48863dc2a3467065c5becef"
+    },
+    {
+      "file": "HipHop-bass-light.mid",
+      "bytes": 963,
+      "sha256": "5cc87561f836a52bb45d41d6fa3e327381385276a6ad05a6d454479c79363e1f",
+      "dropboxContentHash": "4c410d1e053920982365c268dd4780dd85041e12e1a58ff3e23837e09541e78b"
+    },
+    {
+      "file": "HipHop-Organ-full.mid",
+      "bytes": 4099,
+      "sha256": "88b5b37d2ed4e30b79a428fbc19cc7ea5d56abe9888065da18d3cda746358231",
+      "dropboxContentHash": "fa326c1f86dddce86323b71027f183e900d0fc0b6bfd9fddff5356f93985626c"
+    },
+    {
+      "file": "HipHop-Drums-full.mid",
+      "bytes": 7760,
+      "sha256": "97a9b539fc6e5a960373b70f50320dcc2006a46ad69dc6bd3f3024a7becabb91",
+      "dropboxContentHash": "cf27677d959b2fd1d4a796baa81546d9f2682c400fd45b19df7a488ad7ceb843"
+    },
+    {
+      "file": "HipHop-bass-full.mid",
+      "bytes": 1645,
+      "sha256": "fceeff9d3e1aea19033bbe7d6eb8884f01ca18c1f178399ed4981e641d484327",
+      "dropboxContentHash": "a69480d5c4edee54163de5ba530a5b225da72711e17a689ad0751118e072d080"
+    },
+    {
+      "file": "HipHop-bass-medium.mid",
+      "bytes": 1295,
+      "sha256": "c790c186793d08885937aecd30a3cb8999c2aadba045b0dc758792d069d9a3bb",
+      "dropboxContentHash": "ba3aa7fa45f26c148849bffe803c635fe6ca56f70d2341154d5382016fe06128"
+    },
+    {
+      "file": "HipHop-Organ-light.mid",
+      "bytes": 1641,
+      "sha256": "a91aaa3bd79d0c4835041e75f2ece6aefd1c55e6af021f8788988869f9229cd9",
+      "dropboxContentHash": "da7af0904c07e1960ef1a2298a6faba17f2f891d65b90dfb043c58be1106e69a"
+    },
+    {
+      "file": "HipHop-Organ-medium.mid",
+      "bytes": 2419,
+      "sha256": "8b27dd1356f94e99c3552b468efaccbe2a01c25fb36ab7723bf25b162b8f2e8b",
+      "dropboxContentHash": "064b2ce82d71feefbd10f4f5be091d6ede736c7ab255e2321caee60dc53a99d0"
+    },
+    {
+      "file": "HipHop-WestSideLead-full.mid",
+      "bytes": 5969,
+      "sha256": "a17ab589cee099e231b18e34a7c49d5fc730356881ac93fefb5de4cffaa0c8ae",
+      "dropboxContentHash": "8eea888169c6c6f15b98fb04d4313a80e7e698ba2c9c8e2f30d960dad6bf5f11"
+    },
+    {
+      "file": "HipHop-Drums-light.mid",
+      "bytes": 1420,
+      "sha256": "6b703616e0a8b0544a32d020baa30ac3769cf8c66c40faa01113c2e1708b783b",
+      "dropboxContentHash": "1eed1d77ed6a03c68becb639edc0cc2b132d0860e1fdacb7f293c206be3d3c1e"
+    },
+    {
+      "file": "Sousa2.mov",
+      "bytes": 4458491,
+      "sha256": "13f3ce257de1659be73610abff7568ce25d7be4e18ccc55660b059d23e544ccf",
+      "dropboxContentHash": "60d37b4ee8abb1c6d92df649fcf9a9214cbc47349663297e22d5c5aa010acd28"
+    },
+    {
+      "file": "Sousa1b.mov",
+      "bytes": 5441625,
+      "sha256": "5ed06abf7a704e97131c09bcda0ffae9676c29e10164d8f562d9e5a6f1980fe6",
+      "dropboxContentHash": "2e457114e439e653707f750131c01a92b3e5ef0ffc1c26f2c5c8f5195a7e8665"
+    }
+  ],
+  "midiIdenticalAcrossEditions": true,
+  "movies": "Original MOV video transcoded to H.264 without audio; playback is muted in the source-based stage.",
+  "sourceNote": "The source labels the major edition A-flat major but its literal scale-limited includes pitch class 2 (D natural)."
+}
