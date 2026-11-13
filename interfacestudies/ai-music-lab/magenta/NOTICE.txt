@@ -1,0 +1,8 @@
+MusEDLab AI music teaching laboratory
+Uses @magenta/music 1.23.1 and TensorFlow.js 2.7.0, Google, Apache License 2.0.
+Complete licenses are in vendor/. Pinned sources and hashes: provenance.json.
+The basic_rnn checkpoint is mirrored under the upstream hosted-checkpoint instructions:
+https://github.com/magenta/magenta-js/blob/master/music/checkpoints/README.md
+Inference runs locally in a Web Worker. No musical notes are uploaded.
+This lab uses quantized input, 32-step generation, temperature 0.8 with disclosed silent retries. Local filters apply only after a raw result is frozen. It does not apply aQWERTYon's octave-normalization or automatic stylistic shaping.
+This is not a Google product or an exact historical UI reconstruction.

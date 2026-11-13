@@ -1,0 +1,20 @@
+Who Made That Musical Decision? — MusEDLab AI teaching laboratory
+Noncommercial educational deployment, 13 November 2026.
+
+Teaching interface and local filters: S. Alex Ruthmann / NYU Music Experience Design Lab.
+Continuator: François Pachet, https://github.com/fpachet/continuator
+Bundled Continuator MIT license: continuator/CONTINUATOR-LICENSE.txt (copyright 2025 Ynosound)
+VO Regular BP MIT license: continuator/VO-REGULAR-BP-LICENSE.txt (copyright 2026 François Pachet)
+Mido: continuator/MIDO-LICENSE.txt
+Packaging: continuator/PACKAGING-LICENSE.txt plus APACHE/BSD texts
+Pyodide 0.28.3 / NumPy: downloaded on demand from jsDelivr, not bundled here.
+https://github.com/pyodide/pyodide/blob/main/LICENSE
+https://numpy.org/doc/stable/license.html
+Magenta MusicRNN 1.23.1 and TensorFlow.js 2.7.0: Google, Apache 2.0.
+magenta/vendor/MAGENTA-LICENSE and magenta/vendor/TFJS-LICENSE
+basic_rnn checkpoint self-hosting explicitly supported by:
+https://github.com/magenta/magenta-js/blob/master/music/checkpoints/README.md
+Exact file source URLs and hashes: magenta/provenance.json
+Workflow inspiration: Google Teachable Machine, https://teachablemachine.withgoogle.com/
+The earlier aQWERTYon integration acknowledges A.I. Duet by Yotam Mann, Google Creative Lab, and Magenta; this lab is a separate comparison interface, not a restoration or endorsed Google product.
+All third-party licenses remain applicable. No private corpus or student recordings are distributed here.

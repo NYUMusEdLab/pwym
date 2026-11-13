@@ -1,0 +1,62 @@
+[
+  {
+    "path": "vendor/tf.min.js",
+    "source": "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.7.0/dist/tf.min.js",
+    "bytes": 1132229,
+    "sha256": "f04b77578a276dbcdcd8921c48a61a6090a3ada9de54d8cd848691a608f287d3"
+  },
+  {
+    "path": "vendor/music_rnn.js",
+    "source": "https://cdn.jsdelivr.net/npm/@magenta/music@1.23.1/es6/music_rnn.js",
+    "bytes": 155859,
+    "sha256": "ffbea64fb7f73b634e2b588de95238f3ac54a9aa7ab18fe7e3fe084320a4389f"
+  },
+  {
+    "path": "vendor/MAGENTA-LICENSE",
+    "source": "https://raw.githubusercontent.com/magenta/magenta-js/master/LICENSE",
+    "bytes": 11410,
+    "sha256": "8e4e2fda4e9654695dee6f4932e7f3265ea707bdc07505704e5497c534863995"
+  },
+  {
+    "path": "vendor/TFJS-LICENSE",
+    "source": "https://raw.githubusercontent.com/tensorflow/tfjs/tfjs-v2.7.0/LICENSE",
+    "bytes": 11358,
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  },
+  {
+    "path": "model/config.json",
+    "source": "https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/basic_rnn/config.json",
+    "bytes": 131,
+    "sha256": "fc8928dc067148eab3d50e8028b35b511038283d1fe58c2804b24926a8038ec1"
+  },
+  {
+    "path": "model/weights_manifest.json",
+    "source": "https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/basic_rnn/weights_manifest.json",
+    "bytes": 657,
+    "sha256": "cb91dce0a07cf2d735e20d2d776fa3449de19e33dd1a2a498c74f4bb8fb61470"
+  },
+  {
+    "path": "model/group1-shard1of4",
+    "source": "https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/basic_rnn/group1-shard1of4",
+    "bytes": 4194304,
+    "sha256": "f4b8281261c2914f549fbe9ff5ad46e6c007a5d05f6438dc7ba120734243126e"
+  },
+  {
+    "path": "model/group1-shard2of4",
+    "source": "https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/basic_rnn/group1-shard2of4",
+    "bytes": 4194304,
+    "sha256": "d12d50840e8e34110b700681b0f7d0a2c96985307b0366b5ac60b73d571c41a1"
+  },
+  {
+    "path": "model/group1-shard3of4",
+    "source": "https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/basic_rnn/group1-shard3of4",
+    "bytes": 4194304,
+    "sha256": "f40e868468254c659f7cf5300cadbe3dfb061fc5c3724a2ddd9bd490831d73a8"
+  },
+  {
+    "path": "model/group1-shard4of4",
+    "source": "https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/basic_rnn/group1-shard4of4",
+    "bytes": 405656,
+    "sha256": "2e5b152a75bc30ba0e4d38175ab307568265f1862e0cdad70d2b9eab521f4281"
+  }
+]
