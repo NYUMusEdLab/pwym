@@ -146,3 +146,69 @@ export async function readAnthologyArchive(file,metadataTexts,province,onProgres
   if(!records.length)throw Error('No playable score lines found in the selected archive');
   return {records,excluded};
 }
+
+// A small, evenly spaced selection of distributed score entries. Fetch only
+// after the viewer requests a collection; score bytes never pass through MusEDLab.
+const scoreCommit='9de9bbe30130a1373bee7ba64e357476320d7ece';
+const rawScores='https://raw.githubusercontent.com/m-july/Anthology-of-Chinese-Folk-Songs/'+scoreCommit+'/';
+const volIds={shanghai:['shanghai'],shaanxi:['shaanxi1','shaanxi2']};
+export async function readAnthologySelections(metadataTexts,province,onProgress=()=>{}){
+  if(!Object.hasOwn(volIds,province))throw Error('Choose Shanghai or Shaanxi');
+  const volumes=volIds[province];
+  if(!Array.isArray(metadataTexts)||metadataTexts.length!==volumes.length)throw Error('Choose the matching curated JSONL metadata');
+  const pools=new Map(volumes.map(v=>[v,[]])),seen=new Set();
+  for(const text of metadataTexts){
+    if(typeof text!=='string'||text.length>24*MiB)throw Error('Unexpected metadata size');
+    for(const line of text.split(/\r?\n/)){
+      if(!line.trim())continue;
+      const r=JSON.parse(line.trim()),pool=pools.get(r.volume_id);
+      if(!pool)throw Error('Metadata does not match the selected province');
+      if(typeof r.id!=='string'||typeof r.title!=='string'||seen.has(r.id))throw Error('Invalid or duplicate metadata record');
+      if(seen.size>=2000)throw Error('Too many metadata records');
+      seen.add(r.id);
+      const path=normalizePath(String(r.assets?.musicxml||''));
+      if(!r.empty_score&&!r.ocr_skipped&&/^lyrics-included\/(shanghai|shaanxi1|shaanxi2 \(some lyric characters are missing\))\/[^/\\]+\.musicxml$/.test(path)
+        &&path.split('/')[1].split(' ')[0]===r.volume_id)pool.push({r,path});
+    }
+  }
+  const perVolume=24/volumes.length;
+  const chosen=volumes.flatMap(v=>{
+    const pool=pools.get(v);
+    if(!pool.length)throw Error('No eligible upstream scores for '+v);
+    const count=Math.min(perVolume,pool.length);
+    return Array.from({length:count},(_,i)=>pool[Math.round(i*(pool.length-1)/Math.max(1,count-1))]);
+  });
+  let next=0,completed=0;
+  const results=new Array(chosen.length);
+  await Promise.all(Array.from({length:Math.min(4,chosen.length)},async()=>{
+    while(next<chosen.length){
+      const i=next++, {r,path}=chosen[i], url=rawScores+path.split('/').map(encodeURIComponent).join('/');
+      const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),15000);
+      try{
+        const response=await fetch(url,{mode:'cors',credentials:'omit',redirect:'error',referrerPolicy:'no-referrer',signal:controller.signal});
+        if(!response.ok||Number(response.headers.get('content-length'))>2*MiB)throw Error('Upstream score unavailable (HTTP '+response.status+')');
+        const reader=response.body.getReader(),decoder=new TextDecoder('utf-8',{fatal:true});
+        let size=0,xml='';
+        try{
+          for(;;){
+            const {done,value}=await reader.read();
+            if(done)break;
+            if((size+=value.byteLength)>2*MiB){await reader.cancel();throw Error('Upstream score is too large');}
+            xml+=decoder.decode(value,{stream:true});
+          }
+        }finally{reader.releaseLock();}
+        xml+=decoder.decode();
+        const record=parseScore(xml,r,path,province);
+        results[i]={record:{...record,id:'anthology-online:'+province+':'+r.id,dataset:'Anthology · '+provinceNames[province]+' (online selection)',
+          provenance:record.provenance+' · upstream score revision '+scoreCommit.slice(0,7)+' · sampled online selection, not the complete collection',
+          scoreSourceUrl:url, rights:'Fetched directly from the source for exploratory use in this browser; score not hosted by MusEDLab'}};
+      }catch(error){
+        results[i]={excluded:{id:r.id,reason:error.name==='AbortError'?'Upstream request timed out':error.message}};
+      }finally{clearTimeout(timeout);}
+      onProgress(++completed,chosen.length);
+    }
+  }));
+  const records=results.flatMap(x=>x.record?[x.record]:[]),excluded=results.flatMap(x=>x.excluded?[x.excluded]:[]);
+  if(!records.length)throw Error('No upstream scores loaded. Check your connection or use the complete local ZIP.');
+  return {records,excluded};
+}

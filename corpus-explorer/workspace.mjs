@@ -66,17 +66,40 @@ if(groups.has(prior))select.value=prior;select.onchange=run;$('#loaded').textCon
 for(const id of ['min-notes','max-notes'])$('#'+id).onchange=run;
 $('#add-anthology').onclick=()=>{$('#help').showModal();$('#anthology-import').scrollIntoView({block:'start'});$('#anthology-province').focus({preventScroll:true});};
 const metadataBase='https://raw.githubusercontent.com/m-july/Anthology-of-Chinese-Folk-Songs/v261104/metadata/curated/';
+const metadataNames=p=>p==='shanghai'?['shanghai']:['shaanxi1','shaanxi2'];
+const fetchMetadata=p=>Promise.all(metadataNames(p).map(async n=>{
+ const response=await fetch(metadataBase+n+'.jsonl',{credentials:'omit',signal:AbortSignal.timeout(60000)});
+ if(!response.ok)throw Error('Publisher metadata could not be downloaded.');
+ return response.text();
+}));
+const anthologyModule=()=>import('./anthology-zip.mjs?v=20261119-online');
+for(const province of ['shanghai','shaanxi'])$('#online-'+province).onclick=async()=>{
+ const buttons=['#online-shanghai','#online-shaanxi'].map($),status=$('#online-status');
+ buttons.forEach(b=>b.disabled=true);
+ try{
+  status.textContent='Getting collection metadata from the publisher…';
+  const [texts,parser]=await Promise.all([fetchMetadata(province),anthologyModule()]);
+  status.textContent='Loading publisher score selection…';
+  const {records,excluded}=await parser.readAnthologySelections(texts,province,(done,total)=>{status.textContent=`Retrieving publisher scores: ${done} of ${total}…`;});
+  if(!records.length)throw Error('No usable scores could be retrieved.');
+  corpus=corpus.filter(r=>!r.id.startsWith('anthology-online:'+province+':')).concat(records);
+  collections();$('#dataset').value=records[0].dataset;$('#filter').value='';
+  if(points.length)run();else sample();
+  status.textContent=`${records.length} publisher scores added to search. ${excluded.length?excluded.length+' unavailable. ':''}Close this panel to search the selection.`;
+ }catch(err){status.textContent='Online selection unavailable: '+err.message+' Try again, or open a local ZIP below.';}
+ finally{buttons.forEach(b=>b.disabled=false);}
+};
 $('#anthology-load').onclick=async()=>{
  const btn=$('#anthology-load'),status=$('#anthology-status'),province=$('#anthology-province').value;
- const zip=$('#anthology-zip').files?.[0],files=[...$('#anthology-metadata').files],names=province==='shanghai'?['shanghai']:['shaanxi1','shaanxi2'];
+ const zip=$('#anthology-zip').files?.[0],files=[...$('#anthology-metadata').files],names=metadataNames(province);
  if(!zip){status.textContent='Choose the original province score ZIP first. On iPhone, find it in Files → Downloads.';return;}
  if(files.length&&files.length!==names.length){status.textContent='Choose '+names.length+' matching curated metadata file(s), or clear them to load from the publisher.';return;}
  btn.disabled=true;
  try{
   status.textContent=files.length?'Reading local metadata…':'Getting curated metadata from the publisher…';
   const [texts,parser]=await Promise.all([
-   files.length?Promise.all(files.map(f=>f.text())):Promise.all(names.map(async n=>{const response=await fetch(metadataBase+n+'.jsonl',{credentials:'omit',signal:AbortSignal.timeout(60000)});if(!response.ok)throw Error('Publisher metadata could not be downloaded. Try again or select local JSONL.');return response.text();})),
-   import('./anthology-zip.mjs?v=20261119-corpus')
+   files.length?Promise.all(files.map(f=>f.text())):fetchMetadata(province),
+   anthologyModule()
   ]);
   status.textContent='Reading scores on this device…';
   const {records,excluded}=await parser.readAnthologyArchive(zip,texts,province,(done,total)=>{status.textContent=`Reading local scores: ${done} of ${total}…`;});
@@ -85,7 +108,6 @@ $('#anthology-load').onclick=async()=>{
   collections();$('#dataset').value=(province==='shaanxi'&&$('#dataset').querySelector('[value=local-shaanxi-all]'))?'local-shaanxi-all':records[0].dataset;$('#filter').value='';
   if(points.length)run();else sample();
   status.textContent=`${records.length} lines added. ${excluded.length?excluded.length+' skipped. ':''}Nothing uploaded. Close this panel to search.`;
-  $('#add-anthology').textContent='Manage Shanghai / Shaanxi';
  }catch(err){status.textContent='Not imported: '+err.message;}
  finally{btn.disabled=false;}
 };

@@ -37,15 +37,23 @@ aside,#work{overflow:auto;overscroll-behavior:contain}
 #drawing-dialog #canvas{height:100%;min-height:0}
 #drawing-dialog button,#drawing-dialog select{min-height:36px}
 @media(max-width:750px),(pointer:coarse) and (max-height:550px){
- body{height:100svh;max-height:100svh;overflow:hidden}
- main{grid-template-columns:1fr;grid-template-rows:auto auto;align-content:start;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
- aside{min-height:0;padding:8px;grid-template-rows:none;grid-auto-rows:auto;gap:6px;overflow:visible}
+ /* Let the document own scrolling. Flex/grid tracks constrained to the
+    viewport can shrink below their contents and paint results over controls. */
+ html{height:auto;min-height:100%;overflow-x:hidden;overflow-y:auto}
+ body{display:block;height:auto;min-height:100vh;min-height:100svh;max-height:none;overflow:visible}
+ main{display:block;min-height:0;padding:5px;overflow:visible}
+ aside{display:flex;flex-direction:column;min-height:0;padding:8px;gap:8px;overflow:visible}
+ #work{min-height:390px;margin-top:6px;overflow:visible;grid-template-rows:auto auto auto 120px auto minmax(80px,1fr) auto}
+ .playback{position:static}
  #drawing-pad{gap:5px}
  .drawing-head h2{font-size:14px}
- #canvas{height:clamp(132px,29svh,255px)}
+ #canvas{height:clamp(132px,29vh,255px);height:clamp(132px,29svh,255px)}
  #drawing-pad button,#drawing-pad select{min-height:34px;font-size:13px;padding:4px 7px}
+ aside .filter,aside>.row{font-size:13px;flex-wrap:wrap}
+ aside .filter input,aside .filter select,aside>.row input,aside>#add-anthology{min-height:36px;font-size:13px;padding:4px 7px}
+ #status{font-size:11px}
+ #match-list{display:none}
  #drawing-dialog{inset:0;width:100%;height:100%;height:100svh;border:0;border-radius:0;padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
- #work{min-height:390px}
 }
 @media(max-height:500px) and (pointer:coarse){
  #drawing-dialog #drawing-pad{grid-template-columns:1fr 1fr;grid-template-rows:auto minmax(0,1fr) auto auto}
