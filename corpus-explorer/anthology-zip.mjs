@@ -152,7 +152,7 @@ export async function readAnthologyArchive(file,metadataTexts,province,onProgres
 const scoreCommit='9de9bbe30130a1373bee7ba64e357476320d7ece';
 const rawScores='https://raw.githubusercontent.com/m-july/Anthology-of-Chinese-Folk-Songs/'+scoreCommit+'/';
 const volIds={shanghai:['shanghai'],shaanxi:['shaanxi1','shaanxi2']};
-export async function readAnthologySelections(metadataTexts,province,onProgress=()=>{}){
+function readSelectionPools(metadataTexts,province){
   if(!Object.hasOwn(volIds,province))throw Error('Choose Shanghai or Shaanxi');
   const volumes=volIds[province];
   if(!Array.isArray(metadataTexts)||metadataTexts.length!==volumes.length)throw Error('Choose the matching curated JSONL metadata');
@@ -171,6 +171,10 @@ export async function readAnthologySelections(metadataTexts,province,onProgress=
         &&path.split('/')[1].split(' ')[0]===r.volume_id)pool.push({r,path});
     }
   }
+  return {pools,volumes};
+}
+export async function readAnthologySelections(metadataTexts,province,onProgress=()=>{}){
+  const {pools,volumes}=readSelectionPools(metadataTexts,province);
   const perVolume=24/volumes.length;
   const chosen=volumes.flatMap(v=>{
     const pool=pools.get(v);
@@ -178,14 +182,40 @@ export async function readAnthologySelections(metadataTexts,province,onProgress=
     const count=Math.min(perVolume,pool.length);
     return Array.from({length:count},(_,i)=>pool[Math.round(i*(pool.length-1)/Math.max(1,count-1))]);
   });
-  let next=0,completed=0;
+  const result=await fetchSelections(chosen,province,onProgress);
+  if(!result.records.length)throw Error('No upstream scores loaded. Check your connection or use the complete local ZIP.');
+  return result;
+}
+export async function readAnthologyCollection(metadataTexts,province,onProgress=()=>{},{existing=[],signal}={}){
+  const {pools,volumes}=readSelectionPools(metadataTexts,province);
+  const chosen=volumes.flatMap(v=>{
+    const pool=pools.get(v);
+    if(!pool.length)throw Error('No eligible upstream scores for '+v);
+    return pool;
+  });
+  return fetchSelections(chosen,province,onProgress,{full:true,existing,signal});
+}
+async function fetchSelections(chosen,province,onProgress,{full=false,existing=[],signal}={}){
+  const prefix=(full?'anthology-full:':'anthology-online:')+province+':';
+  const dataset='Anthology · '+provinceNames[province]+(full?' (full collection)':' (online selection)');
+  const known=new Map(full&&Array.isArray(existing)?existing.filter(r=>r&&typeof r.id==='string'&&r.id.startsWith(prefix)&&r.dataset===dataset&&Array.isArray(r.pitches)&&r.pitches.length>=4).map(r=>[r.id,r]):[]);
   const results=new Array(chosen.length);
-  await Promise.all(Array.from({length:Math.min(4,chosen.length)},async()=>{
-    while(next<chosen.length){
-      const i=next++, {r,path}=chosen[i], url=rawScores+path.split('/').map(encodeURIComponent).join('/');
+  const pending=[];
+  chosen.forEach(({r},i)=>{const entry=known.get(prefix+r.id);if(entry)results[i]={record:entry};else pending.push(i);});
+  let next=0,completed=chosen.length-pending.length,halted="",failures=0;
+  if(full)onProgress(completed,chosen.length);
+  await Promise.all(Array.from({length:Math.min(full?6:4,pending.length)},async()=>{
+    while(!signal?.aborted&&!halted&&next<pending.length){
+      const i=pending[next++], {r,path}=chosen[i], url=rawScores+path.split('/').map(encodeURIComponent).join('/');
       const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),15000);
+      const abort=()=>controller.abort();
+      signal?.addEventListener('abort',abort,{once:true});
+      if(signal?.aborted)abort();
       try{
         const response=await fetch(url,{mode:'cors',credentials:'omit',redirect:'error',referrerPolicy:'no-referrer',signal:controller.signal});
+        if(full&&(response.status===429||response.status===403)){
+          halted='The source is limiting requests. Wait a little before resuming.';
+        }
         if(!response.ok||Number(response.headers.get('content-length'))>2*MiB)throw Error('Upstream score unavailable (HTTP '+response.status+')');
         const reader=response.body.getReader(),decoder=new TextDecoder('utf-8',{fatal:true});
         let size=0,xml='';
@@ -199,16 +229,22 @@ export async function readAnthologySelections(metadataTexts,province,onProgress=
         }finally{reader.releaseLock();}
         xml+=decoder.decode();
         const record=parseScore(xml,r,path,province);
-        results[i]={record:{...record,id:'anthology-online:'+province+':'+r.id,dataset:'Anthology · '+provinceNames[province]+' (online selection)',
-          provenance:record.provenance+' · upstream score revision '+scoreCommit.slice(0,7)+' · sampled online selection, not the complete collection',
+        failures=0;
+        if(full)delete record.metadataFields;
+        results[i]={record:{...record,id:prefix+r.id,dataset,
+          provenance:record.provenance+' · upstream score revision '+scoreCommit.slice(0,7)+(full?'':' · sampled online selection, not the complete collection'),
           scoreSourceUrl:url, rights:'Fetched directly from the source for exploratory use in this browser; score not hosted by MusEDLab'}};
       }catch(error){
+        if(signal?.aborted)break;
+        if(full&&++failures>=12&&!halted)halted='The source is not responding reliably. Check your connection before resuming.';
         results[i]={excluded:{id:r.id,reason:error.name==='AbortError'?'Upstream request timed out':error.message}};
-      }finally{clearTimeout(timeout);}
+      }finally{
+        signal?.removeEventListener('abort',abort);
+        clearTimeout(timeout);
+      }
       onProgress(++completed,chosen.length);
     }
   }));
   const records=results.flatMap(x=>x.record?[x.record]:[]),excluded=results.flatMap(x=>x.excluded?[x.excluded]:[]);
-  if(!records.length)throw Error('No upstream scores loaded. Check your connection or use the complete local ZIP.');
-  return {records,excluded};
+  return {records,excluded,total:chosen.length,cancelled:signal?.aborted===true,halted};
 }

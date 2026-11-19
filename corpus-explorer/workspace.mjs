@@ -1,4 +1,4 @@
-import{staffCard}from'./western-ui.mjs';import{tempoMap,secondsAtBeat,beatAtSeconds,followPage}from'./playback-model.mjs';import{search,jianpu,normalize}from'./engine.mjs?v=20261119-corpus';const $=s=>document.querySelector(s),c=$('#canvas'),ctx=c.getContext('2d');let corpus=[],matches=[],selected=null,points=[],drag=false,page=0,audio,voices=[],raf=0,followPlayback=true;const pageSize=()=>innerWidth<=750?16:24;const el=(tag,text,cls)=>{const n=document.createElement(tag);n.textContent=text;if(cls)n.className=cls;return n;};
+import{staffCard}from'./western-ui.mjs';import{tempoMap,secondsAtBeat,beatAtSeconds,followPage}from'./playback-model.mjs';import{search,jianpu,normalize}from'./engine.mjs?v=20261119-corpus';import{loadFullCache,saveFullCache,clearFullCache}from'./full-cache.mjs?v=20261119-full';const $=s=>document.querySelector(s),c=$('#canvas'),ctx=c.getContext('2d');let corpus=[],matches=[],selected=null,points=[],drag=false,page=0,audio,voices=[],raf=0,followPlayback=true;const pageSize=()=>innerWidth<=750?16:24;const el=(tag,text,cls)=>{const n=document.createElement(tag);n.textContent=text;if(cls)n.className=cls;return n;};
 function draw(){ctx.clearRect(0,0,600,230);ctx.strokeStyle='#d3dfce';for(let y=20;y<230;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(600,y);ctx.stroke();}ctx.strokeStyle='#b56627';ctx.lineWidth=3;ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.stroke();if(selected){const notes=selected.pitches.slice(selected.start,selected.end),curve=normalize(notes),x0=points[0]?.x??10,x1=points.at(-1)?.x??590;ctx.strokeStyle='#136a59';ctx.fillStyle='#136a59';ctx.lineWidth=3;ctx.setLineDash([7,4]);ctx.beginPath();curve.forEach((y,i)=>{const x=x0+i*(x1-x0)/Math.max(1,curve.length-1),py=115-y*190;i?ctx.lineTo(x,py):ctx.moveTo(x,py);});ctx.stroke();ctx.setLineDash([]);curve.forEach((y,i)=>{ctx.beginPath();ctx.arc(x0+i*(x1-x0)/Math.max(1,curve.length-1),115-y*190,4,0,Math.PI*2);ctx.fill();});}}let stroke=null;
 function pos(e,r){
  const clamp=(v,size)=>Math.max(0,Math.min(size,v));
@@ -61,20 +61,95 @@ async function play(start,end){if(!selected)return;stop();audio??=new(window.Aud
 $('#search').onclick=run;$('#arch').onclick=()=>sample();$('#rise').onclick=()=>sample(true);$('#clear').onclick=()=>{stop();points=[];draw();$('#status').textContent='Contour cleared. Existing result retained for comparison.';};$('#matches').onchange=()=>choose(Number($('#matches').value));$('#filter').onkeydown=e=>{if(e.key==='Enter')run();};$('#previous').onclick=()=>{followPlayback=false;$('#follow').checked=false;page=Math.max(0,page-pageSize());render();};$('#next').onclick=()=>{followPlayback=false;$('#follow').checked=false;page+=pageSize();render();};$('#match-page').onclick=()=>{if(selected){page=selected.start;render();}};$('#view').onchange=()=>{stop();roll();};$('#excerpt').onclick=()=>selected&&play(selected.start,selected.end);$('#passage').onclick=()=>{if(selected){$('#view').value='passage';roll();play(displayed.start,displayed.end);}};$('#full').onclick=()=>{if(selected){$('#view').value='song';page=0;render();play(0,selected.pitches.length);}};$('#tempo').onchange=()=>{stop();tempoLabel();};$('#follow').onchange=()=>followPlayback=$('#follow').checked;$('#pause').onclick=async()=>{if(!audio)return;if(audio.state==='running'){await audio.suspend();$('#pause').textContent='▶ Resume';}else{await audio.resume();$('#pause').textContent='Ⅱ Pause';}};$('#stop').onclick=stop;$('#about').onclick=()=>$('#help').showModal();$('#close').onclick=()=>$('#help').close();window.addEventListener('resize',()=>{stop();if(selected)page=Math.max(0,selected.start-4);render();});window.addEventListener('pagehide',stop);
 function collections(){const select=$('#dataset'),prior=select.value,groups=new Map();for(const record of corpus)groups.set(record.dataset,(groups.get(record.dataset)||0)+1);
 const shaanxi=corpus.filter(r=>r.id.startsWith('anthology:shaanxi:'));if(new Set(shaanxi.map(r=>r.dataset)).size>1)groups.set('local-shaanxi-all',shaanxi.length);
-select.replaceChildren(...[...groups].map(([g,n])=>{const o=el('option',(g==='local-shaanxi-all'?'Anthology · Shaanxi · both volumes':g)+' ('+n+')');o.value=g;return o;}));
-if(groups.has(prior))select.value=prior;select.onchange=run;$('#loaded').textContent=corpus.length+' source lines · non-commercial exploration';}
+select.replaceChildren(...[...groups].map(([g,n])=>{
+ const province=Object.keys(fullSpecs).find(p=>fullSpecs[p].dataset===g);
+ const caption=g==='local-shaanxi-all'?'Anthology · Shaanxi · both volumes':g;
+ const o=el('option',caption+(province&&n<fullSpecs[province].total?` (${n}/${fullSpecs[province].total}, partial)`:' ('+n+')'));
+ o.value=g;return o;
+}));
+for(const [p,s] of Object.entries(fullSpecs)){
+ const count=groups.get(s.dataset)||0;
+ if(count<s.total){const o=el('option',count?`Resume ${s.title} full collection (${count}/${s.total})`:`Load ${s.title} full collection (${s.total})`);o.value='load-full:'+p;select.append(o);}
+}
+if(groups.has(prior))select.value=prior;select.onchange=()=>{if(select.value.startsWith('load-full:')){const p=select.value.split(':')[1];select.value=groups.has(fullSpecs[p].dataset)?fullSpecs[p].dataset:[...groups.keys()][0]||'';startFullCorpus(p);}else run();};$('#loaded').textContent=corpus.length+' source lines · non-commercial exploration';}
 for(const id of ['min-notes','max-notes'])$('#'+id).onchange=run;
 $('#add-anthology').onclick=()=>{$('#help').showModal();$('#anthology-import').scrollIntoView({block:'start'});$('#anthology-province').focus({preventScroll:true});};
 const metadataBase='https://raw.githubusercontent.com/m-july/Anthology-of-Chinese-Folk-Songs/v261104/metadata/curated/';
 const metadataNames=p=>p==='shanghai'?['shanghai']:['shaanxi1','shaanxi2'];
-const fetchMetadata=p=>Promise.all(metadataNames(p).map(async n=>{
- const response=await fetch(metadataBase+n+'.jsonl',{credentials:'omit',signal:AbortSignal.timeout(60000)});
+const fetchMetadata=(p,signal)=>Promise.all(metadataNames(p).map(async n=>{
+ const fallback=AbortSignal.timeout(60000);
+ const response=await fetch(metadataBase+n+'.jsonl',{credentials:'omit',signal:signal?(AbortSignal.any?AbortSignal.any([signal,fallback]):signal):fallback});
  if(!response.ok)throw Error('Publisher metadata could not be downloaded.');
  return response.text();
 }));
-const anthologyModule=()=>import('./anthology-zip.mjs?v=20261119-online');
+const anthologyModule=()=>import('./anthology-zip.mjs?v=20261119-full');
+const fullSpecs={
+ shanghai:{title:'Shanghai',total:831,dataset:'Anthology · Shanghai (full collection)'},
+ shaanxi:{title:'Shaanxi',total:1309,dataset:'Anthology · Shaanxi (full collection)'}
+};
+const fullPrefix=p=>'anthology-full:'+p+':';
+const fullRecords=p=>corpus.filter(r=>r.id.startsWith(fullPrefix(p)));
+const remember=$('#remember-full-corpus'),cacheStatus=$('#cache-status'),prefKey='musedlab-corpus-remember-v1';
+try{remember.checked=localStorage.getItem(prefKey)==='on';}catch{}
+let cachePreferenceToken=0, activeFull=null;
+remember.onchange=async()=>{
+ const token=++cachePreferenceToken;
+ try{
+  if(remember.checked){
+   localStorage.setItem(prefKey,'on');
+   for(const p of Object.keys(fullSpecs)){const records=fullRecords(p);if(records.length&&token===cachePreferenceToken&&remember.checked)await saveFullCache(p,records);}
+   if(token===cachePreferenceToken)cacheStatus.textContent='This browser will keep the full collection indexes, including partial downloads you pause.';
+  }else{
+   localStorage.removeItem(prefKey);await clearFullCache();
+   if(token===cachePreferenceToken)cacheStatus.textContent='Saved scores cleared. Scores already loaded remain available until reload.';
+  }
+ }catch{if(token===cachePreferenceToken)cacheStatus.textContent='This browser could not update storage. You can still search in this session.';}
+};
+function mergeFull(p,records){
+ if(!records.length)return;
+ corpus=corpus.filter(r=>!r.id.startsWith(fullPrefix(p))).concat(records);
+}
+const fullPanel=$('#full-corpus-progress'),fullStatus=$('#full-corpus-status'),cancelFull=$('#cancel-full-corpus');
+const onlineButtons=()=>['#online-shanghai','#online-shaanxi'].map($);
+cancelFull.onclick=()=>{activeFull?.controller.abort();cancelFull.disabled=true;fullStatus.textContent='Pausing download…';};
+async function startFullCorpus(p){
+ if(!fullSpecs[p])return;
+ fullPanel.hidden=false;
+ if(activeFull){fullStatus.textContent=`Loading ${fullSpecs[activeFull.province].title}. Pause that download to start another.`;return;}
+ const previousCollection=$('#dataset').value;
+ const s=fullSpecs[p], controller=new AbortController(), existing=fullRecords(p);
+ activeFull={province:p,controller};
+ cancelFull.hidden=false;cancelFull.disabled=false;
+ onlineButtons().forEach(b=>b.disabled=true);
+ fullStatus.textContent=`Connecting to the source for ${s.title}… ${existing.length}/${s.total} ready.`;
+ try{
+  const [texts,parser]=await Promise.all([fetchMetadata(p,controller.signal),anthologyModule()]);
+  const {records,excluded,halted}=await parser.readAnthologyCollection(texts,p,(done,total)=>{
+   if(!controller.signal.aborted)fullStatus.textContent=`Checking ${s.title} scores: ${done}/${total}. Keep this tab open while they load.`;
+  },{existing,signal:controller.signal});
+  mergeFull(p,records);collections();
+  if(records.length){
+   if($('#dataset').value===previousCollection||$('#dataset').value===s.dataset){$('#dataset').value=s.dataset;$('#filter').value='';if(points.length)run();else sample();}
+   if(remember.checked)try{await saveFullCache(p,records);}catch{cacheStatus.textContent='Could not save this index; the loaded scores still work for this session.';}
+  }
+  fullStatus.textContent=records.length===s.total?`${s.title}: all ${s.total} scores ready to search.`:
+   `${s.title}: ${records.length}/${s.total} scores ready. ${controller.signal.aborted?'Paused.':halted|| (excluded.length?'Some source scores didn’t load.':'Download incomplete.')} Choose the full collection in Collection to try the remaining scores.`;
+ }catch(error){
+  fullStatus.textContent=controller.signal.aborted?`${s.title} download paused. Choose it in Collection to continue.`:`Could not load ${s.title}: ${error.message} Choose it in Collection to retry.`;
+ }finally{activeFull=null;cancelFull.hidden=true;onlineButtons().forEach(b=>b.disabled=false);}
+}
+async function restoreSavedFull(){
+ if(!remember.checked)return;
+ const token=cachePreferenceToken;
+ try{
+  const saved=await Promise.all(Object.keys(fullSpecs).map(async p=>[p,await loadFullCache(p)]));
+  if(!remember.checked||token!==cachePreferenceToken)return;
+  for(const [p,records] of saved){if(!fullRecords(p).length&&activeFull?.province!==p)mergeFull(p,records);}
+  collections();
+ }catch{cacheStatus.textContent='Saved scores could not be opened. You can load them again from Collection.';}
+}
 for(const province of ['shanghai','shaanxi'])$('#online-'+province).onclick=async()=>{
- const buttons=['#online-shanghai','#online-shaanxi'].map($),status=$('#online-status');
+ const buttons=onlineButtons(),status=$('#online-status');
  buttons.forEach(b=>b.disabled=true);
  try{
   status.textContent='Getting collection metadata from the publisher…';
@@ -112,4 +187,4 @@ $('#anthology-load').onclick=async()=>{
  finally{btn.disabled=false;}
 };
 $('#local-import').onchange=async e=>{try{const f=e.target.files?.[0];if(!f)return;if(f.size>15e6)throw Error('Use an index below15MB');const data=JSON.parse(await f.text());if(!Array.isArray(data.records)||data.records.length>2000)throw Error('Expected a derived corpus index with at most2000 records');const imported=data.records.map((r,i)=>{if(!r.title||!r.provenance||!r.rights||!Array.isArray(r.pitches)||r.pitches.length<4||r.pitches.length>10000)throw Error('Missing source, rights or note metadata');for(const k of ['durations','onsets','measures'])if(!Array.isArray(r[k])||r[k].length!==r.pitches.length)throw Error('Note arrays do not align');if(r.pitches.some(p=>!Number.isFinite(p)||p<0||p>127)||r.durations.some(d=>!Number.isFinite(d)||d<=0)||r.onsets.some((t,j)=>!Number.isFinite(t)||t<0||j&&t<r.onsets[j-1]))throw Error('Invalid musical timing or pitch');return {...r,id:'local:'+i+':'+r.id,dataset:'Local file · '+r.dataset,lyrics:Array.isArray(r.lyrics)?r.lyrics:r.pitches.map(()=>''),sourceUrl:/^https:\/\//.test(r.sourceUrl||'')?r.sourceUrl:'',scoreSourceUrl:/^https:\/\//.test(r.scoreSourceUrl||'')?r.scoreSourceUrl:''};});corpus=corpus.filter(r=>!r.id.startsWith('local:')).concat(imported);collections();$('#dataset').value=imported[0]?.dataset||$('#dataset').value;run();$('#import-status').textContent=imported.length+' lines loaded only in this browser; nothing uploaded. Reload to clear.';}catch(err){$('#import-status').textContent='Not imported: '+err.message;}};
-try{const r=await fetch('./corpus-index.json');if(!r.ok)throw Error('Corpus unavailable');const d=await r.json();corpus=d.records.concat(corpus);collections();sample();}catch(e){$('#loaded').textContent='Corpus unavailable';$('#status').textContent=e.message+'; no demonstration substituted.';draw();}
+try{const r=await fetch('./corpus-index.json');if(!r.ok)throw Error('Corpus unavailable');const d=await r.json();corpus=d.records.concat(corpus);collections();sample();void restoreSavedFull();}catch(e){$('#loaded').textContent='Corpus unavailable';$('#status').textContent=e.message+'; no demonstration substituted.';draw();}
