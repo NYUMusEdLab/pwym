@@ -25,3 +25,31 @@ aside,#work{overflow:auto;overscroll-behavior:contain}
 .cell .lyric{line-height:1.15;text-align:center;overflow-wrap:anywhere;max-height:2.3em;overflow:auto;flex-shrink:0}
 .identity,.foot{overflow-wrap:anywhere}#tempo-status{overflow-wrap:anywhere}
 @media(max-width:750px){main{grid-template-rows:250px minmax(0,1fr)}aside{grid-template-rows:18px 62px auto auto auto auto auto;align-content:start}.contour-legend,.collection-filter{grid-column:1/-1}.contour-legend{font-size:9px;gap:3px 12px}#work{grid-template-rows:auto auto auto 120px auto minmax(80px,1fr) auto}.notation-head{gap:3px 6px}.notation-head>strong{flex:1 1 160px}.notation-head .row{margin-left:0}.roll-head>span{flex:1 1 160px}.roll-head label{margin-left:0}.foot{font-size:9px;line-height:1.35}}
+
+/* A stable, full-width touch surface; expanding reuses the same live canvas. */
+#drawing-slot{grid-column:1/-1;flex:none;min-width:0}
+#drawing-pad{display:grid;gap:6px;min-width:0}
+.drawing-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+#canvas{display:block;flex:none;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+#drawing-dialog{position:fixed;inset:0;margin:auto;width:min(960px,100%);max-width:100%;max-height:100%;height:min(720px,100%);padding:clamp(8px,2vw,20px);overscroll-behavior:none;overflow:hidden;background:#fffdf8}
+#drawing-dialog[open]{display:grid}
+#drawing-dialog #drawing-pad{grid-template-rows:auto minmax(0,1fr) auto auto auto;min-height:0}
+#drawing-dialog #canvas{height:100%;min-height:0}
+#drawing-dialog button,#drawing-dialog select{min-height:36px}
+@media(max-width:750px),(pointer:coarse) and (max-height:550px){
+ body{height:100svh;max-height:100svh;overflow:hidden}
+ main{grid-template-columns:1fr;grid-template-rows:auto auto;align-content:start;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+ aside{min-height:0;padding:8px;grid-template-rows:none;grid-auto-rows:auto;gap:6px;overflow:visible}
+ #drawing-pad{gap:5px}
+ .drawing-head h2{font-size:14px}
+ #canvas{height:clamp(132px,29svh,255px)}
+ #drawing-pad button,#drawing-pad select{min-height:34px;font-size:13px;padding:4px 7px}
+ #drawing-dialog{inset:0;width:100%;height:100%;height:100svh;border:0;border-radius:0;padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
+ #work{min-height:390px}
+}
+@media(max-height:500px) and (pointer:coarse){
+ #drawing-dialog #drawing-pad{grid-template-columns:1fr 1fr;grid-template-rows:auto minmax(0,1fr) auto auto}
+ #drawing-dialog .drawing-head,#drawing-dialog #canvas,#drawing-dialog .contour-legend{grid-column:1/-1}
+}
+
+.note-limits input{width:3.6rem} #add-anthology{width:max-content;max-width:100%} #anthology-import{min-width:0;border:1px solid #adbead;border-radius:.5rem;padding:.75rem;margin:1rem 0} #anthology-import input{max-width:100%} #anthology-import details{margin-top:.6rem}
