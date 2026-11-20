@@ -7,9 +7,8 @@ Bundled Continuator MIT license: continuator/CONTINUATOR-LICENSE.txt (copyright 
 VO Regular BP MIT license: continuator/VO-REGULAR-BP-LICENSE.txt (copyright 2026 François Pachet)
 Mido: continuator/MIDO-LICENSE.txt
 Packaging: continuator/PACKAGING-LICENSE.txt plus APACHE/BSD texts
-Pyodide 0.28.3 / NumPy: downloaded on demand from jsDelivr, not bundled here.
-https://github.com/pyodide/pyodide/blob/main/LICENSE
-https://numpy.org/doc/stable/license.html
+Pyodide 0.28.3 / NumPy 2.2.5: bundled from reviewed upstream artifacts and served same-origin.
+Runtime provenance, source URLs and retained notices: ../vendor/continuator/pyodide-0.28.3/PROVENANCE.md
 Magenta MusicRNN 1.23.1 and TensorFlow.js 2.7.0: Google, Apache 2.0.
 magenta/vendor/MAGENTA-LICENSE and magenta/vendor/TFJS-LICENSE
 basic_rnn checkpoint self-hosting explicitly supported by:
