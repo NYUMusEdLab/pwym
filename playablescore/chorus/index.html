@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'; object-src 'none'; worker-src 'none'; img-src data:; media-src data:; script-src 'sha256-l6fuGlVwPnMtfpCHfrOlDsQ1Rg3Bl1V+1Im9QuJ2dzw=' 'sha256-oUf2yi4O4JxDRPZNijuodpOSmxAamc06+xI//kiorhk=' 'sha256-0AkpLiQPbzBlx1jGCxsQn3vH8sRCZjSLtoi4VCGJjqw='; script-src-attr 'none'; style-src 'unsafe-inline'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'; object-src 'none'; worker-src 'none'; img-src data:; media-src data:; script-src 'sha256-l6fuGlVwPnMtfpCHfrOlDsQ1Rg3Bl1V+1Im9QuJ2dzw=' 'sha256-oUf2yi4O4JxDRPZNijuodpOSmxAamc06+xI//kiorhk=' 'sha256-FMyK7Jg89Vux1Evtx3UxDRxKcU+SloDzAg/MgCnjmhM='; script-src-attr 'none'; style-src 'unsafe-inline'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <meta name="referrer" content="no-referrer">
@@ -199,6 +199,19 @@ footer{margin-top:18px;color:var(--sub);font-size:.74rem}
 .scan-phrase{stroke:none;fill-opacity:.028}
 
 .scan-select-cursor{fill:none;stroke:#54306c;stroke-width:2;pointer-events:none}
+.scan-backdrop,.scan-overlay{pointer-events:none}
+.scan-backdrop rect{rx:0}
+.scan-route-selected{fill:#2b9b69;fill-opacity:.12}
+.scan-verse-selected{fill:#f2c751;fill-opacity:.20}
+.scan-route-muted,.scan-verse-muted{fill:#fff;fill-opacity:.27}
+html[data-large-print=on] .scan-route-selected{fill:#45b17c;fill-opacity:.16}
+html[data-large-print=on] .scan-verse-selected{fill:#ffdc67;fill-opacity:.27}
+html[data-large-print=on] :is(.scan-route-muted,.scan-verse-muted){fill-opacity:.13}
+@media(forced-colors:active){
+ .scan-backdrop{forced-color-adjust:none}
+ .scan-route-selected,.scan-verse-selected{fill:Highlight;fill-opacity:.12}
+ .scan-route-muted,.scan-verse-muted{fill:#fff;fill-opacity:.10}
+}
 .note-picker{justify-self:start;max-width:100%;min-height:39px;font:inherit;border:1px solid #b2c4b7;border-radius:5px;color:var(--brand2);background:white}
 .note-picker:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 
@@ -860,8 +873,9 @@ function scoreRender(){
  const view=E('div','scan-viewport');view.tabIndex=0;view.setAttribute('role','region');localAttr(view,'aria-label',['原版简谱，可横向滚动','Original printed score, horizontally scrollable']);
  const svg=S('svg','',{role:'img'});localAttr(svg,'aria-label',['喀秋莎原版印刷简谱','Katyusha original printed numbered score']);
  const image=S('image','',{href:scan.image,x:0,y:0,width:scan.width,height:scan.height});
- const overlay=S('g','',{'aria-hidden':'true'});svg.append(image,overlay);view.append(svg);el.score.append(view);
- scanView={view,svg,overlay,bbox:[0,0,scan.width,scan.height]};
+ const backdrop=S('g','scan-backdrop',{'aria-hidden':'true'});
+ const overlay=S('g','scan-overlay',{'aria-hidden':'true'});svg.append(image,backdrop,overlay);view.append(svg);el.score.append(view);
+ scanView={view,svg,backdrop,overlay,backdropKey:null,bbox:[0,0,scan.width,scan.height]};
  svg.addEventListener('click',event=>{
   const r=svg.getBoundingClientRect(),b=scanView.bbox;
   if(!(r.width&&r.height))return;
@@ -871,9 +885,37 @@ function scoreRender(){
   if(note)chooseNote(note);else chooseBar(selected);
  });
 }
-function audibleParts(guide){
- const key=guide?.playing?guide.audibleKey:null;
+function partsForRoute(key){
  return key==='together'?['upper','lower']:['upper','lower'].includes(key)?[key]:[];
+}
+function lyricBoxFor(bar){return bar?.lyricBoxes?.[lyricVerse(state.verse)]??bar?.lyricBoxes?.[id(state.verse.id)];}
+function paintScanBackdrop(system,route){
+ const clippedSystem=state.follow?system:null;
+ const key=[id(state.verse.id),route,clippedSystem].join('|');
+ if(scanView.backdropKey===key)return;
+ scanView.backdropKey=key;
+ const layer=scanView.backdrop;
+ layer.replaceChildren();
+ const playable=barIndex(state.verse,state.part);
+ const lanes=new Set(partsForRoute(route));
+ for(const [source,bar] of Object.entries(scan.bars)){
+  if(clippedSystem!==null&&bar.system!==clippedSystem)continue;
+  const liveBar=playable.has(source),selectedLyric=liveBar?lyricBoxFor(bar):null;
+  const group=S('g','',{'data-scan-bar':source,'data-scan-system':bar.system+1});
+  for(const part of ['upper','lower']){
+   const shape=rect(bar.partBoxes?.[part],liveBar&&lanes.has(part)?'scan-route-selected':'scan-route-muted');
+   if(shape){shape.setAttribute('data-part',part);group.append(shape);}
+  }
+  const seen=new Set();
+  for(const [row,box] of Object.entries(bar.lyricBoxes??{})){
+   const signature=box?.join(',');
+   if(!signature||seen.has(signature))continue;
+   seen.add(signature);
+   const shape=rect(box,signature===selectedLyric?.join(',')?'scan-verse-selected':'scan-verse-muted');
+   if(shape){shape.setAttribute('data-lyric-row',row);group.append(shape);}
+  }
+  layer.append(group);
+ }
 }
 function followFullPage(systemIndex,system){
  if(state.layout!=='page'||state.follow||!guides?.playing||!system||$('settings').open)return;
@@ -898,11 +940,16 @@ function scanRender(now){
  const focus=locateScan(scan,state.verse,ph,now,state.part);
  if(!focus)return;
  const {system,source,bar}=focus;
- const listened=audibleParts(guides);
+ const activeRoute=guides?.playing?guides.audibleKey:null;
+ // Use the last unambiguous requested route only before any audio becomes
+ // audible; while switching, the transport continues to report the old lane.
+ const backdropRoute=activeRoute??currentHeard();
+ const listened=partsForRoute(activeRoute);
  const live=listened.map(part=>({part,...locateScan(scan,state.verse,ph,now,part)})).filter(x=>x.bar);
  const safeSystem=scan.systems?.[system];
  const bbox=safeSystem&&state.follow?[safeSystem.x,safeSystem.y,safeSystem.width,safeSystem.height]:[0,0,scan.width,scan.height];
- const key=[ph?.id,source,lyricVerse(state.verse),state.part,state.startBar,state.startNote?.part,state.startNote?.slot,state.zoom,state.follow,...live.map(x=>x.part+':'+x.source+':'+(x.anchor?.slot??'rest'))].join('|');
+ paintScanBackdrop(system,backdropRoute);
+ const key=[ph?.id,source,id(state.verse.id),state.part,state.startBar,state.startNote?.part,state.startNote?.slot,state.zoom,state.follow,...live.map(x=>x.part+':'+x.source+':'+(x.anchor?.slot??'rest'))].join('|');
  if(scanSig===key){followFullPage(system,safeSystem);return;}scanSig=key;
  phoneNavigator(system,source);
  const {view,svg,overlay}=scanView;scanView.bbox=bbox;
@@ -912,13 +959,14 @@ function scanRender(now){
  overlay.replaceChildren();
  const bars=[...new Set(eventsFor(state.verse,ph??{},state.part).map(e=>id(e.sourceBar??e.bar)))];
  for(const ix of bars){const b=scan.bars[ix];if(!b)continue;appendRect(overlay,b.box,'scan-phrase');}
- const lyric=bar.lyricBoxes?.[lyricVerse(state.verse)]??bar.lyricBoxes?.[id(state.verse.id)];
+ const lyric=lyricBoxFor(bar);
  appendRect(overlay,bar.box,'scan-bar');
  appendRect(overlay,bar.partBoxes?.[state.part],'scan-own');
  appendRect(overlay,lyric,'scan-lyric');
  const lyricMarks=new Set();
  for(const {part,bar:heardBar,anchor,current} of live){
   const lane=S('g','',{'data-lane':part});
+  const lyric=lyricBoxFor(heardBar);
   appendRect(lane,heardBar.partBoxes?.[part],'scan-audible');
   if(anchor){
    const x=number(anchor.x),y=number(anchor.y);
