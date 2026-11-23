@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data: blob:; media-src blob:; script-src 'sha256-0JPweXRR1cB7sxdcWNPehedzOG3DualJEPHF5iPG6NA=' 'sha256-zdAvzdnYLza/08gUawItRQZIznFkULVvvwvGawZ0mmE=' 'sha256-6PEhF8MomjYzA2JxuTiuLQYK75b41ELe8d9VrS63b2A='; script-src-attr 'none'; style-src 'unsafe-inline'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data: blob:; media-src blob:; script-src 'sha256-0JPweXRR1cB7sxdcWNPehedzOG3DualJEPHF5iPG6NA=' 'sha256-zdAvzdnYLza/08gUawItRQZIznFkULVvvwvGawZ0mmE=' 'sha256-gvLaM1/C1la65AlZGsYNtOR0ov6J06ixq+6F2Jn+VXU='; script-src-attr 'none'; style-src 'unsafe-inline'; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <title>Playable Score · 会唱的简谱</title>
 <style>
@@ -24,6 +24,38 @@
 .section-controls button[aria-current=true]{background:var(--lime);border-color:var(--green)}
 #sol-now{display:none!important}
 #jianpu-lanes{pointer-events:none}.jianpu-band{fill:#e8efe4}.jianpu-band.lower{fill:#edf1e6}.jianpu-label{fill:#36563e;font-weight:700}.jianpu-slot .cue{fill:transparent}.jianpu-slot.active .cue{fill:#f8d49e}.jianpu-slot text{fill:#274332;font-weight:750;text-anchor:middle}.jianpu-slot line,.jianpu-slot circle{stroke:#274332;fill:#274332}.jianpu-bar{stroke:#83978b;opacity:.65}
+/* Reading controls are local and never modify the printed facsimile. */
+#large-print{min-height:44px}
+#mobile-score-nav{display:none}
+[data-view=phone] #mobile-score-nav{display:flex;flex-wrap:wrap;align-items:center;gap:4px 7px;font-size:.79rem}
+[data-view=phone] .line-nav{display:none}
+#mobile-score-nav button,#mobile-score-nav select{min-height:44px;max-width:100%;padding:3px 7px}
+#mobile-location{font-weight:700;color:var(--soft)}
+#mobile-bar{min-width:89px}
+[data-view=phone] .verse-controls{gap:3px 8px;margin:2px 0}
+[data-view=phone] .verse-buttons{gap:4px}
+[data-view=phone] .verse-buttons button{min-width:0;padding-inline:7px}
+html[data-large-print=on]{font-size:clamp(18px,3.2vw,20px);--white:#fff;--ink:#102218;--soft:#294636;--green:#0b4d37;--line:#83988b;color:var(--ink)}
+html[data-large-print=on] :is(button,select,input,summary){min-height:47px;font-weight:650}
+html[data-large-print=on] .paper{border:1px solid #607768;background:#fff}
+html[data-large-print=on] .paper:not(.focus) #score{min-width:700px}
+html[data-large-print=on] .paper.focus{overflow-x:auto;overscroll-behavior-inline:contain}
+html[data-large-print=on] .paper.focus #score{min-width:660px;max-height:none}
+html[data-large-print=on] :focus-visible{outline:3px solid #07569d;outline-offset:2px}
+html[data-large-print=on] .lyric-halo.active{stroke-width:3}
+
+#reading-rows{pointer-events:none}
+.read-visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.read-tint{fill:#a1d6f2;fill-opacity:.23;stroke:#1678aa;stroke-width:1.25;stroke-opacity:.44;vector-effect:non-scaling-stroke}
+.notes-off .read-tint-note,.lyrics-off .read-tint-lyric{visibility:hidden}
+.read-dim,.read-mask{fill:#fffdf8}.read-dim{fill-opacity:.66}.read-mask{fill-opacity:1}
+[data-large-print="true"] .read-dim,[data-large-print="on"] .read-dim,.large-print .read-dim{fill-opacity:.42}
+.read-on .read-generated-muted:not(.active){opacity:.42}
+.read-hide .read-generated-muted:not(.active){visibility:hidden}
+.read-on:not(.notes-off) .note.active rect,.read-on:not(.notes-off) .hold.active{stroke:#913a07;stroke-width:3.1;fill:#ffac45;fill-opacity:.51}
+.read-on:not(.notes-off) .note.rest.active rect{stroke:#0d527b;fill:#a7dcfa;fill-opacity:.66}
+.read-on:not(.lyrics-off) .lyric-halo.active{stroke:#893e09;stroke-width:2.5;fill:#ffd244;fill-opacity:.47}
+@media (forced-colors:active){.read-tint{stroke:Highlight;fill:none}.read-dim{opacity:.43}.read-mask{fill:Canvas}}
 </style></head><body><main id="app" data-view="desktop">
 <header><div><p class="brand">MUSEDLAB · RENGONGFU · TEACHER PROTOTYPE</p><h1>Playable Score <small>会唱的简谱</small></h1></div>
 <details class="src"><summary>Source 谱源</summary><div class="src-inner"><p id="credit"></p><p><a id="source" target="_blank" rel="noopener noreferrer">Open source document</a></p><p>Notes are mapped to positions on the original image. The bundled example is manually checked, not an automatic scan result.</p><p>Offline prototype. It does not upload images or save in the background.</p></div></details></header>
@@ -39,13 +71,18 @@
 </div>
 <div class="grid">
 <section class="box scorebox" aria-labelledby="title"><div class="headrow"><h2 id="title"></h2><span class="credit" id="meta"></span></div>
-<div class="tools"><button id="sol" aria-pressed="true">Solfège row 唱名</button><button type="button" id="jianpu" aria-pressed="false" hidden>Numbered notation 简谱</button><button id="zoom" aria-pressed="false">Focus line 放大</button><button id="showpads" aria-pressed="true">Scale Rows 音阶</button><button id="review" aria-pressed="false" hidden inert>Review 校对</button><label id="highlight-controls" hidden>Highlight 高亮 <select id="highlight"><option value="both">Lyrics + notes 歌词和音符</option><option value="lyrics">Lyrics 歌词</option><option value="notes">Notes 音符</option></select></label></div>
+<div class="tools"><button id="sol" aria-pressed="true">Solfège row 唱名</button><button type="button" id="jianpu" aria-pressed="false" hidden>Numbered notation 简谱</button><button type="button" id="large-print" aria-pressed="false">Large print 大字模式</button><button id="zoom" aria-pressed="false">Focus line 放大</button><button id="showpads" aria-pressed="true">Scale Rows 音阶</button><button id="review" aria-pressed="false" hidden inert>Review 校对</button><label id="reading-aids">Reading guide 读谱辅助 <select id="reading" aria-describedby="reading-hint"><option value="follow">Emphasize selected rows 突出选中谱行</option><option id="reading-hide" value="hide" disabled>Hide inactive rows 隐藏未选谱行</option><option value="off">Off 关闭</option></select></label><span id="reading-hint" class="minor read-visually-hidden"></span><label id="highlight-controls" hidden>Highlight 高亮 <select id="highlight"><option value="both">Lyrics + notes 歌词和音符</option><option value="lyrics">Lyrics 歌词</option><option value="notes">Notes 音符</option></select></label></div>
 <div id="section-controls" class="section-controls" role="group" aria-label="Section practice" hidden>
 <div class="section-buttons" id="section-buttons" role="group" aria-label="Play a section"></div>
 <label id="practice-part-label">B 声部 · Parts <select id="practice-part" aria-label="Parts in section B"><option value="0">Both parts · 两声部</option><option value="1">Upper · 上声部</option><option value="2">Lower · 下声部</option></select></label>
 </div>
-<div id="verse-controls" class="verse-controls" role="group" aria-label="Play a single verse" hidden><span>Verses 分段</span><div id="verse-buttons" class="verse-buttons"></div></div>
-<div class="paper" id="paper"><svg xmlns="http://www.w3.org/2000/svg" id="score" aria-label="Original numbered notation page with interactive notes"><image id="scan"></image><g id="scan-strips" aria-hidden="true"></g><g id="sol-lanes" aria-hidden="true"></g><g id="jianpu-lanes" aria-hidden="true"></g><g id="measure-targets" aria-hidden="true"></g><g id="holds"></g><g id="marks"></g><g id="lyrics" aria-hidden="true"></g><g id="verse-targets"></g></svg></div>
+<div id="verse-controls" class="verse-controls" role="group" aria-label="Play a single verse" hidden><span>Choose a verse 选择段落</span><div id="verse-buttons" class="verse-buttons"></div></div>
+<div id="mobile-score-nav" role="group" aria-label="Score navigation · 乐谱导航">
+<span id="mobile-location"></span>
+<select id="mobile-bar" aria-label="Jump to measure · 跳到小节"></select>
+<button type="button" id="mobile-full" aria-controls="paper" aria-pressed="false">Full score 全谱</button>
+</div>
+<div class="paper" id="paper"><svg xmlns="http://www.w3.org/2000/svg" id="score" aria-label="Original numbered notation page with interactive notes"><image id="scan"></image><g id="scan-strips" aria-hidden="true"></g><g id="sol-lanes" aria-hidden="true"></g><g id="jianpu-lanes" aria-hidden="true"></g><g id="measure-targets" aria-hidden="true"></g><g id="reading-rows" aria-hidden="true"></g><g id="holds"></g><g id="marks"></g><g id="lyrics" aria-hidden="true"></g><g id="verse-targets"></g></svg></div>
 <div class="line-nav"><button type="button" id="prev-line" aria-label="Previous line">←</button><span id="line-now"></span><span id="sol-now" hidden></span><button type="button" id="next-line" aria-label="Next line">→</button></div>
 <div class="nobar" aria-hidden="true"><span id="progress"></span></div>
 <div class="steps" aria-label="Play from a phrase or measure" id="phrases"></div>
@@ -229,6 +266,19 @@ let score=null,currentImage='',savedImage=null,chosenLine=1,chosenBar=1,selected
 let lineButtons=new Map(),barButtons=new Map(),padNodes=new Map(),keyPads=new Map(),marks=[],holdMarks=[],lyricMarks=[],verseMarks=[],activeVerse=1,activeHold=-1;
 let verseButtons=new Map(),printedVerseButtons=new Map();
 let masterView='desktop',lineGeometry=[],solRows=[],solMarks=[],jianpuMarks=[],showJianpu=false;
+let mobileFullScore=false,selectedPrintedVerse=0;
+const scorePrintKey='musedlab-playable-score-large-print-v1';
+function setScorePrint(on,{save=true}={}){
+ const value=on?'on':'off';
+ document.documentElement?.setAttribute('data-large-print',value);
+ $('large-print').setAttribute('aria-pressed',String(on));
+ if(save)try{localStorage.setItem(scorePrintKey,value);}catch{}
+}
+function loadScorePrint(){
+ let selected='off';
+ try{selected=localStorage.getItem(scorePrintKey);}catch{}
+ setScorePrint(selected==='on',{save:false});
+}
 const jianpuVisible=()=>showJianpu&&score?.notation==='staff';
 const notationLanes=()=>showSol||jianpuVisible();
 let harmony=[],activeNodes=new Set(),followingPads=new Set();
@@ -340,8 +390,18 @@ function verseList(verse){return performance().filter(e=>e.verse===verse);}
 function playVerse(verse){
  const list=verseList(verse);
  if(!list.length)return;
- const first=list[0];setLine(first.line,first.bar);
+ const first=list[0];selectedPrintedVerse=verse;setLine(first.line,first.bar);
  playGroup(list,'Verse '+verse);
+}
+// The reading layer can use the explicit single verse or the verse being sung in Whole Song.
+function readingVerseChoice(){
+ const player=run??paused??pendingTrack;
+ if(run&&active>=0)return activeVerse;
+ if(player?.list?.length){
+  const t=player.list[0].t+(player.offset??0);
+  return (player.list.find(e=>e.t<=t+1e-6&&e.t+e.beats>t)??player.list.find(e=>e.t>=t)??player.list.at(-1)).verse??1;
+ }
+ return selectedPrintedVerse||1;
 }
 let sectionButtons = new Map();
 function drawSectionControls(){
@@ -368,8 +428,8 @@ function drawVerseButtons(){
  const group=$('verse-controls');
  group.hidden=verses.length<2;
  if(!group.hidden)for(const verse of verses){
-  const b=button('Verse '+verse,()=>playVerse(verse),'Play verse '+verse);
-  b.title='第 '+verse+' 段';verseButtons.set(verse,b);
+  const b=button('Verse '+verse+' · 第'+verse+'段',()=>playVerse(verse),'Play verse '+verse+' · 播放第'+verse+'段');
+  verseButtons.set(verse,b);
  }
  $('verse-buttons').replaceChildren(...verseButtons.values());
 }
@@ -400,7 +460,7 @@ function syncVerseControls(){
   else button.removeAttribute('aria-current');
  }
  for(const map of [verseButtons,printedVerseButtons])for(const [v,b] of map){
-  if(label==='Verse '+v) b.setAttribute('aria-current','true');
+  if(label==='Verse '+v||(!label&&selectedPrintedVerse===v)) b.setAttribute('aria-current','true');
   else b.removeAttribute('aria-current');
  }
 }
@@ -480,7 +540,7 @@ function groups(key,items=score.events){
  return map;
 }
 function build(data,image,voice,mandarin,voices,mandarins,backings=null){
- stop();score=verify(data);practicePart=0;setTempo(score.bpm);clearStem();setBundled(voice,mandarin,voices,mandarins);setBacking(backings);$('stem-length').textContent=stemLabel();currentImage=image;reference=score.events.map(e=>({...e}));edits=[];selected=-1;moving=false;registered++;
+ stop();score=verify(data);practicePart=0;selectedPrintedVerse=0;setTempo(score.bpm);clearStem();setBundled(voice,mandarin,voices,mandarins);setBacking(backings);$('stem-length').textContent=stemLabel();currentImage=image;setupReading(data,image);reference=score.events.map(e=>({...e}));edits=[];selected=-1;moving=false;registered++;
  chosenLine=score.events[0].line;chosenBar=score.events[0].bar;
  $('play').textContent=score.sections.length?'▶ '+score.sections.map(s=>s.name).join(' + ')+' 全段':score.passes===2?'▶ Whole excerpt 全段':'▶ Whole song 全曲';$('title').textContent=score.title;$('meta').textContent=score.subtitle;
  $('credit').textContent=score.credit;
@@ -493,9 +553,89 @@ function build(data,image,voice,mandarin,voices,mandarins,backings=null){
  $('scan').setAttribute('href',image);$('scan').setAttribute('width',score.width);$('scan').setAttribute('height',score.height);
  $('jianpu').hidden=score.notation!=='staff';
  $('jianpu').setAttribute('aria-pressed',String(jianpuVisible()));
- drawSectionControls();drawVerseButtons();drawMarks();layoutPaper();drawPads();drawPhrases();setLine(chosenLine,chosenBar,true);editPanel();
+ drawSectionControls();drawVerseButtons();drawMobileNavigator();drawMarks();layoutPaper();drawPads();drawPhrases();setLine(chosenLine,chosenBar,true);editPanel();
  say(score.notation==='staff'?'Tap a measure to start or stop. Shift-click a note to hear it alone.':'Tap a measure to start or stop. Shift-click a note to hear it alone.');
 }
+// Scan overlays deliberately do not reflow or change any source scan/audio bytes.
+const readWindows={
+ // Hand-checked only against the corresponding packaged scan.
+ shieryuehua:{size:[1275,820],lyrics:{
+  1:{1:[232,281,930,37],2:[232,323,930,38],3:[232,365,930,36]},
+  2:{1:[226,504,925,38],2:[226,547,925,39],3:[226,590,925,38]},
+  3:{3:[232,775,461,41]}
+ }},
+ 'zhuangban-lanse-de-diqiu':{size:[1320,1807],parts:{
+  3:{1:[244,1067,1003,149],2:[244,1224,1003,158]},
+  4:{1:[178,1407,1069,145],2:[178,1560,1069,166]}
+ }}
+};
+let readKey='',readPlan=null,readMode='follow';
+try{const m=localStorage.getItem('musedlab.playablescore.reading');if(['follow','hide','off'].includes(m))readMode=m;}catch{}
+function setupReading(data,image){
+ const known=examples.find(x=>x.data===data&&x.image===image);
+ const plan=known?Object.hasOwn(readWindows,data.id)&&readWindows[data.id]:null;
+ readPlan=plan&&plan.size[0]===data.width&&plan.size[1]===data.height?plan:null;
+ readKey='';
+}
+function readingVerse(){
+ if(typeof readingVerseChoice==='function')return Number(readingVerseChoice())||1;
+ const event=run?.sounding?.[run.idx-1];
+ return active>=0?activeVerse:event?.verse??paused?.list?.[0]?.verse??1;
+}
+function renderReading(force=false){
+ if(!score)return;
+ const split=score.events.some(e=>e.part===2),verse=readingVerse();
+ const canMask=!!(readPlan?.lyrics||readPlan?.parts),canHide=canMask&&(!!readPlan?.lyrics||!!practicePart);
+ const mode=readMode==='hide'&&!canHide?'follow':readMode;
+ const id=[registered,verse,practicePart,mode].join(':');
+ if(!force&&id===readKey)return;readKey=id;
+ $('reading').value=mode;
+ $('reading-hide').disabled=!canHide;
+ $('reading-hint').textContent=canHide?'Inactive printed rows can be hidden. 可隐藏未选谱行。':canMask?'Choose one part to hide the other. 选择单个声部后可隐藏另一声部。':'This scan has no verified rows to hide. 此原谱未标定可隐藏的谱行。';
+ const enabled=mode!=='off';
+ $('paper').classList.toggle('read-on',enabled);
+ $('paper').classList.toggle('read-hide',mode==='hide');
+ const output=[];
+ const target=(cls,bounds,shift)=>{
+  const [x,y,w,h]=bounds;
+  if(w<=0||h<=0)return;
+  output.push(box('rect',{class:cls,x,y:y+shift,width:w,height:h,rx:cls.startsWith('read-tint')?Math.max(2,score.width*.003):0,'aria-hidden':'true'}));
+ };
+ const accent=(points,shift,padX,padY,kind)=>{
+  if(!points.length)return;
+  const xs=points.map(n=>n.x),ys=points.map(n=>n.y);
+  const x=Math.max(0,Math.min(...xs)-padX),end=Math.min(score.width,Math.max(...xs)+padX);
+  const y=Math.max(0,Math.min(...ys)-padY),bottom=Math.min(score.height,Math.max(...ys)+padY);
+  target('read-tint read-tint-'+kind,[x,y,end-x,bottom-y],shift);
+ };
+ const visit=score.verseByVisit?new Set(score.playOrder.filter((_,i)=>score.verseByVisit[i]===verse)):null;
+ for(const row of lineGeometry){
+  const notes=score.events.filter(e=>e.line===row.line);
+  const rowSplit=row.duet&&split;
+  for(const e of notes){
+   const eligible=!(rowSplit&&practicePart&&e.part!==practicePart);
+   for(const n of [solMarks[e.i],jianpuMarks[e.i]])n?.classList.toggle('read-generated-muted',enabled&&!eligible);
+  }
+  if(!enabled)continue;
+  const padX=Math.max(12,score.width*.018),padY=Math.max(7,score.width*.0095);
+  for(const part of rowSplit?[1,2]:[1]){
+   if(rowSplit&&practicePart&&part!==practicePart)continue;
+   const events=notes.filter(e=>(!rowSplit||e.part===part)&&(!visit||visit.has(e.bar)));
+   accent(events.flatMap(e=>[e,...e.holds]),row.shift,padX,padY,'note');
+   const lyric=events.flatMap(e=>{
+    if(visit)return e.verses[verse-1]?[e.verses[verse-1]]:[];
+    return e.lyricX!==null?[{x:e.lyricX,y:e.lyricY}]:[];
+   });
+   accent(lyric,row.shift,padX,Math.min(padY,score.width*.012),'lyric');
+  }
+  for(const [alternate,bounds] of Object.entries(readPlan?.lyrics?.[row.line]??{}))
+   if(Number(alternate)!==verse)target(mode==='hide'?'read-mask':'read-dim',bounds,row.shift);
+  for(const [alternate,bounds] of Object.entries(readPlan?.parts?.[row.line]??{}))
+   if(practicePart&&Number(alternate)!==practicePart)target(mode==='hide'?'read-mask':'read-dim',bounds,row.shift);
+ }
+ $('reading-rows').replaceChildren(...output);
+}
+
 function setHighlight(){
  $('paper').classList.toggle('notes-off',$('highlight').value==='lyrics');
  $('paper').classList.toggle('lyrics-off',$('highlight').value==='notes');
@@ -591,9 +731,49 @@ function drawMeasureTargets(lines){
  }
  $('measure-targets').replaceChildren(...targets);
 }
+function drawMobileNavigator(){
+ const jump=$('mobile-bar');
+ const measures=[...groups('bar')];
+ const opts=measures.map(([bar])=>{
+  const o=document.createElement('option');
+  o.value=String(bar);o.textContent='Bar '+bar+' · 第'+bar+'小节';return o;
+ });
+ jump.replaceChildren(...opts);syncMobileNavigator();
+}
+function syncMobileNavigator(force=false){
+ const jump=$('mobile-bar');
+ const location=$('mobile-location'),label='Line '+chosenLine+' / '+lineGeometry.length+' · 第'+chosenLine+'行';
+ if(location.textContent!==label)location.textContent=label;
+ if((force||document.activeElement!==jump)&&jump.value!==String(chosenBar))jump.value=String(chosenBar);
+}
+function jumpPrintedBar(bar){
+ const printed=score?.events.find(e=>e.bar===bar);if(!printed)return;
+ // Retain the current practice scope and played repeat/verse whenever this
+ // printed measure occurs in it; otherwise fall back to the whole score.
+ const player=run??paused??pendingTrack;
+ let target=null,nextList=null,nextLabel=null;
+ if(player?.list?.length){
+  const prefer=readingVerseChoice();
+  const find=list=>list.find(e=>e.bar===bar&&(e.verse??1)===prefer)??list.find(e=>e.bar===bar);
+  nextList=player.list;nextLabel=player.label;target=find(nextList);
+  if(!target){
+   nextList=performance();nextLabel=score.sections.length||score.passes===2?'Whole excerpt':'Whole song';target=find(nextList);
+   selectedPrintedVerse=0;
+  }
+ }
+ setLine(printed.line,printed.bar);
+ syncMobileNavigator(true);
+ if(masterView==='phone'&&mobileFullScore)scrollScoreToLine(printed.line);
+ if(!target)return;
+ const offset=target.t-nextList[0].t;
+ if(paused){
+  paused={list:nextList,label:nextLabel,offset};syncControls();
+ }else start(nextList,nextLabel,offset);
+}
 function setLine(line,bar,force=false){
  const changed=chosenLine!==line;chosenLine=line;chosenBar=bar;
  if(changed||force){drawBars();view();}
+ syncMobileNavigator();
  for(const [i,b] of lineButtons)b.setAttribute('aria-pressed',String(i===line));
  for(const [i,b] of barButtons)b.setAttribute('aria-pressed',String(i===bar));
 }
@@ -731,6 +911,7 @@ function layoutPaper(){
  $('sol-lanes').replaceChildren(...bands,...solRows);
  $('jianpu-lanes').replaceChildren(...jianpuRows);
  $('sol-now').hidden=!showSol;
+ renderReading(true);
  paintActive();
 }
 function paperSlice(top,end,shift){
@@ -748,8 +929,15 @@ function syncSolCue(){
   el.setAttribute('aria-label',syllable(e)?'Current solfège '+syllable(e):'No current solfège');
  }
 }
+function scrollScoreToLine(line){
+ const row=lineGeometry.find(g=>g.line===line),paper=$('paper'),svg=$('score');
+ if(row&&typeof paper.scrollTop==='number'){
+  const scale=svg.clientWidth/score.width;
+  paper.scrollTop=Math.max(0,Math.round((row.first+row.shift-(row.duet?row.bandHeight:0))*scale-20));
+ }
+}
 function view(){
- const focused=focusLine||masterView!=='desktop';
+ const focused=masterView==='phone'?!mobileFullScore:(focusLine||masterView!=='desktop');
  const row=lineGeometry.find(g=>g.line===chosenLine);
  const withLanes=notationLanes();
  let y=0,h=score.height+(withLanes?lineGeometry.at(-1)?.shift??0:0);
@@ -762,7 +950,7 @@ function view(){
  svg.style.aspectRatio=score.width+' / '+h;
  $('paper').classList.toggle('focus',focused);
  $('line-now').textContent='Line '+chosenLine+' of '+lineGeometry.length;
- if(!focused&&run&&row){const paper=$('paper');if(typeof paper.scrollTop==='number'){const scale=svg.clientWidth/score.width;paper.scrollTop=Math.max(0,Math.round((row.first+row.shift-(row.duet?row.bandHeight:0))*scale-20));}}
+ if(!focused&&run&&row)scrollScoreToLine(row.line);
  else if(focused&&typeof $('paper').scrollTop==='number')$('paper').scrollTop=0;
 }
 function setMasterView(mode){
@@ -797,6 +985,7 @@ function syncHarmony(indices){
 function activeTo(i,hold=-1,verse=1){
  if(active===i&&activeHold===hold&&verse===activeVerse)return;
  active=i;activeHold=hold;activeVerse=verse;
+ renderReading();
  harmony=i<0?[]:harmony.filter(id=>id!==i);
  paintActive();
  const next=score?.events[i];
@@ -844,6 +1033,7 @@ async function preview(m,degree,duration,voice=null){
 }
 function syncControls(){
  syncVerseControls();
+ renderReading();
  $('pause').disabled=!run&&!paused;$('pause').textContent=paused?'Resume':'Pause';$('stop').disabled=!run&&!paused&&!pendingTrack;
 }
 function stop(closePreview=true){
@@ -1022,7 +1212,17 @@ function init(){
   document.addEventListener('keyup',ev=>keyPads.get(ev.code)?.b.classList.remove('playing-key'));
  }
 
+ $('large-print').onclick=()=>setScorePrint($('large-print').getAttribute('aria-pressed')!=='true');
+ loadScorePrint();
+ $('mobile-bar').onchange=()=>jumpPrintedBar(Number($('mobile-bar').value));
+ $('mobile-bar').onblur=()=>syncMobileNavigator(true);
+ $('mobile-full').onclick=()=>{
+  mobileFullScore=!mobileFullScore;
+  $('mobile-full').setAttribute('aria-pressed',String(mobileFullScore));
+  view();if(mobileFullScore)scrollScoreToLine(chosenLine);
+ };
  $('play').onclick=()=>{
+  selectedPrintedVerse=0;
   playGroup(performance(),score.sections.length||score.passes===2?'Whole excerpt':'Whole song');
  };
  $('pause').onclick=pause;$('stop').onclick=()=>{stop();say('Stopped.');};
@@ -1034,10 +1234,16 @@ function init(){
  $('backing').onchange=updateAudio;
  $('practice-part').onchange=()=>{
   practicePart=Number($('practice-part').value);
+  renderReading();
   if(run||pendingTrack)updateAudio();
   else if(!paused)say(['Both voices in section B.','Upper voice in section B.','Lower voice in section B.'][practicePart]);
  };
  $('highlight').onchange=setHighlight;
+ $('reading').onchange=()=>{
+  readMode=$('reading').value;
+  try{localStorage.setItem('musedlab.playablescore.reading',readMode);}catch{}
+  renderReading(true);
+ };
  function changeTempo(n){const prior=playTempo;setTempo(n);if(playTempo!==prior){if(run||pendingTrack)updateAudio();else say('Tempo set to '+playTempo+' BPM.');}}
  $('speed').oninput=()=>{$('bpm').value=$('speed').value;};
  $('speed').onchange=()=>changeTempo($('speed').value);
