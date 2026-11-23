@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'; object-src 'none'; worker-src 'none'; img-src data:; media-src data:; script-src 'sha256-l6fuGlVwPnMtfpCHfrOlDsQ1Rg3Bl1V+1Im9QuJ2dzw=' 'sha256-oUf2yi4O4JxDRPZNijuodpOSmxAamc06+xI//kiorhk=' 'sha256-Ukiwc+rWjIvs4xHgNoGQcMzHZDvtS5ukxqK6Ol2DbPY='; script-src-attr 'none'; style-src 'unsafe-inline'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'; object-src 'none'; worker-src 'none'; img-src data:; media-src data:; script-src 'sha256-l6fuGlVwPnMtfpCHfrOlDsQ1Rg3Bl1V+1Im9QuJ2dzw=' 'sha256-oUf2yi4O4JxDRPZNijuodpOSmxAamc06+xI//kiorhk=' 'sha256-G8hr0FvoELIMhZ1RvA52/JTzPed1XDyUMGxWaTKp6/A='; script-src-attr 'none'; style-src 'unsafe-inline'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <meta name="referrer" content="no-referrer">
@@ -35,7 +35,7 @@ h1{font-size:clamp(2.22rem,6vw,3.38rem);line-height:1.03;letter-spacing:.01em;ma
 .choices button[aria-pressed=true],.option[aria-pressed=true]{border-color:var(--brand);background:var(--wash);box-shadow:inset 0 0 0 1px var(--brand);font-weight:700;color:var(--brand2)}
 .choices button:hover,.option:hover{border-color:var(--brand)}
 .transport{margin-top:9px;padding-top:13px;border-top:1px solid var(--hair);display:flex;align-items:center;gap:16px}
-.play{background:var(--brand);border-color:var(--brand);color:white;min-width:94px;font-weight:750}
+.play{background:var(--brand);border-color:var(--brand);color:white;min-width:94px;font-weight:750;white-space:pre-line}
 .play:hover:not(:disabled){background:var(--brand2)}
 .play span{color:#eff6ef}
 .position{display:flex;align-items:center;gap:8px;min-width:110px;flex:1}
@@ -44,11 +44,13 @@ progress{width:100%;height:8px;accent-color:var(--brand)}
 .transport-status{color:var(--sub);font-size:.79rem;line-height:1.4;margin:8px 0 0;min-height:1.1em}
 .transport-status span{margin-left:6px}
 .score{margin-top:14px}
-.score-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding-bottom:8px;border-bottom:1px solid var(--hair)}
+.score-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 10px;padding-bottom:8px;border-bottom:1px solid var(--hair)}
 .score-head h2,.cue h2{font-size:1.1rem;margin:0}
 .score-en{margin:3px 0 0;color:var(--sub);font-size:.82rem}
 .score-view-options{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:4px 8px}
 .score-view-options .compact{padding:3px 6px;min-width:0;font-size:.76rem}
+.score-verses .control-label,.practice[data-quick=true] .score-heading{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.score-verses .choices button{min-width:0;padding-inline:8px;font-size:.79rem}
 .key{margin:0;color:var(--sub);font:.83rem var(--mono);white-space:nowrap}
 .empty{margin:10px 0 3px;color:var(--sub);font-size:.87rem}
 .cue{margin-top:13px;border-left:3px solid var(--focus);background:var(--wash);padding:9px 13px;border-radius:3px 8px 8px 3px}
@@ -283,7 +285,11 @@ html[data-large-print=on]{font-size:clamp(18px,2.9vw,20px)}
  </section>
  <section class="score" id="score-card" aria-labelledby="score-zh">
    <div class="score-head">
-     <div><h2 id="score-zh">练习谱</h2><p id="score-en" class="score-en" lang="en">Practice score</p></div>
+     <div class="score-heading"><h2 id="score-zh">练习谱</h2><p id="score-en" class="score-en" lang="en">Practice score</p></div>
+     <div class="score-verses">
+       <div class="control-label" id="verse-label">歌词段落</div>
+       <div class="choices" id="verses" role="group" aria-labelledby="verse-label"></div>
+     </div>
      <div class="score-view-options"><p id="score-key" class="key"></p><button type="button" class="option compact" id="large-print" aria-pressed="false">大字模式</button></div>
    </div>
    <p id="verse-note" class="verse-note" hidden></p>
@@ -314,10 +320,6 @@ html[data-large-print=on]{font-size:clamp(18px,2.9vw,20px)}
    <div class="control-row">
      <div class="control-label" id="voice-label">示范音域 <span lang="en">Guide register</span></div>
      <div><div class="choices" id="voices" role="group" aria-labelledby="voice-label"></div><p id="voice-info" class="voice-info"></p></div>
-   </div>
-   <div class="control-row">
-     <div class="control-label" id="verse-label">歌词段落 <span lang="en">Verse</span></div>
-     <div class="choices" id="verses" role="group" aria-labelledby="verse-label"></div>
    </div>
    <div class="control-row">
      <div class="control-label" id="phrase-label">练习范围 <span lang="en">Practice section</span></div>
@@ -1020,7 +1022,15 @@ function stop(){
  if(frame){root.cancelAnimationFrame(frame);frame=0;}
  guides?.pause();
 }
-function playText(){localized(el.play,!guides||guides.paused?labels.play:labels.stop);}
+function playText(){
+ const stopped=!guides||guides.paused;
+ const [zh,en]=stopped?labels.play:labels.stop;
+ const selected=id(state.verse?.id);
+ if(!selected){localized(el.play,[zh,en]);return;}
+ const [verseZh,verseEn]=pair(state.verse.name??state.verse.label,['第'+selected+'段','Verse '+selected]);
+ localized(el.play,[zh+'\n'+verseZh,en+'\n'+verseEn]);
+ localAttr(el.play,'aria-label',stopped?['播放'+verseZh,'Play '+verseEn]:['停止播放'+verseZh,'Stop playing '+verseEn]);
+}
 const loadingAudio=['正在切换示范，原声部继续播放。','Switching guide; the current part keeps playing.'];
 const loadingRegister=['正在载入所选示范人声。','Loading the selected guide voice.'];
 function currentHeard(){return heardPart(state.part,state.listen);}
