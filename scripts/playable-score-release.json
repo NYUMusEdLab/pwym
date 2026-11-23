@@ -1,5 +1,7 @@
 {
   "schema": 1,
-  "state": "disabled",
-  "files": {}
+  "state": "approved",
+  "files": {
+    "review/playable-score/index.html": "ede6c7b6c09a165aae0f15e7a0c1133dd74257e42fe606258544059455208b07"
+  }
 }
