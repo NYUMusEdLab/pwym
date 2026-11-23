@@ -1,0 +1,26 @@
+name: MusEDLab release policy
+on:
+  pull_request:
+    branches: [gh-pages]
+  merge_group:
+    branches: [gh-pages]
+  push:
+    branches: [gh-pages]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release-integrity:
+    name: MusEDLab release integrity
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Check out the proposed release
+        # actions/checkout v4.2.2, official repository tag resolved at setup.
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Verify release manifest and executable dependencies
+        run: python3 scripts/check_release.py

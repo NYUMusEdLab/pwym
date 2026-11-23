@@ -1,7 +1,9 @@
-importScripts('https://cdn.jsdelivr.net/pyodide/v0.28.3/full/pyodide.js');
+const runtimeBase = new URL('../../vendor/continuator/pyodide-0.28.3/', self.location.href);
+importScripts(new URL('pyodide.js', runtimeBase).href);
 let py;
 onmessage=async({data})=>{try{if(data.action==='init'){
-py=await loadPyodide(); await py.loadPackage('numpy');
+py=await loadPyodide({indexURL:runtimeBase.href,packageBaseUrl:runtimeBase.href});
+await py.loadPackage('numpy',{checkIntegrity:true});
 const response=await fetch('engine.zip'); if(!response.ok) throw new Error('Engine package unavailable');
 py.unpackArchive(await response.arrayBuffer(),'zip');
 await py.runPythonAsync(await (await fetch('bridge.py')).text());

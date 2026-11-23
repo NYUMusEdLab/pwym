@@ -1,0 +1,9 @@
+[
+  {
+    "path": "js/privacy.js",
+    "reference": "https://www.googletagmanager.com/gtag/js?id=",
+    "reason": "Existing consent-gated Google Analytics loader. Exact reviewed bytes only; no analytics loaded prior to opt-in. Changing this file requires privacy review.",
+    "sha256": "b8f60794cc9f99e59458e22a83012dac6b17f91a03cc5d125fe7b4f1fcd74d74",
+    "expires_on": "2027-01-15"
+  }
+]
