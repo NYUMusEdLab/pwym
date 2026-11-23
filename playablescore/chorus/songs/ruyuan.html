@@ -267,6 +267,16 @@ html[data-large-print=on]{font-size:clamp(18px,2.9vw,20px)}
 .repertoire-menu ul{margin:.1rem 0;padding-left:1.45rem}
 .repertoire-menu [aria-current=page]{font-weight:700}
 html:not([lang=en]) .repertoire-menu .menu-en,html[lang=en] .repertoire-menu .menu-zh{display:none}
+</style><style>
+.satb-nav{margin:.75rem 0;padding:.65rem;border:1px solid #9bae9f;border-radius:.65rem}
+.satb-links{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.45rem}
+.satb-links a{font-weight:650;line-height:1.2;min-height:44px;display:grid;align-content:center;justify-content:center;
+ padding:.35rem;border:2px solid #466e5b;border-radius:.45rem;color:#183a2b;background:#fff;text-decoration:none}
+.satb-links a[aria-current]{color:#fff;background:#214d3a}
+.satb-links a:focus-visible{outline:3px solid #17569e;outline-offset:2px}
+.satb-scope,.satb-switch{margin:.4em 0}
+html:not([lang=en]) .satb-en,html[lang=en] .satb-zh{display:none}
+@media(max-width:520px){.satb-links{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style></head>
 <body>
 <main class="welcome" id="welcome" aria-labelledby="welcome-title" hidden>
@@ -280,7 +290,7 @@ html:not([lang=en]) .repertoire-menu .menu-en,html[lang=en] .repertoire-menu .me
 </main>
 <main class="practice" id="practice-workspace" hidden>
  <header>
-   <p class="eyebrow" id="practice-eyebrow"><span>音乐体验设计实验室</span> 成人合唱练习</p><nav class="repertoire-menu" aria-label="曲目"><a href="../index.html" id="repertoire-practice"><span class="menu-zh">← 曲目</span><span class="menu-en">← Repertoire</span></a><details><summary><span class="menu-zh">切换曲目</span><span class="menu-en" lang="en">Switch song</span></summary><ul><li><a href="katyusha.html"><span class="menu-zh">喀秋莎</span><span class="menu-en" lang="en">Katyusha</span></a></li><li><a href="molihua.html"><span class="menu-zh">茉莉花</span><span class="menu-en" lang="en">Jasmine Flower</span></a></li><li><a href="xiyanghong.html"><span class="menu-zh">夕阳红</span><span class="menu-en" lang="en">The Red Setting Sun</span></a></li><li><a href="ruyuan.html" aria-current="page"><span class="menu-zh">如愿</span><span class="menu-en" lang="en">As You Wish</span></a></li></ul></details></nav><p class="minor" id="score-only-practice" hidden></p><p class="minor" id="preview-notice-practice" hidden></p>
+   <p class="eyebrow" id="practice-eyebrow"><span>音乐体验设计实验室</span> 成人合唱练习</p><nav class="repertoire-menu" aria-label="曲目"><a href="../index.html" id="repertoire-practice"><span class="menu-zh">← 曲目</span><span class="menu-en">← Repertoire</span></a><details><summary><span class="menu-zh">切换曲目</span><span class="menu-en" lang="en">Switch song</span></summary><ul><li><a href="katyusha.html"><span class="menu-zh">喀秋莎</span><span class="menu-en" lang="en">Katyusha</span></a></li><li><a href="molihua.html"><span class="menu-zh">茉莉花</span><span class="menu-en" lang="en">Jasmine Flower</span></a></li><li><a href="xiyanghong.html"><span class="menu-zh">夕阳红</span><span class="menu-en" lang="en">The Red Setting Sun</span></a></li><li><a href="ruyuan.html" aria-current="page"><span class="menu-zh">如愿</span><span class="menu-en" lang="en">As You Wish</span></a></li></ul></details></nav><nav id="ruyuan-satb-entry" class="satb-nav" aria-label="四声部选择 · Choose a part"><p class="satb-scope"><strong><span class="satb-zh">四声部谱面 · 第49–73小节</span><span class="satb-en" lang="en">Four-part section · bars 49–73</span></strong></p><div class="satb-links"><a data-satb-route="soprano" href="ruyuan-satb/songs/sa.html#soprano"><span class="satb-zh">女高音</span><span class="satb-en" lang="en">Soprano</span></a><a data-satb-route="alto" href="ruyuan-satb/songs/sa.html#alto"><span class="satb-zh">女低音</span><span class="satb-en" lang="en">Alto</span></a><a data-satb-route="tenor" href="ruyuan-satb/songs/tb.html#tenor"><span class="satb-zh">男高音</span><span class="satb-en" lang="en">Tenor</span></a><a data-satb-route="bass" href="ruyuan-satb/songs/tb.html#bass"><span class="satb-zh">男低音</span><span class="satb-en" lang="en">Bass</span></a></div><p class="satb-switch"><span class="satb-zh">四个实际声部 · 仅供看谱，尚无示范录音</span><span class="satb-en" lang="en">Four written parts · Score only, no practice recordings yet.</span></p></nav><p class="minor" id="score-only-practice" hidden></p><p class="minor" id="preview-notice-practice" hidden></p>
    <div class="title-wrap">
      <div><h1 id="song-zh" tabindex="-1">如愿</h1><p class="subtitle" id="song-en" lang="en">Katyusha</p></div>
      <label class="layout-pick" for="layout"><span id="layout-label">版式</span><select id="layout"><option value="auto">自动 · Auto</option><option value="phone">手机 · Phone</option><option value="page">全页 · Full page</option></select></label>

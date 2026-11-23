@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'; object-src 'none'; worker-src 'none'; img-src data:; media-src data:; script-src 'sha256-ALz6ZMNGKNvYop8Q/vIu3+h7lryaBaHh8US1tqrobLM=' 'sha256-8XuBjoPmB2+4hhj88dOe4TzTwi7AqRcKrWbz/Hx1p6k=' 'sha256-qPKjcvO770/k45bPIWhXy0sOPHAwwxXKqClJVBToMTY='; script-src-attr 'none'; style-src 'unsafe-inline'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'; object-src 'none'; worker-src 'none'; img-src data:; media-src data:; script-src 'sha256-ALz6ZMNGKNvYop8Q/vIu3+h7lryaBaHh8US1tqrobLM=' 'sha256-8XuBjoPmB2+4hhj88dOe4TzTwi7AqRcKrWbz/Hx1p6k=' 'sha256-S1r66cr3tcwcKgVJFHJB7Qpcb5w9Dd9/UY97cXewlKI='; script-src-attr 'none'; style-src 'unsafe-inline'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <meta name="referrer" content="no-referrer">
@@ -256,6 +256,15 @@ html[data-large-print=on]{font-size:clamp(18px,2.9vw,20px)}
  .scan-note,.scan-select-cursor{fill:none;stroke:Highlight;stroke-width:2.5}
  .scan-audible,.scan-bar{fill:none;stroke:CanvasText;stroke-width:2}
 }
+
+/* The three-route switch wraps as a single full-width row on narrow screens. */
+.primary-transport #quick-lines[data-mixed=true]{grid-template-columns:repeat(3,minmax(0,1fr))}
+.primary-transport #quick-lines[data-mixed=true] button{overflow-wrap:normal}
+.primary-transport #quick-lines button[data-value=together][hidden]{display:none}
+.primary-transport #quick-lines[data-mixed=false] button[data-value=lower]{border-radius:0 7px 7px 0;margin-left:-1px}
+@media(max-width:620px){
+ .practice[data-quick=true] #quick-lines[data-mixed=true]{grid-column:1/-1;grid-row:2}
+}
 </style>
 
 
@@ -303,7 +312,7 @@ html:not([lang=en]) .repertoire-menu .menu-en,html[lang=en] .repertoire-menu .me
        <p class="clock" id="clock" aria-hidden="true">0:00 / 0:00</p>
      </div>
    </div>
-   <p class="transport-status" id="status" role="status" aria-live="polite"></p>
+   <p id="audio-readiness" class="transport-status" role="status" aria-live="polite" hidden></p><p class="transport-status" id="status" role="status" aria-live="polite"></p>
  </section>
  <section class="score" id="score-card" aria-labelledby="score-zh">
    <div class="score-head">
@@ -380,6 +389,20 @@ function createParallelGuide({clockMedia,createMedia=()=>new root.Audio(),onStat
  const duration=()=>clock?.source&&Number.isFinite(clock.media.duration)?Math.max(0,clock.media.duration-(clock.source.offset??0)):NaN;
  const ready=p=>!!p?.source&&!p.failed&&p.media.readyState>=2&&!p.media.seeking;
  const running=p=>ready(p)&&p.started&&!p.media.paused&&!p.media.ended;
+ const matches=p=>!!p.source&&(!p.media.currentSrc||p.media.currentSrc===p.source.src||
+   (!p.source.src.startsWith('data:')&&(p.media.getAttribute?.('src')===p.source.src||p.media.src===p.source.src)));
+ function readiness(key=selected){
+  const p=get(key);
+  return !p?.source?'unavailable':p.failed||p.media.error?'retry':matches(p)&&ready(p)?'ready':'loading';
+ }
+ function retry(key=selected){
+  const p=get(key);
+  if(active||!p?.source||readiness(key)!=='retry')return false;
+  const point=currentTime();
+  p.failed=false;p.retryable=false;p.started=false;p.attempt=null;p.queued=point;
+  p.media.src=p.source.src;p.media.load();applyRate(p);
+  emit('loading',key);return true;
+ }
  const playable=p=>!!p?.source&&!p.failed;
  const emit=(type,key=selected)=>onState({type,key,selectedKey:selected,audibleKey:effective,playing:active});
  function applyRate(p){
@@ -398,7 +421,9 @@ function createParallelGuide({clockMedia,createMedia=()=>new root.Audio(),onStat
  }
  function commit(){
   if(!active)return;
-  const want=get(selected),now=currentTime();
+  const want=get(selected);
+  if(want!==clock&&running(want)&&!running(clock)&&!running(get(audible)))clock=want;
+  const now=currentTime();
   if(running(want)&&Math.abs(time(want)-now)<.075){
    if(audible!==selected){gate(selected);announceAudible();emit('ready');}
   }else if(!playable(get(audible))||get(audible).media.ended){
@@ -434,16 +459,16 @@ function createParallelGuide({clockMedia,createMedia=()=>new root.Audio(),onStat
  for(const p of peers.values()){
   const m=p.media;
   m.playsInline=true;m.setAttribute?.('playsinline','');m.muted=true;
-  m.addEventListener('loadedmetadata',()=>{if(p.queued!==null)seekPeer(p,p.queued);applyRate(p);});
+  m.addEventListener('loadedmetadata',()=>{if(!matches(p))return;if(p.queued!==null)seekPeer(p,p.queued);applyRate(p);});
   for(const event of ['canplay','playing','seeked']){
-   m.addEventListener(event,()=>{if(!p.source||p.failed)return;if(event==='playing')p.started=true;commit();
+   m.addEventListener(event,()=>{if(!matches(p)||p.failed)return;if(event==='playing')p.started=true;commit();
     if(p.key===selected&&!active&&ready(p))emit('ready');});
   }
   m.addEventListener('ended',()=>{if(active&&p===clock){epoch++;active=false;at=currentTime();for(const other of peers.values())if(other!==p)other.media.pause();gate(null);announceAudible();emit('ended',p.key);}});
   m.addEventListener('pause',()=>{
    if(active&&p.source&&p.started&&m.paused&&!m.ended)report(p,new Error('The browser paused this guide track.'),true);
   });
-  m.addEventListener('error',()=>{if(p.source&&m.error)report(p,m.error);});
+  m.addEventListener('error',()=>{if(matches(p)&&m.error)report(p,m.error);});
  }
  function pause(){
   const was=active;at=currentTime();epoch++;active=false;
@@ -543,7 +568,7 @@ function createParallelGuide({clockMedia,createMedia=()=>new root.Audio(),onStat
   }
   commit();
  }
- return {load,switchTo,seek,setRate,play,pause,sync,
+ return {load,switchTo,seek,setRate,play,pause,sync,readiness,retry,
   get currentTime(){return currentTime();},get duration(){return duration();},
   get paused(){return !active;},get playing(){return active;},get selectedKey(){return selected;},get audibleKey(){return effective;}
  };
@@ -723,6 +748,7 @@ function rememberVoice(voice,save=true){
 }
 const state={verse:verses[0]??null,part:'upper',listen:'own',voice:availableGuides[0]??'soprano',phrase:'all',startBar:null,startNote:null,loop:false,bpm:baseBpm,follow:!!phoneMedia?.matches,layout:'auto',started:false,zoom:false,hideRows:false,loadedFor:null,sources:{},lastTime:0};
 let frame=0,cueEpoch=0,cueSrc=null,scanView=null,scanSig='',registerResume=false,followedPageSystem=null;
+let readyTimer=null,readyKey='',readySoon=false,readyTicket=0,startTimer=null,startTicket=0;
 const guides=root.createParallelGuide?.({clockMedia:media,onState:handleGuideState,onError:handleGuideError})??null;
 
 function local(value,fallback){return pair(value,fallback)[language==='en'?1:0];}
@@ -766,9 +792,19 @@ function button(group,name,key,handler){
  b.addEventListener('click',handler);group.append(b);return b;
 }
 function pressed(group,selected){for(const b of group.querySelectorAll('button'))b.setAttribute('aria-pressed',String(b.dataset.value===id(selected)));}
+function hasQuickMixed(verse){
+ const raw=bundle?.mixed?.[id(verse?.id)],source=typeof raw==='string'?{src:raw}:raw;
+ return (source?.kind??bundle?.kind)==='adult'&&validSource(source?.src);
+}
 function markQuickLine(){
  const route=guides?.playing?guides.audibleKey:currentHeard();
- pressed($('quick-lines'),route);
+ const group=$('quick-lines'),mixed=[...group.querySelectorAll('button')].find(b=>b.dataset.value==='together');
+ if(mixed){
+  const available=hasQuickMixed(state.verse);
+  mixed.hidden=!available;
+  group.setAttribute('data-mixed',String(available));
+ }
+ pressed(group,route);
 }
 function switchButtons(){
  pressed(el.parts,state.part);pressed(el.listens,state.listen);pressed(el.voices,state.voice);pressed(el.verses,state.verse?.id);pressed(el.phrases,state.phrase);
@@ -1138,6 +1174,7 @@ function activateWorkspace(voice,{save=true,focus=true}={}){
 }
 function syncSpeed(){guides?.setRate(state.bpm/baseBpm);}
 function stop(){
+ cancelAudioStart();
  if(frame){root.cancelAnimationFrame(frame);frame=0;}
  guides?.pause();
 }
@@ -1153,6 +1190,36 @@ function playText(){
 const loadingAudio=['正在切换示范，原声部继续播放。','Switching guide; the current part keeps playing.'];
 const loadingRegister=['正在载入所选示范人声。','Loading the selected guide voice.'];
 function currentHeard(){return heardPart(state.part,state.listen);}
+function cancelAudioStart(){
+ if(startTimer!==null)root.clearTimeout?.(startTimer);
+ startTimer=null;startTicket++;
+}
+function gateAudio(reset=false){
+ const host=$('audio-readiness'),key=(state.loadedFor??'')+'|'+currentHeard();
+ if(readyKey!==key||reset){
+  if(readyTimer!==null)root.clearTimeout?.(readyTimer);
+  readyTimer=null;readyTicket++;readyKey=key;readySoon=false;
+ }
+ const value=guides?.readiness(currentHeard())??'unavailable',playing=!!guides?.playing;
+ host.hidden=value==='unavailable'||!!guides?.audibleKey;
+ el.play.setAttribute('aria-describedby','audio-readiness');
+ el.play.disabled=value==='unavailable';
+ el.play.setAttribute('aria-busy',String(!host.hidden&&value==='loading'&&!readySoon));
+ if(host.hidden){localized(host,['','']);return;}
+ const messages={
+  ready:['音频已就绪','Audio ready'],
+  retry:['音频未能载入。点击播放重试。','Audio did not load. Tap Play to retry.'],
+  loading:readySoon&&!playing?['可点击播放载入音频。','Tap Play to load audio.']:['音频载入中…','Loading audio…']
+ };
+ localized(host,messages[value]);
+ if(value==='loading'&&!readySoon&&readyTimer===null&&typeof root.setTimeout==='function'){
+  const ticket=readyTicket;
+  readyTimer=root.setTimeout(()=>{
+   if(ticket!==readyTicket)return;
+   readyTimer=null;readySoon=true;gateAudio();
+  },2300);
+ }
+}
 function normalAudioStatus(){
  const source=state.sources[currentHeard()];
  if(!source){status(state.verse?labels.noAudio:labels.noScore);return;}
@@ -1160,7 +1227,8 @@ function normalAudioStatus(){
 }
 function handleGuideState(s){
  if(!guides||!state.started)return;
- playText();markQuickLine();
+ playText();markQuickLine();gateAudio();
+ if(s.type==='audible'&&s.audibleKey===s.selectedKey)cancelAudioStart();
  if(s.type==='play'&&!frame)frame=root.requestAnimationFrame(tick);
  if(s.type==='pause'||s.type==='ended')followedPageSystem=null;
  if(s.type==='pause'&&frame){root.cancelAnimationFrame(frame);frame=0;}
@@ -1181,7 +1249,8 @@ function handleGuideState(s){
 }
 function handleGuideError(e){
  if(!guides||!state.started)return;
- registerResume=false;
+ if(e?.key&&e.key!==currentHeard()&&!e.keptPlaying)return;
+ registerResume=false;gateAudio();
  if(e?.keptPlaying){
   const kept=e.audibleKey??guides.audibleKey;
   state.listen=kept==='together'?'both':kept===state.part?'own':'other';
@@ -1200,7 +1269,7 @@ function selectAudio(at=practiceWindow().start){
   guides.switchTo(requested);
   guides.seek(at);
  }
- el.play.disabled=!state.sources[requested];
+ gateAudio(true);
  normalAudioStatus();playText();syncSpeed();
 }
 function chooseRoute(part,mode){
@@ -1219,7 +1288,7 @@ function chooseRoute(part,mode){
   state.part=previousPart;state.listen=previousListen;guides.switchTo(currentHeard());switchButtons();
   status(['所选示范音频不可用。','The selected guide audio is unavailable.']);return false;
  }
- el.play.disabled=false;
+ gateAudio();
  if(previousPart!==part){cancelCue();scoreRender();setPitchButton();guideRender(state.lastTime);}
  else if(state.hideRows&&state.startBar)setMeasureChoices();
  scanSig='';scanRender(state.lastTime);
@@ -1228,7 +1297,12 @@ function chooseRoute(part,mode){
  return true;
 }
 function chooseVoice(voice,{resume=false}={}){
- if(state.voice===voice||!validGuide(voice))return;
+ if(!validGuide(voice))return;
+ if(state.voice===voice){
+  if(guides?.paused&&guides.readiness(currentHeard())==='retry')guides.retry(currentHeard());
+  gateAudio();
+  return;
+ }
  if(resume&&!resolveAudio(bundle,state.verse,voice,currentHeard())){
   status(['所选示范音频尚未载入。','The selected guide audio is not available yet.']);return;
  }
@@ -1258,10 +1332,22 @@ function updateClock(){
 }
 function tick(){frame=0;updateClock();if(guides&&!guides.paused)frame=root.requestAnimationFrame(tick);}
 function attemptPlay(){
- if(!guides||el.play.disabled)return;
+ if(!guides||!state.sources[currentHeard()])return;
+ if(guides.readiness(currentHeard())==='retry')guides.retry(currentHeard());
+ cancelAudioStart();
+ const ticket=startTicket,sourceKey=state.loadedFor;
  const range=practiceWindow();
  if(guides.currentTime<range.start-.02||guides.currentTime>=actualEnd(range)-.025)guides.seek(range.start);
- guides.play()?.then(ok=>{if(ok&&!guides.paused&&!frame)frame=root.requestAnimationFrame(tick);}).catch(error=>{if(error?.name!=='AbortError')status(labels.error);});
+ guides.play()?.then(ok=>{
+  if(ticket===startTicket&&ok&&!guides.paused&&!frame)frame=root.requestAnimationFrame(tick);
+ }).catch(error=>{if(ticket===startTicket&&error?.name!=='AbortError')status(labels.error);});
+ if(!guides.audibleKey&&typeof root.setTimeout==='function'){
+  startTimer=root.setTimeout(()=>{
+   if(ticket!==startTicket||sourceKey!==state.loadedFor||guides.audibleKey)return;
+   stop();gateAudio();status(['尚未开始播放。请再次点击播放。','Audio did not start. Tap Play again.']);
+  },7500);
+ }
+ gateAudio();
 }
 function togglePlayback(){
  if(!state.started||!guides)return;
@@ -1347,6 +1433,10 @@ for(const mode of Object.keys(modes)){
  if(mode==='both')localAttr(b,'title',['上声部：女高音；下声部：男低音／男中音','Upper: soprano; lower: bass / baritone']);
 }
 for(const part of Object.keys(quickLines))button($('quick-lines'),quickLines[part],part,()=>chooseRoute(part,'own'));
+if(verses.some(hasQuickMixed)){
+ button($('quick-lines'),['男女合唱','Mixed voices'],'together',()=>chooseRoute(state.part,'both'));
+ markQuickLine();
+}
 if(!root.CHOIR_PREVIEW||bundle)for(const group of guideGroups)button($('quick-voices'),quickVoices[group],group,()=>chooseVoice(recentVoice[group],{resume:true}));
 if(!root.CHOIR_PREVIEW||bundle)for(const voice of availableGuides){
  button(el.voices,voices[voice].name,voice,()=>chooseVoice(voice));
