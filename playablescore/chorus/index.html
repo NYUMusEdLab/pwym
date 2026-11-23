@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'; object-src 'none'; worker-src 'none'; img-src data:; media-src data:; script-src 'sha256-l6fuGlVwPnMtfpCHfrOlDsQ1Rg3Bl1V+1Im9QuJ2dzw=' 'sha256-oUf2yi4O4JxDRPZNijuodpOSmxAamc06+xI//kiorhk=' 'sha256-+IKFM9zGuGFHSHrSfko7+JP/coTlivpYpUr7BF3SKVw='; script-src-attr 'none'; style-src 'unsafe-inline'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'; object-src 'none'; worker-src 'none'; img-src data:; media-src data:; script-src 'sha256-l6fuGlVwPnMtfpCHfrOlDsQ1Rg3Bl1V+1Im9QuJ2dzw=' 'sha256-oUf2yi4O4JxDRPZNijuodpOSmxAamc06+xI//kiorhk=' 'sha256-0AkpLiQPbzBlx1jGCxsQn3vH8sRCZjSLtoi4VCGJjqw='; script-src-attr 'none'; style-src 'unsafe-inline'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <meta name="referrer" content="no-referrer">
@@ -75,8 +75,8 @@ footer{margin-top:18px;color:var(--sub);font-size:.74rem}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important}}
 
-.voice-info,.verse-note{font-size:.75rem;line-height:1.35;color:var(--sub);margin:5px 0 0}
-.voice-info span,.verse-note span,#opening span{margin-left:6px}
+.voice-info{font-size:.75rem;line-height:1.35;color:var(--sub);margin:5px 0 0}
+.voice-info span,#opening span{margin-left:6px}
 #opening{font-weight:700}
 #credit{margin:0 0 3px}
 @media(max-width:390px){.choices button{min-width:56px;padding:5px 7px}}
@@ -214,7 +214,7 @@ html[data-large-print=on]{font-size:clamp(18px,2.9vw,20px)}
  min-height:48px;font-weight:700;color:var(--ink);border-color:#557263;font-size:.92rem
 }
 :is(html[data-large-print=on] .practice,.practice[data-large-print=on]) .play{color:white;background:var(--brand)}
-:is(html[data-large-print=on] .practice,.practice[data-large-print=on]) :is(.tempo-name,.tempo output,.nav-location,.scan-caption,.clock,.measure-pick,.layout-pick,.voice-info,.verse-note,#scan-position,.transport-status,.transport-help,.key,.cue p){
+:is(html[data-large-print=on] .practice,.practice[data-large-print=on]) :is(.tempo-name,.tempo output,.nav-location,.scan-caption,.clock,.measure-pick,.layout-pick,.voice-info,#scan-position,.transport-status,.transport-help,.key,.cue p){
  color:var(--ink);font-size:.84rem
 }
 :is(html[data-large-print=on] .practice,.practice[data-large-print=on]) :is(input[type=range],.scan-viewport){outline-offset:2px}
@@ -293,7 +293,6 @@ html[data-large-print=on]{font-size:clamp(18px,2.9vw,20px)}
      </div>
      <div class="score-view-options"><p id="score-key" class="key"></p><button type="button" class="option compact" id="large-print" aria-pressed="false">大字模式</button></div>
    </div>
-   <p id="verse-note" class="verse-note" hidden></p>
    <div class="scan-toolbar" id="scan-toolbar" hidden>
     <div class="scan-buttons"><button type="button" class="option compact" id="scan-follow" aria-pressed="false">跟随谱行<span lang="en">Follow line</span></button><button type="button" class="option compact" id="scan-zoom" aria-pressed="false">放大<span lang="en">Enlarge</span></button></div>
     <label class="measure-pick" for="scan-measure"><span id="measure-label">从小节开始</span><select id="scan-measure"></select></label>
@@ -851,8 +850,6 @@ function scoreRender(){
  const v=state.verse, [vzh,ven]=pair(v?.name??v?.label,['第 1 段','Verse 1']), [pzh,pen]=labels[state.part];
  localized($('score-zh'),[vzh+' · '+pzh,ven+' · '+pen]);$('score-en').hidden=true;
  const m=data?.meter; $('score-key').textContent=[id(data?.keyLabel??(data?.key?'1='+data.key:'')),Array.isArray(m)?m.join('/'):(typeof m==='string'?m:'')].filter(Boolean).join('  ·  ');
- const note=$('verse-note');note.hidden=id(v?.id)!=='3';
- if(!note.hidden)localized(note,['第 3 段重复第 1 段歌词，使用第 3 段结尾。','Verse 3 repeats verse 1 lyrics with its own ending.']);
  setMeasureChoices();
  if(scanView)return;
  el.score.replaceChildren();
