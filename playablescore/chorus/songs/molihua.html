@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'; object-src 'none'; worker-src 'none'; img-src data:; media-src data:; script-src 'sha256-nYeBergQl0QhJrnGVJlzfSgI2CEEZwxzaZxjP+i7f5k=' 'sha256-/bBFhgltsh+XVUnP+KqKT+ZLZHlnoRbvEiXY9uJRyhI=' 'sha256-S1r66cr3tcwcKgVJFHJB7Qpcb5w9Dd9/UY97cXewlKI='; script-src-attr 'none'; style-src 'unsafe-inline'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'; object-src 'none'; worker-src 'none'; img-src data:; media-src data:; script-src 'sha256-nYeBergQl0QhJrnGVJlzfSgI2CEEZwxzaZxjP+i7f5k=' 'sha256-/bBFhgltsh+XVUnP+KqKT+ZLZHlnoRbvEiXY9uJRyhI=' 'sha256-gcXtWmu+/mukmBJhBYzFt6GSK/etDxCsZA+JLm1PdOo='; script-src-attr 'none'; style-src 'unsafe-inline'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <meta name="referrer" content="no-referrer">
@@ -265,6 +265,16 @@ html[data-large-print=on]{font-size:clamp(18px,2.9vw,20px)}
 @media(max-width:620px){
  .practice[data-quick=true] #quick-lines[data-mixed=true]{grid-column:1/-1;grid-row:2}
 }
+
+.guide-layers{display:flex;gap:5px;align-items:center;max-width:100%;flex-wrap:wrap}
+.guide-layers[hidden]{display:none}
+.guide-layers .layer-label{font-size:.76rem;font-weight:650}
+.guide-layers button{border:1px solid var(--hair);border-radius:7px;min-height:44px;background:#fff;color:var(--brand);padding:4px 8px;font:inherit;font-size:.8rem}
+.guide-layers button[aria-pressed=true]{background:var(--wash);border-color:var(--brand);font-weight:750}
+.guide-layers button::before{content:'○';margin-inline-end:.35em}
+.guide-layers button[aria-pressed=true]::before{content:'✓'}
+.guide-layers button[aria-pressed=true][data-heard=false]{border-style:dashed}
+@media(max-width:620px){.guide-layers{width:100%}.guide-layers button{flex:1}}
 </style>
 
 
@@ -303,6 +313,7 @@ html:not([lang=en]) .repertoire-menu .menu-en,html[lang=en] .repertoire-menu .me
        <label class="tempo" for="tempo"><span class="tempo-name" id="tempo-name">速度 <span lang="en">Tempo</span></span><input type="range" id="tempo" min="60" max="108" value="108" step="1" aria-label="速度 · Tempo (BPM)"><output id="tempo-value" for="tempo">108 BPM</output></label>
        <div class="choices quick-group" id="quick-voices" role="group" aria-label="示范人声 · Guide voice" hidden></div>
      </div>
+     <div class="guide-layers" id="guide-layers" role="group" aria-label="独立人声音轨" hidden><span class="layer-label" id="layer-label"></span></div>
      <div class="phone-nav" id="phone-nav" hidden>
        <div class="nav-lines" id="nav-lines" role="group" aria-label="全段谱行"></div>
        <select id="nav-bar" aria-label="跳至全段小节"></select>
@@ -382,7 +393,7 @@ html:not([lang=en]) .repertoire-menu .menu-en,html[lang=en] .repertoire-menu .me
 const keys=['upper','lower','together'];
 function createParallelGuide({clockMedia,createMedia=()=>new root.Audio(),onState=()=>{},onError=()=>{}}={}){
  const peers=new Map(keys.map((key,i)=>[key,{key,media:i===0&&clockMedia?clockMedia:createMedia(),source:null,queued:null,failed:false,retryable:false,started:false,attempt:null}]));
- let clock=peers.get('upper'),selected='upper',audible=null,effective=null,active=false,epoch=0,rate=1,at=0;
+ let clock=peers.get('upper'),selected='upper',audible=null,effective=null,active=false,epoch=0,rate=1,at=0,silent=false,awaitUnmute=false;
  const get=key=>peers.get(key);
  const time=p=>Math.max(0,p.media.currentTime-(p.source?.offset??0));
  const currentTime=()=>clock?.source?(clock.queued??time(clock)):at;
@@ -422,11 +433,16 @@ function createParallelGuide({clockMedia,createMedia=()=>new root.Audio(),onStat
  function commit(){
   if(!active)return;
   const want=get(selected);
+  if(silent){
+   if(!running(clock))clock=[...peers.values()].find(running)??clock;
+   gate(null);announceAudible();return;
+  }
   if(want!==clock&&running(want)&&!running(clock)&&!running(get(audible)))clock=want;
   const now=currentTime();
   if(running(want)&&Math.abs(time(want)-now)<.075){
+   awaitUnmute=false;
    if(audible!==selected){gate(selected);announceAudible();emit('ready');}
-  }else if(!playable(get(audible))||get(audible).media.ended){
+  }else if(!awaitUnmute&&(!playable(get(audible))||get(audible).media.ended)){
    const fallback=[clock,...peers.values()].find(p=>p&&running(p)&&Math.abs(time(p)-now)<.15);
    gate(fallback?.key??null);
   }
@@ -470,7 +486,15 @@ function createParallelGuide({clockMedia,createMedia=()=>new root.Audio(),onStat
   });
   m.addEventListener('error',()=>{if(matches(p)&&m.error)report(p,m.error);});
  }
+ function setSilent(value){
+  if(silent===!!value)return;
+  silent=!!value;awaitUnmute=!silent&&active;
+  if(silent){gate(null);announceAudible();}
+  else commit();
+  emit('mix');
+ }
  function pause(){
+  awaitUnmute=false;
   const was=active;at=currentTime();epoch++;active=false;
   for(const p of peers.values()){p.media.pause();p.started=false;p.attempt=null;}
   gate(null);announceAudible();
@@ -549,7 +573,7 @@ function createParallelGuide({clockMedia,createMedia=()=>new root.Audio(),onStat
   active=true;
   // Unmute the requested track before play() so browsers that distinguish muted
   // autoplay from user-started playback see the intended audible media gesture.
-  gate(playable(get(selected))?selected:available[0].key);
+  gate(silent?null:playable(get(selected))?selected:available[0].key);
   const jobs=available.map(tryPlay);
   emit('play');
   if(!running(get(selected)))emit('loading');
@@ -568,7 +592,8 @@ function createParallelGuide({clockMedia,createMedia=()=>new root.Audio(),onStat
   }
   commit();
  }
- return {load,switchTo,seek,setRate,play,pause,sync,readiness,retry,
+ return {load,switchTo,seek,setRate,play,pause,sync,readiness,retry,setSilent,
+  get silent(){return silent;},get clockRunning(){return active&&running(clock);},
   get currentTime(){return currentTime();},get duration(){return duration();},
   get paused(){return !active;},get playing(){return active;},get selectedKey(){return selected;},get audibleKey(){return effective;}
  };
@@ -797,7 +822,7 @@ function hasQuickMixed(verse){
  return (source?.kind??bundle?.kind)==='adult'&&validSource(source?.src);
 }
 function markQuickLine(){
- const route=guides?.playing?guides.audibleKey:currentHeard();
+ const route=guides?.silent?null:guides?.playing?guides.audibleKey:currentHeard();
  const group=$('quick-lines'),mixed=[...group.querySelectorAll('button')].find(b=>b.dataset.value==='together');
  if(mixed){
   const available=hasQuickMixed(state.verse);
@@ -805,6 +830,7 @@ function markQuickLine(){
   group.setAttribute('data-mixed',String(available));
  }
  pressed(group,route);
+ markLayers();
 }
 function switchButtons(){
  pressed(el.parts,state.part);pressed(el.listens,state.listen);pressed(el.voices,state.voice);pressed(el.verses,state.verse?.id);pressed(el.phrases,state.phrase);
@@ -954,7 +980,7 @@ function scoreRender(){
 function partsForRoute(key){
  return key==='together'?['upper','lower']:['upper','lower'].includes(key)?[key]:[];
 }
-function displayRoute(){return (guides?.playing?guides.audibleKey:null)??currentHeard();}
+function displayRoute(){return guides?.silent?'together':(guides?.playing?guides.audibleKey:null)??currentHeard();}
 function visibleNoteParts(){return state.hideRows?partsForRoute(displayRoute()):['upper','lower'];}
 function lyricBoxFor(bar,part){
  const row=lyricVerse(state.verse,part);
@@ -1201,7 +1227,7 @@ function gateAudio(reset=false){
   readyTimer=null;readyTicket++;readyKey=key;readySoon=false;
  }
  const value=guides?.readiness(currentHeard())??'unavailable',playing=!!guides?.playing;
- host.hidden=value==='unavailable'||!!guides?.audibleKey;
+ host.hidden=value==='unavailable'||!!guides?.audibleKey||!!(guides?.silent&&guides.clockRunning);
  el.play.setAttribute('aria-describedby','audio-readiness');
  el.play.disabled=value==='unavailable';
  el.play.setAttribute('aria-busy',String(!host.hidden&&value==='loading'&&!readySoon));
@@ -1232,12 +1258,12 @@ function handleGuideState(s){
  if(s.type==='play'&&!frame)frame=root.requestAnimationFrame(tick);
  if(s.type==='pause'||s.type==='ended')followedPageSystem=null;
  if(s.type==='pause'&&frame){root.cancelAnimationFrame(frame);frame=0;}
- if(s.type==='loading'&&guides.playing)status(registerResume?loadingRegister:loadingAudio);
+ if(s.type==='loading'&&guides.playing&&!guides.silent)status(registerResume?loadingRegister:loadingAudio);
  if(s.type==='ready'||(s.type==='audible'&&s.audibleKey===s.selectedKey)){
   if(s.type==='audible')registerResume=false;
   normalAudioStatus();
  }
- if(['ready','audible','pause','play'].includes(s.type)){
+ if(['ready','audible','pause','play','mix'].includes(s.type)){
   if(state.hideRows&&state.startBar)setMeasureChoices();
   scanSig='';scanRender(state.lastTime);
  }
@@ -1272,6 +1298,35 @@ function selectAudio(at=practiceWindow().start){
  gateAudio(true);
  normalAudioStatus();playText();syncSpeed();
 }
+const layerLabels={upper:['上声部','Upper'],lower:['下声部','Lower']};
+const layerGroup=$('guide-layers');
+function markLayers(){
+ if(!layerGroup)return;
+ layerGroup.hidden=!hasQuickMixed(state.verse);
+ const playing=guides?.playing;
+ const requested=guides?.silent?[]:partsForRoute(currentHeard());
+ const heard=playing?partsForRoute(guides.audibleKey):requested;
+ for(const button of layerGroup.querySelectorAll('button')){
+  const k=button.dataset.value;
+  button.setAttribute('aria-pressed',String(requested.includes(k)));
+  button.setAttribute('data-heard',String(heard.includes(k)));
+ }
+ if(!layerGroup.hidden){
+  const waiting=playing&&heard.join(',')!==requested.join(',');
+  layerGroup.setAttribute('aria-busy',String(waiting));
+ }
+}
+function toggleGuideLayer(part){
+ const chosen=new Set(guides?.silent?[]:partsForRoute(currentHeard()));
+ if(chosen.has(part))chosen.delete(part);else chosen.add(part);
+ if(!chosen.size){
+  guides.setSilent(true);
+  status(guides.playing?['所有声部已静音。播放进度继续。','All voices off. The playhead keeps moving.']:['所有声部已静音。','All voices off.']);
+  markQuickLine();gateAudio();return;
+ }
+ const mode=chosen.size===2?'both':chosen.has(state.part)?'own':'other';
+ chooseRoute(state.part,mode);
+}
 function chooseRoute(part,mode){
  if(root.CHOIR_PREVIEW&&!bundle){
   state.part=part;state.listen=mode;changeSelection();return true;
@@ -1288,11 +1343,13 @@ function chooseRoute(part,mode){
   state.part=previousPart;state.listen=previousListen;guides.switchTo(currentHeard());switchButtons();
   status(['所选示范音频不可用。','The selected guide audio is unavailable.']);return false;
  }
- gateAudio();
+ guides.setSilent(false);
+ markQuickLine();gateAudio();
  if(previousPart!==part){cancelCue();scoreRender();setPitchButton();guideRender(state.lastTime);}
  else if(state.hideRows&&state.startBar)setMeasureChoices();
  scanSig='';scanRender(state.lastTime);
- if(result==='loading'&&guides.playing)status(registerResume?loadingRegister:loadingAudio);
+ if(result==='loading'&&guides.playing&&!guides.audibleKey)status(loadingRegister);
+ else if(result==='loading'&&guides.playing&&guides.audibleKey!==currentHeard())status(registerResume?loadingRegister:loadingAudio);
  else normalAudioStatus();
  return true;
 }
@@ -1323,6 +1380,7 @@ function actualEnd(range){
 function updateClock(){
  if(!guides)return;
  guides.sync();
+ if(guides.silent&&guides.clockRunning&&startTimer!==null){cancelAudioStart();gateAudio();}
  const range=practiceWindow(), now=guides.currentTime, end=actualEnd(range);
  if(!guides.paused&&now>=end-.014){
   if(state.loop){guides.seek(range.start);viewTime(range.start);return;}
@@ -1341,9 +1399,9 @@ function attemptPlay(){
  guides.play()?.then(ok=>{
   if(ticket===startTicket&&ok&&!guides.paused&&!frame)frame=root.requestAnimationFrame(tick);
  }).catch(error=>{if(ticket===startTicket&&error?.name!=='AbortError')status(labels.error);});
- if(!guides.audibleKey&&typeof root.setTimeout==='function'){
+ if(!guides.audibleKey&&!(guides.silent&&guides.clockRunning)&&typeof root.setTimeout==='function'){
   startTimer=root.setTimeout(()=>{
-   if(ticket!==startTicket||sourceKey!==state.loadedFor||guides.audibleKey)return;
+   if(ticket!==startTicket||sourceKey!==state.loadedFor||guides.audibleKey||(guides.silent&&guides.clockRunning))return;
    stop();gateAudio();status(['尚未开始播放。请再次点击播放。','Audio did not start. Tap Play again.']);
   },7500);
  }
@@ -1424,6 +1482,8 @@ for(const [node,attr,words] of [
 ])localAttr($(node),attr,words);
 $('layout').replaceChildren(selectOption('auto',['自动','Auto']),selectOption('phone',['手机','Phone']),selectOption('page',['全页','Full page']));
 $('language').replaceChildren(selectOption('zh',['简体中文','Mandarin']),selectOption('en',['英语','English']));
+localized($('layer-label'),['人声音轨','Voice layers']);
+localAttr(layerGroup,'aria-label',['独立人声音轨','Independent vocal layers']);
 changeLanguage(language,{save:false});
 setLargePrint(getPreference(largePrintKey)==='on',{save:false});
 setHideRows(getPreference(hideRowsKey)==='on',{save:false});
@@ -1444,6 +1504,10 @@ if(!root.CHOIR_PREVIEW||bundle)for(const voice of availableGuides){
  entry.removeAttribute('aria-pressed');
 }
 localized($('credit'),root.CHOIR_PREVIEW?pair(data?.credit,[typeof data?.credit==='string'?data.credit:'',typeof data?.credit==='string'?data.credit:'']):[data?.credit??'','Lyrics: Mikhail Isakovsky; music: Matvei Blanter; Chinese text: Han Bai.']);
+if(verses.some(hasQuickMixed)){
+ for(const part of Object.keys(layerLabels))button(layerGroup,layerLabels[part],part,()=>toggleGuideLayer(part));
+ markQuickLine();
+}
 localized(el.loop,labels.loop);
 updateVerseButtons();renderPhraseButtons();applyLayout(getPreference(layoutKey),{save:false,refresh:false});
 const priorGuide=getPreference(guideKey);
