@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data: blob:; media-src blob:; script-src 'sha256-J8vjK8RVDUe+xtVat/CI4Llw6QMSr2jCEi5HP4eRx/s=' 'sha256-zdAvzdnYLza/08gUawItRQZIznFkULVvvwvGawZ0mmE=' 'sha256-PZBKpDNBsFI09SIaW/D/bkgoMT5Za0+pTZNFoqqjJ5s='; script-src-attr 'none'; style-src 'unsafe-inline'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data: blob:; media-src blob:; script-src 'sha256-J8vjK8RVDUe+xtVat/CI4Llw6QMSr2jCEi5HP4eRx/s=' 'sha256-zdAvzdnYLza/08gUawItRQZIznFkULVvvwvGawZ0mmE=' 'sha256-h0xtZaFYt20NnPy9PVcSnZ2YSAxDikgaS9GZFdckkX4='; script-src-attr 'none'; style-src 'unsafe-inline'; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <title>Playable Score · 会唱的简谱</title>
 <style>
@@ -590,7 +590,35 @@ function setLine(line,bar,force=false){
  for(const [i,b] of lineButtons)b.setAttribute('aria-pressed',String(i===line));
  for(const [i,b] of barButtons)b.setAttribute('aria-pressed',String(i===bar));
 }
-function jianpuMark(e,x,y,size,band,room){
+// In a duet the facsimile's two staves may place simultaneous notes a few pixels apart.
+ // Share score-time anchors for the generated notation, while leaving the original scan untouched.
+function duetBeatGrid(events){
+ const anchors=new Map();
+ for(const e of events){
+  const was=anchors.get(e.t);
+  if(!was||e.part===1)anchors.set(e.t,e);
+ }
+ const points=[...anchors.values()].sort((a,b)=>a.t-b.t).map(e=>({t:e.t,x:e.x}));
+ for(let i=1;i<points.length;i++)points[i].x=Math.max(points[i].x,points[i-1].x+1);
+ function xAt(t){
+  if(points.length===1)return points[0].x;
+  const i=points.findIndex(p=>p.t>=t);
+  if(i!==-1&&points[i].t===t)return points[i].x;
+  const n=i===-1?points.length-1:Math.max(1,i),a=points[n-1],b=points[n];
+  return a.x+(b.x-a.x)*(t-a.t)/(b.t-a.t);
+ }
+ const bars=new Map();
+ for(const e of events){
+  const r=bars.get(e.bar);
+  if(!r)bars.set(e.bar,{start:e.t,last:e.t+Math.max(0,Math.floor(e.beats)-1)});
+  else {r.start=Math.min(r.start,e.t);r.last=Math.max(r.last,e.t+Math.max(0,Math.floor(e.beats)-1));}
+ }
+ const barlines=[];
+ const list=[...bars.values()];
+ for(let i=1;i<list.length;i++)barlines.push((xAt(list[i-1].last)+xAt(list[i].start))/2);
+ return {xAt,barlines};
+}
+function jianpuMark(e,x,y,size,band,room,beatGrid){
  const a=e.degree?accidental(e):'',acc=a==='♭'?-1:a==='♯'?1:0;
  const octave=e.degree?Math.round((e.midi-score.tonic-steps[e.degree-1]-acc)/12):0;
  const short=[1,.5,.25,.125].find(base=>Math.abs(e.beats-base)<1e-8||Math.abs(e.beats-base*1.5)<1e-8);
@@ -601,10 +629,15 @@ function jianpuMark(e,x,y,size,band,room){
  g.append(box('rect',{class:'cue',x:x-room*.46,y:y+band*.07,width:room*.92,height:band*.86,rx:Math.min(size*.25,8)}));
  const word=box('text',{x,y:y+band*.64,'font-size':size});
  word.textContent=a+(e.degree||0)+(dotted?'·':'');
- if(held)word.textContent+=' '+Array(held).fill(e.degree?'–':'0').join('');
- if(e.tieFromPrevious)word.textContent=Array(Math.max(1,Math.round(e.beats))).fill('–').join('');
- if(held||e.tieFromPrevious)word.setAttribute('font-size',String(Math.min(size,room/(1+.48*held))));
+ if(held&&!beatGrid)word.textContent+=' '+Array(held).fill(e.degree?'–':'0').join('');
+ if(e.tieFromPrevious)word.textContent=beatGrid?'–':Array(Math.max(1,Math.round(e.beats))).fill('–').join('');
+ if(!beatGrid&&(held||e.tieFromPrevious))word.setAttribute('font-size',String(Math.min(size,room/(1+.48*held))));
  g.append(word);
+ if(beatGrid)for(let k=1;k<=held;k++){
+  const hold=box('text',{class:'jianpu-beat-hold',x:beatGrid.xAt(e.t+k),y:y+band*.64,'font-size':size,'data-beat':e.t+k});
+  hold.textContent=e.degree?'–':'0';g.append(hold);
+ }
+ g.setAttribute('data-beat',String(e.t));
  if(!e.tieFromPrevious){
   for(let j=0;j<under;j++){
    const pos=y+band*(.71+j*.055);
@@ -633,6 +666,7 @@ function layoutPaper(){
   const top=score.systemCuts?.[j]??(j===0?Math.max(0,row.min-pad):Math.max(0,Math.floor((prev.max+row.min)/2-pad*.22)));
   const end=next?(score.systemCuts?.[j+1]??Math.max(top+1,Math.floor((row.max+next.min)/2-pad*.22))):score.height;
   const duet=row.events.some(e=>e.part===2);
+  const beatGrid=duet&&withJianpu?duetBeatGrid(row.events):null;
   const lanesPerPart=Number(showSol)+Number(withJianpu);
   const bandHeight=band*lanesPerPart*(duet?2:1);
   const bandY=top+cumulativeShift;
@@ -651,12 +685,17 @@ function layoutPaper(){
     jianpuRows.push(box('rect',{class:'jianpu-band'+lower,x:0,y:startY,width:score.width,height:band}));
     const key=box('text',{class:'jianpu-label',x:score.width*.014,y:startY+band*.63,'font-size':band*.35});
     key.textContent='1='+pc[score.tonic%12]+(duet?(lane===0?' 上':' 下'):'');jianpuRows.push(key);
+    const barline=x=>box('line',{class:'jianpu-bar',x1:x,x2:x,y1:startY+band*.22,y2:startY+band*.81,'stroke-width':Math.max(1,band*.035)});
+    if(beatGrid)jianpuRows.push(...beatGrid.barlines.map(barline));
+    const scaleX=e=>beatGrid?beatGrid.xAt(e.t):e.x;
     events.forEach((e,i)=>{
-     const prev=events[i-1],next=events[i+1];
-     const gap=Math.min(prev?e.x-prev.x:Infinity,next?next.x-e.x:Infinity);
+     const prev=events[i-1],next=events[i+1],x=scaleX(e);
+     const prevX=prev?(beatGrid?beatGrid.xAt(prev.t+Math.max(0,Math.floor(prev.beats)-1)):prev.x):-Infinity;
+     const nextX=beatGrid&&e.beats>=2?beatGrid.xAt(e.t+1):next?scaleX(next):Infinity;
+     const gap=Math.min(x-prevX,nextX-x);
      const room=Math.max(10,Math.min(band*1.25,gap*.91));
-     if(prev&&prev.bar!==e.bar){const cut=(prev.x+e.x)/2;jianpuRows.push(box('line',{class:'jianpu-bar',x1:cut,x2:cut,y1:startY+band*.22,y2:startY+band*.81,'stroke-width':Math.max(1,band*.035)}));}
-     const g=jianpuMark(e,e.x,startY,Math.max(9,Math.min(band*.51,room*.65)),band,room);
+     if(!beatGrid&&prev&&prev.bar!==e.bar)jianpuRows.push(barline((prev.x+x)/2));
+     const g=jianpuMark(e,x,startY,Math.max(9,Math.min(band*.51,room*.65)),band,room,beatGrid);
      jianpuMarks[e.i]=g;jianpuRows.push(g);
     });
    }
