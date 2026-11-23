@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 POLICY = ROOT / 'scripts/release-exceptions.json'
 MANIFEST = ROOT / 'scripts/release-sha256.json'
 SCOPES = ('corpus-explorer/', 'experimental-tools/', 'rengongfu/', 'interfacestudies/continuator/',
-          'interfacestudies/ai-music-lab/', 'interfacestudies/vendor/continuator/')
+          'interfacestudies/ai-music-lab/', 'interfacestudies/vendor/continuator/', 'playablescore/')
 ENTRIES = {'interfacestudies/index.html'}
 CODE = {'.js', '.mjs', '.cjs', '.css', '.html', '.htm'}
 SECRET_NAME = re.compile(
