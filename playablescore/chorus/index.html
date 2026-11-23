@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'; object-src 'none'; worker-src 'none'; img-src data:; media-src data:; script-src 'sha256-l6fuGlVwPnMtfpCHfrOlDsQ1Rg3Bl1V+1Im9QuJ2dzw=' 'sha256-oUf2yi4O4JxDRPZNijuodpOSmxAamc06+xI//kiorhk=' 'sha256-FMyK7Jg89Vux1Evtx3UxDRxKcU+SloDzAg/MgCnjmhM='; script-src-attr 'none'; style-src 'unsafe-inline'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'; object-src 'none'; worker-src 'none'; img-src data:; media-src data:; script-src 'sha256-l6fuGlVwPnMtfpCHfrOlDsQ1Rg3Bl1V+1Im9QuJ2dzw=' 'sha256-oUf2yi4O4JxDRPZNijuodpOSmxAamc06+xI//kiorhk=' 'sha256-79h17ksFkDqiTLan5uxyVvNMcu7rFCH4XPbFZRmANVo='; script-src-attr 'none'; style-src 'unsafe-inline'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <meta name="referrer" content="no-referrer">
@@ -203,15 +203,16 @@ footer{margin-top:18px;color:var(--sub);font-size:.74rem}
 .scan-backdrop rect{rx:0}
 .scan-route-selected{fill:#2b9b69;fill-opacity:.12}
 .scan-verse-selected{fill:#f2c751;fill-opacity:.20}
-.scan-route-muted,.scan-verse-muted{fill:#fff;fill-opacity:.27}
+.scan-route-muted,.scan-verse-muted{fill:#fff;fill-opacity:.48}
 html[data-large-print=on] .scan-route-selected{fill:#45b17c;fill-opacity:.16}
 html[data-large-print=on] .scan-verse-selected{fill:#ffdc67;fill-opacity:.27}
-html[data-large-print=on] :is(.scan-route-muted,.scan-verse-muted){fill-opacity:.13}
+html[data-large-print=on] :is(.scan-route-muted,.scan-verse-muted){fill-opacity:.25}
 @media(forced-colors:active){
  .scan-backdrop{forced-color-adjust:none}
  .scan-route-selected,.scan-verse-selected{fill:Highlight;fill-opacity:.12}
  .scan-route-muted,.scan-verse-muted{fill:#fff;fill-opacity:.10}
 }
+html[data-hide-rows=on] :is(.scan-route-muted,.scan-verse-muted){fill:#fff;fill-opacity:1}
 .note-picker{justify-self:start;max-width:100%;min-height:39px;font:inherit;border:1px solid #b2c4b7;border-radius:5px;color:var(--brand2);background:white}
 .note-picker:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 
@@ -304,7 +305,11 @@ html[data-large-print=on]{font-size:clamp(18px,2.9vw,20px)}
        <div class="control-label" id="verse-label">歌词段落</div>
        <div class="choices" id="verses" role="group" aria-labelledby="verse-label"></div>
      </div>
-     <div class="score-view-options"><p id="score-key" class="key"></p><button type="button" class="option compact" id="large-print" aria-pressed="false">大字模式</button></div>
+     <div class="score-view-options">
+       <p id="score-key" class="key"></p>
+       <button type="button" class="option compact" id="large-print" aria-pressed="false">大字模式</button>
+       <button type="button" class="option compact" id="hide-rows" aria-pressed="false" aria-controls="score">隐藏未选行</button>
+     </div>
    </div>
    <div class="scan-toolbar" id="scan-toolbar" hidden>
     <div class="scan-buttons"><button type="button" class="option compact" id="scan-follow" aria-pressed="false">跟随谱行<span lang="en">Follow line</span></button><button type="button" class="option compact" id="scan-zoom" aria-pressed="false">放大<span lang="en">Enlarge</span></button></div>
@@ -689,6 +694,7 @@ const verses=Array.isArray(data?.verses)?data.verses:[];
 const phoneMedia=root.matchMedia?.('(max-width: 620px)');
 const languageKey='musedlab-adult-choir-language-v1';
 const largePrintKey='musedlab-adult-choir-large-print-v1';
+const hideRowsKey='musedlab-adult-choir-hide-rows-v1';
 const guideKey='musedlab-adult-choir-guide-v1',layoutKey='musedlab-adult-choir-layout-v1';
 const voiceMemoryKey=group=>guideKey+'-'+group;
 const validGuide=value=>Object.prototype.hasOwnProperty.call(voices,value);
@@ -704,7 +710,7 @@ function rememberVoice(voice,save=true){
  const group=voiceGroup(voice);recentVoice[group]=voice;
  if(save){setPreference(guideKey,voice);setPreference(voiceMemoryKey(group),voice);}
 }
-const state={verse:verses[0]??null,part:'upper',listen:'own',voice:'soprano',phrase:'all',startBar:null,startNote:null,loop:false,bpm:baseBpm,follow:!!phoneMedia?.matches,layout:'auto',started:false,zoom:false,loadedFor:null,sources:{},lastTime:0};
+const state={verse:verses[0]??null,part:'upper',listen:'own',voice:'soprano',phrase:'all',startBar:null,startNote:null,loop:false,bpm:baseBpm,follow:!!phoneMedia?.matches,layout:'auto',started:false,zoom:false,hideRows:false,loadedFor:null,sources:{},lastTime:0};
 let frame=0,cueEpoch=0,cueSrc=null,scanView=null,scanSig='',registerResume=false,followedPageSystem=null;
 const guides=root.createParallelGuide?.({clockMedia:media,onState:handleGuideState,onError:handleGuideError})??null;
 
@@ -827,6 +833,7 @@ function phoneNavigator(system,source){
  if(d.activeElement!==bar)bar.value=source;
 }
 function chooseNote(note){
+ if(!note||!visibleNoteParts().includes(note.part))return;
  const m=barIndex(state.verse,note?.part).get(note?.source);
  if(!m)return;
  if(state.phrase!=='all'&&state.phrase!==id(m.phrase.id))state.phrase=id(m.phrase.id);
@@ -850,14 +857,15 @@ function setMeasureChoices(){
  $('note-picker-row').hidden=!state.startBar;
  if(!state.startBar)return;
  pick.append(selectOption('',['小节起点','Bar start']));
- for(const part of ['upper','lower'])for(const e of (barIndex(state.verse,part).get(state.startBar)?.events??[])){
+ const visible=visibleNoteParts();
+ for(const part of visible)for(const e of (barIndex(state.verse,part).get(state.startBar)?.events??[])){
   const slot=slotOf(e);if(slot==null)continue;
   const pitched=Number.isInteger(e.midi);
   const note=pitched?(pitchName(e.midi+voices[state.voice].shift)+(e.lyric&&e.lyric!=='-'?' · '+e.lyric:'')):null;
   pick.append(selectOption(part+':'+slot,[labels[part][0]+' '+slot+' · '+(note??'休止'),labels[part][1]+' '+slot+' · '+(note??'Rest')]));
 
  }
- pick.value=state.startNote?state.startNote.part+':'+state.startNote.slot:'';
+ pick.value=state.startNote&&visible.includes(state.startNote.part)?state.startNote.part+':'+state.startNote.slot:'';
 }
 function scoreRender(){
  const v=state.verse, [vzh,ven]=pair(v?.name??v?.label,['第 1 段','Verse 1']), [pzh,pen]=labels[state.part];
@@ -882,12 +890,14 @@ function scoreRender(){
   const x=b[0]+(event.clientX-r.left)*b[2]/r.width,y=b[1]+(event.clientY-r.top)*b[3]/r.height;
   const selected=findScanBar(scan,x,y);if(!selected)return;
   const note=findScanNote(scan,state.verse,selected,x,y);
-  if(note)chooseNote(note);else chooseBar(selected);
+  if(note&&visibleNoteParts().includes(note.part))chooseNote(note);else chooseBar(selected);
  });
 }
 function partsForRoute(key){
  return key==='together'?['upper','lower']:['upper','lower'].includes(key)?[key]:[];
 }
+function displayRoute(){return (guides?.playing?guides.audibleKey:null)??currentHeard();}
+function visibleNoteParts(){return state.hideRows?partsForRoute(displayRoute()):['upper','lower'];}
 function lyricBoxFor(bar){return bar?.lyricBoxes?.[lyricVerse(state.verse)]??bar?.lyricBoxes?.[id(state.verse.id)];}
 function paintScanBackdrop(system,route){
  const clippedSystem=state.follow?system:null;
@@ -943,13 +953,13 @@ function scanRender(now){
  const activeRoute=guides?.playing?guides.audibleKey:null;
  // Use the last unambiguous requested route only before any audio becomes
  // audible; while switching, the transport continues to report the old lane.
- const backdropRoute=activeRoute??currentHeard();
+ const backdropRoute=displayRoute();
  const listened=partsForRoute(activeRoute);
  const live=listened.map(part=>({part,...locateScan(scan,state.verse,ph,now,part)})).filter(x=>x.bar);
  const safeSystem=scan.systems?.[system];
  const bbox=safeSystem&&state.follow?[safeSystem.x,safeSystem.y,safeSystem.width,safeSystem.height]:[0,0,scan.width,scan.height];
  paintScanBackdrop(system,backdropRoute);
- const key=[ph?.id,source,id(state.verse.id),state.part,state.startBar,state.startNote?.part,state.startNote?.slot,state.zoom,state.follow,...live.map(x=>x.part+':'+x.source+':'+(x.anchor?.slot??'rest'))].join('|');
+ const key=[ph?.id,source,id(state.verse.id),state.part,state.startBar,state.startNote?.part,state.startNote?.slot,state.zoom,state.follow,state.hideRows,backdropRoute,...live.map(x=>x.part+':'+x.source+':'+(x.anchor?.slot??'rest'))].join('|');
  if(scanSig===key){followFullPage(system,safeSystem);return;}scanSig=key;
  phoneNavigator(system,source);
  const {view,svg,overlay}=scanView;scanView.bbox=bbox;
@@ -961,7 +971,8 @@ function scanRender(now){
  for(const ix of bars){const b=scan.bars[ix];if(!b)continue;appendRect(overlay,b.box,'scan-phrase');}
  const lyric=lyricBoxFor(bar);
  appendRect(overlay,bar.box,'scan-bar');
- appendRect(overlay,bar.partBoxes?.[state.part],'scan-own');
+ const visible=visibleNoteParts();
+ if(visible.includes(state.part))appendRect(overlay,bar.partBoxes?.[state.part],'scan-own');
  appendRect(overlay,lyric,'scan-lyric');
  const lyricMarks=new Set();
  for(const {part,bar:heardBar,anchor,current} of live){
@@ -982,7 +993,7 @@ function scanRender(now){
   overlay.append(lane);
  }
  const selected=state.startNote;
- if(selected?.anchor)appendRect(overlay,[selected.anchor.x-14,selected.anchor.y-13,28,26],'scan-select-cursor');
+ if(selected?.anchor&&visible.includes(selected.part))appendRect(overlay,[selected.anchor.x-14,selected.anchor.y-13,28,26],'scan-select-cursor');
  const [zh,en]=pair(ph?.name??ph?.label);
  const start=state.startBar;
  const chosen=selected?(Number.isInteger(selected.event.midi)?pitchName(selected.event.midi+voices[state.voice].shift):''):null;
@@ -1079,6 +1090,13 @@ function setLargePrint(on,{save=true}={}){
  $('large-print').setAttribute('aria-pressed',String(on));
  if(save)setPreference(largePrintKey,value);
 }
+function setHideRows(on,{save=true}={}){
+ state.hideRows=on;const value=on?'on':'off';
+ d.documentElement.dataset.hideRows=value;
+ $('hide-rows').setAttribute('aria-pressed',String(on));
+ if(save)setPreference(hideRowsKey,value);
+ if(state.started){setMeasureChoices();scanRender(state.lastTime);}
+}
 function activateWorkspace(voice,{save=true,focus=true}={}){
  if(!validGuide(voice))return;
  rememberVoice(voice,save);
@@ -1120,7 +1138,10 @@ function handleGuideState(s){
   if(s.type==='audible')registerResume=false;
   normalAudioStatus();
  }
- if(['ready','audible','pause','play'].includes(s.type)){scanSig='';scanRender(state.lastTime);}
+ if(['ready','audible','pause','play'].includes(s.type)){
+  if(state.hideRows&&state.startBar)setMeasureChoices();
+  scanSig='';scanRender(state.lastTime);
+ }
  if(s.type==='ended'){
   const range=practiceWindow();
   if(state.loop){guides.seek(range.start);attemptPlay();}
@@ -1166,6 +1187,7 @@ function chooseRoute(part,mode){
  }
  el.play.disabled=false;
  if(previousPart!==part){cancelCue();scoreRender();setPitchButton();guideRender(state.lastTime);}
+ else if(state.hideRows&&state.startBar)setMeasureChoices();
  scanSig='';scanRender(state.lastTime);
  if(result==='loading'&&guides.playing)status(registerResume?loadingRegister:loadingAudio);
  else normalAudioStatus();
@@ -1239,6 +1261,7 @@ jump.addEventListener('click',()=>{
 });
 $('layout').addEventListener('change',()=>applyLayout($('layout').value));
 $('large-print').addEventListener('click',()=>setLargePrint(d.documentElement.dataset.largePrint!=='on'));
+$('hide-rows').addEventListener('click',()=>setHideRows(!state.hideRows));
 phoneMedia?.addEventListener?.('change',()=>{if(state.layout==='auto')applyLayout('auto',{save:false});});
 const song=pair(data?.title,['喀秋莎','Katyusha']);
 $('language').addEventListener('change',()=>changeLanguage($('language').value));
@@ -1256,7 +1279,7 @@ const fixedCopy={
  'verse-label':['歌词段落','Verse'],'phrase-label':['练习范围','Practice section'],'guide-title':['练习提示','Practice tip'],
  'lab-credit':['纽约大学音乐体验设计实验室','NYU Music Experience Design Lab'],
  'note-picker-label':['所选小节的音符','Note in selected bar'],'score-zh':['练习谱','Practice score'],
- 'large-print':['大字模式','Large print']
+ 'large-print':['大字模式','Large print'],'hide-rows':['隐藏未选行','Hide inactive rows']
 };
 for(const [node,words] of Object.entries(fixedCopy))localized($(node),words);
 $('song-en').hidden=true;$('score-en').hidden=true;$('guide-en').hidden=true;
@@ -1270,6 +1293,7 @@ $('layout').replaceChildren(selectOption('auto',['自动','Auto']),selectOption(
 $('language').replaceChildren(selectOption('zh',['简体中文','Mandarin']),selectOption('en',['英语','English']));
 changeLanguage(language,{save:false});
 setLargePrint(getPreference(largePrintKey)==='on',{save:false});
+setHideRows(getPreference(hideRowsKey)==='on',{save:false});
 for(const part of ['upper','lower'])button(el.parts,labels[part],part,()=>{if(state.part!==part){state.part=part;changeSelection();}});
 for(const mode of Object.keys(modes))button(el.listens,modes[mode],mode,()=>chooseRoute(state.part,mode));
 for(const part of Object.keys(quickLines))button($('quick-lines'),quickLines[part],part,()=>chooseRoute(part,'own'));
