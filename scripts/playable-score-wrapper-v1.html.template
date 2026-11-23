@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><meta name="robots" content="noindex,nofollow,noarchive"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; connect-src 'none'; object-src 'none'; worker-src 'none'; frame-src blob:; img-src data: blob:; media-src data: blob:; script-src 'sha256-n+9vBbwMmxLDeztorho3La8J4XE4LqPt2p7lxWEE1TA=' @@APP_SCRIPT_HASHES@@; script-src-attr 'none'; style-src 'unsafe-inline'"><title>MusEDLab private review</title><style>:root{font:17px/1.5 system-ui;color:#24372f;background:#f4f1e9}body{margin:0}main{max-width:36rem;padding:2rem;margin:8vh auto}h1,p{margin:0 0 .65em}iframe{display:block;border:0;width:100%;height:100vh;height:100dvh}main[hidden]{display:none}</style></head><body><main id="notice"><h1>MusEDLab private review</h1><p role="status">Opening your review…</p></main><template id="payload">@@PAYLOAD@@</template><script>(async()=>{
+const output=document.getElementById('notice');
+const handle=document.getElementById('payload');
+function msg(s){output.querySelector('p').textContent=s}
+const h=location.hash;
+if(!/^#k=[A-Za-z0-9_-]{43}$/.test(h)){msg('Open the complete review link, including its access key.');return}
+try{history.replaceState(null,'',location.pathname+location.search)}catch{msg('This environment cannot safely open the review link.');return}
+if(!isSecureContext||!globalThis.crypto?.subtle){msg('Open this link over HTTPS in a current web browser.');return}
+if(navigator.serviceWorker?.controller){msg('Open the review link in a new private browser window.');return}
+function unpack(s){return Uint8Array.from(atob(s),x=>x.charCodeAt(0))}
+try{
+ const raw=unpack(h.slice(3).replace(/-/g,'+').replace(/_/g,'/')+'=');
+ const k=await crypto.subtle.importKey('raw',raw,{name:'AES-GCM'},false,['decrypt']);raw.fill(0);
+ const b=unpack(handle.content.textContent.trim());handle.remove();
+ const clear=await crypto.subtle.decrypt({name:'AES-GCM',iv:b.subarray(0,12),tagLength:128,additionalData:new TextEncoder().encode('MusEDLab encrypted review v1')},k,b.subarray(12));
+ const u=URL.createObjectURL(new Blob([clear],{type:'text/html'}));
+ const f=document.createElement('iframe');f.id='reader';f.title='Playable Score review';f.setAttribute('sandbox','allow-scripts allow-downloads');f.setAttribute('allow','fullscreen');f.referrerPolicy='no-referrer';
+ f.addEventListener('load',()=>{URL.revokeObjectURL(u);output.hidden=true},{once:true});
+ f.src=u;document.body.append(f);
+}catch{msg('This review link could not be opened. Check that the full link was copied.')}
+})();</script></body></html>
