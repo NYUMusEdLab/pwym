@@ -45,10 +45,18 @@ body{padding:clamp(8px,1.65vmin,20px)}
  .mast button,.mast .heat-link,.stage button,.stage select{min-height:30px}
  .stage .playbar audio{height:34px}.stage .harmony-head{font-size:.8rem}.stage .harmony-zh{font-size:.8rem}
 }
+.performers{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 14px;margin:0;color:var(--ink);font-size:.87rem;line-height:1.36}
+.performers strong,.performers small{color:var(--muted);font-size:.84em}.performers span small{margin-inline-start:2px}.performers a{font-size:.86em}
+@media(max-width:600px){.performers{gap:2px 9px;font-size:.8rem}}
 </style></head><body><main class="present">
 <header class="mast"><div><div class="brand">Performance Mirror</div><h1>Alphorn</h1><div class="sub">Richard Strauss · Horn, voice and piano · Full performance, 4:28</div></div><div class="top-tools"><div class="row heat-nav" role="group" aria-label="Analysis heat"><button id="lowHeat" aria-pressed="true" type="button">Low · Worked analysis</button><button id="mediumHeat" aria-pressed="false" type="button">Medium · Fill the gaps</button><a class="heat-link" href="./create/">High · Analyze your recording</a></div><button id="openPractice" type="button" hidden>Edit chords</button><button id="openGuide" type="button">Guide</button></div></header>
 <section class="stage" aria-label="Recording and pitch contours">
-<div class="playbar"><audio id="audio" controls preload="metadata" aria-label="Original stereo recording" src="./alphorn.mp3"></audio><div class="section-picker"><label for="sectionSelect">Section</label><div class="section-select-frame"><select id="sectionSelect"><option id="currentSection" value="" selected disabled>Opening · 0:00</option></select></div></div></div>
+<div class="playbar"><audio id="audio" controls preload="metadata" aria-label="Original stereo recording" aria-describedby="performers" src="./alphorn.mp3"></audio><div class="section-picker"><label for="sectionSelect">Section</label><div class="section-select-frame"><select id="sectionSelect"><option id="currentSection" value="" selected disabled>Opening · 0:00</option></select></div></div></div>
+<p class="performers" id="performers"><strong>Performers <span lang="zh-Hans">演奏者</span></strong>
+<span>Péter Füzes <small>horn · 圆号</small></span>
+<span>Gabriella Sallay <small>soprano · 女高音</small></span>
+<span>Csilla Szentpéteri <small>piano · 钢琴</small></span>
+<a href="https://www.youtube.com/watch?v=eE0cK2dZTc0" target="_blank" rel="noopener noreferrer">Recording source</a></p>
 <div class="row" aria-label="Layers and view"><button type="button" data-layer="horn" aria-pressed="true"><span class="swatch" style="--c:var(--horn)"></span>Horn</button><button type="button" data-layer="voice" aria-pressed="true"><span class="swatch voice-swatch" style="--c:var(--voice)"></span>Voice</button><button type="button" data-layer="piano" aria-pressed="true"><span class="swatch piano-swatch" style="--c:var(--piano)"></span>Piano harmony</button><button id="zoom" aria-pressed="true">Show whole piece</button></div>
 <div class="readout"><span id="position">0:00 / 4:28</span><span id="scoreRef">Before first note</span></div>
 <svg id="chart" class="plot" preserveAspectRatio="none" role="img" aria-label="Score-guided pitch contours. Click to seek, or use the audio controls."></svg>
