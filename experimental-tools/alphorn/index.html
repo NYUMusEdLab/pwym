@@ -1,8 +1,8 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-kAIlbpdmGlPzrrL0W6QtoAaytn0B+xwZkTYhMghH2Ko='; style-src 'self' 'unsafe-inline'; media-src 'self' blob:; img-src 'self' data: blob:; connect-src 'none'; base-uri 'none'; form-action 'none'"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Alphorn · Performance Mirror</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-b6OM1htNv4ZOJSfKmiTX3EW48BGIvsNWlEN1DL3Z+rc='; style-src 'self' 'unsafe-inline'; media-src 'self' blob:; img-src 'self' data: blob:; connect-src 'none'; base-uri 'none'; form-action 'none'"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Alphorn · Performance Mirror</title>
 <style>
 :root{color-scheme:dark;--bg:#101621;--panel:#182332;--ink:#f7f9fc;--muted:#b9c7d9;--line:#3d4e64;--horn:#ffc56a;--voice:#69dbb7;--piano:#a4aab4}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.48 system-ui,sans-serif;padding:clamp(14px,3vw,40px)}main{max-width:1190px;margin:auto}h1{font-size:clamp(38px,6vw,68px);letter-spacing:-.06em;line-height:1;margin:8px 0}h2{font-size:1.15rem}.brand{color:#acd5ff;letter-spacing:.12em;font-size:.82rem;text-transform:uppercase}.sub,.help,footer{color:var(--muted)}section{border:1px solid var(--line);background:var(--panel);padding:clamp(12px,2vw,22px);border-radius:18px;margin-top:18px}audio{display:block;width:100%;margin:0 0 10px}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}button{min-height:44px;border-radius:9px;background:#222f40;color:var(--ink);padding:6px 12px;font:inherit;cursor:pointer;border:1px solid #647997}button:hover,button:focus-visible{background:#345278}button[aria-pressed=true]{border-color:#adccf1;background:#273d56}button[aria-pressed=false][data-layer]{opacity:.58}.swatch{display:inline-block;width:1.25rem;margin:0 6px 2px 0;border-top:3px solid var(--c);vertical-align:middle}.voice-swatch{border-top-style:dashed}.piano-swatch{border-top-width:6px}.readout{display:flex;justify-content:space-between;flex-wrap:wrap;color:#dfeaff;min-height:26px;font-variant-numeric:tabular-nums;margin-top:12px}#notes{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);min-height:25px;margin:5px 0 0}.instrument.horn{color:var(--horn)}.instrument.voice{color:var(--voice)}.instrument.piano{color:#d1d5de}.plot,.mini{display:block;width:100%;background:#111b29;border-radius:9px;cursor:crosshair;touch-action:manipulation}.plot{height:clamp(215px,37vh,365px)}.mini{height:60px;margin-top:8px}.help,footer{font-size:.91rem}.help{margin-bottom:0}footer{margin-top:16px}summary{cursor:pointer;font-weight:600}a{color:#b8daff}button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid #fff;outline-offset:2px}@media(max-width:550px){body{padding:12px}.plot{height:258px}.row button{font-size:.88rem}.help{font-size:.87rem}}
-.harmony{margin:6px 0 10px}.harmony-head{display:flex;gap:6px 12px;flex-wrap:wrap;align-items:baseline;padding:0 1px 4px;color:var(--muted);font-size:.87rem}.harmony-head strong{color:#f7f9fc}.harmony-head .now{color:#f9df9f;font-size:1.06rem;min-width:3.2em}.harmplot{height:42px;display:block;width:100%;margin:auto;background:#111b29;border-radius:8px;cursor:crosshair;touch-action:manipulation}.chordTile.current rect{fill:#715c36;stroke:#ffc56a;stroke-width:1.5}.chordTile.current text{fill:#fff7df}.section-rule{pointer-events:none}.chordPlayhead{pointer-events:none}#formalRoadmap li{margin:.62rem 0}#formalRoadmap button{min-height:38px;margin-right:.35rem;text-align:left}.heat-nav{margin-top:20px}.heat-link{display:inline-flex;align-items:center;min-height:44px;padding:6px 12px;border:1px solid #647997;border-radius:9px;text-decoration:none;background:#222f40}.heat-hint{margin-top:0}.chordTile.gap rect{stroke:#f4cc80;stroke-dasharray:4 3}#gapForm{max-width:650px}#gapForm input,#gapForm textarea{display:block;width:100%;background:#101a27;color:var(--ink);font:inherit;border:1px solid #677e9d;border-radius:8px;padding:7px 10px;margin:4px 0 10px}#gapForm h3{margin-bottom:6px}#gapForm button:disabled{opacity:.45;cursor:default}#referenceAnswer{color:#eaddb9}[hidden]{display:none!important}.section-picker{display:flex;align-items:center;gap:10px;margin:9px 0 11px;min-width:0}.section-picker label{flex:none;font-size:.9rem;font-weight:650;color:#e0eaff}.section-select-frame{position:relative;flex:0 1 24rem;min-width:0}.section-select-frame::after{content:"";position:absolute;right:15px;top:calc(50% - 4px);width:7px;height:7px;border-right:2px solid #b5c9e1;border-bottom:2px solid #b5c9e1;transform:rotate(45deg);pointer-events:none}.section-select-frame select{width:100%;min-height:44px;appearance:none;background:#222f40;color:#f7f9fc;border:1px solid #647997;border-radius:9px;padding:7px 34px 7px 10px;font:inherit;text-overflow:ellipsis;cursor:pointer}.section-select-frame select:focus-visible{outline:2px solid #f7f9fc;outline-offset:2px}@media(max-width:550px){.section-select-frame{flex:1 1 auto}.section-select-frame select{font-size:.92rem}}.zh-line,.zh-optional{color:#bcd9f4}.zh-line{margin:0 0 10px;font-size:.95rem}.harmony-zh{line-height:1.45}.harmony-zh:empty{display:none}#toggleZh{min-height:35px;font-size:.86rem;padding:4px 8px;margin-left:auto}#referenceZh{color:#f2ddb3}#formalRoadmap .zh-line{display:block;margin:3px 0 0}/* Keep the controls and timeline inside the visible browser width. */
+.harmony{margin:6px 0 10px}.harmony-head{display:flex;gap:6px 12px;flex-wrap:wrap;align-items:baseline;padding:0 1px 4px;color:var(--muted);font-size:.87rem}.harmony-head strong{color:#f7f9fc}.harmony-head .now{color:#f9df9f;font-size:1.06rem;min-width:3.2em}.harmplot{height:42px;display:block;width:100%;margin:auto;background:#111b29;border-radius:8px;cursor:crosshair;touch-action:manipulation}.chord-picker select{min-width:0;flex:1}.chordTile.edited rect{stroke:#79d9eb;stroke-width:1.7}.chordTile.current rect{fill:#715c36;stroke:#ffc56a;stroke-width:1.5}.chordTile.current text{fill:#fff7df}.section-rule{pointer-events:none}.chordPlayhead{pointer-events:none}#formalRoadmap li{margin:.62rem 0}#formalRoadmap button{min-height:38px;margin-right:.35rem;text-align:left}.heat-nav{margin-top:20px}.heat-link{display:inline-flex;align-items:center;min-height:44px;padding:6px 12px;border:1px solid #647997;border-radius:9px;text-decoration:none;background:#222f40}.heat-hint{margin-top:0}.chordTile.gap rect{stroke:#f4cc80;stroke-dasharray:4 3}#gapForm{max-width:650px}#gapForm input,#gapForm textarea{display:block;width:100%;background:#101a27;color:var(--ink);font:inherit;border:1px solid #677e9d;border-radius:8px;padding:7px 10px;margin:4px 0 10px}#gapForm h3{margin-bottom:6px}#gapForm button:disabled{opacity:.45;cursor:default}#referenceAnswer{color:#eaddb9}[hidden]{display:none!important}.section-picker{display:flex;align-items:center;gap:10px;margin:9px 0 11px;min-width:0}.section-picker label{flex:none;font-size:.9rem;font-weight:650;color:#e0eaff}.section-select-frame{position:relative;flex:0 1 24rem;min-width:0}.section-select-frame::after{content:"";position:absolute;right:15px;top:calc(50% - 4px);width:7px;height:7px;border-right:2px solid #b5c9e1;border-bottom:2px solid #b5c9e1;transform:rotate(45deg);pointer-events:none}.section-select-frame select{width:100%;min-height:44px;appearance:none;background:#222f40;color:#f7f9fc;border:1px solid #647997;border-radius:9px;padding:7px 34px 7px 10px;font:inherit;text-overflow:ellipsis;cursor:pointer}.section-select-frame select:focus-visible{outline:2px solid #f7f9fc;outline-offset:2px}@media(max-width:550px){.section-select-frame{flex:1 1 auto}.section-select-frame select{font-size:.92rem}}.zh-line,.zh-optional{color:#bcd9f4}.zh-line{margin:0 0 10px;font-size:.95rem}.harmony-zh{line-height:1.45}.harmony-zh:empty{display:none}#toggleZh{min-height:35px;font-size:.86rem;padding:4px 8px;margin-left:auto}#referenceZh{color:#f2ddb3}#formalRoadmap .zh-line{display:block;margin:3px 0 0}/* Keep the controls and timeline inside the visible browser width. */
 main,section,.row,.harmony,.harmony-head,.section-picker,.readout,#notes{min-width:0}
 main,section,button,select,input,textarea,audio,.plot,.mini,.harmplot{max-width:100%}
 main{overflow-wrap:anywhere}main>nav{flex-wrap:wrap}
@@ -46,27 +46,28 @@ body{padding:clamp(8px,1.65vmin,20px)}
  .stage .playbar audio{height:34px}.stage .harmony-head{font-size:.8rem}.stage .harmony-zh{font-size:.8rem}
 }
 </style></head><body><main class="present">
-<header class="mast"><div><div class="brand">Performance Mirror</div><h1>Alphorn</h1><div class="sub">Richard Strauss · Horn, voice and piano · Full performance, 4:28</div></div><div class="top-tools"><div class="row heat-nav" role="group" aria-label="Analysis heat"><button id="lowHeat" aria-pressed="true" type="button">Low · Worked analysis</button><button id="mediumHeat" aria-pressed="false" type="button">Medium · Fill the gaps</button><a class="heat-link" href="./create/">High · Analyze your recording</a></div><button id="openPractice" type="button" hidden>Practice gaps</button><button id="openGuide" type="button">Guide</button></div></header>
+<header class="mast"><div><div class="brand">Performance Mirror</div><h1>Alphorn</h1><div class="sub">Richard Strauss · Horn, voice and piano · Full performance, 4:28</div></div><div class="top-tools"><div class="row heat-nav" role="group" aria-label="Analysis heat"><button id="lowHeat" aria-pressed="true" type="button">Low · Worked analysis</button><button id="mediumHeat" aria-pressed="false" type="button">Medium · Fill the gaps</button><a class="heat-link" href="./create/">High · Analyze your recording</a></div><button id="openPractice" type="button" hidden>Edit chords</button><button id="openGuide" type="button">Guide</button></div></header>
 <section class="stage" aria-label="Recording and pitch contours">
 <div class="playbar"><audio id="audio" controls preload="metadata" aria-label="Original stereo recording" src="./alphorn.mp3"></audio><div class="section-picker"><label for="sectionSelect">Section</label><div class="section-select-frame"><select id="sectionSelect"><option id="currentSection" value="" selected disabled>Opening · 0:00</option></select></div></div></div>
 <div class="row" aria-label="Layers and view"><button type="button" data-layer="horn" aria-pressed="true"><span class="swatch" style="--c:var(--horn)"></span>Horn</button><button type="button" data-layer="voice" aria-pressed="true"><span class="swatch voice-swatch" style="--c:var(--voice)"></span>Voice</button><button type="button" data-layer="piano" aria-pressed="true"><span class="swatch piano-swatch" style="--c:var(--piano)"></span>Piano harmony</button><button id="zoom" aria-pressed="true">Show whole piece</button></div>
 <div class="readout"><span id="position">0:00 / 4:28</span><span id="scoreRef">Before first note</span></div>
 <svg id="chart" class="plot" preserveAspectRatio="none" role="img" aria-label="Score-guided pitch contours. Click to seek, or use the audio controls."></svg>
 <div class="harmony" aria-label="Score-based harmonic analysis"><div class="harmony-head"><strong>Score-based harmony <span class="zh-optional" lang="zh-Hans">· 总谱和声分析</span></strong><span id="chordNow" class="now">—</span><span id="chordNext"></span><span id="keyNow" style="margin-left:auto"></span><button id="toggleZh" type="button" aria-pressed="true">Chinese notes: on</button></div>
-<p id="chordZh" lang="zh-Hans" class="zh-line harmony-zh"></p><svg id="chords" class="harmplot" viewBox="0 0 1000 42" preserveAspectRatio="none" role="img" aria-label="Score-based harmonic analysis. Click to seek, or use the audio controls."></svg></div>
+<p id="chordZh" lang="zh-Hans" class="zh-line harmony-zh"></p><svg id="chords" class="harmplot" viewBox="0 0 1000 42" preserveAspectRatio="none" role="img" aria-label="Score-based harmonic analysis. In Low Heat, click to seek. In Medium Heat, click any chord to annotate or edit it."></svg></div>
 <svg id="overview" class="mini" viewBox="0 0 1000 60" preserveAspectRatio="none" role="img" aria-label="Entire recording waveform with current view and playhead. Click to seek, or use the audio controls."></svg>
 <div id="notes" aria-label="Score notes at playhead"></div>
 </section>
 <dialog id="controlDialog" aria-label="Analysis guide and practice"><div class="dialog-head"><strong>Analysis · 分析</strong><button id="closeControl" type="button" autofocus>Back to charts</button></div>
 <p id="heatHint" class="help heat-hint">Follow the score-based analysis and listen for the changes.</p>
-<p id="heatHintZh" class="help zh-line" lang="zh-Hans">低热度：观察完整的总谱分析，聆听和声如何变化。</p><section id="practicePanel" hidden aria-labelledby="practiceHeading"><h2 id="practiceHeading">Complete the analysis <span class="zh-optional" lang="zh-Hans">· 补全分析</span></h2>
-<p id="gapHintZh" class="zh-line" lang="zh-Hans"></p><p class="help">Listen to a marked gap, then try a chord or function and explain what you heard. Check the reference only after saving an attempt.</p>
-<div id="gapList" class="row" aria-label="Analysis gaps"></div>
-<form id="gapForm"><h3 id="gapTitle"></h3><div class="row"><button type="button" id="playGap">Play this passage</button></div>
-<label for="answerChord">Chord label <span class="zh-optional" lang="zh-Hans">· 和弦名称</span></label><input id="answerChord" maxlength="45" placeholder="e.g. B♭7/D">
+<p id="heatHintZh" class="help zh-line" lang="zh-Hans">低热度：观察完整的总谱分析，聆听和声如何变化。</p><section id="practicePanel" hidden aria-labelledby="practiceHeading"><h2 id="practiceHeading">Edit the analysis <span class="zh-optional" lang="zh-Hans">· 编辑和声分析</span></h2>
+<p id="gapHintZh" class="zh-line" lang="zh-Hans"></p><p class="help">Fill a gap, revise a chord label, or add a listening note. Only your version changes; the score-based reference is kept.</p>
+<div class="row chord-picker"><label for="chordPicker">Any chord <span class="zh-optional" lang="zh-Hans">· 任一和弦</span></label><select id="chordPicker"></select></div>
+<div id="gapList" class="row" aria-label="Guided gaps"></div>
+<form id="gapForm"><h3 id="gapTitle"></h3><p id="originalChord" class="help"></p><div class="row"><button type="button" id="playGap">Play this passage</button></div>
+<label for="answerChord">Your chord label <span class="zh-optional" lang="zh-Hans">· 和弦名称</span></label><input id="answerChord" maxlength="45" placeholder="e.g. B♭7/D">
 <label for="answerFunction">Function or Roman numeral <span class="zh-optional" lang="zh-Hans">· 和声功能或罗马数字</span></label><input id="answerFunction" maxlength="55" placeholder="e.g. V⁶₅">
 <label for="answerEvidence">What in the bass, voicing, or resolution supports your reading? <span class="zh-optional" lang="zh-Hans">· 哪些低音、和弦排列或解决进行支持你的判断？</span></label><textarea id="answerEvidence" rows="2" maxlength="300"></textarea>
-<div class="row"><button type="submit">Save attempt</button><button type="button" id="showReference" disabled>Compare with reference</button></div>
+<div class="row"><button type="submit">Save attempt</button><button type="button" id="showReference" disabled>Compare with reference</button><button type="button" id="clearReading" hidden>Clear my reading</button></div>
 <p id="attemptStatus" class="help" role="status"></p><p id="referenceAnswer" hidden></p><p id="referenceZh" lang="zh-Hans" class="zh-line" hidden></p></form><details id="mediumTrace"><summary>My analysis breadcrumbs</summary><ol id="mediumEvents"></ol></details></section>
 <section id="workedDetails"><h2>How to read this analysis</h2><p class="help">The chart covers the full piece. Gold and green are monophonic score contours in concert pitch. Grey shows piano notes and chords. Fainter, dotted melody marks have weaker support in the mixed recording. Listen to the unchanged stereo recording; layer buttons only change the display.</p>
 <p>The first 38 seconds use manually placed listening landmarks. The rest aligns the score to pitch energy in the recording, so entrances and note lengths are approximate. The contours show score notes, not continuous vocal vibrato or separated tracks. The piano layer is an approximate harmonic guide, not a complete transcription of attacks, pedaling or sustain. Silence in a melody layer indicates a rest or a gap in its mapped notes.</p><p id="summary"></p><h2>Formal roadmap <span class="zh-optional" lang="zh-Hans">· 曲式与调性进程</span></h2><ol id="formalRoadmap"></ol><p>The 30-second span opens by default. Click the piano roll or waveform to center it on that location. Use <strong>Show whole piece</strong> for an overview. The waveform below the chord lane always covers the entire recording and is measured from the audio. Vertical guides mark the horn and vocal entrances, the Andante, the return to the opening tempo, and the final horn-and-piano passage. The harmony lane follows the IMSLP score: local keys, selected chord functions, and cadences. Blank tiles are passages without a specific chord label, not silence. Alignments to this recording are approximate.</p></section>
@@ -95,7 +96,13 @@ const gapSpecs=[
 const gaps=gapSpecs.map(([bar,label,hint],n)=>({n,idx:D.chords.findIndex(r=>r[2]===label&&r[5]===bar),hint,bar})).filter(x=>x.idx>=0);
 const gapByIdx=new Map(gaps.map(x=>[x.idx,x]));let heat=1,attempts={},mediumTrail=[],selectedGap=gaps[0],listeningToGap=null;
 try{const saved=JSON.parse(localStorage.getItem('alphorn-attempts-v1')||'{}');if(saved&&typeof saved==='object')attempts=saved;const history=JSON.parse(localStorage.getItem('alphorn-medium-trail-v1')||'[]');if(Array.isArray(history))mediumTrail=history.slice(-200);}catch{}
-const displayName=(idx,name)=>heat===2&&gapByIdx.has(idx)?(attempts[idx]?'My reading: '+(attempts[idx].label||attempts[idx].fn):'Gap '+(gapByIdx.get(idx).n+1)):name;
+const mine=idx=>heat===2?attempts[idx]:null;
+const myLabel=m=>[m?.label,m?.fn].filter(Boolean).join(' · ');
+const displayName=(idx,name)=>myLabel(mine(idx))||(heat===2&&gapByIdx.has(idx)?'Gap '+(gapByIdx.get(idx).n+1):name);
+const chordAt=t=>D.chords.findIndex(([a,b])=>a<=t&&t<b);
+const chordName=r=>[r?.[2],r?.[4]].filter(Boolean).join(' · ');
+const editIndex=D.chords.map(([,,name],i)=>name||gapByIdx.has(i)?i:-1).filter(i=>i>=0);
+const editorChords=new Set(editIndex);
 const safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function rules(xFor,low,high){
  return divisions.map(([t,text])=>{const x=xFor(t);return `<g class="section-rule"><line x1="${x}" x2="${x}" y1="${low}" y2="${high}" stroke="#b2c1d5" stroke-opacity=".6" stroke-width="1.25" stroke-dasharray="4 3"/><path d="M${x-3},${low}h6l-3,5z" fill="#c2d0e2"/><title>${safe(text)} · ${fmt(t)}</title></g>`;}).join('');
@@ -112,14 +119,14 @@ function drawChords(){
  let d='';
  for(let i=0;i<D.chords.length;i++){
   const [a,b,original,level,fn,where,memo]=D.chords[i];
-  const masked=heat===2&&gapByIdx.has(i),name=displayName(i,original);
+  const masked=heat===2&&gapByIdx.has(i),edited=mine(i),name=displayName(i,original);
   if(b<=start||a>=end)continue;
   const x=xp(Math.max(start,a)),w=Math.max(0,xp(Math.min(b,end))-x-.55);
   const fg=level===0?'#adb9c8':'#edf4ff';
   const tile=name?(level===0?'#263648':'#304660'):'#192536';
   const stroke=name?(level===0?' stroke="#8f9dae" stroke-dasharray="2 3"':''):'';
-  const label=name||'—', title=masked?[name,where].join(' · '):(name?[name,fn,where,memo].filter(Boolean).join(' · '):'No specific chord label here');
-  d+=`<g class="chordTile${masked?' gap':''}" data-chord="${i}"><rect x="${x}" width="${w}" y="4" height="34" rx="${Math.min(4,w/2)}" fill="${tile}"${stroke}/>`;
+  const label=name||'—', title=edited?['My reading',name,where,edited.evidence].filter(Boolean).join(' · '):masked?[name,where].join(' · '):(name?[name,fn,where,memo].filter(Boolean).join(' · '):'No specific chord label here');
+  d+=`<g class="chordTile${masked?' gap':''}${edited?' edited':''}" data-chord="${i}"><rect x="${x}" width="${w}" y="4" height="34" rx="${Math.min(4,w/2)}" fill="${tile}"${stroke}/>`;
   if(w*chWidth/W>=Math.max(22,label.length*6.7+9))d+=`<text x="${x+w/2}" y="26" text-anchor="middle" fill="${fg}" font-size="14" font-weight="600">${safe(label)}</text>`;
   d+=`<title>${safe(title)}</title></g>`;
  }
@@ -128,20 +135,20 @@ function drawChords(){
 }
 function chordPlayback(t){
  chCursor?.setAttribute('d',`M${xp(Math.max(start,Math.min(end,t)))},0V42`);
- const idx=D.chords.findIndex(([a,b])=>a<=t&&t<b), row=D.chords[idx];
+ const idx=chordAt(t), row=D.chords[idx], edited=mine(idx);
  const nextIdx=D.chords.findIndex(([a,b,name],j)=>j>idx&&a>t&&name&&name!==row?.[2]);
  const next=D.chords[nextIdx];
  const tile=idx>=0?ch.querySelector(`[data-chord="${idx}"]`):null;
  if(tile!==currentTile){currentTile?.classList.remove('current');tile?.classList.add('current');currentTile=tile;}
  const masked=heat===2&&gapByIdx.has(idx);
- const label=masked?displayName(idx,row[2]):row?.[2]?[row[2],row[4]].filter(Boolean).join(' · '):'No chord label';
- const rest=masked?row[5]+' · Enter your reading below':row?.[2]?[row[5],row[6]].filter(Boolean).join(' · '):(next?'Next label: '+displayName(nextIdx,next[2])+' at '+fmt(next[0]):'');
+ const label=myLabel(edited)?'My reading: '+myLabel(edited):masked?displayName(idx,row[2]):chordName(row)||'No chord label';
+ const rest=edited?[row[5],edited.evidence||'Annotation saved'].filter(Boolean).join(' · '):masked?row[5]+' · Click to add your reading':row?.[2]?[row[5],row[6]].filter(Boolean).join(' · '):(next?'Next label: '+displayName(nextIdx,next[2])+' at '+fmt(next[0]):'');
  const key=row?.[7]||D.formalSections.find(x=>x.start<=t&&t<x.end)?.key||'';
  const k=document.querySelector('#keyNow');
  const keyLabel=key+(bilingual&&Z.keys[key]?' · '+Z.keys[key]:'');
  if(k.textContent!==keyLabel)k.textContent=keyLabel;
  const zh=$('#chordZh');
- const zhText=!bilingual?'':masked?(cnMeasure(row[5])+'｜请先填写你的判断。'):row?.[2]?cnChord(row,idx):'此处未标注具体和弦。';
+ const zhText=!bilingual?'':edited?cnMeasure(row[5])+'｜已保存你的分析或听辨笔记。':masked?(cnMeasure(row[5])+'｜请先填写你的判断。'):row?.[2]?cnChord(row,idx):'此处未标注具体和弦。';
  if(zh.textContent!==zhText)zh.textContent=zhText;
  const now=document.querySelector('#chordNow'), later=document.querySelector('#chordNext');
  if(now.textContent!==label)now.textContent=label;if(later.textContent!==rest)later.textContent=rest;
@@ -213,7 +220,7 @@ ov.addEventListener('click',e=>seek(at(ov,e)/OV*len));
 ch.addEventListener('click',e=>{
  const t=start+(at(ch,e)-L)/(R-L)*(end-start);
  const idx=D.chords.findIndex(x=>x[0]<=t&&x[1]>t);
- if(heat===2&&gapByIdx.has(idx)){openGap(gapByIdx.get(idx));showControls();return;}
+ if(heat===2&&editorChords.has(idx)){openChord(idx);showControls();return;}
  seek(t);
 });
 a.addEventListener('play',()=>{cancelAnimationFrame(frameId);frame();});
@@ -230,24 +237,41 @@ for(const [i,item] of D.formalSections.entries()){
 function drawMediumTrail(){const box=$('#mediumEvents');box.replaceChildren();for(const item of mediumTrail.slice(-30)){const li=document.createElement('li');li.textContent=item.action+' · '+item.at+(item.detail?' · '+item.detail:'');box.append(li);}}
 function mediumLog(action,detail='',at=a.currentTime){if(heat!==2)return;mediumTrail.push({action,detail,at:fmt(at),timestamp:new Date().toISOString()});mediumTrail=mediumTrail.slice(-200);try{localStorage.setItem('alphorn-medium-trail-v1',JSON.stringify(mediumTrail));}catch{}drawMediumTrail();}
 function refreshGap(){
- if(!selectedGap)return;const g=selectedGap,attempt=attempts[g.idx];
+ if(!selectedGap)return;
+ const g=selectedGap,row=D.chords[g.idx],gap=gapByIdx.get(g.idx),attempt=attempts[g.idx];
  $('#gapList').replaceChildren();
- for(const item of gaps){const b=document.createElement('button');b.type='button';b.setAttribute('aria-pressed',item.idx===g.idx);b.textContent='Gap '+(item.n+1)+' · '+item.bar+(attempts[item.idx]?' ✓':'');b.onclick=()=>openGap(item);$('#gapList').append(b);}
- $('#gapTitle').textContent='Gap '+(g.n+1)+' · '+g.bar+'. '+g.hint;
+ for(const item of gaps){const b=document.createElement('button');b.type='button';b.setAttribute('aria-pressed',item.idx===g.idx);b.textContent='Gap '+(item.n+1)+' · '+item.bar+(attempts[item.idx]?' ✓':'');b.onclick=()=>openChord(item.idx);$('#gapList').append(b);}
+ const picker=$('#chordPicker');
+ if(!picker.children.length)for(const idx of editIndex){
+   const r=D.chords[idx],o=document.createElement('option'),hidden=gapByIdx.get(idx);
+   o.value=String(idx);o.textContent=fmt(r[0])+' · '+r[5]+' · '+(hidden?'Gap '+(hidden.n+1):chordName(r));picker.append(o);
+ }
+ picker.value=String(g.idx);
+ $('#gapTitle').textContent=(gap?'Gap '+(gap.n+1)+' · ':'')+row[5]+' · '+fmt(row[0])+'–'+fmt(row[1])+(gap?'. '+gap.hint:'');
+ $('#gapHintZh').textContent=gap?gapNotes[gap.n]:'可以更改和弦或和声功能，也可以只添加听辨笔记。原分析会保留。';
+ $('#originalChord').hidden=!!gap;$('#originalChord').textContent=gap?'':'Score-based reference: '+chordName(row);
  $('#answerChord').value=attempt?.label||'';$('#answerFunction').value=attempt?.fn||'';$('#answerEvidence').value=attempt?.evidence||'';
- $('#attemptStatus').textContent=attempt?'Attempt saved on this browser.':'';
- $('#showReference').disabled=!attempt;$('#referenceAnswer').hidden=true;$('#referenceZh').hidden=true;$('#gapHintZh').textContent=gapNotes[g.n];
+ $('#attemptStatus').textContent=attempt?'Your reading is saved on this browser.':'';
+ $('#clearReading').hidden=!attempt;$('#showReference').disabled=!!gap&&!attempt;
+ $('#referenceAnswer').hidden=true;$('#referenceZh').hidden=true;
 }
-function openGap(g){selectedGap=g;listeningToGap=null;a.pause();seek(D.chords[g.idx][0]);mediumLog('Revisited gap '+(g.n+1));refreshGap();}
-function setHeat(level){heat=level;$('#lowHeat').setAttribute('aria-pressed',level===1);$('#mediumHeat').setAttribute('aria-pressed',level===2);$('#practicePanel').hidden=level!==2;$('#workedDetails').hidden=level!==1;$('#heatHint').textContent=level===1?'Follow the score-based analysis and listen for the changes.':'Five parts of the same analysis are left open. Listen first, then give your own reading.';$('#heatHintZh').textContent=level===1?'低热度：观察完整的总谱分析，聆听和声如何变化。':'中热度：先听，再尝试补全五处和声分析。保存尝试后，可与参考分析比较。';if(level===2){refreshGap();drawMediumTrail();}else listeningToGap=null;render();}
+function openChord(idx){
+ if(!editorChords.has(idx))return;
+ const row=D.chords[idx],gap=gapByIdx.get(idx);
+ selectedGap={idx};listeningToGap=null;a.pause();seek(row[0]);
+ mediumLog(gap?'Revisited gap '+(gap.n+1):'Opened chord',row[5],row[0]);refreshGap();
+}
+$('#chordPicker').onchange=e=>openChord(Number(e.target.value));
+function setHeat(level){heat=level;$('#lowHeat').setAttribute('aria-pressed',level===1);$('#mediumHeat').setAttribute('aria-pressed',level===2);$('#practicePanel').hidden=level!==2;$('#workedDetails').hidden=level!==1;$('#heatHint').textContent=level===1?'Follow the score-based analysis and listen for the changes.':'Five guided gaps are left open. You can also click any supplied chord to revise or annotate it.';$('#heatHintZh').textContent=level===1?'低热度：观察完整的总谱分析，聆听和声如何变化。':'中热度：可以补全五处留白，也可以点击任一已标注和弦来修改或添加笔记。';if(level===2){refreshGap();drawMediumTrail();}else listeningToGap=null;render();}
 function showControls(){const dialog=$('#controlDialog');if(!dialog.open)dialog.showModal();}
 $('#closeControl').onclick=()=>$('#controlDialog').close();
 $('#openGuide').onclick=showControls;
-$('#openPractice').onclick=showControls;
+$('#openPractice').onclick=()=>{const idx=chordAt(a.currentTime);if(editorChords.has(idx))openChord(idx);showControls();};
 $('#lowHeat').onclick=()=>{setHeat(1);$('#openGuide').hidden=false;$('#openPractice').hidden=true;};
 $('#mediumHeat').onclick=()=>{setHeat(2);$('#openGuide').hidden=true;$('#openPractice').hidden=false;};
-$('#gapForm').onsubmit=e=>{e.preventDefault();if(!selectedGap)return;const label=$('#answerChord').value.trim(),fn=$('#answerFunction').value.trim(),evidence=$('#answerEvidence').value.trim();if(!label&&!fn){$('#attemptStatus').textContent='Enter a chord label or a function before checking.';return;}const prior=attempts[selectedGap.idx];attempts[selectedGap.idx]={label,fn,evidence};mediumLog(prior?'Revised attempt':'Saved attempt',prior?[prior.label,prior.fn].filter(Boolean).join(' · ')+' → '+[label,fn,evidence].filter(Boolean).join(' · '):[label,fn,evidence].filter(Boolean).join(' · '),D.chords[selectedGap.idx][0]);let saved=true;try{localStorage.setItem('alphorn-attempts-v1',JSON.stringify(attempts));}catch{saved=false;}refreshGap();if(!saved)$('#attemptStatus').textContent='Attempt saved for this tab only.';render();};
-$('#showReference').onclick=()=>{if(!selectedGap||!attempts[selectedGap.idx])return;const x=D.chords[selectedGap.idx];$('#referenceAnswer').textContent=[x[2],x[4],x[6]].filter(Boolean).join(' · ');$('#referenceAnswer').hidden=false;$('#referenceZh').textContent=cnChord(x,selectedGap.idx);$('#referenceZh').hidden=!bilingual;mediumLog('Compared with reference',x[5],x[0]);};
+$('#gapForm').onsubmit=e=>{e.preventDefault();if(!selectedGap)return;const label=$('#answerChord').value.trim(),fn=$('#answerFunction').value.trim(),evidence=$('#answerEvidence').value.trim();if(!label&&!fn&&!evidence){$('#attemptStatus').textContent='Enter a chord, harmonic function, or listening note.';return;}const prior=attempts[selectedGap.idx];attempts[selectedGap.idx]={label,fn,evidence};mediumLog(prior?'Revised attempt':'Saved attempt',prior?[prior.label,prior.fn].filter(Boolean).join(' · ')+' → '+[label,fn,evidence].filter(Boolean).join(' · '):[label,fn,evidence].filter(Boolean).join(' · '),D.chords[selectedGap.idx][0]);let saved=true;try{localStorage.setItem('alphorn-attempts-v1',JSON.stringify(attempts));}catch{saved=false;}refreshGap();if(!saved)$('#attemptStatus').textContent='Attempt saved for this tab only.';render();};
+$('#showReference').onclick=()=>{if(!selectedGap||(gapByIdx.has(selectedGap.idx)&&!attempts[selectedGap.idx]))return;const x=D.chords[selectedGap.idx];$('#referenceAnswer').textContent=[x[2],x[4],x[6]].filter(Boolean).join(' · ');$('#referenceAnswer').hidden=false;$('#referenceZh').textContent=cnChord(x,selectedGap.idx);$('#referenceZh').hidden=!bilingual;mediumLog('Compared with reference',x[5],x[0]);};
+$('#clearReading').onclick=()=>{if(!selectedGap||!attempts[selectedGap.idx])return;const idx=selectedGap.idx;delete attempts[idx];try{localStorage.setItem('alphorn-attempts-v1',JSON.stringify(attempts));}catch{}mediumLog('Cleared reading',D.chords[idx][5],D.chords[idx][0]);refreshGap();render();};
 $('#playGap').onclick=()=>{if(!selectedGap)return;const x=D.chords[selectedGap.idx];seek(Math.max(0,x[0]-2));listeningToGap=Math.min(len,x[1]+2);mediumLog('Replayed passage',x[5],Math.max(0,x[0]-2));a.play().catch(()=>{$('#attemptStatus').textContent='Press Play above to hear the passage.';});};
 $('#toggleZh').onclick=()=>{
  bilingual=!bilingual;const b=$('#toggleZh');b.textContent=bilingual?'Chinese notes: on':'Chinese notes: off';b.setAttribute('aria-pressed',bilingual);
