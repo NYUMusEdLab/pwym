@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; media-src 'self' blob:; img-src 'self' data: blob:; connect-src 'none'; base-uri 'none'; form-action 'none'"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Analyze your recording · Performance Mirror</title><link rel="stylesheet" href="./style.css"></head><body><main>
+<nav><strong>Performance Mirror</strong><a href="../">Back to the Alphorn analysis</a><a id="exampleLink" href="?demo=1">Show synthetic one-hour session</a></nav>
+<header><p class="eyebrow">HIGH HEAT · INDEPENDENT ANALYSIS</p><h1>Perform, listen, and make your case.</h1><p class="intro">Record your own performance. Mark musical sections, propose your reading, and revise it after listening again. The tool never changes the music or gives you the analysis.</p><p id="exampleFlag" class="example" hidden><strong>Synthetic example:</strong> a fictional one-hour work session on a short generated study. Not a student record. <span lang="zh-Hans">模拟示例：用一段短曲演示一小时的分析过程，不是真实学生记录。</span></p><p class="intro" lang="zh-Hans">高热度：录下自己的演奏，标记曲式与和声，反复聆听后提出并修订自己的分析。</p></header>
+<div class="step-tabs row" role="group" aria-label="Workspace views"><button type="button" id="listenTab" aria-pressed="true">Record &amp; listen</button><button type="button" id="annotateTab" aria-pressed="false">Annotate</button><button type="button" id="breadcrumbsTab" aria-pressed="false">Breadcrumbs</button></div>
+<section id="listenView"><div class="top"><h2>1. Record and listen</h2></div>
+<div class="row"><button id="record" class="primary" type="button">Record a performance</button><button id="stop" type="button" disabled>Stop recording</button><button id="zoom" type="button" aria-pressed="true">Show whole recording</button><button id="pitch" type="button" disabled aria-pressed="false">Estimate a solo contour</button></div>
+<p id="status" role="status">Blank workspace. Record up to five minutes. No analysis is filled in for you.</p>
+<audio id="player" controls aria-label="Original performance recording" preload="metadata"></audio>
+<div class="chartkey"><span id="viewName">30-second view</span><output id="position">0:00</output></div>
+<svg id="roll" viewBox="0 0 900 255" role="img" aria-label="Performance timeline; click to seek."></svg>
+<div class="stripTitle">Whole recording waveform</div><svg id="wave" viewBox="0 0 900 48" class="strip" role="img" aria-label="Whole recording waveform; click to recenter the analysis view."></svg>
+<label class="scrub" for="seek">Playhead <input id="seek" type="range" min="0" max="30" step=".02" value="0" disabled></label></section>
+<section id="annotateView" aria-labelledby="notesTitle" hidden><h2 id="notesTitle">2. Make the analysis</h2><p class="muted">Use the playhead to anchor an observation. Explain what you hear. The same annotation can be revised as your reading changes.</p>
+<form id="annotationForm"><div class="row"><label for="kind">Type</label><select id="kind"><option>Section</option><option>Chord</option><option>Key</option><option>Cadence</option><option>Motif / contour</option><option>Other observation</option></select>
+<label for="anchor">Start (seconds)</label><input type="number" id="anchor" min="0" step=".05" value="0"><button id="atCursor" type="button">Use playhead</button>
+<label for="finish">End, if needed</label><input type="number" id="finish" min="0" step=".05" placeholder="Optional"></div>
+<label for="label">Your label or reading</label><input id="label" required maxlength="90" placeholder="e.g. C major · I, or A section">
+<label for="evidence">Evidence you can hear or point to</label><textarea id="evidence" rows="2" maxlength="1000" placeholder="e.g. What does the bass do? What changes in the melody?"></textarea>
+<div class="row"><button id="saveNote" type="submit" disabled>Add annotation</button><button id="cancelEdit" type="button" hidden>Cancel edit</button></div></form>
+<div id="annotations"></div></section>
+<section id="breadcrumbsView" aria-labelledby="breadcrumbsTitle" hidden><h2 id="breadcrumbsTitle">3. Review your breadcrumbs <span class="muted" lang="zh-Hans">· 回顾学习足迹</span></h2><p id="trailStats" class="muted">A quiet trace of what you tried. Record, replay, and revise to build it.</p>
+<div id="traceReview" hidden>
+<div class="row" role="group" aria-label="Breadcrumb review perspective"><button id="learnerTrace" type="button" aria-pressed="true">Learner view</button><button id="teacherTrace" type="button" aria-pressed="false">Teacher view</button></div>
+<p id="traceHint" class="muted"></p>
+<div class="trace-scroll"><svg id="traceSvg" viewBox="0 0 900 295" role="img" aria-label="Session timeline. Use the event selector below for keyboard navigation."></svg></div>
+<div class="row trace-select"><button id="previousEvent" type="button" aria-label="Previous activity">Previous</button><label for="eventPicker">Inspect event</label><select id="eventPicker"></select><button id="nextEvent" type="button" aria-label="Next activity">Next</button></div>
+<div class="trace-card"><h3 id="eventTitle"></h3><p id="eventMeta" class="muted"></p><p id="eventNote"></p><p id="eventContext" class="muted"></p><button id="replayEvent" type="button">Replay around this point</button></div>
+</div>
+<details class="session-details"><summary>Session log, reflection &amp; export</summary><details id="trailPanel"><summary>Read the chronological log</summary><ol id="trail"></ol></details>
+<label for="reflection">What changed in your analysis?</label><textarea id="reflection" rows="3" maxlength="2000" placeholder="I changed my reading because…"></textarea><div class="row"><button id="saveReflection" type="button">Save reflection entry</button><button id="download" type="button">Download session</button></div>
+<p class="muted">The session export includes your original take, timed annotations, and activity history. Recordings and activity stay in this browser tab unless you export them. Save before leaving.</p><p class="muted">Pitch estimation is optional and works best for one melody at a time. It is not chord detection.</p></details></section>
+<footer>Pitch estimation is optional and works best for one melody at a time. It is not chord detection. The recording is never altered.</footer></main><script type="module" src="./independent.mjs"></script></body></html>
